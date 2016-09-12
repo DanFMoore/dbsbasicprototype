@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<div class="breadcrumbs">
+				<ol><li>Section 4 of 9</li></ol>
+			</div> <!-- Breadcrumb -->
+
+			<form action="formAddress" method="post" class="form">
+
+			  	<!-- Email address -->
+			    <div class="form-group">
+			      	<label class="form-label-bold" for="email-address">Email address</label>
+			      	<p class="form-hint">This will only be used to contact you about your application.</p>
+			      	<input type="text" class="form-control" id="email-address">
+			    </div> <!-- Form group close-->
+
+			    <!-- Confirm email address -->
+			    <div class="form-group">
+			      	<label class="form-label-bold" for="confirm-email-address">Confirm email address</label>
+			      	<input type="text" class="form-control" id="confirm-email-address">
+			    </div> <!-- Form group close-->
+
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Continue">
+				</div> <!-- Form group close-->
+
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+{% endblock %}
+
+

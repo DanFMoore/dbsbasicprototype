@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<div class="breadcrumbs">
+				<ol><li>Section 3 of 9</li></ol>
+			</div> <!-- Breadcrumb -->
+
+			<form action="formEmail" method="post" class="form">
+
+			    <div class="form-group">
+			    	<fieldset class="inline">
+			    		<legend class="form-label-bold">Have you ever been known by any other names?</legend>
+			    		<p class="form-hint">This could be a change in forename(s) or surname.</p>
+
+			    		<label class="block-label" data-target="name-change" for="name-radio-1">
+						    <input id="name-radio-1" type="radio" name="name-radio-group" value="Yes">
+						    Yes
+					    </label>
+						
+					    <label class="block-label" for="name-radio-2">
+						    <input id="name-radio-2" type="radio" name="name-radio-group" value="No">
+						    No
+					    </label>
+
+			    	</fieldset>
+			    	<!-- Expandable panel area -->
+			    	<div class="panel panel-border-narrow js-hidden" id="name-change">
+						<!-- Family name -->
+						<div class="form-group">
+							<label class="form-label" for="family-name">Family name (other)</label>
+							<input class="form-control" name="family-name" type="text" id="family-name">
+						</div> <!-- Form group close-->
+
+						<!-- Given names -->
+						<div class="form-group">
+							<label class="form-label" for="given-names">Given name(s) (other)</label>
+							<input class="form-control" name="given-names" type="text" id="given-names">
+						</div> <!-- Form group close-->
+
+						<!-- Date from -->
+						<div class="form-group">
+							<fieldset>
+								<legend class="form-label">Date from</legend>
+
+								<div class="form-date">
+									<p class="form-hint">For example, 03 1980</p>
+									<div class="form-group form-group-month">
+										<label for="name-from-month">Month</label>
+										<input class="form-control" id="name-from-month" type="number" pattern="[0-9]*" min="0" max="12">
+									</div> <!-- Form group close-->
+									<div class="form-group form-group-year">
+										<label for="name-from-year">Year</label>
+										<input class="form-control" id="name-from-year" type="number" pattern="[0-9]*" min="0" max="2016">
+									</div> <!-- Form group close-->
+								</div> <!-- Form group close-->
+							</fieldset>
+						</div> <!-- Form group close-->
+
+
+						<!-- Date to -->
+						<div class="form-group">
+							<fieldset>
+								<legend class="form-label">Date to</legend>
+
+								<div class="form-date">
+									<p class="form-hint">For example, 03 2014</p>
+									<div class="form-group form-group-month">
+										<label for="name-to-month">Month</label>
+										<input class="form-control" id="name-to-month" type="number" pattern="[0-9]*" min="0" max="12">
+									</div> <!-- Form group close-->
+									<div class="form-group form-group-year">
+										<label for="name-to-year">Year</label>
+										<input class="form-control" id="name-to-year" type="number" pattern="[0-9]*" min="0" max="2016">
+									</div> <!-- Form group close-->
+								</div>
+							</fieldset>
+						</div> <!-- Form group close-->
+
+						<a class="button-secondary" href="#" role="button">Add another</a>
+
+					</div> <!-- Expandable panel area  Close -->
+			    </div> <!-- Form group close-->
+
+
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Continue">
+				</div> <!-- Form group close-->
+
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+{% endblock %}
+
+

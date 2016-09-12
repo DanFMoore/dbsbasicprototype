@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<div class="breadcrumbs">
+				<ol><li>Payment</li></ol>
+			</div> <!-- Breadcrumb -->
+			
+			
+			<form action="formComplete" method="post" class="form">
+
+				<div class="form-name">
+					<h2 class="text-secondary">Charge: £16</h2>
+					<br>
+				</div>
+
+			    <!-- Full name -->
+			    <div class="form-group">
+			      	<label class="form-label-bold" for="full-name">Full name</label>
+			      	<p class="form-hint">As it appears on your card</p>
+			      	<input type="text" class="form-control" id="full-name">
+			    </div> <!-- Form group close-->
+
+			    <!-- Card number -->
+			    <div class="form-group">
+			      	<label class="form-label-bold" for="card-number">Card number</label>
+			      	<input type="text" class="form-control" id="card-number">
+			    </div> <!-- Form group close-->
+
+			    <!-- Expiry date -->
+			    <div class="form-group">
+					<fieldset>
+						<legend class="form-label-bold">Expiry date</legend>
+							<div class="form-date">
+								<div class="form-group form-group-month">
+									<label for="expiry-date-month">Month</label>
+									<input class="form-control" id="expiry-date-month" type="number" pattern="[0-9]*" min="0" max="12">
+								</div> <!-- Form group close-->
+								<div class="form-group form-group-year">
+									<label for="expiry-date-year">Year</label>
+									<input class="form-control" id="expiry-date-year" type="number" pattern="[0-9]*" min="0" max="2016">
+								</div> <!-- Form group close-->
+							</div> <!-- Form group close-->
+					</fieldset>
+				</div> <!-- Form group close-->
+
+				<!-- CVC -->
+			    <div class="form-group">
+			      	<label class="form-label-bold" for="cvc-number">CVC</label>
+			      	<input type="text" class="form-control" id="cvc-number">
+			    </div> <!-- Form group close-->
+
+				
+
+				<div class="form-group">
+					<span class="heading-medium">Cardholder details<br></span>
+			    	<fieldset class="inline">
+						<!-- Postcode -->
+						<label class="form-label" for="postcode">Postcode</label>
+						<input class="form-control" name="postcode" type="text" id="postcode">
+						<a class="button secondary-button">Find UK address</a>
+					</fieldset>
+				</div> <!-- Form group close-->
+
+				<div class="form-group">
+					<a class="button-secondary" href="#" role="button">Enter address manually</a>
+				</div> <!-- Form group close-->
+
+
+
+
+
+
+			    <!-- Confirm button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Confirm">
+				</div> <!-- Form group close-->
+
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+{% endblock %}
+
+

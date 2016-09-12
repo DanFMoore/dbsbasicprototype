@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<div class="breadcrumbs">
+				<ol><li>Summary</li></ol>
+			</div> <!-- Breadcrumb -->
+			
+			
+			<form action="formDeclaration" method="post" class="form">
+
+
+				<div class="form-group">
+			    	<h3 class="form-label-bold" style="font-size:24px;">Confirm your details before continuing</h3>
+			    </div>
+			    <div class="form-group">
+
+				    <table>
+					    <tbody>
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Name</h2>
+					    			<div>John Smith</div>
+
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Date of birth</h2>
+					    			<div>01/01/1960</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Email address</h2>
+					    			<div>test@email.com</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Passport number</h2>
+					    			<div>12341234</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">National Insurance number</h2>
+					    			<div>VO 11 11 11 A</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Current address</h2>
+					    			<div>
+					    				1 Oxford Road<br>
+					    				Bristol<br>
+					    				United Kingdom<br>
+					    				A12 3BC
+					    			</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    </tbody>
+				    </table>
+
+			    </div> <!-- Form group close-->
+
+
+			    <!-- Confirm button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Confirm">
+				</div> <!-- Form group close-->
+
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+{% endblock %}
+
+

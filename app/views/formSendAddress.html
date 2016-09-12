@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<div class="breadcrumbs">
+				<ol><li>Section 7 of 9</li></ol>
+			</div> <!-- Breadcrumb -->
+
+			<form action="formIdentity" method="post" class="form">
+
+			  	<!-- Details correct -->
+				<div class="form-group">
+					<fieldset>
+						<legend class="form-label-bold">Where would you like your certificate to be sent?</legend>
+						<p class="form-hint">This could be another personal address or an employer's address.</p>
+
+					    <label class="block-label" for="correct-radio-1">
+							<input id="correct-radio-1" type="radio" name="radio-correct-group" value="Yes">
+							To my current address
+						</label>
+								
+						<label class="block-label" data-target="another-address" for="correct-radio-2">
+							<input id="correct-radio-2" type="radio" name="radio-correct-group" value="No">
+							To another address
+						</label>
+					</fieldset>
+
+					<!-- Expandable panel area  ANOTHER ADDRESS-->
+			    	<div class="panel panel-border-narrow js-hidden" id="another-address">
+			    		<div class="form-group">
+			    			<fieldset class="inline">
+							<!-- Postcode -->
+								<label class="form-label" for="postcode">Postcode</label>
+								<input class="form-control" name="postcode" type="text" id="postcode">
+								<a class="button secondary-button">Find UK address</a>
+							</fieldset>
+						</div> <!-- Form group close-->
+
+						<div class="form-group">
+							<a class="button-secondary" href="#" role="button">Enter address manually</a>
+						</div> <!-- Form group close-->
+			    	</div> <!-- Expandable panel area Close ANOTHER ADDRESS-->
+
+
+
+				</div> <!-- Form group close-->
+
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Continue">
+				</div> <!-- Form group close-->
+				
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+{% endblock %}
+
+

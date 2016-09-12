@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			<div class="breadcrumbs">
+				<ol><li>Section 5 of 9</li></ol>
+			</div> <!-- Breadcrumb -->
+
+			<form action="formOtherAddresses" method="post" class="form">
+
+				<span class="heading-medium">Verified address<br></span>
+				<br>
+				<!-- Verified details -->
+				<div class="form-group">
+					<p class="form-hint">This is the address from your Verify account.</p>
+					<span>
+						LP1 12D<br>
+						1 Oxford Road<br>
+						Bristol<br>
+						United Kingdom
+					</span>
+				</div>
+
+			  	<!-- Details correct -->
+				<div class="form-group">
+					<fieldset class="inline">
+						<legend class="form-label-bold">Is this your correct current address?</legend>
+						<p class="form-hint">This is where you live at the moment and where your certificate will be sent.</p>
+
+					    <label class="block-label" data-target="correct-address" for="correct-address-radio-1">
+							<input id="correct-address-radio-1" type="radio" name="radio-correct-address-group" value="Yes">
+							Yes
+						</label>
+								
+						<label class="block-label" data-target="incorrect-address" for="correct-address-radio-2">
+							<input id="correct-address-radio-2" type="radio" name="radio-correct-address-group" value="No">
+							No
+						</label>
+					</fieldset>
+
+					<!-- Expandable panel area  CORRECT ADDRESS-->
+			    	<div class="panel panel-border-narrow js-hidden" id="correct-address">
+
+						<!-- At address since -->
+						<div class="form-group">
+							<fieldset>
+								<legend class="form-label">At address since</legend>
+
+								<div class="form-date">
+									<p class="form-hint">For example, 03 1980</p>
+									<div class="form-group form-group-month">
+										<label for="correct-address-since-month">Month</label>
+										<input class="form-control" id="correct-address-since-month" type="number" pattern="[0-9]*" min="0" max="12">
+									</div>
+									<div class="form-group form-group-year">
+										<label for="correct-address-since-year">Year</label>
+										<input class="form-control" id="correct-address-since-year" type="number" pattern="[0-9]*" min="0" max="2016">
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div> <!-- Expandable panel area  Close CORRECT ADDRESS-->
+
+
+
+
+
+					<!-- Expandable panel area INCORRECT ADDRESS-->
+			    	<div class="panel panel-border-narrow js-hidden" id="incorrect-address">
+						<div class="form-group">
+			    			<fieldset class="inline">
+							<!-- Postcode -->
+								<label class="form-label" for="postcode">Postcode</label>
+								<input class="form-control" name="postcode" type="text" id="postcode">
+								<a class="button secondary-button">Find UK address</a>
+							</fieldset>
+						</div> <!-- Form group close-->
+
+						<div class="form-group">
+							<a class="button-secondary" href="#" role="button">Enter address manually</a>
+						</div> <!-- Form group close-->
+
+						<!-- At address since -->
+						<div class="form-group">
+							<fieldset>
+								<legend class="form-label">At address since</legend>
+
+								<div class="form-date">
+									<p class="form-hint">For example, 03 1980</p>
+									<div class="form-group form-group-month">
+										<label for="incorrect-address-since-month">Month</label>
+										<input class="form-control" id="incorrect-address-since-month" type="number" pattern="[0-9]*" min="0" max="12">
+									</div>
+									<div class="form-group form-group-year">
+										<label for="incorrect-address-since-year">Year</label>
+										<input class="form-control" id="incorrect-address-since-year" type="number" pattern="[0-9]*" min="0" max="2016">
+									</div>
+								</div>
+							</fieldset>
+						</div> <!-- Form group close-->
+					</div> <!-- Expandable panel area  Close INCORRECT ADDRESS -->
+
+
+				</div> <!-- Form group close-->
+
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Continue">
+				</div> <!-- Form group close-->
+			</form>
+		</div>
+	</div>
+
+
+</main>
+
+{% endblock %}
+
+

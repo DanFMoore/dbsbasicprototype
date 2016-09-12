@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<div class="breadcrumbs">
+				<ol><li>Section 8 of 9</li></ol>
+			</div> <!-- Breadcrumb -->
+
+			<form action="formConvictions" method="post" class="form">
+
+				<div class="form-group">
+					<p class="form-hint">This information will be used to eliminate you from potential matches.</p>
+				</div> <!-- Form group close-->
+
+				<!-- National Insurance -->
+			    <div class="form-group">
+			    	<fieldset class="inline">
+			    		<legend class="form-label-bold">Do you have a National Insurance number?</legend>
+
+			    		<label class="block-label" data-target="ni-number" for="radio-ni-1">
+						    <input id="radio-ni-1" type="radio" name="radio-ni-group" value="Yes">
+						    Yes
+					    </label>
+						
+					    <label class="block-label" for="radio-ni-2">
+						    <input id="radio-ni-2" type="radio" name="radio-ni-group" value="No">
+						    No
+					    </label>
+
+			    	</fieldset>
+			    	<!-- Expandable panel area -->
+			    	<div class="panel panel-border-narrow js-hidden" id="ni-number">
+						<!-- National Insurance number -->
+						<div class="form-group">
+							<label class="form-label" for="ni-number-input">National Insurance number</label>
+							<p class="form-hint">It'll be on your last payslip. For example, VO 12 34 56 D.</p>
+							<input class="form-control" name="ni-number-input" type="text" id="ni-number-input">
+						</div> <!-- Form group close-->
+					</div> <!-- Expandable panel area  Close -->
+			    </div> <!-- Form group close-->
+
+
+
+
+			    <!-- Driving licence -->
+				<div class="form-group">
+			    	<fieldset class="inline">
+			    		<legend class="form-label-bold">Do you have a valid UK driving licence?</legend>
+
+			    		<label class="block-label" data-target="driving-licence" for="radio-driving-licence-1">
+						    <input id="radio-driving-licence-1" type="radio" name="radio-driving-licence-group" value="Yes">
+						    Yes
+					    </label>
+						
+					    <label class="block-label" for="radio-driving-licence-2">
+						    <input id="radio-driving-licence-2" type="radio" name="radio-driving-licence-group" value="No">
+						    No
+					    </label>
+
+			    	</fieldset>
+			    	<!-- Expandable panel area -->
+			    	<div class="panel panel-border-narrow js-hidden" id="driving-licence">
+						<!-- Driving licence number -->
+						<div class="form-group">
+							<label class="form-label" for="driving-licence-number-input">Driving licence number</label>
+							<p class="form-hint">This will be on the front of your driving licence. For example, QWER123123.</p>
+							<input class="form-control" name="driving-licence-number-input" type="text" id="driving-licence-number-input">
+						</div> <!-- Form group close-->
+					</div> <!-- Expandable panel area  Close -->
+			    </div> <!-- Form group close-->
+
+
+			    <!-- Passport -->
+				<div class="form-group">
+			    	<fieldset class="inline">
+			    		<legend class="form-label-bold">Do you have a passport?</legend>
+
+			    		<label class="block-label" data-target="passport-number" for="radio-passport-1">
+						    <input id="radio-passport-1" type="radio" name="radio-passport-group" value="Yes">
+						    Yes
+					    </label>
+						
+					    <label class="block-label" for="radio-passport-2">
+						    <input id="radio-passport-2" type="radio" name="radio-passport-group" value="No">
+						    No
+					    </label>
+
+			    	</fieldset>
+			    	<!-- Expandable panel area -->
+			    	<div class="panel panel-border-narrow js-hidden" id="passport-number">
+						<!-- Passport number -->
+						<div class="form-group">
+							<label class="form-label" for="passport-number-input">Passport number</label>
+							<input class="form-control" name="passport-number-input" type="text" id="passport-number-input">
+						</div> <!-- Form group close-->
+
+						<!-- Passport Country -->
+						<div class="form-group">
+							<label class="form-label" for="passport-country">Country of issue</label>
+							<input class="form-control" name="passport-country" type="text" id="passport-country">
+						</div> <!-- Form group close-->
+
+					</div> <!-- Expandable panel area  Close -->
+			    </div> <!-- Form group close-->
+
+
+
+
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Continue">
+				</div> <!-- Form group close-->
+
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+{% endblock %}
+
+
