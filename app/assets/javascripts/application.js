@@ -100,11 +100,10 @@ function ShowHideContent () {
 }
 
 function myTestFunc(dTarget) {
-  $("#"+dTarget).toggle();
-
+  $("#"+dTarget).toggle()
   }
 
-}
+
 
 $(document).ready(function () {
   // Use GOV.UK selection-buttons.js to set selected
