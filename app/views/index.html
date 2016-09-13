@@ -1,15 +1,22 @@
-{% extends "layout.html" %}
 
-{% block page_title %}
-  DBS Prototype
+
+{% block head %}
+  {% include "includes/head.html" %}
 {% endblock %}
+
+
+{% block body_end %}
+  {% include "includes/scripts.html" %}
+  <!-- GOV.UK Prototype kit {{releaseVersion}} -->
+{% endblock %}
+
 
 {% block content %}
 
 <main id="content" role="main">
     <div class="grid-row">
         <div class="column-two-thirds">
-    	   <h1 class="heading-large">DRAFT Basic Prototype</h1>
+    	   <h1 class="heading-large" style="color: red;">DRAFT Basic Prototype</h1>
         </div>
         <div class="column-two-thirds">
 
@@ -28,6 +35,12 @@
                         <td>0.1</td>
                         <td>13/09/16</td>
                         <td>Initial build of prototype</td>
+                        <td>Pete Craven</td>
+                    </tr>
+                    <tr>
+                        <td>0.11</td>
+                        <td>13/09/16</td>
+                        <td>Edited DRAFT page</td>
                         <td>Pete Craven</td>
                     </tr>
                 </tbody>
