@@ -28,7 +28,13 @@
 						United Kingdom
 					</span>
 				</div>
-
+				
+				<div class="form-group">
+					<ul class="list-bullet" style="color:Red;">
+						<li>Do we show all current addresses from Verify?</li>
+						<li>Should we be asking for "Primary address" or "Correspondence address" instead of current?</li>
+					</ul>
+				</div>
 			  	<!-- Details correct -->
 				<div class="form-group">
 					<fieldset class="inline">
@@ -65,7 +71,11 @@
 										<input class="form-control" id="correct-address-since-year" type="number" pattern="[0-9]*" min="0" max="2016">
 									</div>
 								</div>
+
 							</fieldset>
+							<div class="form-group">
+								<ul class="list-bullet" style="color:Red;"><li>Is this your Correspondence address?</li></ul>
+							</div>
 						</div>
 					</div> <!-- Expandable panel area  Close CORRECT ADDRESS-->
 
@@ -75,6 +85,13 @@
 
 					<!-- Expandable panel area INCORRECT ADDRESS-->
 			    	<div class="panel panel-border-narrow js-hidden" id="incorrect-address">
+			    		<div class="form-group">
+								<ul class="list-bullet" style="color:Red;">
+									<li>New question - Enter current address</li>
+									<li>Add copy here</li>
+									<li>Question - When did you leave previous current address? Or pass to next page?</li>
+								</ul>
+							</div>
 						<div class="form-group">
 			    			<fieldset class="inline">
 							<!-- Postcode -->
