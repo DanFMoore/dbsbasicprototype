@@ -133,89 +133,62 @@
 
 
 			    	<script type="text/javascript">
-			    	var counter=1;
+				    	var counter=1;
 
-			    		window.onload = function() {
+				    	window.onload = function() {
 
-			          //Get a reference to the link on the page
-			          // with an id of "mylink"
-			          var a = document.getElementById("mylink");
+					        //Get a reference to the link on the page
+					        // with an id of "mylink"
+					        var a = document.getElementById("mylink");
 
-			          //Set code to run when the link is clicked
-			          // by assigning a function to "onclick"
-			          a.onclick = function() {
+					        //Set code to run when the link is clicked
+					        // by assigning a function to "onclick"
+					        a.onclick = function() {
+					            
 
-			            // Your code here...
+					        	var obj = document.getElementById('add-other-address-').cloneNode(true),
+		  						    children = obj.childNodes
+		  							;
+		  						obj.id = obj.id+counter;
+		  						obj.className = 'panel panel-border-narrow';
+		  						changeId(children, counter);
+		 
 
-			            //If you don't want the link to actually 
-			            // redirect the browser to another page,
-			            // "google.com" in our example here, then
-			            // return false at the end of this block.
-			            // Note that this also prevents event bubbling,
-			            // which is probably what we want here, but won't 
-			            // always be the case.
-			            
-
-			            var obj = document.getElementById('add-other-address-').cloneNode(true),
-  						    children = obj.childNodes
-  							;
-  						obj.id = obj.id+counter;
-  						obj.className = 'panel panel-border-narrow';
-  						changeId(children, counter);
-  						// CHange label for to new ids htmlFor
+		  						document.getElementById('all-other-addresses-section').appendChild(obj);
+		  						counter+=1;
 
 
-  						//obj.removeClass('js-hidden');
-  						//obj.getElementById('add-other-address').removeClass('js-hidden');
+		  						//change id recursively  
+								function changeId(nodes, n){
+									for (var i=0;i<nodes.length;i=i+1){
+								    	if (nodes[i].childNodes){
+								        	changeId(nodes[i].childNodes,n);
+								    	}
+								     	if(nodes[i].id) {
+								      		nodes[i].id += String(n);
+								     	}
+								     	if(nodes[i].htmlFor) {
+								     		nodes[i].htmlFor +=String(n);
+								     	}
+								     	if($(nodes[i]).data("target")) {
+								     		var newString = $(nodes[i]).data('target')+String(n);
+								     		//console.log(newString);
+								     		$(nodes[i]).attr('data-target', newString);
+								     	}
+								     	if(nodes[i].name){
+								     		//console.log(nodes[i].name);
+								     		nodes[i].name +=String(n);
+								     	}
+								   	}
+								}
 
-  						document.getElementById('all-other-addresses-section').appendChild(obj);
-  						counter+=1;
-  						
-
-
-
-//postcode-
-
-  						//change id recursively  
-						  function changeId(nodes, n){
-						   for (var i=0;i<nodes.length;i=i+1){
-						     if (nodes[i].childNodes){
-						           changeId(nodes[i].childNodes,n);
-						     }
-						     if(nodes[i].id) {
-						      nodes[i].id += String(n);
-						     }
-						     if(nodes[i].htmlFor) {
-						     	nodes[i].htmlFor +=String(n);
-						     }
-						     if($(nodes[i]).data("target")) {
-						     	var newString = $(nodes[i]).data('target')+String(n);
-						     	//console.log(newString);
-						     	$(nodes[i]).attr('data-target', newString);
-						     }
-						     if(nodes[i].name){
-						     	//console.log(nodes[i].name);
-						     	nodes[i].name +=String(n);
-						     }
-						   }
-						  }
-			    		//var div = document.createElement('div');
-						//div.setAttribute('class', 'form-group');
-						//var bitHTML = document.getElementById('expanded-address-section').innerHTML;
-					
-
-						//bitHTML.getElementById('add-other-address').id = 'add-other-address-1';
-						//div.innerHTML = bitHTML;
-
-
-						//document.getElementById('all-other-addresses-section').appendChild(div);
-
-						return false;
-					}}
+								return false;
+							}
+						}
 			    	</script>
 
 			    	<!-- Show hidden address area -->
-			    	<a class="button secondary-button" id="mylink" onclick="counter++" href="#">Add address</a>
+			    	<a class="button secondary-button" id="mylink" href="#">Add address</a>
 			    </div> <!-- Form group close-->
 
 

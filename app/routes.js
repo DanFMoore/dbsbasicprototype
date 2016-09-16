@@ -83,6 +83,65 @@ router.get('/examples/over-18', function (req, res) {
   }
 })
 
+
+
+
+
+
+// Training routes
+// Routes for Tutorial 4
+
+
+  // Ineligible users are routed to 'ineligible.html'
+
+
+
+  router.get('/training/question-page-2', function (req, res) {
+
+    var eligible = req.query.eligible;
+
+    if (eligible == "Yes"){
+
+      res.render('training/question-page-2');
+
+    } else {
+
+      res.redirect('ineligible');
+
+    }
+    
+  });
+
+  // Write the user input to the check your answers page
+
+  router.get('/training/check-your-answers-page', function (req, res) {
+
+    var feat = req.query.jugglingfeat;
+
+    res.render('training/check-your-answers-page', { 'feat' : feat });
+    
+  });
+
+
+  router.post('/training/test-post', function(req, res) {
+    res.render('training/test-post', {})
+  })
+  router.post('/training/test-post-2', function (req, res) {
+    var eligibile1 = req.query.eligible;
+    res.render('training/test-post-2', { 'eligible' : eligibile1});
+  });
+  router.post('/training/check-your-answers-page-post', function (req, res) {
+    var feat = req.query.jugglingfeat;
+    res.render('training/check-your-answers-page', { 'feat' : feat });
+    
+  });
+
+
+
+
+
+
+
 // add your routes here
 
 module.exports = router
