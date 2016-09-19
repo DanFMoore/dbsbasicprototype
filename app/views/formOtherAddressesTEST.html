@@ -182,6 +182,16 @@
 								   	}
 								}
 
+								// add click functionality to selection buttons
+								var $blockLabels = $(".block-label input[type='radio'], .block-label input[type='checkbox']")
+								new GOVUK.SelectionButtons($blockLabels) // eslint-disable-line
+
+								// Show and hide toggled content
+								// Where .block-label uses the data-target attribute
+								var toggleContent = new ShowHideContent()
+								toggleContent.showHideRadioToggledContent()
+								toggleContent.showHideCheckboxToggledContent()
+
 								return false;
 							}
 						}
