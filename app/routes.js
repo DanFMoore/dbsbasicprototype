@@ -1,6 +1,16 @@
 var express = require('express')
 var router = express.Router()
 
+// store all form values in a session object
+router.use(function (req, res, next) {
+  for(var key in req.body) {
+    if(req.body.hasOwnProperty(key)){
+      req.session[key] = req.body[key];
+    }
+  }
+  next();
+});
+
 router.get('/', function (req, res) {
   res.render('index')
 })
@@ -49,10 +59,12 @@ router.post('/formIdentity', function(req, res) {
 })
 // Section 9 - Convictions
 router.post('/formConvictions', function(req, res) {
+  
   res.render('formConvictions', {})
 })
 // Summary - Summary page
 router.post('/formSummary', function(req, res) {
+  //console.log(req.session);
   res.render('formSummary', {})
 })
 // Decalaration- Declaration page
