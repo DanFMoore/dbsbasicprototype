@@ -1,6 +1,21 @@
 var express = require('express')
 var router = express.Router()
 
+// store all form values in a session object
+router.use(function (req, res, next) {
+  if (req.session.formdata === undefined)
+  {
+    req.session.formdata = {};
+  }
+  for(var key in req.body) {
+    if(req.body.hasOwnProperty(key)){
+      req.session.formdata[key] = req.body[key];
+    }
+  }
+  console.log(req.session.formdata);
+  next();
+});
+
 router.get('/', function (req, res) {
   res.render('index')
 })
@@ -17,55 +32,55 @@ router.get('/examples/template-data', function (req, res) {
 
 // Section 1 - First form page
 router.post('/formFirstPage', function(req, res) {
-  res.render('formFirstPage', {})
+  res.render('formFirstPage', req.session)
 })
 // Section 2 - Sensitive Application
 router.post('/formSensitive', function(req, res) {
-  res.render('formSensitive', {})
+  res.render('formSensitive', req.session)
 })
 // Section 3 - Add other names
 router.post('/formAddNames', function(req, res) {
-  res.render('formAddNames', {})
+  res.render('formAddNames', req.session)
 })
 // Section 4 - Email Address
 router.post('/formEmail', function(req, res) {
-  res.render('formEmail', {})
+  res.render('formEmail', req.session)
 })
 // Section 5 - Verify address
 router.post('/formAddress', function(req, res) {
-  res.render('formAddress', {})
+  res.render('formAddress', req.session)
 })
 // Section 6 - Add other addresses
 router.post('/formOtherAddresses', function(req, res) {
-  res.render('formOtherAddresses', {})
+  res.render('formOtherAddresses', req.session)
 })
 // Section 7 - Send address
 router.post('/formSendAddress', function(req, res) {
-  res.render('formSendAddress', {})
+  res.render('formSendAddress', req.session)
 })
 // Section 8 - Identity Details
 router.post('/formIdentity', function(req, res) {
-  res.render('formIdentity', {})
+  res.render('formIdentity', req.session)
 })
 // Section 9 - Convictions
 router.post('/formConvictions', function(req, res) {
-  res.render('formConvictions', {})
+  res.render('formConvictions', req.session)
 })
 // Summary - Summary page
 router.post('/formSummary', function(req, res) {
-  res.render('formSummary', {})
+  res.render('formSummary', req.session)
 })
 // Decalaration- Declaration page
 router.post('/formDeclaration', function(req, res) {
-  res.render('formDeclaration', {})
+  res.render('formDeclaration', req.session)
 })
 // Payment - Payment page
 router.post('/formPayment', function(req, res) {
-  res.render('formPayment', {})
+  res.render('formPayment', req.session)
 })
 // Complete - Application Complete
 router.post('/formComplete', function(req, res) {
-  res.render('formComplete', {})
+  res.render('formComplete', req.session)
 })
 
 // Branching
