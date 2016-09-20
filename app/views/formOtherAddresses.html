@@ -30,12 +30,13 @@
 					<p class="form-hint">There must be no gaps in dates but overlapping dates are acceptable.</p>
 
 					<!-- ADD ADDRESS Hidden Panel -->
-			    	<div class="panel panel-border-narrow js-hidden" id="add-other-address">
+
+			    	<div class="panel panel-border-narrow js-hidden" id="add-other-address-">
 			    		<div class="form-group">
 			    			<fieldset class="inline">
 							<!-- Postcode -->
-								<label class="form-label" for="postcode">Postcode</label>
-								<input class="form-control" name="postcode" type="text" id="postcode">
+								<label class="form-label" for="postcode-">Postcode</label>
+								<input class="form-control" name="postcode-" type="text" id="postcode-">
 								<a class="button secondary-button">Find UK address</a>
 							</fieldset>
 						</div> <!-- Form group close-->
@@ -51,20 +52,20 @@
 								<legend class="form-label-bold">Is this a current address?</legend>
 								<p class="form-hint">This might be an address you live at at the moment.</p>
 
-						    	<label class="block-label" data-target="current-address" for="current-address-radio-1">
-									<input id="current-address-radio-1" type="radio" name="radio-current-address-group" value="Yes">
+						    	<label class="block-label" data-target="current-address-" for="current-address-radio-1-">
+									<input id="current-address-radio-1-" type="radio" name="radio-current-address-group-" value="Yes">
 								Yes
 								</label>
 									
-								<label class="block-label" data-target="not-current-address" for="current-address-radio-2">
-									<input id="current-address-radio-2" type="radio" name="radio-current-address-group" value="No">
+								<label class="block-label" data-target="not-current-address-" for="current-address-radio-2-">
+									<input id="current-address-radio-2-" type="radio" name="radio-current-address-group-" value="No">
 								No
 								</label>
 							</fieldset>
 
 
 
-							<div class="panel panel-border-narrow js-hidden" id="current-address">
+							<div class="panel panel-border-narrow js-hidden" id="current-address-">
 								<!-- At address since -->
 								<div class="form-group">
 									<fieldset>
@@ -73,19 +74,19 @@
 										<div class="form-date">
 											<p class="form-hint">For example, 03 1980</p>
 											<div class="form-group form-group-month">
-												<label for="cur-address-since-month">Month</label>
-												<input class="form-control" id="cur-address-since-month" type="number" pattern="[0-9]*" min="0" max="12">
+												<label for="cur-address-since-month-">Month</label>
+												<input class="form-control" id="cur-address-since-month-" type="number" pattern="[0-9]*" min="0" max="12">
 											</div>
 											<div class="form-group form-group-year">
-												<label for="cur-address-since-year">Year</label>
-												<input class="form-control" id="cur-address-since-year" type="number" pattern="[0-9]*" min="0" max="2016">
+												<label for="cur-address-since-year-">Year</label>
+												<input class="form-control" id="cur-address-since-year-" type="number" pattern="[0-9]*" min="0" max="2016">
 											</div>
 										</div>
 									</fieldset>
 								</div> <!-- Form group close-->
 							</div> <!-- Expandable panel area  Close CURRENT ADDRESS -->
 
-							<div class="panel panel-border-narrow js-hidden" id="not-current-address">
+							<div class="panel panel-border-narrow js-hidden" id="not-current-address-">
 								<!-- At address since -->
 								<div class="form-group">
 									<fieldset>
@@ -94,12 +95,12 @@
 										<div class="form-date">
 											<p class="form-hint">For example, 03 1980</p>
 											<div class="form-group form-group-month">
-												<label for="nc-address-since-month">Month</label>
-												<input class="form-control" id="nc-address-since-month" type="number" pattern="[0-9]*" min="0" max="12">
+												<label for="nc-address-since-month-">Month</label>
+												<input class="form-control" id="nc-address-since-month-" type="number" pattern="[0-9]*" min="0" max="12">
 											</div>
 											<div class="form-group form-group-year">
-												<label for="nc-address-since-year">Year</label>
-												<input class="form-control" id="nc-address-since-year" type="number" pattern="[0-9]*" min="0" max="2016">
+												<label for="nc-address-since-year-">Year</label>
+												<input class="form-control" id="nc-address-since-year-" type="number" pattern="[0-9]*" min="0" max="2016">
 											</div>
 										</div>
 									</fieldset>
@@ -112,26 +113,92 @@
 										<div class="form-date">
 											<p class="form-hint">For example, 03 1980</p>
 											<div class="form-group form-group-month">
-												<label for="nc-address-to-month">Month</label>
-												<input class="form-control" id="nc-address-to-month" type="number" pattern="[0-9]*" min="0" max="12">
+												<label for="nc-address-to-month-">Month</label>
+												<input class="form-control" id="nc-address-to-month-" type="number" pattern="[0-9]*" min="0" max="12">
 											</div>
 											<div class="form-group form-group-year">
-												<label for="nc-address-to-year">Year</label>
-												<input class="form-control" id="nc-address-to-year" type="number" pattern="[0-9]*" min="0" max="2016">
+												<label for="nc-address-to-year-">Year</label>
+												<input class="form-control" id="nc-address-to-year-" type="number" pattern="[0-9]*" min="0" max="2016">
 											</div>
 										</div>
 									</fieldset>
 								</div> <!-- Form group close-->
 							</div> <!-- Expandable panel area  Close NOT CURRENT ADDRESS -->
 						</div> <!-- Form group close-->
-
-
-
-
 			    	</div> <!-- Expandable panel area  Close ADD ADDRESS -->
+			    	
+
+
+			    	<div id="all-other-addresses-section"></div>
+
+
+			    	<script type="text/javascript">
+				    	var counter=1;
+
+				    	window.onload = function() {
+
+					        //Get a reference to the link on the page
+					        // with an id of "mylink"
+					        var a = document.getElementById("mylink");
+
+					        //Set code to run when the link is clicked
+					        // by assigning a function to "onclick"
+					        a.onclick = function() {
+					            
+
+					        	var obj = document.getElementById('add-other-address-').cloneNode(true),
+		  						    children = obj.childNodes
+		  							;
+		  						obj.id = obj.id+counter;
+		  						obj.className = 'panel panel-border-narrow';
+		  						changeId(children, counter);
+		 
+
+		  						document.getElementById('all-other-addresses-section').appendChild(obj);
+		  						counter+=1;
+
+
+		  						//change id recursively  
+								function changeId(nodes, n){
+									for (var i=0;i<nodes.length;i=i+1){
+								    	if (nodes[i].childNodes){
+								        	changeId(nodes[i].childNodes,n);
+								    	}
+								     	if(nodes[i].id) {
+								      		nodes[i].id += String(n);
+								     	}
+								     	if(nodes[i].htmlFor) {
+								     		nodes[i].htmlFor +=String(n);
+								     	}
+								     	if($(nodes[i]).data("target")) {
+								     		var newString = $(nodes[i]).data('target')+String(n);
+								     		//console.log(newString);
+								     		$(nodes[i]).attr('data-target', newString);
+								     	}
+								     	if(nodes[i].name){
+								     		//console.log(nodes[i].name);
+								     		nodes[i].name +=String(n);
+								     	}
+								   	}
+								}
+
+								// add click functionality to selection buttons
+								var $blockLabels = $(".block-label input[type='radio'], .block-label input[type='checkbox']")
+								new GOVUK.SelectionButtons($blockLabels) // eslint-disable-line
+
+								// Show and hide toggled content
+								// Where .block-label uses the data-target attribute
+								var toggleContent = new ShowHideContent()
+								toggleContent.showHideRadioToggledContent()
+								toggleContent.showHideCheckboxToggledContent()
+
+								return false;
+							}
+						}
+			    	</script>
 
 			    	<!-- Show hidden address area -->
-			    	<a class="button secondary-button" href="javascript:removeHidden('add-other-address');">Add address</a>
+			    	<a class="button secondary-button" id="mylink" href="#">Add address</a>
 			    </div> <!-- Form group close-->
 
 

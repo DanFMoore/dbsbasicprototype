@@ -32,7 +32,8 @@
 					<!-- ADD ADDRESS Hidden Panel -->
 
 			    	<div class="panel panel-border-narrow js-hidden" id="add-other-address-">
-			    		<div class="form-group">
+			    		<!-- Postcode finder block -->
+			    		<div class="form-group" id="postcode-block-">
 			    			<fieldset class="inline">
 							<!-- Postcode -->
 								<label class="form-label" for="postcode-">Postcode</label>
@@ -41,8 +42,40 @@
 							</fieldset>
 						</div> <!-- Form group close-->
 
+						<!-- Address fields ALT block -->
+						<div class="form-group js-hidden" id="address-fields-block-">
+							<div class="form-group">
+								<label class="form-label" for="address-line-1-">Address line 1</label>
+								<input class="form-control" name="address-line-1-" type="text" id="address-line-1-">
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="address-line-2-">Address line 2 (optional)</label>
+								<input class="form-control" name="address-line-2-" type="text" id="address-line-2-">
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="address-line-3-">Address line 3 (optional)</label>
+								<input class="form-control" name="address-line-3-" type="text" id="address-line-3-">
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="address-town-city-">Town/City</label>
+								<input class="form-control" name="address-town-city-" type="text" id="address-town-city-">
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="address-county-">County (optional)</label>
+								<input class="form-control" name="address-county-" type="text" id="address-county-">
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="address-country-">Country</label>
+								<input class="form-control" name="address-country-" type="text" id="address-country-">
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="address-postcode-">Postcode</label>
+								<input class="form-control" name="address-postcode-" type="text" id="address-postcode-">
+							</div>
+						</div> <!-- Form group close-->
+
 						<div class="form-group">
-							<a class="button-secondary" href="#" role="button">Enter address manually</a>
+							<a class="button-secondary" id="manual-toggle-link-" onClick="javascript:swapBlock($(this).attr('id'));" href="#/" role="button">Enter address manually</a>
 						</div> <!-- Form group close-->
 
 
@@ -192,8 +225,33 @@
 								toggleContent.showHideRadioToggledContent()
 								toggleContent.showHideCheckboxToggledContent()
 
+
+
 								return false;
 							}
+						}
+
+						function swapBlock(blockID){
+							console.log(blockID);
+							console.log(blockID[blockID.length-1]);
+							var poBlo = "#postcode-block-"+blockID[blockID.length-1];
+							var adFiBlo= "#address-fields-block-"+blockID[blockID.length-1]
+							console.log(poBlo);
+							console.log(adFiBlo);
+							$("#"+blockID).toggleClass("manual");
+							$(poBlo).toggleClass("js-hidden");
+							$(adFiBlo).toggleClass("js-hidden");
+
+							if ($("#"+blockID).hasClass("manual")){
+								$("#"+blockID).html("Use Postcode finder");
+							}
+							else {
+								$("#"+blockID).html("Enter address manually");
+							}
+
+							// Use Postcode finder
+							// Enter address manually
+							return false;
 						}
 			    	</script>
 
