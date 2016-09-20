@@ -64,12 +64,10 @@ router.post('/formIdentity', function(req, res) {
 })
 // Section 9 - Convictions
 router.post('/formConvictions', function(req, res) {
-  
   res.render('formConvictions', req.session)
 })
 // Summary - Summary page
 router.post('/formSummary', function(req, res) {
-  console.log(req.session);
   res.render('formSummary', req.session)
 })
 // Decalaration- Declaration page

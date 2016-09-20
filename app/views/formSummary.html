@@ -55,7 +55,8 @@
 					    		<a class="button button-secondary">Edit</a>
 					    		</td>
 					    	</tr>
-					    	{% if formdata["passport-number-input"].length > 0 %}
+
+					    	{% if formdata["passport-number-input"] %}
 					    	<tr>
 					    		<td>
 					    			<h2 class="text-secondary">Passport number</h2>
@@ -67,6 +68,8 @@
 					    		</td>
 					    	</tr>
 					    	{% endif %}
+
+					    	{% if formdata["ni-number-input"] %}
 					    	<tr>
 					    		<td>
 					    			<h2 class="text-secondary">National Insurance number</h2>
@@ -77,6 +80,22 @@
 					    		<a class="button button-secondary">Edit</a>
 					    		</td>
 					    	</tr>
+					    	{% endif %}
+
+					    	{% if formdata["driving-licence-number-input"] %}
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Driving licence number</h2>
+					    			<div>{{ formdata["driving-licence-number-input"] }}</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    	{% endif %}
+
+
 					    	<tr>
 					    		<td>
 					    			<h2 class="text-secondary">Current address</h2>
