@@ -11,7 +11,7 @@
 		<div class="column-two-thirds">
 
 			<div class="breadcrumbs">
-				<ol><li>Section 6 of 9</li></ol>
+				<ol><li>Section 5 of 8</li></ol>
 			</div> <!-- Breadcrumb -->
 			
 			
@@ -23,12 +23,13 @@
 					<ul class="list-bullet" style="color:Red;">
 						<li>Copy needs to explain that you can have multiple current addresses, eg. Students</li>
 						<li>What to do if there are gaps? eg. Homeless.</li>
+						<li>Can you just add 5 years of address history? Does it stop you adding more?</li>
 						<li>Include link to address help page on DBS site? Here or on start page?</li>
 					</ul>
 				</div>
 			    <div class="form-group">
 					<p class="form-hint">There must be no gaps in dates but overlapping dates are acceptable.</p>
-
+					<input class="js-hidden" id="other-addresses-total" name="other-addresses-total">
 					<!-- ADD ADDRESS Hidden Panel -->
 
 			    	<div class="panel panel-border-narrow js-hidden" id="add-other-address-">
@@ -152,7 +153,7 @@
 		  						obj.id = obj.id+counter;
 		  						obj.className = 'panel panel-border-narrow';
 		  						changeId(children, counter);
-		 
+		 						document.getElementById('other-addresses-total').value = counter;
 
 		  						document.getElementById('all-other-addresses-section').appendChild(obj);
 		  						counter+=1;
