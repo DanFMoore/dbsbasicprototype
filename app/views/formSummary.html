@@ -25,26 +25,57 @@
 
 				    <table>
 					    <tbody>
+					    	<!-- Name -->
 					    	<tr>
 					    		<td>
 					    			<h2 class="text-secondary">Name</h2>
 					    			<div>John Smith</div>
-
 					    		</td>
 					    		<td class="editButton">
-					    		<a class="button button-secondary">Edit</a>
+					    		
 					    		</td>
 					    	</tr>
+					    	<!-- Date of Birth -->
 					    	<tr>
 					    		<td>
 					    			<h2 class="text-secondary">Date of birth</h2>
 					    			<div>01/01/1960</div>
+					    		</td>
+					    		<td class="editButton">
+
+					    		</td>
+					    	</tr>
+
+					    	<!-- Gender -->
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Gender</h2>
+					    			<div>{{ formdata["radio-gender-group"] }}</div>
 					    			
 					    		</td>
 					    		<td class="editButton">
 					    		<a class="button button-secondary">Edit</a>
 					    		</td>
 					    	</tr>
+
+					    	<!-- Add other names -->
+					    	{% if formdata["other-family-name"] %}
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Other name</h2>
+					    			<div>{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}</div>
+					    			<h2 class="text-secondary">From</h2>
+					    			<div>{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}</div>
+					    			<h2 class="text-secondary">To</h2>
+					    			<div>{{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"] }}</div>
+					    		</td>
+					    		<td class="editButton">
+					    		<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+					    	{% endif %}
+
+					    	<!-- Email address -->
 					    	<tr>
 					    		<td>
 					    			<h2 class="text-secondary">Email address</h2>
@@ -56,19 +87,41 @@
 					    		</td>
 					    	</tr>
 
-					    	{% if formdata["passport-number-input"] %}
+					    	<!-- Current address -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Passport number</h2>
-					    			<div>{{ formdata["passport-number-input"] }}</div>
-					    			
+					    			<h2 class="text-secondary">Current address</h2>
+					    			<div>
+					    				1 Oxford Road<br>
+										Bristol<br>
+										South Gloucestershire<br>
+										United Kingdom<br>
+										LP1 12D
+					    			</div>
+					    			<h2 class="text-secondary">Since</h2>
+					    			<div>{{ formdata["correct-address-since-month"] }}/{{ formdata["correct-address-since-year"] }}</div>
 					    		</td>
 					    		<td class="editButton">
 					    		<a class="button button-secondary">Edit</a>
 					    		</td>
 					    	</tr>
-					    	{% endif %}
 
+					    	<!-- Other Addresses -->
+					    	{% for i in range(1, formdata["other-addresses-total"]+1) %}
+					    		{% if formdata["postcode-"+i] %}
+					    		<tr>
+						    		<td>
+						    			<h2 class="text-secondary">Other address</h2>
+						    			<div>{{ formdata["postcode-"+i] }}</div>
+						    		</td>
+						    		<td class="editButton">
+						    		<a class="button button-secondary">Edit</a>
+						    		</td>
+						    	</tr>
+					    		{% endif %}
+					    	{% endfor %}
+
+					    	<!-- National Insurance number -->
 					    	{% if formdata["ni-number-input"] %}
 					    	<tr>
 					    		<td>
@@ -82,6 +135,7 @@
 					    	</tr>
 					    	{% endif %}
 
+					    	<!-- Driving licence number -->
 					    	{% if formdata["driving-licence-number-input"] %}
 					    	<tr>
 					    		<td>
@@ -95,22 +149,22 @@
 					    	</tr>
 					    	{% endif %}
 
-
+					    	<!-- Passport details -->
+					    	{% if formdata["passport-number-input"] %}
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Current address</h2>
-					    			<div>
-					    				1 Oxford Road<br>
-					    				Bristol<br>
-					    				United Kingdom<br>
-					    				A12 3BC
-					    			</div>
-					    			
+					    			<h2 class="text-secondary">Passport number</h2>
+					    			<div>{{ formdata["passport-number-input"] }}</div>
+					    			<h2 class="text-secondary">Country of issue</h2>
+					    			<div>{{ formdata["passport-country"] }}</div>
 					    		</td>
 					    		<td class="editButton">
 					    		<a class="button button-secondary">Edit</a>
 					    		</td>
 					    	</tr>
+					    	{% endif %}
+
+
 					    </tbody>
 				    </table>
 

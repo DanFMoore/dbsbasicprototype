@@ -13,23 +13,21 @@
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
 			<div class="breadcrumbs">
-				<ol><li>Section 1 of 9</li></ol>
+				<ol><li>Section 1 of 8</li></ol>
 			</div> <!-- Breadcrumb -->
 
 
-			<form action="formSensitive" method="post" class="form">
+			<form action="formAddNames" method="post" class="form">
 
 				<span class="heading-medium">Your personal details<br></span>
 				<br>
 				<!-- Verified details -->
 				<div class="form-group">
-					<p class="form-hint">These are your personal details from your GOV.UK Verify account.</p>
+					<p class="form-hint">These are your personal details from your GOV.UK Verify account.</p><br>
 					<span class="text-secondary">Name<br></span>
 					<span>John Smith<br></span>
 					<span class="text-secondary">Date of birth<br></span>
 					<span>01/01/1960<br></span>
-					<span class="text-secondary">Gender<br></span>
-					<span>Male<br></span>
 				</div> <!-- Form group close-->
 
 				<div class="form-group">
@@ -39,23 +37,22 @@
 		            </ul>
 		        </div>
 
-			  	<!-- Details correct -->
+			  	<!-- Gender -->
 				<div class="form-group">
 					<fieldset>
-						<legend class="form-label-bold">Are your personal details correct and up-to-date?</legend>
-						<p class="form-hint">Look at your name, date of birth, and gender.</p>
+						<legend class="form-label-bold">What is your gender?</legend>
 
-						<!-- error message holder -->
-						<div id="check_options_id-error-message" class="form-error validation-message"></div>
-
-						<label class="block-label" for="correct-radio-1">
-							<input id="correct-radio-1" type="radio" name="radio-correct-group" value="Yes">
-							Yes, my personal details are correct
+					    <label class="block-label" for="gender-radio-1">
+							<input id="gender-radio-1" type="radio" name="radio-gender-group" value="Female">
+							Female
 						</label>
-								
-						<label class="block-label" for="correct-radio-2">
-							<input id="correct-radio-2" type="radio" name="radio-correct-group" value="No">
-							No, some details are wrong or have changed
+						<label class="block-label" for="gender-radio-2">
+							<input id="gender-radio-2" type="radio" name="radio-gender-group" value="Male">
+							Male
+						</label>
+						<label class="block-label" for="gender-radio-3">
+							<input id="gender-radio-3" type="radio" name="radio-gender-group" value="Intersex">
+							Intersex
 						</label>
 					</fieldset>
 				</div> <!-- Form group close-->
