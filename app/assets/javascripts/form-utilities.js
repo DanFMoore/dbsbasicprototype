@@ -17,23 +17,17 @@
       // construct new html with error summaries
       $( $errorElements ).each(function( index ) {
 
-        var bits = $(this).parent()[0].id.split('-');
-        var linkId = bits[bits.length-1];
-        var finalLinkId = $('*[data-parsley-id=' + linkId + ']').attr('id');
 
-        if (finalLinkId === undefined)
-        {
-          finalLinkId = 'id-' + linkId + '-1';
-        }
 
         //var linkElement = 'data-parsley-id' + ()
-        errorList += '<li><a href="#' + finalLinkId + '">' + $( this ).text() + '</a></li>';
+        errorList += '<li><a href="#' + $(this).parent().parent().attr('id') + '">' + $( this ).text() + '</a></li>';
 
       });
 
       // add errors to div on page
       $('#error-summary-list').html(errorList);
       $('#error-summary').show();
+      $('#error-summary').removeClass('hidden');
 
       // expose to screenreader
       $('#error-summary').attr('aria-expanded', 'true');

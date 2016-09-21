@@ -38,20 +38,37 @@
 		        </div>
 
 			  	<!-- Gender -->
-				<div class="form-group">
+				<div id="radio-gender-group-form-group" class="form-group">
 					<fieldset>
 						<legend class="form-label-bold">What is your gender?</legend>
+						
+						<div id="radio-gender-group-error-message" class="form-error validation-message"></div>
 
-					    <label class="block-label" for="gender-radio-1">
-							<input id="gender-radio-1" type="radio" name="radio-gender-group" value="Female">
+						<label class="block-label" for="gender-radio-1">
+							<input id="gender-radio-1" type="radio" name="radio-gender-group" value="Female" 
+								data-parsley-multiple="radio-gender-group"
+								data-parsley-class-handler="#radio-gender-group-form-group" 
+          							data-parsley-errors-container="#radio-gender-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="This is a required field" >
 							Female
 						</label>
 						<label class="block-label" for="gender-radio-2">
-							<input id="gender-radio-2" type="radio" name="radio-gender-group" value="Male">
+							<input id="gender-radio-2" type="radio" name="radio-gender-group" value="Male" data-parsley-multiple="radio-gender-group"
+								data-parsley-multiple="radio-gender-group"
+								data-parsley-class-handler="#radio-gender-group-form-group" 
+          							data-parsley-errors-container="#radio-gender-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="This is a required field" >
 							Male
 						</label>
 						<label class="block-label" for="gender-radio-3">
-							<input id="gender-radio-3" type="radio" name="radio-gender-group" value="Intersex">
+							<input id="gender-radio-3" type="radio" name="radio-gender-group" value="Intersex" data-parsley-multiple="radio-gender-group"
+								data-parsley-multiple="radio-gender-group"
+								data-parsley-class-handler="#radio-gender-group-form-group" 
+          							data-parsley-errors-container="#radio-gender-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="This is a required field" >
 							Intersex
 						</label>
 					</fieldset>
@@ -70,16 +87,14 @@
 
 </main>
 
-<!-- script for page validation -->
+<!-- scripts for page validation -->
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
 
 <script type="text/javascript">
 	var parsleyForm;
-	var thisFormInstance = jQuery( "form:first-of-type" ); // assuming we're validating first form on this page
-
-	console.log(thisFormInstance);
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
 
 	// attach parsley validation to the form
 	parsleyForm = thisFormInstance.parsley({
@@ -91,15 +106,13 @@
 	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
 
 	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+	    
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
 	    if (!ok) {
 	      formInstance.validationResult = false;
-	      // check error classess
-	      setTimeout(function() {
-	        //checkErrorClass();
-	      }, 50);
 	    } else {
 	      formInstance.validationResult = true;
 	    }
@@ -118,7 +131,7 @@
 	    //console.log('form success');
 	    GOVUK.formUtilities.hideErrorSummary();
 
-	    //submitForm();
+	    // allow the form to submit
 	    return true;
 	  });
 
