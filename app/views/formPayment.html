@@ -7,33 +7,26 @@
 {% block content %}
 
 <main id="content" role="main">
+
 	<div class="grid-row">
 		<div class="column-two-thirds">
-
-			<div class="breadcrumbs">
-				<ol><li>Payment</li></ol>
-			</div> <!-- Breadcrumb -->
 			
-			
+			<h2 class="heading-medium"">Enter card details</h2>	
 			<form action="formComplete" method="post" class="form">
 
-				<div class="form-name">
-					<h2 class="text-secondary">Charge: £16</h2>
-					<br>
-				</div>
-
-			    <!-- Full name -->
-			    <div class="form-group">
-			      	<label class="form-label-bold" for="full-name">Full name</label>
-			      	<p class="form-hint">As it appears on your card</p>
-			      	<input type="text" class="form-control" id="full-name">
-			    </div> <!-- Form group close-->
-
-			    <!-- Card number -->
+				<!-- Card number -->
 			    <div class="form-group">
 			      	<label class="form-label-bold" for="card-number">Card number</label>
 			      	<input type="text" class="form-control" id="card-number">
 			    </div> <!-- Form group close-->
+
+			    <!-- Full name -->
+			    <div class="form-group">
+			      	<label class="form-label-bold" for="full-name">Name on card</label>
+			      	<input type="text" class="form-control" id="full-name">
+			    </div> <!-- Form group close-->
+
+			    
 
 			    <!-- Expiry date -->
 			    <div class="form-group">
@@ -44,6 +37,7 @@
 									<label for="expiry-date-month">Month</label>
 									<input class="form-control" id="expiry-date-month" type="number" pattern="[0-9]*" min="0" max="12">
 								</div> <!-- Form group close-->
+
 								<div class="form-group form-group-year">
 									<label for="expiry-date-year">Year</label>
 									<input class="form-control" id="expiry-date-year" type="number" pattern="[0-9]*" min="0" max="2016">
@@ -54,8 +48,8 @@
 
 				<!-- CVC -->
 			    <div class="form-group">
-			      	<label class="form-label-bold" for="cvc-number">CVC</label>
-			      	<input type="text" class="form-control" id="cvc-number">
+			      	<label class="form-label-bold" for="cvc-number">Card security code</label>
+			      	<input type="number" class="form-control" id="cvc-number" pattern="[0-9]*">
 			    </div> <!-- Form group close-->
 
 				
@@ -85,6 +79,16 @@
 				</div> <!-- Form group close-->
 
 			</form>
+		</div>
+
+		
+		<div class="column-third">
+			<div style="background-color:#F8F8F8; border:8px solid #BFC1C3; padding:10px; margin-top:2.5em">
+				<h4 class="heading-small" style="margin:0;">Payment summary</h4><br>
+				<p class="bold-small">Basic criminal record check</p>
+				<h2 class="text-secondary">Total amount:</h2>
+				<h1 class="heading-large" style="margin:0;">£16.00</h1>
+			</div>
 		</div>
 	</div>
 

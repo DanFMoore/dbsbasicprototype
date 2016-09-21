@@ -109,15 +109,44 @@
 					    	<!-- Other Addresses -->
 					    	{% for i in range(1, formdata["other-addresses-total"]+1) %}
 					    		{% if formdata["postcode-"+i] %}
-					    		<tr>
-						    		<td>
-						    			<h2 class="text-secondary">Other address</h2>
-						    			<div>{{ formdata["postcode-"+i] }}</div>
-						    		</td>
-						    		<td class="editButton">
-						    		<a class="button button-secondary">Edit</a>
-						    		</td>
-						    	</tr>
+						    		<tr>
+							    		<td>
+							    			<h2 class="text-secondary">Other address {{i}}</h2>
+							    			<div>{{ formdata["postcode-"+i] }}</div>
+							    			<h2 class="text-secondary">At address since</h2>
+							    			<div>{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}</div>
+							    			{% if formdata["nc-address-to-month-"+i] %}
+							    				<h2 class="text-secondary">At address to</h2>
+							    				<div>{{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}</div>
+							    			{% endif %}
+							    		</td>
+							    		<td class="editButton">
+							    		<a class="button button-secondary">Edit</a>
+							    		</td>
+							    	</tr>
+
+						    	{% elif formdata["address-line-1-"+i] %}
+							    	<tr>
+							    		<td>
+							    			<h2 class="text-secondary">Other address {{i}}</h2>
+							    			<div>{{ formdata["address-line-1-"+i] }}</div>
+							    			<div>{{ formdata["address-line-2-"+i] }}</div>
+							    			<div>{{ formdata["address-line-3-"+i] }}</div>
+							    			<div>{{ formdata["address-town-city-"+i] }}</div>
+							    			<div>{{ formdata["address-county-"+i] }}</div>
+							    			<div>{{ formdata["address-country-"+i] }}</div>
+							    			<div>{{ formdata["address-postcode-"+i] }}</div>
+							    			<h2 class="text-secondary">At address since</h2>
+							    			<div>{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}</div>
+							    			{% if formdata["nc-address-to-month-"+i] %}
+							    				<h2 class="text-secondary">At address to</h2>
+							    				<div>{{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}</div>
+							    			{% endif %}
+							    		</td>
+							    		<td class="editButton">
+							    		<a class="button button-secondary">Edit</a>
+							    		</td>
+							    	</tr>
 					    		{% endif %}
 					    	{% endfor %}
 
