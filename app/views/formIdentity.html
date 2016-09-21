@@ -9,6 +9,9 @@
 <main id="content" role="main">
 	<div class="grid-row">
 		<div class="column-two-thirds">
+
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+
 			<div class="breadcrumbs">
 				<ol><li>Section 7 of 8</li></ol>
 			</div> <!-- Breadcrumb -->
@@ -25,12 +28,17 @@
 				</div> <!-- Form group close-->
 
 				<!-- National Insurance -->
-			    <div class="form-group">
+			    <div id="ni-form-group" class="form-group">
 			    	<fieldset class="inline">
 			    		<legend class="form-label-bold">Do you have a National Insurance number?</legend>
-
+			    		<div id="ni-form-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="ni-number" for="radio-ni-1">
-						    <input id="radio-ni-1" type="radio" name="radio-ni-group" value="Yes">
+						    <input id="radio-ni-1" type="radio" name="radio-ni-group" value="Yes"
+						    	data-parsley-class-handler="#ni-form-group" 
+          							data-parsley-errors-container="#ni-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Do you have a National Insurance number?"
+						    >
 						    Yes
 					    </label>
 						
@@ -43,10 +51,16 @@
 			    	<!-- Expandable panel area -->
 			    	<div class="panel panel-border-narrow js-hidden" id="ni-number">
 						<!-- National Insurance number -->
-						<div class="form-group">
+						<div id="ni-expand-form-group" class="form-group">
 							<label class="form-label" for="ni-number-input">National Insurance number</label>
 							<p class="form-hint">It'll be on your last payslip. For example, VO 12 34 56 D.</p>
-							<input class="form-control" name="ni-number-input" type="text" id="ni-number-input">
+							<div id="ni-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="ni-number-input" type="text" id="ni-number-input"
+								data-parsley-class-handler="#ni-expand-form-group" 
+          							data-parsley-errors-container="#ni-expand-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your National Insurance number"
+							>
 						</div> <!-- Form group close-->
 					</div> <!-- Expandable panel area  Close -->
 			    </div> <!-- Form group close-->
@@ -60,12 +74,17 @@
 					</ul>
 				</div>
 			    <!-- Driving licence -->
-				<div class="form-group">
+				<div id="driving-form-group" class="form-group">
 			    	<fieldset class="inline">
 			    		<legend class="form-label-bold">Do you have a valid UK driving licence?</legend>
-
+			    		<div id="driving-form-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="driving-licence" for="radio-driving-licence-1">
-						    <input id="radio-driving-licence-1" type="radio" name="radio-driving-licence-group" value="Yes">
+						    <input id="radio-driving-licence-1" type="radio" name="radio-driving-licence-group" value="Yes"
+						    	data-parsley-class-handler="#driving-form-group" 
+          							data-parsley-errors-container="#driving-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Do you have a valid UK driving licence?"
+						    >
 						    Yes
 					    </label>
 						
@@ -78,22 +97,33 @@
 			    	<!-- Expandable panel area -->
 			    	<div class="panel panel-border-narrow js-hidden" id="driving-licence">
 						<!-- Driving licence number -->
-						<div class="form-group">
+						<div id="driving-expand-form-group" class="form-group">
 							<label class="form-label" for="driving-licence-number-input">Driving licence number</label>
 							<p class="form-hint">This will be on the front of your driving licence. For example, QWER123123.</p>
-							<input class="form-control" name="driving-licence-number-input" type="text" id="driving-licence-number-input">
+							<div id="driving-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="driving-licence-number-input" type="text" id="driving-licence-number-input"
+								data-parsley-class-handler="#driving-expand-form-group" 
+          							data-parsley-errors-container="#driving-expand-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your driving licence number"
+							>
 						</div> <!-- Form group close-->
 					</div> <!-- Expandable panel area  Close -->
 			    </div> <!-- Form group close-->
 
 
 			    <!-- Passport -->
-				<div class="form-group">
+				<div id="passport-form-group" class="form-group">
 			    	<fieldset class="inline">
 			    		<legend class="form-label-bold">Do you have a passport?</legend>
-
+			    		<div id="passport-form-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="passport-number" for="radio-passport-1">
-						    <input id="radio-passport-1" type="radio" name="radio-passport-group" value="Yes">
+						    <input id="radio-passport-1" type="radio" name="radio-passport-group" value="Yes"
+						    	data-parsley-class-handler="#passport-form-group" 
+          							data-parsley-errors-container="#passport-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Do you have a passport?"
+						    >
 						    Yes
 					    </label>
 						
@@ -106,15 +136,27 @@
 			    	<!-- Expandable panel area -->
 			    	<div class="panel panel-border-narrow js-hidden" id="passport-number">
 						<!-- Passport number -->
-						<div class="form-group">
+						<div id="passport-number-expand-form-group" class="form-group">
 							<label class="form-label" for="passport-number-input">Passport number</label>
-							<input class="form-control" name="passport-number-input" type="text" id="passport-number-input">
+							<div id="passport-number-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="passport-number-input" type="text" id="passport-number-input"
+								data-parsley-class-handler="#passport-number-expand-form-group" 
+          							data-parsley-errors-container="#passport-number-expand-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your passport number"
+							>
 						</div> <!-- Form group close-->
 
 						<!-- Passport Country -->
-						<div class="form-group">
+						<div id="passport-country-expand-form-group" class="form-group">
 							<label class="form-label" for="passport-country">Country of issue</label>
-							<input class="form-control" name="passport-country" type="text" id="passport-country">
+							<div id="passport-country-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="passport-country" type="text" id="passport-country"
+								data-parsley-class-handler="#passport-country-expand-form-group" 
+          							data-parsley-errors-container="#passport-country-expand-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the country of issue"
+							>
 						</div> <!-- Form group close-->
 
 					</div> <!-- Expandable panel area  Close -->
@@ -135,6 +177,89 @@
 
 
 </main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+	    
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+	  // Enabled or disable hidden fields based on selected button
+	  $("input[name=radio-ni-group]").on('click', function() {
+	  	if($(this).val() == "Yes") {
+	  		$('#ni-number-input').prop('disabled', false);
+	  	}
+	  	else {
+	  		$('#ni-number-input').prop('disabled', true);
+	  	}
+	  });
+
+	  $("input[name=radio-driving-licence-group]").on('click', function() {
+	  	if($(this).val() == "Yes") {
+	  		$('#driving-licence-number-input').prop('disabled', false);
+	  	}
+	  	else {
+	  		$('#driving-licence-number-input').prop('disabled', true);
+	  	}
+	  });
+
+
+
+	  $("input[name=radio-passport-group]").on('click', function() {
+			var passportPanel = $('#passport-number');
+
+			if ($(this).val() == "Yes") {
+				// remove disabled prop
+				passportPanel.find('input,select,radio').prop('disabled', false);
+			} else {
+				passportPanel.find('input,select,radio').prop('disabled', true);
+			}
+		});
+
+
+</script>
 
 {% endblock %}
 
