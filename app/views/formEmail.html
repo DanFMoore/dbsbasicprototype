@@ -10,6 +10,8 @@
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+
 			<div class="breadcrumbs">
 				<ol><li>Section 3 of 8</li></ol>
 			</div> <!-- Breadcrumb -->
@@ -24,16 +26,28 @@
 					</ul>
 				</div>
 			  	<!-- Email address -->
-			    <div class="form-group">
+			    <div id="email-entry-form-group" class="form-group">
 			      	<label class="form-label-bold" for="email-address">Email address</label>
 			      	<p class="form-hint">This will only be used to contact you about your application.</p>
-			      	<input type="text" class="form-control" name="email-address" id="email-address">
+			      	<div id="email-entry-form-group-error-message" class="form-error validation-message"></div>
+			      	<input type="text" class="form-control" name="email-address" id="email-address"
+			      		data-parsley-class-handler="#email-entry-form-group" 
+          							data-parsley-errors-container="#email-entry-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your email address" >
 			    </div> <!-- Form group close-->
 
 			    <!-- Confirm email address -->
-			    <div class="form-group">
+			    <div id="email-confirm-form-group" class="form-group">
 			      	<label class="form-label-bold" for="confirm-email-address">Confirm email address</label>
-			      	<input type="text" class="form-control" id="confirm-email-address">
+			      	<div id="email-confirm-form-group-error-message" class="form-error validation-message"></div>
+			      	<input type="text" class="form-control" id="confirm-email-address"
+			      		data-parsley-class-handler="#email-confirm-form-group" 
+          							data-parsley-errors-container="#email-confirm-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Confirm your email address" 
+    								data-parsley-equalto="#email-address"
+    								data-parsley-equalto-message="Email addresses do not match" >
 			    </div> <!-- Form group close-->
 
 			    <!-- Continue button -->
@@ -48,6 +62,57 @@
 
 
 </main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset]',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+	    
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+
+</script>
 
 {% endblock %}
 
