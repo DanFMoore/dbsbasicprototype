@@ -2031,3 +2031,35 @@ input[type=number] {
   margin-bottom: 10px;
   list-style-type: none;
 }
+
+.parsley-error, .has-errors {
+  border-left: 4px solid #b10e1e;
+  padding: 15px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.parsley-error input[type="text"] {
+  border: 4px solid #b10e1e;
+}
+
+.parsley-error textarea {
+  border: 4px solid #b10e1e;
+}
+
+.form-error {
+  font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  text-transform: none;
+  font-weight: bold;
+  color: #b10e1e;
+}
+
+@media (min-width: 641px) {
+  .form-error {
+    font-size: 19px;
+    line-height: 1.3157894737;
+  }
+}
