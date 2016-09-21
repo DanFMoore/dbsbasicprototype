@@ -150,6 +150,39 @@
 					    		{% endif %}
 					    	{% endfor %}
 
+					    	<!-- Send address -->
+					    	{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}
+							    <tr>
+							    	<td>
+							    		<h2 class="text-secondary">Send certificate to</h2>
+							    		<div>{{ formdata["send-postcode"] }}</div>
+							    		<div>{{ formdata["send-recipient"] }}</div>
+							    		<div>{{ formdata["send-address-line-1"] }}</div>
+							    		<div>{{ formdata["send-address-line-2"] }}</div>
+							    		<div>{{ formdata["send-address-line-3"] }}</div>
+							    		<div>{{ formdata["send-address-town-city"] }}</div>
+							    		<div>{{ formdata["send-address-county"] }}</div>
+							    		<div>{{ formdata["send-address-country"] }}</div>
+							    		<div>{{ formdata["send-address-postcode"] }}</div>
+							    	</td>
+							    	<td class="editButton">
+							    		<a class="button button-secondary">Edit</a>
+							    	</td>
+							    </tr>
+
+							{% else %}
+								<tr>
+							    	<td>
+							    		<h2 class="text-secondary">Send certificate to</h2>
+							    		<div>Send to my current address</div>
+							    	</td>
+							    	<td class="editButton">
+							    		<a class="button button-secondary">Edit</a>
+							    	</td>
+							    </tr>
+					    	{% endif %}
+
+
 					    	<!-- National Insurance number -->
 					    	{% if formdata["ni-number-input"] %}
 					    	<tr>
