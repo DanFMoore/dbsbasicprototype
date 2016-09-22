@@ -10,6 +10,8 @@
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+
 			<div class="breadcrumbs">
 				<ol><li>Section 6 of 8</li></ol>
 			</div> <!-- Breadcrumb -->
@@ -33,13 +35,19 @@
 					</span>
 				</div>
 			  	<!-- Details correct -->
-				<div class="form-group">
+				<div id="send-details-group" class="form-group">
 					<fieldset>
 						<legend class="form-label-bold">Where would you like your certificate to be sent?</legend>
 						<p class="form-hint">This could be another personal address or an employer's address.</p>
+						<div id="send-details-group-error-message" class="form-error validation-message"></div>
 
 					    <label class="block-label" for="correct-radio-1">
-							<input id="correct-radio-1" type="radio" name="radio-correct-group" value="Current">
+							<input id="correct-radio-1" type="radio" name="radio-correct-group" value="Current"
+									data-parsley-class-handler="#send-details-group" 
+          							data-parsley-errors-container="#send-details-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Confirm where to send your certificate"
+							>
 							To my current address
 						</label>
 								
@@ -58,7 +66,13 @@
 			    			<fieldset class="inline">
 							<!-- Postcode -->
 								<label class="form-label" for="postcode">Postcode</label>
-								<input class="form-control" name="send-postcode" type="text" id="postcode">
+								<div id="postcode-block-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="send-postcode" type="text" id="postcode"
+									data-parsley-class-handler="#postcode-block" 
+          							data-parsley-errors-container="#postcode-block-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the postcode"
+								>
 								<a class="button secondary-button">Find UK address</a>
 							</fieldset>
 						</div> <!-- Form group close-->
@@ -70,37 +84,67 @@
 
 						<!-- Address fields ALT block -->
 						<div class="form-group js-hidden" id="address-fields-block">
-							<div class="form-group">
+							<div id="recipient-group" class="form-group">
 								<label class="form-label" for="send-recipient">Recipient</label>
-								<input class="form-control" name="send-recipient" type="text" id="send-recipient">
+								<div id="recipient-group-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="send-recipient" type="text" id="send-recipient"
+									data-parsley-class-handler="#recipient-group" 
+          							data-parsley-errors-container="#recipient-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the recipient"
+								>
 							</div>
-							<div class="form-group">
+							<div id="address-line-1-group" class="form-group">
 								<label class="form-label" for="send-address-line-1">Address line 1</label>
-								<input class="form-control" name="send-address-line-1" type="text" id="send-address-line-1">
+								<div id="address-line-1-group-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="send-address-line-1" type="text" id="send-address-line-1"
+									data-parsley-class-handler="#address-line-1-group" 
+          							data-parsley-errors-container="#address-line-1-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the first address line"
+								>
 							</div>
 							<div class="form-group">
 								<label class="form-label" for="send-address-line-2">Address line 2 (optional)</label>
-								<input class="form-control" name="send-address-line-2" type="text" id="send-address-line-2">
+								<input disabled class="form-control" name="send-address-line-2" type="text" id="send-address-line-2">
 							</div>
 							<div class="form-group">
 								<label class="form-label" for="send-address-line-3">Address line 3 (optional)</label>
-								<input class="form-control" name="send-address-line-3" type="text" id="send-address-line-3">
+								<input disabled class="form-control" name="send-address-line-3" type="text" id="send-address-line-3">
 							</div>
-							<div class="form-group">
+							<div id="town-group" class="form-group">
 								<label class="form-label" for="send-address-town-city">Town/City</label>
-								<input class="form-control" name="send-address-town-city" type="text" id="send-address-town-city">
+								<div id="town-group-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="send-address-town-city" type="text" id="send-address-town-city"
+									data-parsley-class-handler="#town-group" 
+          							data-parsley-errors-container="#town-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the town or city"
+								>
 							</div>
 							<div class="form-group">
 								<label class="form-label" for="send-address-county">County (optional)</label>
-								<input class="form-control" name="send-address-county" type="text" id="send-address-county">
+								<input disabled class="form-control" name="send-address-county" type="text" id="send-address-county">
 							</div>
-							<div class="form-group">
+							<div id="country-group" class="form-group">
 								<label class="form-label" for="send-address-country">Country</label>
-								<input class="form-control" name="send-address-country" type="text" id="send-address-country">
+								<div id="country-group-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="send-address-country" type="text" id="send-address-country"
+									data-parsley-class-handler="#country-group" 
+          							data-parsley-errors-container="#country-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the country"
+								>
 							</div>
-							<div class="form-group">
+							<div id="postcode-group" class="form-group">
 								<label class="form-label" for="send-address-postcode">Postcode</label>
-								<input class="form-control" name="send-address-postcode" type="text" id="send-address-postcode">
+								<div id="postcode-group-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="send-address-postcode" type="text" id="send-address-postcode"
+									data-parsley-class-handler="#postcode-group" 
+          							data-parsley-errors-container="#postcode-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the postcode"
+								>
 							</div>
 						</div> <!-- Form group close-->
 
@@ -111,16 +155,22 @@
 			    	</div> <!-- Expandable panel area Close ANOTHER ADDRESS-->
 			    	<script>
 			    		function swapBlock(blockID){
-							
+							var postcodePanel = $('#postcode-block');
+							var addressPanel = $('#address-fields-block');
+
 							$("#"+blockID).toggleClass("manual");
 							$("#postcode-block").toggleClass("js-hidden");
 							$("#address-fields-block").toggleClass("js-hidden");
 
 							if ($("#"+blockID).hasClass("manual")){
 								$("#"+blockID).html("Use Postcode finder");
+								addressPanel.find('input,select,radio').prop('disabled', false);
+								postcodePanel.find('input,select,radio').prop('disabled', true);
 							}
 							else {
 								$("#"+blockID).html("Enter address manually");
+								addressPanel.find('input,select,radio').prop('disabled', true);
+								postcodePanel.find('input,select,radio').prop('disabled', false);
 							}
 
 							// Use Postcode finder
@@ -144,6 +194,82 @@
 
 
 </main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+	    
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+	  $("input[name=radio-correct-group]").on('click', function() {
+			var postcodePanel = $('#postcode-block');
+			var addressPanel = $('#address-fields-block');
+
+			// if Another address selected, enable fields depending on whether manual is selected
+			// else disable those fields
+			if ($(this).val() == "Another") {
+				// remove disabled prop
+				// If Postcode finder NOT active, enable address fields
+				// Else enable postcode finder field
+				if ($('#send-manual-toggle-link').hasClass("manual")) {
+					postcodePanel.find('input,select,radio').prop('disabled',true);
+					addressPanel.find('input,select,radio').prop('disabled',false);
+				}
+				else {
+					postcodePanel.find('input,select,radio').prop('disabled',false);
+					addressPanel.find('input,select,radio').prop('disabled',true);
+				}
+			} else {
+					postcodePanel.find('input,select,radio').prop('disabled',true);
+					addressPanel.find('input,select,radio').prop('disabled',true);
+			}
+		});
+
+
+
+</script>
 
 {% endblock %}
 

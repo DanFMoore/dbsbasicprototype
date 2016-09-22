@@ -10,19 +10,26 @@
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+
 			<div class="breadcrumbs">
 				<ol><li>Section 2 of 8</li></ol>
 			</div> <!-- Breadcrumb -->
 
 			<form action="formEmail" method="post" class="form">
 
-			    <div class="form-group">
+			    <div id="names-group" class="form-group">
 			    	<fieldset class="inline">
 			    		<legend class="form-label-bold">Have you ever been known by any other names?</legend>
 			    		<p class="form-hint">This could be a change in forename(s) or surname.</p>
-
+			    		<div id="names-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="name-change" for="name-radio-1">
-						    <input id="name-radio-1" type="radio" name="name-radio-group" value="Yes">
+						    <input id="name-radio-1" type="radio" name="name-radio-group" value="Yes"
+						    	data-parsley-class-handler="#names-group" 
+          							data-parsley-errors-container="#names-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Confirm if you have been known by other names"
+						    >
 						    Yes
 					    </label>
 						
@@ -35,31 +42,54 @@
 			    	<!-- Expandable panel area -->
 			    	<div class="panel panel-border-narrow js-hidden" id="name-change">
 						<!-- Family name -->
-						<div class="form-group">
+						<div id="expand-family-name-group" class="form-group">
 							<label class="form-label" for="family-name">Family name (other)</label>
-							<input class="form-control" name="other-family-name" type="text" id="family-name">
+							<div id="expand-family-name-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="other-family-name" type="text" id="family-name"
+								data-parsley-class-handler="#expand-family-name-group" 
+          							data-parsley-errors-container="#expand-family-name-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your other family name"
+							>
 						</div> <!-- Form group close-->
 
 						<!-- Given names -->
-						<div class="form-group">
+						<div id="expand-given-name-group" class="form-group">
 							<label class="form-label" for="given-names">Given name(s) (other)</label>
-							<input class="form-control" name="other-given-names" type="text" id="given-names">
+							<div id="expand-given-name-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="other-given-names" type="text" id="given-names"
+								data-parsley-class-handler="#expand-given-name-group" 
+          							data-parsley-errors-container="#expand-given-name-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your other given name(s)"
+							>
 						</div> <!-- Form group close-->
 
 						<!-- Date from -->
-						<div class="form-group">
+						<div id="expand-date-from-group" class="form-group">
 							<fieldset>
 								<legend class="form-label">Date from</legend>
 
 								<div class="form-date">
 									<p class="form-hint">For example, 03 1980</p>
-									<div class="form-group form-group-month">
+									<div id="expand-date-from-group-error-message" class="form-error validation-message"></div>
+									<div class="form-group form-group-month" id="expand-date-from-month-group">
 										<label for="name-from-month">Month</label>
-										<input class="form-control" id="name-from-month" type="number" pattern="[0-9]*" min="0" max="12" name="other-name-from-month">
+										<input disabled class="form-control" id="name-from-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-from-month"
+											data-parsley-class-handler="#expand-date-from-group" 
+          									data-parsley-errors-container="#expand-date-from-group-error-message"
+          									data-parsley-required="true"
+    										data-parsley-required-message="Enter the month from"
+										>
 									</div> <!-- Form group close-->
-									<div class="form-group form-group-year">
+									<div class="form-group form-group-year" id="expand-date-from-year-group">
 										<label for="name-from-year">Year</label>
-										<input class="form-control" id="name-from-year" type="number" pattern="[0-9]*" min="0" max="2016" name="other-name-from-year">
+										<input disabled class="form-control" id="name-from-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-from-year"
+											data-parsley-class-handler="#expand-date-from-group" 
+          									data-parsley-errors-container="#expand-date-from-group-error-message"
+          									data-parsley-required="true"
+    										data-parsley-required-message="Enter the year from"
+										>
 									</div> <!-- Form group close-->
 								</div> <!-- Form group close-->
 							</fieldset>
@@ -67,19 +97,31 @@
 
 
 						<!-- Date to -->
-						<div class="form-group">
+						<div id="expand-date-to-group" class="form-group">
 							<fieldset>
 								<legend class="form-label">Date to</legend>
 
 								<div class="form-date">
 									<p class="form-hint">For example, 03 2014</p>
-									<div class="form-group form-group-month">
+									<div id="expand-date-to-group-error-message" class="form-error validation-message"></div>
+									<div class="form-group form-group-month" id="expand-date-to-month-group">
 										<label for="name-to-month">Month</label>
-										<input class="form-control" id="name-to-month" type="number" pattern="[0-9]*" min="0" max="12" name="other-name-to-month">
+										
+										<input disabled class="form-control" id="name-to-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-to-month"
+											data-parsley-class-handler="#expand-date-to-group" 
+          									data-parsley-errors-container="#expand-date-to-group-error-message"
+          									data-parsley-required="true"
+    										data-parsley-required-message="Enter the month to"
+										>
 									</div> <!-- Form group close-->
-									<div class="form-group form-group-year">
+									<div class="form-group form-group-year" id="expand-date-to-year-group">
 										<label for="name-to-year">Year</label>
-										<input class="form-control" id="name-to-year" type="number" pattern="[0-9]*" min="0" max="2016" name="other-name-to-year">
+										<input disabled class="form-control" id="name-to-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-to-year"
+											data-parsley-class-handler="#expand-date-to-group" 
+          									data-parsley-errors-container="#expand-date-to-group-error-message"
+          									data-parsley-required="true"
+    										data-parsley-required-message="Enter the year to"
+										>
 									</div> <!-- Form group close-->
 								</div>
 							</fieldset>
@@ -103,6 +145,69 @@
 
 
 </main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+	    
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+
+	  $("input[name=name-radio-group]").on('click', function() {
+			var namesPanel = $('#name-change');
+
+			if ($(this).val() == "Yes") {
+				// remove disabled prop
+				namesPanel.find('input,select,radio').prop('disabled', false);
+			} else {
+				namesPanel.find('input,select,radio').prop('disabled', true);
+			}
+		});
+
+
+</script>
 
 {% endblock %}
 
