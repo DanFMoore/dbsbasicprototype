@@ -60,9 +60,15 @@
 
 						<!-- Address fields ALT block -->
 						<div class="form-group js-hidden" id="address-fields-block-">
-							<div class="form-group">
+							<div class="form-group" id="other-add-line-1-">
 								<label class="form-label" for="address-line-1-">Address line 1</label>
-								<input disabled class="form-control" name="address-line-1-" type="text" id="address-line-1-">
+								<div id="other-add-line-1-error-message-" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="address-line-1-" type="text" id="address-line-1-"
+									data-parsley-class-handler="#other-add-line-1-" 
+          							data-parsley-errors-container="#other-add-line-1-error-message-"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the first line for address "
+								>
 							</div>
 							<div class="form-group">
 								<label class="form-label" for="address-line-2-">Address line 2 (optional)</label>
@@ -72,21 +78,39 @@
 								<label class="form-label" for="address-line-3-">Address line 3 (optional)</label>
 								<input disabled class="form-control" name="address-line-3-" type="text" id="address-line-3-">
 							</div>
-							<div class="form-group">
+							<div class="form-group" id="other-add-city-">
 								<label class="form-label" for="address-town-city-">Town/City</label>
-								<input disabled class="form-control" name="address-town-city-" type="text" id="address-town-city-">
+								<div id="other-add-city-error-message-" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="address-town-city-" type="text" id="address-town-city-"
+									data-parsley-class-handler="#other-add-city-" 
+          							data-parsley-errors-container="#other-add-city-error-message-"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the city for address "
+								>
 							</div>
 							<div class="form-group">
 								<label class="form-label" for="address-county-">County (optional)</label>
 								<input disabled class="form-control" name="address-county-" type="text" id="address-county-">
 							</div>
-							<div class="form-group">
+							<div class="form-group" id="other-add-country-">
 								<label class="form-label" for="address-country-">Country</label>
-								<input disabled class="form-control" name="address-country-" type="text" id="address-country-">
+								<div id="other-add-country-error-message-" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="address-country-" type="text" id="address-country-"
+									data-parsley-class-handler="#other-add-country-" 
+          							data-parsley-errors-container="#other-add-country-error-message-"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the country for address "
+								>
 							</div>
-							<div class="form-group">
+							<div class="form-group" id="other-add-postcode-">
 								<label class="form-label" for="address-postcode-">Postcode</label>
-								<input disabled class="form-control" name="address-postcode-" type="text" id="address-postcode-">
+								<div id="other-add-postcode-error-message-" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="address-postcode-" type="text" id="address-postcode-"
+									data-parsley-class-handler="#other-add-postcode-" 
+          							data-parsley-errors-container="#other-add-postcode-error-message-"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the postcode for address "
+								>
 							</div>
 						</div> <!-- Form group close-->
 
@@ -101,14 +125,23 @@
 								<fieldset class="inline">
 									<legend class="form-label-bold">Is this a current address?</legend>
 									<p class="form-hint">This might be an address you live at at the moment.</p>
+									<div id="current-radio-block-error-message-" class="form-error validation-message"></div>
 
 							    	<label class="block-label" data-target="current-address-" for="current-address-radio-1-">
-										<input disabled id="current-address-radio-1-" type="radio" name="radio-current-address-group-" value="Yes">
+										<input disabled id="current-address-radio-1-" type="radio" name="radio-current-address-group-" value="Yes"
+											data-parsley-class-handler="#current-radio-block-" 
+		          							data-parsley-errors-container="#current-radio-block-error-message-"
+		          							data-parsley-required="true"
+		    								data-parsley-required-message="Is this a current address for address "
+		    								onClick="javascript:flipDisable($(this).attr('id'));"
+										>
 									Yes
 									</label>
 										
 									<label class="block-label" data-target="not-current-address-" for="current-address-radio-2-">
-										<input disabled id="current-address-radio-2-" type="radio" name="radio-current-address-group-" value="No">
+										<input disabled id="current-address-radio-2-" type="radio" name="radio-current-address-group-" value="No"
+											onClick="javascript:flipDisable($(this).attr('id'));"
+										>
 									No
 									</label>
 								</fieldset>
@@ -118,19 +151,30 @@
 
 							<div class="panel panel-border-narrow js-hidden" id="current-address-">
 								<!-- At address since -->
-								<div class="form-group">
+								<div class="form-group" id="cur-ad-since-group-">
 									<fieldset>
 										<legend class="form-label">At address since</legend>
 
 										<div class="form-date">
 											<p class="form-hint">For example, 03 1980</p>
+											<div id="cur-ad-since-group-error-message-" class="form-error validation-message"></div>
 											<div class="form-group form-group-month">
 												<label for="cur-address-since-month-">Month</label>
-												<input disabled class="form-control" id="cur-address-since-month-" type="number" name="cur-address-since-month-" pattern="[0-9]*" min="0" max="12">
+												<input disabled class="form-control" id="cur-address-since-month-" type="number" name="cur-address-since-month-" pattern="[0-9]*" min="0" max="12"
+													data-parsley-class-handler="#cur-ad-since-group-" 
+				          							data-parsley-errors-container="#cur-ad-since-group-error-message-"
+				          							data-parsley-required="true"
+				    								data-parsley-required-message="Enter since month for address "
+												>
 											</div>
 											<div class="form-group form-group-year">
 												<label for="cur-address-since-year-">Year</label>
-												<input disabled class="form-control" id="cur-address-since-year-" type="number" name="cur-address-since-year-" pattern="[0-9]*" min="0" max="2016">
+												<input disabled class="form-control" id="cur-address-since-year-" type="number" name="cur-address-since-year-" pattern="[0-9]*" min="1900" max="2016"
+													data-parsley-class-handler="#cur-ad-since-group-" 
+				          							data-parsley-errors-container="#cur-ad-since-group-error-message-"
+				          							data-parsley-required="true"
+				    								data-parsley-required-message="Enter since year for address "
+												>
 											</div>
 										</div>
 									</fieldset>
@@ -139,37 +183,59 @@
 
 							<div class="panel panel-border-narrow js-hidden" id="not-current-address-">
 								<!-- At address since -->
-								<div class="form-group">
+								<div class="form-group" id="nc-ad-since-block-">
 									<fieldset>
 										<legend class="form-label">At address since</legend>
 
 										<div class="form-date">
 											<p class="form-hint">For example, 03 1980</p>
+											<div id="nc-ad-since-block-error-message-" class="form-error validation-message"></div>
 											<div class="form-group form-group-month">
 												<label for="nc-address-since-month-">Month</label>
-												<input disabled class="form-control" id="nc-address-since-month-" type="number" name="nc-address-since-month-" pattern="[0-9]*" min="0" max="12">
+												<input disabled class="form-control" id="nc-address-since-month-" type="number" name="nc-address-since-month-" pattern="[0-9]*" min="0" max="12"
+													data-parsley-class-handler="#nc-ad-since-block-" 
+				          							data-parsley-errors-container="#nc-ad-since-block-error-message-"
+				          							data-parsley-required="true"
+				    								data-parsley-required-message="Enter since month for address "
+												>
 											</div>
 											<div class="form-group form-group-year">
 												<label for="nc-address-since-year-">Year</label>
-												<input disabled class="form-control" id="nc-address-since-year-" type="number" name="nc-address-since-year-" pattern="[0-9]*" min="0" max="2016">
+												<input disabled class="form-control" id="nc-address-since-year-" type="number" name="nc-address-since-year-" pattern="[0-9]*" min="1900" max="2016"
+													data-parsley-class-handler="#nc-ad-since-block-" 
+				          							data-parsley-errors-container="#nc-ad-since-block-error-message-"
+				          							data-parsley-required="true"
+				    								data-parsley-required-message="Enter since year for address "
+												>
 											</div>
 										</div>
 									</fieldset>
 								</div> <!-- Form group close-->
 
-								<div class="form-group">
+								<div class="form-group" id="nc-ad-to-block-">
 									<fieldset>
 										<legend class="form-label">At address to</legend>
 
 										<div class="form-date">
 											<p class="form-hint">For example, 03 1980</p>
+											<div id="nc-ad-to-block-error-message-" class="form-error validation-message"></div>
 											<div class="form-group form-group-month">
 												<label for="nc-address-to-month-">Month</label>
-												<input disabled class="form-control" id="nc-address-to-month-" type="number" name="nc-address-to-month-" pattern="[0-9]*" min="0" max="12">
+												<input disabled class="form-control" id="nc-address-to-month-" type="number" name="nc-address-to-month-" pattern="[0-9]*" min="0" max="12"
+													data-parsley-class-handler="#nc-ad-to-block-" 
+				          							data-parsley-errors-container="#nc-ad-to-block-error-message-"
+				          							data-parsley-required="true"
+				    								data-parsley-required-message="Enter to month for address "
+												>
 											</div>
 											<div class="form-group form-group-year">
 												<label for="nc-address-to-year-">Year</label>
-												<input disabled class="form-control" id="nc-address-to-year-" type="number" name="nc-address-to-year-" pattern="[0-9]*" min="0" max="2016">
+												<input disabled class="form-control" id="nc-address-to-year-" type="number" name="nc-address-to-year-" pattern="[0-9]*" min="1900" max="2016"
+													data-parsley-class-handler="#nc-ad-to-block-" 
+				          							data-parsley-errors-container="#nc-ad-to-block-error-message-"
+				          							data-parsley-required="true"
+				    								data-parsley-required-message="Enter to year for address "
+												>
 											</div>
 										</div>
 									</fieldset>
@@ -281,10 +347,12 @@
 						}
 
 						function swapBlock(blockID){
-							console.log(blockID);
-							console.log(blockID[blockID.length-1]);
-							var poBlo = "#postcode-block-"+blockID[blockID.length-1];
-							var adFiBlo= "#address-fields-block-"+blockID[blockID.length-1]
+							//console.log(blockID);
+							var splitID = blockID.split('-');
+							var idNo = splitID[splitID.length-1]
+							//console.log(splitID[splitID.length-1]);
+							var poBlo = "#postcode-block-"+idNo;
+							var adFiBlo= "#address-fields-block-"+idNo;
 							console.log(poBlo);
 							console.log(adFiBlo);
 							$("#"+blockID).toggleClass("manual");
@@ -305,6 +373,33 @@
 							// Use Postcode finder
 							// Enter address manually
 							return false;
+						}
+
+						function flipDisable(buttonID){
+							console.log(buttonID);
+							var splitID = buttonID.split('-');
+							var idNo = splitID[splitID.length-1];
+							console.log(idNo);
+							var curBlock ='#current-address-'+idNo;
+							var notCurBlock='#not-current-address-'+idNo;
+							console.log(curBlock);
+							console.log(notCurBlock);
+							var buttonValue = document.getElementById(buttonID).value;
+							// if value == Yes
+							// enable current-address-? fields
+							// disable not-current-address-? fields
+							// else if value == NO
+							// Diable current-address-? fields
+							// enable not-current-address-? fields
+
+							if (buttonValue == "Yes") {
+								$(curBlock).find('input,select,radio').prop('disabled', false);
+								$(notCurBlock).find('input,select,radio').prop('disabled', true);
+							} else if (buttonValue == "No") {
+								$(notCurBlock).find('input,select,radio').prop('disabled', false);
+								$(curBlock).find('input,select,radio').prop('disabled', true);
+							}
+
 						}
 			    	</script>
 
