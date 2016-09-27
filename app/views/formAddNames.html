@@ -12,17 +12,19 @@
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
-			<div class="breadcrumbs">
-				<ol><li>Section 2 of 8</li></ol>
-			</div> <!-- Breadcrumb -->
 
-			<form action="formEmail" method="post" class="form">
+			<form action="formAddress" method="post" class="form">
 
 			    <div id="names-group" class="form-group">
-			    	<fieldset class="inline">
-			    		<legend class="form-label-bold">Have you ever been known by any other names?</legend>
-			    		<p class="form-hint">This could be a change in forename(s) or surname.</p>
+			    	<fieldset>
+			    		<legend class="heading-medium">Have you ever changed your name?</legend>
+			    		<p class="form-hint">You must tell us about all changes to your first name(s) and last name.</p>
 			    		<div id="names-group-error-message" class="form-error validation-message"></div>
+			    		<label class="block-label" for="name-radio-2">
+						    <input id="name-radio-2" type="radio" name="name-radio-group" value="No">
+						    No, I haven't changed my name
+					    </label>
+
 			    		<label class="block-label" data-target="name-change" for="name-radio-1">
 						    <input id="name-radio-1" type="radio" name="name-radio-group" value="Yes"
 						    	data-parsley-class-handler="#names-group" 
@@ -30,32 +32,18 @@
           							data-parsley-required="true"
     								data-parsley-required-message="Confirm if you have been known by other names"
 						    >
-						    Yes
-					    </label>
-						
-					    <label class="block-label" for="name-radio-2">
-						    <input id="name-radio-2" type="radio" name="name-radio-group" value="No">
-						    No
+						    Yes, I changed my name
 					    </label>
 
 			    	</fieldset>
 			    	<!-- Expandable panel area -->
 			    	<div class="panel panel-border-narrow js-hidden" id="name-change">
-						<!-- Family name -->
-						<div id="expand-family-name-group" class="form-group">
-							<label class="form-label" for="family-name">Family name (other)</label>
-							<div id="expand-family-name-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control" name="other-family-name" type="text" id="family-name"
-								data-parsley-class-handler="#expand-family-name-group" 
-          							data-parsley-errors-container="#expand-family-name-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Enter your other family name"
-							>
-						</div> <!-- Form group close-->
+						
+						<p class="form-hint">Enter all your names in full - don't use initials.</p>
 
-						<!-- Given names -->
+			    		<!-- Given names -->
 						<div id="expand-given-name-group" class="form-group">
-							<label class="form-label" for="given-names">Given name(s) (other)</label>
+							<label class="form-label" for="given-names">First name(s)</label>
 							<div id="expand-given-name-group-error-message" class="form-error validation-message"></div>
 							<input disabled class="form-control" name="other-given-names" type="text" id="given-names"
 								data-parsley-class-handler="#expand-given-name-group" 
@@ -65,13 +53,26 @@
 							>
 						</div> <!-- Form group close-->
 
+						<!-- Family name -->
+						<div id="expand-family-name-group" class="form-group">
+							<label class="form-label" for="family-name">Last name</label>
+							<div id="expand-family-name-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="other-family-name" type="text" id="family-name"
+								data-parsley-class-handler="#expand-family-name-group" 
+          							data-parsley-errors-container="#expand-family-name-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your other family name"
+							>
+						</div> <!-- Form group close-->
+
+						<p class="form-hint">When did you last use this name?</p>
 						<!-- Date from -->
 						<div id="expand-date-from-group" class="form-group">
 							<fieldset>
-								<legend class="form-label">Date from</legend>
+								<legend class="form-label">Date from:</legend>
 
 								<div class="form-date">
-									<p class="form-hint">For example, 03 1980</p>
+									
 									<div id="expand-date-from-group-error-message" class="form-error validation-message"></div>
 									<div class="form-group form-group-month" id="expand-date-from-month-group">
 										<label for="name-from-month">Month</label>
@@ -93,16 +94,17 @@
 									</div> <!-- Form group close-->
 								</div> <!-- Form group close-->
 							</fieldset>
+							<p class="form-hint">For example, 03 1980</p>
 						</div> <!-- Form group close-->
 
 
 						<!-- Date to -->
 						<div id="expand-date-to-group" class="form-group">
 							<fieldset>
-								<legend class="form-label">Date to</legend>
+								<legend class="form-label">Date to:</legend>
 
 								<div class="form-date">
-									<p class="form-hint">For example, 03 2014</p>
+									
 									<div id="expand-date-to-group-error-message" class="form-error validation-message"></div>
 									<div class="form-group form-group-month" id="expand-date-to-month-group">
 										<label for="name-to-month">Month</label>
@@ -125,9 +127,10 @@
 									</div> <!-- Form group close-->
 								</div>
 							</fieldset>
+							<p class="form-hint">For example, 03 2014</p>
 						</div> <!-- Form group close-->
 
-						<a class="button-secondary" href="#" role="button">Add another</a>
+						<a class="button-secondary" href="#" role="button">Add another name</a>
 
 					</div> <!-- Expandable panel area  Close -->
 			    </div> <!-- Form group close-->
@@ -135,7 +138,7 @@
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
+			    	<input type="submit" class="button" value="Save and continue">
 				</div> <!-- Form group close-->
 
 			</form>

@@ -11,26 +11,16 @@
 		<div class="column-two-thirds">
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-
-			<div class="breadcrumbs">
-				<ol><li>Section 5 of 8</li></ol>
-			</div> <!-- Breadcrumb -->
 			
-			
-			<form action="formSendAddress" method="post" class="form">
+			<form action="formIdentity" method="post" class="form">
 
-				<span class="heading-medium">Other addresses<br></span>
-				<br>
-				<div class="form-group">
-					<ul class="list-bullet" style="color:Red;">
-						<li>Copy needs to explain that you can have multiple current addresses, eg. Students</li>
-						<li>What to do if there are gaps? eg. Homeless.</li>
-						<li>Can you just add 5 years of address history? Does it stop you adding more?</li>
-						<li>Include link to address help page on DBS site? Here or on start page?</li>
-					</ul>
-				</div>
+
+				
 			    <div class="form-group">
-					<p class="form-hint">There must be no gaps in dates but overlapping dates are acceptable.</p>
+
+			    	<div class="heading-medium">Have you lived at any other addresses in the past 5 years?</div>
+
+					<p class="form-hint">This includes temporary addresses, for example if you're a student.</p>
 
 					<!-- Store number of addresses the user has entered -->
 					<input class="js-hidden" id="other-addresses-total" name="other-addresses-total">
@@ -153,10 +143,10 @@
 								<!-- At address since -->
 								<div class="form-group" id="cur-ad-since-group-">
 									<fieldset>
-										<legend class="form-label">At address since</legend>
+										<legend class="form-label">When did you move into this address?</legend>
 
 										<div class="form-date">
-											<p class="form-hint">For example, 03 1980</p>
+											
 											<div id="cur-ad-since-group-error-message-" class="form-error validation-message"></div>
 											<div class="form-group form-group-month">
 												<label for="cur-address-since-month-">Month</label>
@@ -178,6 +168,7 @@
 											</div>
 										</div>
 									</fieldset>
+									<p class="form-hint">For example, 03 1980</p>
 								</div> <!-- Form group close-->
 							</div> <!-- Expandable panel area  Close CURRENT ADDRESS -->
 
@@ -185,10 +176,10 @@
 								<!-- At address since -->
 								<div class="form-group" id="nc-ad-since-block-">
 									<fieldset>
-										<legend class="form-label">At address since</legend>
+										<legend class="form-label">When did you move into this address?</legend>
 
 										<div class="form-date">
-											<p class="form-hint">For example, 03 1980</p>
+											
 											<div id="nc-ad-since-block-error-message-" class="form-error validation-message"></div>
 											<div class="form-group form-group-month">
 												<label for="nc-address-since-month-">Month</label>
@@ -210,14 +201,15 @@
 											</div>
 										</div>
 									</fieldset>
+									<p class="form-hint">For example, 03 1980</p>
 								</div> <!-- Form group close-->
 
 								<div class="form-group" id="nc-ad-to-block-">
 									<fieldset>
-										<legend class="form-label">At address to</legend>
+										<legend class="form-label">When did you move out of this address?</legend>
 
 										<div class="form-date">
-											<p class="form-hint">For example, 03 1980</p>
+											
 											<div id="nc-ad-to-block-error-message-" class="form-error validation-message"></div>
 											<div class="form-group form-group-month">
 												<label for="nc-address-to-month-">Month</label>
@@ -239,6 +231,7 @@
 											</div>
 										</div>
 									</fieldset>
+									<p class="form-hint">For example, 03 1980</p>
 								</div> <!-- Form group close-->
 							</div> <!-- Expandable panel area  Close NOT CURRENT ADDRESS -->
 						</div> <!-- Form group close-->
@@ -405,13 +398,14 @@
 
 			    	<!-- Show hidden address area -->
 			    	<a class="button secondary-button" id="mylink" href="#">Add address</a>
+			    	<br><br><br><br>
 			    </div> <!-- Form group close-->
 
 
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
+			    	<input type="submit" class="button" value="Save and continue">
 				</div> <!-- Form group close-->
 
 			</form>

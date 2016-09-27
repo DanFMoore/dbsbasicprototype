@@ -8,18 +8,13 @@
 
 <main id="content" role="main">
 	<div class="grid-row">
-		<div class="column-two-thirds">
-
-			<div class="breadcrumbs">
-				<ol><li>Summary</li></ol>
-			</div> <!-- Breadcrumb -->
-			
+		<div class="column-two-thirds">			
 			
 			<form action="formDeclaration" method="post" class="form">
 
 
 				<div class="form-group">
-			    	<h3 class="form-label-bold" style="font-size:24px;">Confirm your details before continuing</h3>
+			    	<h3 class="heading-medium">Confirm your details before continuing</h3>
 			    </div>
 			    <div class="form-group">
 
@@ -64,9 +59,9 @@
 					    		<td>
 					    			<h2 class="text-secondary">Other name</h2>
 					    			<div>{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}</div>
-					    			<h2 class="text-secondary">From</h2>
+					    			<h2 class="text-secondary">Date from</h2>
 					    			<div>{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}</div>
-					    			<h2 class="text-secondary">To</h2>
+					    			<h2 class="text-secondary">Date to</h2>
 					    			<div>{{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"] }}</div>
 					    		</td>
 					    		<td class="editButton">
@@ -75,17 +70,7 @@
 					    	</tr>
 					    	{% endif %}
 
-					    	<!-- Email address -->
-					    	<tr>
-					    		<td>
-					    			<h2 class="text-secondary">Email address</h2>
-					    			<div>{{ formdata["email-address"] }}</div>
-					    			
-					    		</td>
-					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
-					    		</td>
-					    	</tr>
+					    	
 
 					    	<!-- Current address -->
 					    	<tr>
@@ -98,7 +83,7 @@
 										United Kingdom<br>
 										LP1 12D
 					    			</div>
-					    			<h2 class="text-secondary">Since</h2>
+					    			<h2 class="text-secondary">At address since</h2>
 					    			<div>{{ formdata["correct-address-since-month"] }}/{{ formdata["correct-address-since-year"] }}</div>
 					    		</td>
 					    		<td class="editButton">
@@ -150,37 +135,7 @@
 					    		{% endif %}
 					    	{% endfor %}
 
-					    	<!-- Send address -->
-					    	{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}
-							    <tr>
-							    	<td>
-							    		<h2 class="text-secondary">Send certificate to</h2>
-							    		<div>{{ formdata["send-postcode"] }}</div>
-							    		<div>{{ formdata["send-recipient"] }}</div>
-							    		<div>{{ formdata["send-address-line-1"] }}</div>
-							    		<div>{{ formdata["send-address-line-2"] }}</div>
-							    		<div>{{ formdata["send-address-line-3"] }}</div>
-							    		<div>{{ formdata["send-address-town-city"] }}</div>
-							    		<div>{{ formdata["send-address-county"] }}</div>
-							    		<div>{{ formdata["send-address-country"] }}</div>
-							    		<div>{{ formdata["send-address-postcode"] }}</div>
-							    	</td>
-							    	<td class="editButton">
-							    		<a class="button button-secondary">Edit</a>
-							    	</td>
-							    </tr>
-
-							{% else %}
-								<tr>
-							    	<td>
-							    		<h2 class="text-secondary">Send certificate to</h2>
-							    		<div>Send to my current address</div>
-							    	</td>
-							    	<td class="editButton">
-							    		<a class="button button-secondary">Edit</a>
-							    	</td>
-							    </tr>
-					    	{% endif %}
+					    	
 
 
 					    	<!-- National Insurance number -->
@@ -203,6 +158,8 @@
 					    		<td>
 					    			<h2 class="text-secondary">Driving licence number</h2>
 					    			<div>{{ formdata["driving-licence-number-input"] }}</div>
+					    			<h2 class="text-secondary">Country of issue</h2>
+					    			<div>{{ formdata["driving-country-input"] }}</div>
 					    			
 					    		</td>
 					    		<td class="editButton">
@@ -241,17 +198,59 @@
 					    		</td>
 					    	</tr>
 
+
+					    	<!-- Send address -->
+					    	{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}
+							    <tr>
+							    	<td>
+							    		<h2 class="text-secondary">Send certificate to</h2>
+							    		<div>{{ formdata["send-postcode"] }}</div>
+							    		<div>{{ formdata["send-recipient"] }}</div>
+							    		<div>{{ formdata["send-address-line-1"] }}</div>
+							    		<div>{{ formdata["send-address-line-2"] }}</div>
+							    		<div>{{ formdata["send-address-line-3"] }}</div>
+							    		<div>{{ formdata["send-address-town-city"] }}</div>
+							    		<div>{{ formdata["send-address-county"] }}</div>
+							    		<div>{{ formdata["send-address-country"] }}</div>
+							    		<div>{{ formdata["send-address-postcode"] }}</div>
+							    	</td>
+							    	<td class="editButton">
+							    		<a class="button button-secondary">Edit</a>
+							    	</td>
+							    </tr>
+
+							{% else %}
+								<tr>
+							    	<td>
+							    		<h2 class="text-secondary">Send certificate to</h2>
+							    		<div>Send to my current address</div>
+							    	</td>
+							    	<td class="editButton">
+							    		<a class="button button-secondary">Edit</a>
+							    	</td>
+							    </tr>
+					    	{% endif %}
+
+
+
+					    	<!-- Email address -->
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Email address</h2>
+					    			<div>{{ formdata["email-address"] }}</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    			<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+
 					    </tbody>
 				    </table>
 
 			    </div> <!-- Form group close-->
 
-			    <div class="form-group">
-					<ul class="list-bullet" style="color:Red;">
-						<li>Display all addresses</li>
-						<li>Do we show empty non-mandatory fields to encourage user to enter data?</li>
-					</ul>
-				</div>
+
 
 			    <!-- Confirm button -->
 			    <div class="form-group">

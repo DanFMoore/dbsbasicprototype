@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+  	<div class="column-two-thirds">
+
+        {% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+
+    	<h1 class="heading-large">Verifying your identity</h1>
+
+
+        <p>We need to verify your identity before we can process your application.</p>
+    	
+        <div class="panel panel-border-narrow" id="verify-reason" style="margin-bottom: 45px; margin-top: 30px;">
+            <p>Your application will be processed faster if you verify your identity with GOV.UK Verify and you can also resume an application you have already started.</p>
+        </div>
+
+    </div>
+
+    <!-- Split area -->
+    <form action="https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application">
+
+
+        <div class="grid-row" style="padding-right: 15px; padding-left: 15px;">
+            <div class="column-one-half" style="border-right: 3px solid silver; padding-right: 30px;">
+
+                <p>To use GOV.UK Verify you'll need a UK passport, photocard driving licence or bank statement.</p>
+
+                <div id="verify-agree-group" class="form-group">
+                    <div id="verify-agree-group-error-message" class="form-error validation-message"></div>
+                    <label class="block-label" for="verify-agree">
+                        <input id="verify-agree" type="checkbox" name="verify-agree" value="Agree"
+                            data-parsley-class-handler="#verify-agree-group" 
+                                    data-parsley-errors-container="#verify-agree-group-error-message"
+                                    data-parsley-required="true"
+                                    data-parsley-required-message="You must agree to share your details from GOV.UK Verify">
+                        I agree to the Disclosure and Barring Service using my name, address and date of birth provided by GOV.UK Verify 
+                    </label>
+                </div>
+                <input type="submit" class="button button-start" style="margin-bottom: 15px;" value="GOV.UK Verify">
+            </div>
+
+            <div class="column-one-half" style="padding-left: 30px;">
+                <div class="heading-medium" style="margin-top: 15px; margin-bottom: 15px;">Other ways to apply</div>
+                <p>You can use this service without using GOV.UK Verify.</p>
+                <p>Your application will take longer to process as additional checking will be required. You will not be able to return to an application you started earlier.</p>
+                <p><a href="#/">Continue without verifying</a></p>
+            </div>
+
+        </div>
+
+
+
+
+        <div>
+
+        	
+            <div class="js-hidden">
+                <a href="https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application&verify=false">TEST fail verify</a><br>
+                <a href="formFirstPage.html">TEST skip Verify</a>
+            </div>
+
+        </div>
+    </form>
+
+
+  </div>
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+    var parsleyForm;
+    var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+    // attach parsley validation to the form
+    parsleyForm = thisFormInstance.parsley({
+        excluded: 'input[type=button], input[type=submit], input[type=reset]',
+        focus:"none"
+    });
+
+    // before form is validated, catch the event and do custom validation if needed
+      thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+        var ok = true;
+        // add custom validations here - set ok to false if any of them fail validation
+        
+        //ok = ok && checkDiagnosisFutureDate();
+        //ok = ok && validateDOB();
+
+        if (!ok) {
+          formInstance.validationResult = false;
+        } else {
+          formInstance.validationResult = true;
+        }
+      });
+
+      // what to do when form doesn't validate
+      thisFormInstance.parsley().on('form:error', function(formInstance) {
+        //console.log('form error');
+
+        // construct error display
+        GOVUK.formUtilities.showErrorSummary();
+      });
+
+      // what to do when form validates successfully
+      thisFormInstance.parsley().on('form:submit', function(formInstance) {
+        //console.log('form success');
+        GOVUK.formUtilities.hideErrorSummary();
+
+        // allow the form to submit
+        return true;
+      });
+
+
+</script>
+
+
+{% endblock %}
+
+

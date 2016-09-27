@@ -34,6 +34,10 @@ router.get('/examples/template-data', function (req, res) {
 router.post('/formFirstPage', function(req, res) {
   res.render('formFirstPage', req.session)
 })
+// Section 1 - First form page
+router.post('/formGender', function(req, res) {
+  res.render('formGender', req.session)
+})
 // Section 2 - Sensitive Application
 router.post('/formSensitive', function(req, res) {
   res.render('formSensitive', req.session)
@@ -61,6 +65,14 @@ router.post('/formSendAddress', function(req, res) {
 // Section 8 - Identity Details
 router.post('/formIdentity', function(req, res) {
   res.render('formIdentity', req.session)
+})
+// Section 8 - Identity Details Driving Licence
+router.post('/formIdentityDriving', function(req, res) {
+  res.render('formIdentityDriving', req.session)
+})
+// Section 8 - Identity Details - Passport
+router.post('/formIdentityPassport', function(req, res) {
+  res.render('formIdentityPassport', req.session)
 })
 // Section 9 - Convictions
 router.post('/formConvictions', function(req, res) {

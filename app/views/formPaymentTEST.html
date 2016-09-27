@@ -30,45 +30,7 @@
 				</div> <!-- Form group close-->
 
 
-				<script>
-					
-
-					var http = require("https");
-
-					var options = {
-					  "method": "POST",
-					  "hostname": "publicapi.payments.service.gov.uk",
-					  "port": null,
-					  "path": "/v1/payments",
-					  "headers": {
-					    "accept": "application/json",
-					    "authorization": "Bearer petesgovpayapikey",
-					    "content-type": "application/json"
-					  }
-					};
-
-					var req = http.request(options, function (res) {
-					  var chunks = [];
-
-					  res.on("data", function (chunk) {
-					    chunks.push(chunk);
-					  });
-
-					  res.on("end", function () {
-					    var body = Buffer.concat(chunks);
-					    console.log(body.toString());
-					  });
-					});
-
-					req.write(JSON.stringify({ amount: 12000,
-					  reference: '12345',
-					  description: 'New p123assport application',
-					  return_url: 'http://www.google.com' }));
-					req.end();
-
-
-				</script>
-
+				<script src="/card-master/dist/card.js"></script>
 			</form>
 		</div>
 	</div>

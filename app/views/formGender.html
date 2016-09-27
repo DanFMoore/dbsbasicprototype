@@ -12,48 +12,34 @@
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
-			<form action="formGender" method="post" class="form">
-				<div id="verify-group" class="form-group">
+			<form action="formAddNames" method="post" class="form">
 
 
-					
-
-
-
-					<fieldset class="inline">
-			    		<legend class="heading-medium">Is this your correct name and date of birth?</legend>
-			    		<p class="form-hint">These are your personal details from your GOV.UK Verify account.</p>
-
-			    		<span class="text-secondary">Name<br></span>
-						<span>John Smith<br></span>
-						<span class="text-secondary">Date of birth<br></span>
-						<span>01/01/1960<br></span><br>
-
-			    		<div id="verify-form-group-error-message" class="form-error validation-message"></div>
-
-			    		<label class="block-label" for="radio-verify-1">
-						    <input id="radio-verify-1" type="radio" name="radio-verify-group" value="Yes"
-						    	data-parsley-class-handler="#verify-group" 
-          							data-parsley-errors-container="#verify-form-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Is this information correct?"
-						    >
-						    Yes
-					    </label>
+			  	<!-- Gender -->
+				<div id="radio-gender-group-form-group" class="form-group">
+					<fieldset>
+						<legend class="heading-medium">What is your gender?</legend>
 						
-					    <label class="block-label" for="radio-verify-2">
-						    <input id="radio-verify-2" type="radio" name="radio-verify-group" value="No">
-						    No
-					    </label>
+						<div id="radio-gender-group-error-message" class="form-error validation-message"></div>
 
-			    	</fieldset>
-
-
-
-
-
+						<label class="block-label" for="gender-radio-1">
+							<input id="gender-radio-1" type="radio" name="radio-gender-group" value="Female" 
+								data-parsley-class-handler="#radio-gender-group-form-group" 
+          							data-parsley-errors-container="#radio-gender-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Select your gender" >
+							Female
+						</label>
+						<label class="block-label" for="gender-radio-2">
+							<input id="gender-radio-2" type="radio" name="radio-gender-group" value="Male"  >
+							Male
+						</label>
+						<label class="block-label" for="gender-radio-3">
+							<input id="gender-radio-3" type="radio" name="radio-gender-group" value="Intersex" >
+							Intersex
+						</label>
+					</fieldset>
 				</div> <!-- Form group close-->
-
 
 			    <!-- Continue button -->
 			    <div class="form-group">

@@ -12,22 +12,12 @@
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
-			<div class="breadcrumbs">
-				<ol><li>Section 3 of 8</li></ol>
-			</div> <!-- Breadcrumb -->
+			<form action="formSummary" method="post" class="form">
 
-			<form action="formAddress" method="post" class="form">
-
-				<div class="form-group">
-					<ul class="list-bullet" style="color:Red;">
-						<li>Will email only be used to contact you?</li>
-						<li>Is it used for matching or creating a DBS profile?</li>
-						<li>Do we need to explicitly say this in the copy?</li>
-					</ul>
-				</div>
+				
 			  	<!-- Email address -->
 			    <div id="email-entry-form-group" class="form-group">
-			      	<label class="form-label-bold" for="email-address">Email address</label>
+			      	<legend class="heading-medium" for="email-address">What is your email address?</legend>
 			      	<p class="form-hint">This will only be used to contact you about your application.</p>
 			      	<div id="email-entry-form-group-error-message" class="form-error validation-message"></div>
 			      	<input type="text" class="form-control" name="email-address" id="email-address"
@@ -41,7 +31,7 @@
 
 			    <!-- Confirm email address -->
 			    <div id="email-confirm-form-group" class="form-group">
-			      	<label class="form-label-bold" for="confirm-email-address">Confirm email address</label>
+			      	<label class="form-label" for="confirm-email-address">Confirm your email address</label>
 			      	<div id="email-confirm-form-group-error-message" class="form-error validation-message"></div>
 			      	<input type="text" class="form-control" id="confirm-email-address"
 			      		data-parsley-class-handler="#email-confirm-form-group" 
@@ -54,9 +44,10 @@
     								data-parsley-type-message="Enter a valid email address"  >
 			    </div> <!-- Form group close-->
 
+
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
+			    	<input type="submit" class="button" value="Save and continue">
 				</div> <!-- Form group close-->
 
 			</form>

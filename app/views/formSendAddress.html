@@ -12,36 +12,17 @@
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
-			<div class="breadcrumbs">
-				<ol><li>Section 6 of 8</li></ol>
-			</div> <!-- Breadcrumb -->
+			<form action="formEmail" method="post" class="form">
 
-			<form action="formIdentity" method="post" class="form">
-				<div class="form-group">
-					<ul class="list-bullet" style="color:Red;">
-						<li>Display current address/primary address here</li>
-						<li>Should we use current, correspondence, or Primary address? Can have multiple current addresses</li>
-					</ul>
-				</div>
-
-				<div class="form-group">
-					<p class="form-hint">This is your current address.</p>
-					<span>
-						1 Oxford Road<br>
-						Bristol<br>
-						South Gloucestershire<br>
-						United Kingdom<br>
-						LP1 12D
-					</span>
-				</div>
+				
 			  	<!-- Details correct -->
 				<div id="send-details-group" class="form-group">
 					<fieldset>
-						<legend class="form-label-bold">Where would you like your certificate to be sent?</legend>
-						<p class="form-hint">This could be another personal address or an employer's address.</p>
+						<legend class="heading-medium">Where would you like your certificate to be sent?</legend>
+						<p class="form-hint">Your certificate can be sent to your current address, another personal address, or your employer.</p>
 						<div id="send-details-group-error-message" class="form-error validation-message"></div>
-
-					    <label class="block-label" for="correct-radio-1">
+						
+					    <label class="block-label" for="correct-radio-1" data-target="current-address">
 							<input id="correct-radio-1" type="radio" name="radio-correct-group" value="Current"
 									data-parsley-class-handler="#send-details-group" 
           							data-parsley-errors-container="#send-details-group-error-message"
@@ -50,6 +31,21 @@
 							>
 							To my current address
 						</label>
+
+						<!-- Expandable panel area  ANOTHER ADDRESS-->
+			    		<div class="panel panel-border-narrow js-hidden" id="current-address">
+			    			<div class="form-group">
+								<p class="form-hint">This is your current address.</p>
+								<span>
+									1 Oxford Road<br>
+									Bristol<br>
+									South Gloucestershire<br>
+									United Kingdom<br>
+									LP1 12D
+								</span>
+							</div>
+			    		</div>
+
 								
 						<label class="block-label" data-target="another-address" for="correct-radio-2">
 							<input id="correct-radio-2" type="radio" name="radio-correct-group" value="Another">
@@ -182,9 +178,10 @@
 
 				</div> <!-- Form group close-->
 
+
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
+			    	<input type="submit" class="button" value="Save and continue">
 				</div> <!-- Form group close-->
 				
 			</form>

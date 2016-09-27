@@ -11,53 +11,64 @@
 		<div class="column-two-thirds">
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-
 			
 
-			<form action="formIdentityDriving" method="post" class="form">
+			<form action="formConvictions" method="post" class="form">
 
-				<!-- National Insurance -->
-			    <div id="ni-form-group" class="form-group">
+			    <!-- Passport -->
+				<div id="passport-form-group" class="form-group">
 			    	<fieldset class="inline">
-			    		<legend class="heading-medium">Do you have a National Insurance number?</legend>
+			    		<legend class="heading-medium">Do you have a current passport?</legend>
 			    		<p class="form-hint">If you can provide this information your application will be processed quicker.</p>
-			    		<div id="ni-form-group-error-message" class="form-error validation-message"></div>
-			    		<label class="block-label" data-target="ni-number" for="radio-ni-1">
-						    <input id="radio-ni-1" type="radio" name="radio-ni-group" value="Yes"
-						    	data-parsley-class-handler="#ni-form-group" 
-          							data-parsley-errors-container="#ni-form-group-error-message"
+			    		<div id="passport-form-group-error-message" class="form-error validation-message"></div>
+			    		<label class="block-label" data-target="passport-number" for="radio-passport-1">
+						    <input id="radio-passport-1" type="radio" name="radio-passport-group" value="Yes"
+						    	data-parsley-class-handler="#passport-form-group" 
+          							data-parsley-errors-container="#passport-form-group-error-message"
           							data-parsley-required="true"
-    								data-parsley-required-message="Do you have a National Insurance number?"
+    								data-parsley-required-message="Do you have a passport?"
 						    >
 						    Yes
 					    </label>
 						
-					    <label class="block-label" for="radio-ni-2">
-						    <input id="radio-ni-2" type="radio" name="radio-ni-group" value="No">
+					    <label class="block-label" for="radio-passport-2">
+						    <input id="radio-passport-2" type="radio" name="radio-passport-group" value="No">
 						    No
 					    </label>
 
 			    	</fieldset>
 			    	<!-- Expandable panel area -->
-			    	<div class="panel panel-border-narrow js-hidden" id="ni-number">
-						<!-- National Insurance number -->
-						<div id="ni-expand-form-group" class="form-group">
-							<label class="form-label" for="ni-number-input">National Insurance number</label>
-							<p class="form-hint">It'll be on your last payslip. For example, VO 12 34 56 D.</p>
-							<div id="ni-expand-form-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control" name="ni-number-input" type="text" id="ni-number-input"
-								data-parsley-class-handler="#ni-expand-form-group" 
-          							data-parsley-errors-container="#ni-expand-form-group-error-message"
+			    	<div class="panel panel-border-narrow js-hidden" id="passport-number">
+						<!-- Passport number -->
+						<div id="passport-number-expand-form-group" class="form-group">
+							<label class="form-label" for="passport-number-input">Passport number</label>
+							<div id="passport-number-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="passport-number-input" type="text" id="passport-number-input"
+								data-parsley-class-handler="#passport-number-expand-form-group" 
+          							data-parsley-errors-container="#passport-number-expand-form-group-error-message"
           							data-parsley-required="true"
-    								data-parsley-required-message="Enter your National Insurance number"
+    								data-parsley-required-message="Enter your passport number"
 							>
 						</div> <!-- Form group close-->
+
+						<!-- Passport Country -->
+						<div id="passport-country-expand-form-group" class="form-group">
+							<label class="form-label" for="passport-country">Country of issue</label>
+							<div id="passport-country-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="passport-country" type="text" id="passport-country"
+								data-parsley-class-handler="#passport-country-expand-form-group" 
+          							data-parsley-errors-container="#passport-country-expand-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the country of issue"
+							>
+						</div> <!-- Form group close-->
+
 					</div> <!-- Expandable panel area  Close -->
 			    </div> <!-- Form group close-->
 
 
 
-			    
+
 			    <!-- Continue button -->
 			    <div class="form-group">
 			    	<input type="submit" class="button" value="Save and continue">
@@ -120,16 +131,17 @@
 	  });
 
 	  // Enabled or disable hidden fields based on selected button
-	  $("input[name=radio-ni-group]").on('click', function() {
-	  	if($(this).val() == "Yes") {
-	  		$('#ni-number-input').prop('disabled', false);
-	  	}
-	  	else {
-	  		$('#ni-number-input').prop('disabled', true);
-	  	}
-	  });
 
+	  $("input[name=radio-passport-group]").on('click', function() {
+			var passportPanel = $('#passport-number');
 
+			if ($(this).val() == "Yes") {
+				// remove disabled prop
+				passportPanel.find('input,select,radio').prop('disabled', false);
+			} else {
+				passportPanel.find('input,select,radio').prop('disabled', true);
+			}
+		});
 
 
 </script>

@@ -10,24 +10,18 @@
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-
-
-			<div class="breadcrumbs">
-				<ol><li>Section 8 of 8</li></ol>
-			</div> <!-- Breadcrumb -->
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}		
 			
-			
-			<form action="formSummary" method="post" class="form">
+			<form action="formSendAddress" method="post" class="form">
 
 			    <div id="convictions-group" class="form-group">
 			    	<fieldset class="inline">
-			    		<legend class="form-label-bold">Do you have any unspent convictions, cautions, reprimands or final warnings?</legend>
-			    		<p class="form-hint">You don't need to tell us about motoring fines or penalty points unless there were court imposed.</p>
+			    		<legend class="heading-medium">Do you have any unspent convictions, cautions, reprimands or final warnings?</legend>
+			    		<p class="form-hint">You don't need to tell us about motoring fines or penalty points unless they were court imposed.</p>
 			    		<div id="convictions-group-error-message" class="form-error validation-message"></div>
 
 			    		<!-- Yes/No Radio -->
-			    		<label class="block-label" for="radio-convictions-1" data-target="convictions-block">
+			    		<label class="block-label" for="radio-convictions-1">
 						    <input id="radio-convictions-1" type="radio" name="radio-convictions-group" value="Yes"
 						    	data-parsley-class-handler="#convictions-group" 
           							data-parsley-errors-container="#convictions-group-error-message"
@@ -42,29 +36,14 @@
 					    </label>
 			    	</fieldset>
 
-			    	<!-- Expandable panel area  Convictions text -->
-			    	<div class="panel panel-border-narrow js-hidden" id="convictions-block">
-			    		<div class="form-group">
-			    			<label class="form-label" for="convictions-textarea">Please tell us what they are</label>
-			    			<textarea id="convictions-textarea" name="convictions-info" class="form-control" rows="10" cols="30"></textarea>
-						</div> <!-- Form group close-->
-
-			    	</div> <!-- Expandable panel area Close ANOTHER ADDRESS-->
 
 			    </div> <!-- Form group close-->
 
-			    <div class="form-group">
-					<ul class="list-bullet" style="color:Red;">
-						<li>Should we have the text area for convictions?</li>
-						<li>Will this be useful?</li>
-						<li>Needed for application debate?</li>
-						<li>TCS dependency</li>
-					</ul>
-				</div>
+
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
+			    	<input type="submit" class="button" value="Save and continue">
 				</div> <!-- Form group close-->
 
 			</form>

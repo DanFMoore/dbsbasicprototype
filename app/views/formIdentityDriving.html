@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<div class="grid-row">
+		<div class="column-two-thirds">
+
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+			
+
+			<form action="formIdentityPassport" method="post" class="form">
+
+
+			    <!-- Driving licence -->
+				<div id="driving-form-group" class="form-group">
+			    	<fieldset class="inline">
+			    		<legend class="heading-medium">Do you have a current driving licence?</legend>
+			    		<p class="form-hint">If you can provide this information your application will be processed quicker.</p>
+			    		<div id="driving-form-group-error-message" class="form-error validation-message"></div>
+			    		<label class="block-label" data-target="driving-licence" for="radio-driving-licence-1">
+						    <input id="radio-driving-licence-1" type="radio" name="radio-driving-licence-group" value="Yes"
+						    	data-parsley-class-handler="#driving-form-group" 
+          							data-parsley-errors-container="#driving-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Do you have a valid UK driving licence?"
+						    >
+						    Yes
+					    </label>
+						
+					    <label class="block-label" for="radio-driving-licence-2">
+						    <input id="radio-driving-licence-2" type="radio" name="radio-driving-licence-group" value="No">
+						    No
+					    </label>
+
+			    	</fieldset>
+			    	<!-- Expandable panel area -->
+			    	<div class="panel panel-border-narrow js-hidden" id="driving-licence">
+						<!-- Driving licence number -->
+						<div id="driving-expand-form-group" class="form-group">
+							<label class="form-label" for="driving-licence-number-input">Driving licence number</label>
+							<p class="form-hint">This will be on the front of your driving licence. For example, QWER123123.</p>
+							<div id="driving-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="driving-licence-number-input" type="text" id="driving-licence-number-input"
+								data-parsley-class-handler="#driving-expand-form-group" 
+          							data-parsley-errors-container="#driving-expand-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter your driving licence number"
+							>
+						</div> <!-- Form group close-->
+						<!-- Country of issue -->
+						<div id="country-expand-form-group" class="form-group">
+							<label class="form-label" for="driving-country-input">Country of issue</label>
+							<div id="country-expand-form-group-error-message" class="form-error validation-message"></div>
+							<input disabled class="form-control" name="driving-country-input" type="text" id="driving-country-input"
+								data-parsley-class-handler="#country-expand-form-group" 
+          							data-parsley-errors-container="#country-expand-form-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the country of issue"
+							>
+						</div> <!-- Form group close-->
+					</div> <!-- Expandable panel area  Close -->
+			    </div> <!-- Form group close-->
+
+			    
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Save and continue">
+				</div> <!-- Form group close-->
+
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+	    
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+	
+
+	  $("input[name=radio-driving-licence-group]").on('click', function() {
+	  	if($(this).val() == "Yes") {
+	  		$('#driving-licence-number-input').prop('disabled', false);
+	  		$('#driving-country-input').prop('disabled', false);
+	  	}
+	  	else {
+	  		$('#driving-licence-number-input').prop('disabled', true);
+	  		$('#driving-country-input').prop('disabled', true);
+	  	}
+	  });
+
+
+
+	
+
+</script>
+
+{% endblock %}
+
+
