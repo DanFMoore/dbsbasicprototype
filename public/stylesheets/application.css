@@ -590,6 +590,7 @@ main {
   text-transform: none;
   margin-top: 1.25em;
   margin-bottom: 0.5em;
+  display: inline-block;
 }
 
 @media (min-width: 641px) {
