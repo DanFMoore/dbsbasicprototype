@@ -30,7 +30,8 @@
 
 			    	<div class="panel panel-border-narrow js-hidden" id="add-other-address-">
 
-			    		<span class="heading-medium" id="other-address-title-">Address </span><br>
+			    		<span class="heading-medium" id="other-address-title-">Address </span>
+			    		<div style="float: right;"><a href="#/"  id="del-address-" onClick="javascript:delAddress($(this).attr('id'));" role="button">Delete address</a></div><br>
 
 			    		<!-- Postcode finder block -->
 			    		<div class="form-group" id="postcode-block-">
@@ -263,7 +264,7 @@
 		  						obj.className = 'panel panel-border-narrow';
 		  						changeId(children, counter);
 		  						document.getElementById('other-addresses-total').value = counter;
-
+		  						$('#mylink').html('Add another address');
 
 		 
 
@@ -392,6 +393,18 @@
 								$(notCurBlock).find('input,select,radio').prop('disabled', false);
 								$(curBlock).find('input,select,radio').prop('disabled', true);
 							}
+
+						}
+
+						function delAddress(addId) {
+							console.log(addId);
+							var splitID1 = addId.split('-');
+							var idNo1 = splitID1[splitID1.length-1];
+							var addBlock = '#add-other-address-'+idNo1;
+
+							$(addBlock).addClass("js-hidden");
+							$(addBlock).find('input,select,radio').prop('disabled', true);
+							$(addBlock).find('input,select,radio').val('');
 
 						}
 			    	</script>
