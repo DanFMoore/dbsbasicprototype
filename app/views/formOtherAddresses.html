@@ -45,9 +45,71 @@
           							data-parsley-required="true"
     								data-parsley-required-message="Enter the postcode for address "
 								>
-								<a class="button secondary-button">Find UK address</a>
+								<a class="button secondary-button" id="find-po-" href="#/" onClick="javascript:poLookup($(this).attr('id'));" role="button">Find UK address</a>
 							</fieldset>
 						</div> <!-- Form group close-->
+
+
+
+						<div class="form-group js-hidden" id="postcode-lookup-block-">
+						<!-- 	If they use postcode lookup, flip hidden on this block and the postcode-block block.
+								Display the postcode they entered, format to Upper and Split. Display possible addresses
+						-->
+
+							<div class="form-group">
+								<label class="form-label">Postcode:</label> 
+									<div id="entered-po-" style="font-weight:bold;"></div>
+									<a href="#/" id="change-" role="button" onClick="javascript:poLookup($(this).attr('id'));">Change</a>
+
+
+							</div>
+							<div class="form-group" id="po-finder-addresses-">
+								<label class="form-label">Select your address</label>
+								<div id="po-finder-error-message-" class="form-error validation-message"></div>
+								<ul>
+									<li>
+										<label>
+											<input disabled type="radio" value="1 Oxford Road, London, United Kingdom" name="po-other-address-"
+												data-parsley-class-handler="#po-finder-addresses-" 
+			          							data-parsley-errors-container="#po-finder-error-message-"
+			          							data-parsley-required="true"
+			    								data-parsley-required-message="Select the address for address "
+											>
+											1 Oxford Road, London, United Kingdom
+										</label>
+									</li>
+									<li>
+										<label>
+											<input disabled type="radio" value="2 Oxford Road, London, United Kingdom" name="po-other-address-">
+											2 Oxford Road, London, United Kingdom
+										</label>
+									</li>
+									<li>
+										<label>
+											<input disabled type="radio" value="3 Oxford Road, London, United Kingdom" name="po-other-address-">
+											3 Oxford Road, London, United Kingdom
+										</label>
+									</li>
+									<li>
+										<label>
+											<input disabled type="radio" value="4 Oxford Road, London, United Kingdom" name="po-other-address-">
+											4 Oxford Road, London, United Kingdom
+										</label>
+									</li>
+									<li>
+										<label>
+											<input disabled type="radio" value="5 Oxford Road, London, United Kingdom" name="po-other-address-">
+											5 Oxford Road, London, United Kingdom
+										</label>
+									</li>
+								</ul>
+							</div>
+
+						</div>
+						<!-- END OF POSTCODE FINDER BLOCK -->
+
+
+
 
 						<!-- Address fields ALT block -->
 						<div class="form-group js-hidden" id="address-fields-block-">
@@ -406,6 +468,38 @@
 							$(addBlock).find('input,select,radio').prop('disabled', true);
 							$(addBlock).find('input,select,radio').val('');
 
+						}
+
+
+						function poLookup(poId){
+							var splitID2 = poId.split('-');
+							var idNo2 = splitID2[splitID2.length-1];
+							var lookupBlock = '#postcode-lookup-block-'+idNo2;
+							var postcodeBlock = '#postcode-block-'+idNo2;
+
+							// When Lookup Postcode button is clicked, hide the postcode block and display the lookup block
+							$(lookupBlock).toggleClass('js-hidden');
+							$(postcodeBlock).toggleClass('js-hidden');
+							$('#manual-toggle-link-'+idNo2).toggleClass('js-hidden');
+
+							// Disable fields in postcodeBlock to avoid validation error
+							if ($(lookupBlock).hasClass('js-hidden')) {
+								$(postcodeBlock).find('input,select,radio').prop('disabled',false);
+								$(lookupBlock).find('input,select,radio').prop('disabled',true);
+								$('#postcode-'+idNo2).val('');
+								document.getElementById('entered-po-'+idNo2).innerHTML ='';
+							}
+							else {
+								$(postcodeBlock).find('input,select,radio').prop('disabled',true);
+								$(lookupBlock).find('input,select,radio').prop('disabled',false);
+
+								// Add the entered postcode to the Postcode: line
+								var po = ($('#postcode-'+idNo2).val()).toUpperCase();
+								var po1 = po.slice(0,(po.length-3));
+								var po2 = po.slice((po.length-3),(po.length));
+								document.getElementById('entered-po-'+idNo2).innerHTML += (po1 + ' ' + po2);
+							}
+												
 						}
 			    	</script>
 
