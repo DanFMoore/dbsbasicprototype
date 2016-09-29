@@ -590,7 +590,6 @@ main {
   text-transform: none;
   margin-top: 1.25em;
   margin-bottom: 0.5em;
-  display: inline-block;
 }
 
 @media (min-width: 641px) {
@@ -1417,6 +1416,7 @@ textarea {
   box-sizing: border-box;
   float: left;
   width: 100%;
+  padding-top: 1px;
   margin-bottom: 15px;
 }
 
