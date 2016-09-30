@@ -40,97 +40,106 @@
 			    	<div class="panel panel-border-narrow js-hidden" id="name-change">
 						
 						<p class="form-hint">Enter all your names in full - don't use initials.</p>
-
-			    		<!-- Given names -->
-						<div id="expand-given-name-group" class="form-group">
-							<label class="form-label" for="given-names">First name(s)</label>
-							<div id="expand-given-name-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control" name="other-given-names" type="text" id="given-names"
-								data-parsley-class-handler="#expand-given-name-group" 
-          							data-parsley-errors-container="#expand-given-name-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Enter your other given name(s)"
-							>
-						</div> <!-- Form group close-->
-
-						<!-- Family name -->
-						<div id="expand-family-name-group" class="form-group">
-							<label class="form-label" for="family-name">Last name(s)</label>
-							<div id="expand-family-name-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control" name="other-family-name" type="text" id="family-name"
-								data-parsley-class-handler="#expand-family-name-group" 
-          							data-parsley-errors-container="#expand-family-name-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Enter your other family name"
-							>
-						</div> <!-- Form group close-->
-
-						<p class="form-hint">When did you last use this name?</p>
-						<!-- Date from -->
-						<div id="expand-date-from-group" class="form-group">
-							<fieldset>
-								<legend class="form-label">Date from:</legend>
-								<p class="form-hint">For example, 03 1980</p>
-								<div class="form-date">
-									
-									<div id="expand-date-from-group-error-message" class="form-error validation-message"></div>
-									<div class="form-group form-group-month" id="expand-date-from-month-group">
-										<label for="name-from-month">Month</label>
-										<input disabled class="form-control" id="name-from-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-from-month"
-											data-parsley-class-handler="#expand-date-from-group" 
-          									data-parsley-errors-container="#expand-date-from-group-error-message"
-          									data-parsley-required="true"
-    										data-parsley-required-message="Enter the month from"
-										>
-									</div> <!-- Form group close-->
-									<div class="form-group form-group-year" id="expand-date-from-year-group">
-										<label for="name-from-year">Year</label>
-										<input disabled class="form-control" id="name-from-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-from-year"
-											data-parsley-class-handler="#expand-date-from-group" 
-          									data-parsley-errors-container="#expand-date-from-group-error-message"
-          									data-parsley-required="true"
-    										data-parsley-required-message="Enter the year from"
-										>
-									</div> <!-- Form group close-->
+						
+						<div id="add-name-container">
+							<div id="add-name-block">
+								<span class="heading-medium" id="new-name-title-">Name </span>
+					    		<!-- Given names -->
+								<div id="expand-given-name-group" class="form-group">
+									<label class="form-label" for="given-names">First name(s)</label>
+									<div id="expand-given-name-group-error-message" class="form-error validation-message"></div>
+									<input disabled class="form-control" name="other-given-names" type="text" id="given-names"
+										data-parsley-class-handler="#expand-given-name-group" 
+		          							data-parsley-errors-container="#expand-given-name-group-error-message"
+		          							data-parsley-required="true"
+		    								data-parsley-required-message="Enter your other given name(s)"
+									>
 								</div> <!-- Form group close-->
-							</fieldset>
-							
-						</div> <!-- Form group close-->
 
+								<!-- Family name -->
+								<div id="expand-family-name-group" class="form-group">
+									<label class="form-label" for="family-name">Last name(s)</label>
+									<div id="expand-family-name-group-error-message" class="form-error validation-message"></div>
+									<input disabled class="form-control" name="other-family-name" type="text" id="family-name"
+										data-parsley-class-handler="#expand-family-name-group" 
+		          							data-parsley-errors-container="#expand-family-name-group-error-message"
+		          							data-parsley-required="true"
+		    								data-parsley-required-message="Enter your other family name"
+									>
+								</div> <!-- Form group close-->
 
-						<!-- Date to -->
-						<div id="expand-date-to-group" class="form-group">
-							<fieldset>
-								<legend class="form-label">Date to:</legend>
-								<p class="form-hint">For example, 03 2014</p>
-								<div class="form-date">
+								<p class="form-hint">When did you last use this name?</p>
+								<!-- Date from -->
+								<div id="expand-date-from-group" class="form-group">
+									<fieldset>
+										<legend class="form-label">Date from:</legend>
+										<p class="form-hint">For example, 03 1980</p>
+										<div class="form-date">
+											
+											<div id="expand-date-from-group-error-message" class="form-error validation-message"></div>
+											<div class="form-group form-group-month" id="expand-date-from-month-group">
+												<label for="name-from-month">Month</label>
+												<input disabled class="form-control" id="name-from-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-from-month"
+													data-parsley-class-handler="#expand-date-from-group" 
+		          									data-parsley-errors-container="#expand-date-from-group-error-message"
+		          									data-parsley-required="true"
+		    										data-parsley-required-message="Enter the month from"
+												>
+											</div> <!-- Form group close-->
+											<div class="form-group form-group-year" id="expand-date-from-year-group">
+												<label for="name-from-year">Year</label>
+												<input disabled class="form-control" id="name-from-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-from-year"
+													data-parsley-class-handler="#expand-date-from-group" 
+		          									data-parsley-errors-container="#expand-date-from-group-error-message"
+		          									data-parsley-required="true"
+		    										data-parsley-required-message="Enter the year from"
+												>
+											</div> <!-- Form group close-->
+										</div> <!-- Form group close-->
+									</fieldset>
 									
-									<div id="expand-date-to-group-error-message" class="form-error validation-message"></div>
-									<div class="form-group form-group-month" id="expand-date-to-month-group">
-										<label for="name-to-month">Month</label>
-										
-										<input disabled class="form-control" id="name-to-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-to-month"
-											data-parsley-class-handler="#expand-date-to-group" 
-          									data-parsley-errors-container="#expand-date-to-group-error-message"
-          									data-parsley-required="true"
-    										data-parsley-required-message="Enter the month to"
-										>
-									</div> <!-- Form group close-->
-									<div class="form-group form-group-year" id="expand-date-to-year-group">
-										<label for="name-to-year">Year</label>
-										<input disabled class="form-control" id="name-to-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-to-year"
-											data-parsley-class-handler="#expand-date-to-group" 
-          									data-parsley-errors-container="#expand-date-to-group-error-message"
-          									data-parsley-required="true"
-    										data-parsley-required-message="Enter the year to"
-										>
-									</div> <!-- Form group close-->
-								</div>
-							</fieldset>
-							
-						</div> <!-- Form group close-->
+								</div> <!-- Form group close-->
 
-						<a class="button-secondary" href="#" role="button">Add another name</a>
+
+								<!-- Date to -->
+								<div id="expand-date-to-group" class="form-group">
+									<fieldset>
+										<legend class="form-label">Date to:</legend>
+										<p class="form-hint">For example, 03 2014</p>
+										<div class="form-date">
+											
+											<div id="expand-date-to-group-error-message" class="form-error validation-message"></div>
+											<div class="form-group form-group-month" id="expand-date-to-month-group">
+												<label for="name-to-month">Month</label>
+												
+												<input disabled class="form-control" id="name-to-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-to-month"
+													data-parsley-class-handler="#expand-date-to-group" 
+		          									data-parsley-errors-container="#expand-date-to-group-error-message"
+		          									data-parsley-required="true"
+		    										data-parsley-required-message="Enter the month to"
+												>
+											</div> <!-- Form group close-->
+											<div class="form-group form-group-year" id="expand-date-to-year-group">
+												<label for="name-to-year">Year</label>
+												<input disabled class="form-control" id="name-to-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-to-year"
+													data-parsley-class-handler="#expand-date-to-group" 
+		          									data-parsley-errors-container="#expand-date-to-group-error-message"
+		          									data-parsley-required="true"
+		    										data-parsley-required-message="Enter the year to"
+												>
+											</div> <!-- Form group close-->
+										</div>
+									</fieldset>
+									<br>
+									
+								</div> <!-- Form group close-->
+							</div>
+						</div>
+
+						<div class="form-group">
+							<br>
+							<a class="button-secondary" id="add-link" onClick="javascript:addName();" href="#/" role="button">Add another name</a>
+						</div>
 
 					</div> <!-- Expandable panel area  Close -->
 			    </div> <!-- Form group close-->
@@ -144,6 +153,112 @@
 			</form>
 		</div>
 	</div>
+
+
+
+
+
+
+
+	<!-- ADD NAME BLOCK NODE FOR COPYING -->
+	<div id="add-name-block-" class="js-hidden">
+		<span class="heading-medium" id="new-name-title-">Name </span>
+		<div style="float: right;"><a href="#/" id="del-name-" onClick="javascript:delName($(this).attr('id'));" role="button">Delete name</a></div><br>
+		<!-- Given names -->
+		<div id="expand-given-name-group-" class="form-group">
+			<label class="form-label" for="given-names-">First name(s)</label>
+			<div id="expand-given-name-group-error-message-" class="form-error validation-message"></div>
+			<input disabled class="form-control" name="other-given-names-" type="text" id="given-names-"
+			data-parsley-class-handler="#expand-given-name-group-" 
+			data-parsley-errors-container="#expand-given-name-group-error-message-"
+			data-parsley-required="true"
+			data-parsley-required-message="Enter your other given name(s)"
+			>
+		</div> <!-- Form group close-->
+
+		<!-- Family name -->
+		<div id="expand-family-name-group-" class="form-group">
+			<label class="form-label" for="family-name-">Last name(s)</label>
+			<div id="expand-family-name-group-error-message-" class="form-error validation-message"></div>
+			<input disabled class="form-control" name="other-family-name-" type="text" id="family-name-"
+			data-parsley-class-handler="#expand-family-name-group-" 
+			data-parsley-errors-container="#expand-family-name-group-error-message-"
+			data-parsley-required="true"
+			data-parsley-required-message="Enter your other family name"
+			>
+		</div> <!-- Form group close-->
+
+		<p class="form-hint">When did you last use this name?</p>
+		<!-- Date from -->
+		<div id="expand-date-from-group-" class="form-group">
+			<fieldset>
+				<legend class="form-label">Date from:</legend>
+				<p class="form-hint">For example, 03 1980</p>
+				<div class="form-date">
+
+				<div id="expand-date-from-group-error-message-" class="form-error validation-message"></div>
+					<div class="form-group form-group-month" id="expand-date-from-month-group-">
+						<label for="name-from-month-">Month</label>
+						<input disabled class="form-control" id="name-from-month-" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-from-month-"
+						data-parsley-class-handler="#expand-date-from-group-" 
+						data-parsley-errors-container="#expand-date-from-group-error-message-"
+						data-parsley-required="true"
+						data-parsley-required-message="Enter the month from"
+						>
+					</div> <!-- Form group close-->
+					<div class="form-group form-group-year" id="expand-date-from-year-group-">
+						<label for="name-from-year-">Year</label>
+						<input disabled class="form-control" id="name-from-year-" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-from-year-"
+						data-parsley-class-handler="#expand-date-from-group-" 
+						data-parsley-errors-container="#expand-date-from-group-error-message-"
+						data-parsley-required="true"
+						data-parsley-required-message="Enter the year from"
+						>
+					</div> <!-- Form group close-->
+				</div> <!-- Form group close-->
+			</fieldset>
+
+		</div> <!-- Form group close-->
+
+
+		<!-- Date to -->
+		<div id="expand-date-to-group-" class="form-group">
+			<fieldset>
+				<legend class="form-label">Date to:</legend>
+				<p class="form-hint">For example, 03 2014</p>
+				<div class="form-date">
+
+					<div id="expand-date-to-group-error-message-" class="form-error validation-message"></div>
+					<div class="form-group form-group-month" id="expand-date-to-month-group-">
+						<label for="name-to-month-">Month</label>
+
+						<input disabled class="form-control" id="name-to-month-" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-to-month-"
+						data-parsley-class-handler="#expand-date-to-group-" 
+						data-parsley-errors-container="#expand-date-to-group-error-message-"
+						data-parsley-required="true"
+						data-parsley-required-message="Enter the month to"
+						>
+					</div> <!-- Form group close-->
+					<div class="form-group form-group-year" id="expand-date-to-year-group-">
+						<label for="name-to-year-">Year</label>
+						<input disabled class="form-control" id="name-to-year-" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-to-year-"
+						data-parsley-class-handler="#expand-date-to-group-" 
+						data-parsley-errors-container="#expand-date-to-group-error-message-"
+						data-parsley-required="true"
+						data-parsley-required-message="Enter the year to"
+						>
+					</div> <!-- Form group close-->
+				</div>
+			</fieldset>
+			<br>
+
+		</div> <!-- Form group close-->
+	</div> <!-- CLOSE ADD NAME BLOCK NODE -->
+
+
+
+
+
 
 
 
@@ -208,6 +323,78 @@
 				namesPanel.find('input,select,radio').prop('disabled', true);
 			}
 		});
+
+	  var counter=1;
+
+	  function addName() {
+	  		var addLink = $('#add-link');
+
+	  		var obj = document.getElementById('add-name-block-').cloneNode(true),
+		  			children = obj.childNodes;
+		  	obj.id = obj.id+counter;
+		  	obj.className = '';
+
+		  	changeId(children, counter);
+		  	document.getElementById('add-name-container').appendChild(obj);
+		  	
+
+		  	
+		  	$(document.getElementById('add-name-block-'+counter)).find('input,select,radio').prop('disabled', false);
+		  	
+		  	document.getElementById('new-name-title-'+counter).innerHTML +=String(counter);
+
+
+		  	
+
+
+		  	counter+=1;
+
+		  	function changeId(nodes, n){
+		  		for (var i=0;i<nodes.length;i=i+1){
+		  			if (nodes[i].childNodes){
+						changeId(nodes[i].childNodes,n);
+					}
+					if(nodes[i].id) {
+						nodes[i].id += String(n);
+					}
+					if(nodes[i].htmlFor) {
+						nodes[i].htmlFor +=String(n);
+					}
+					if($(nodes[i]).data("target")) {
+						var newString = $(nodes[i]).data('target')+String(n);
+						//console.log(newString);
+						$(nodes[i]).attr('data-target', newString);
+					}
+					if(nodes[i].name){
+						//console.log(nodes[i].name);
+						nodes[i].name +=String(n);
+					}
+					if($(nodes[i]).data("parsley-class-handler")) {
+						var newString = $(nodes[i]).data('parsley-class-handler')+String(n);
+						$(nodes[i]).attr('data-parsley-class-handler', newString);
+					}
+					if($(nodes[i]).data("parsley-errors-container")) {
+						var newString = $(nodes[i]).data('parsley-errors-container')+String(n);
+						$(nodes[i]).attr('data-parsley-errors-container', newString);
+					}
+					if($(nodes[i]).data("parsley-required-message")) {
+						var newString = $(nodes[i]).data('parsley-required-message')+String(' for name ')+String(n);
+						$(nodes[i]).attr('data-parsley-required-message', newString);
+					}
+		  		}
+		  	}
+	  }
+
+	  function delName(nameId) {
+	  		console.log(nameId);
+			var splitID = nameId.split('-');
+			var idNo = splitID[splitID.length-1];
+			var nameBlock = '#add-name-block-'+idNo;
+
+			$(nameBlock).addClass("js-hidden");
+			$(nameBlock).find('input,select,radio').prop('disabled', true);
+			$(nameBlock).find('input,select,radio').val('');
+	  }
 
 
 </script>
