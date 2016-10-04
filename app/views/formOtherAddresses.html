@@ -18,14 +18,26 @@
 				
 			    <div class="form-group" id="yes-no-addresses">
 			    	<div id="addressCheck">
-				    <div id="addressHistoryCheck-error-message" class="form-error validation-message"></div>
-				    <input disabled id="addressHistoryCheck" class="js-hidden"
-				    	data-parsley-class-handler="#addressCheck" 
-						data-parsley-errors-container="#addressHistoryCheck-error-message"
-						data-parsley-required="true"
-						data-parsley-required-message="Your address history doesn't cover 5 years"
-				    >
-				</div>
+					    <div id="addressHistoryCheck-error-message" class="form-error validation-message"></div>
+					    <input disabled id="addressHistoryCheck" class="js-hidden"
+					    	data-parsley-class-handler="#addressCheck" 
+							data-parsley-errors-container="#addressHistoryCheck-error-message"
+							data-parsley-required="true"
+							data-parsley-required-message="Your address history doesn't cover 5 years"
+					    >
+					</div>
+					<div id="gapsCheck">
+					    <div id="gapsCheck-error-message" class="form-error validation-message"></div>
+					    <input disabled id="addressGapCheck" class="js-hidden"
+					    	data-parsley-class-handler="#gapsCheck" 
+							data-parsley-errors-container="#gapsCheck-error-message"
+							data-parsley-required="true"
+							data-parsley-required-message="There are gaps in your address history"
+					    >
+					</div>
+
+
+
 					<fieldset class="inline">
 			    		<legend class="heading-medium">Have you lived at any other addresses in the past 5 years?</legend>
 			    		<p class="form-hint">This includes temporary addresses, for example if you're a student.</p>
@@ -485,9 +497,11 @@
 								if (buttonValue == "Yes") {
 									$(curBlock).find('input,select,radio').prop('disabled', false);
 									$(notCurBlock).find('input,select,radio').prop('disabled', true);
+									$(notCurBlock).find('input,select,radio').val('');
 								} else if (buttonValue == "No") {
 									$(notCurBlock).find('input,select,radio').prop('disabled', false);
 									$(curBlock).find('input,select,radio').prop('disabled', true);
+									$(curBlock).find('input,select,radio').val('');
 								}
 
 							}
@@ -725,56 +739,35 @@
 			console.log(yyyy);
 
 			// Get dates from current address page (previous page)
-			var curSinceMonth = document.getElementById('prevPage-current-month').value;
-			var curSinceYear = document.getElementById('prevPage-current-year').value;
-			var incorSinceMonth = document.getElementById('prevPage-incorrect-month').value;
-			var incorSinceYear = document.getElementById('prevPage-incorrect-year').value;
-			console.log(curSinceMonth);
-			console.log(curSinceYear);
-			console.log(incorSinceMonth);
-			console.log(incorSinceYear);
-			// If the current date or the incorrect date is empty, set values to be huge
-			var curQ = true;
-			if (curSinceMonth=='') {
-				curSinceMonth=99;
-				curSinceYear=9999;
-				curQ=false;
-			}
 
-			if (incorSinceMonth=='') {
-				incorSinceMonth=99;
-				incorSinceYear=9999;
-				curQ=true;
+			var curSinceMonth;
+			var curSinceYear;
+			if (document.getElementById('prevPage-current-month').value == '') {
+				curSinceMonth = document.getElementById('prevPage-incorrect-month').value;
+				curSinceYear = document.getElementById('prevPage-incorrect-year').value;
+			} else {
+				curSinceMonth = document.getElementById('prevPage-current-month').value;
+				curSinceYear = document.getElementById('prevPage-current-year').value;
 			}
+			if (String(curSinceMonth).length < 2){
+				curSinceMonth = '0'+curSinceMonth;
+			}
+			var curSinceDate = String(curSinceYear) + String(curSinceMonth);
 
-			//yyyy=2002;
 
 			// Check if the dates from the previous page satisfy the date constraints 
-			if (curQ) {
-				if (curSinceYear <= (yyyy-5)) {
-					if (curSinceYear < (yyyy-5)) {
-						console.log("Current year is over 5 years ago");
+			if (curSinceYear <= (yyyy-5)) {
+				if (curSinceYear < (yyyy-5)) {
+					console.log("Current year is over 5 years ago");
+					datesSatisfied=true;
+				} else if (curSinceYear == (yyyy-5)) {
+					if (curSinceMonth <= mm) {
 						datesSatisfied=true;
-					} else if (curSinceYear == (yyyy-5)) {
-						if (curSinceMonth <= mm) {
-							datesSatisfied=true;
-							console.log("Current year and month is over 5 years ago");
-						}
-					}
-				}
-			} else {
-				if (incorSinceYear <= (yyyy-5)) {
-					if (incorSinceYear < (yyyy-5)) {
-						console.log("Not Current year is over 5 years ago");
-						datesSatisfied=true;
-					} else if (incorSinceYear == (yyyy-5)) {
-						if (incorSinceMonth <= mm) {
-							datesSatisfied=true;
-							console.log("Not Current year and month is over 5 years ago");
-						}
+						console.log("Current year and month is over 5 years ago");
 					}
 				}
 			}
+
 
 
 			// Check through other addresses to see if 5 year address history is satisfied 
@@ -788,35 +781,37 @@
 					console.log(oth);
 					var otherYear;
 					var otherMonth;
-					if (document.getElementById('cur-address-since-year-'+oth).value == '') {
-						otherYear = document.getElementById('nc-address-since-year-'+oth).value;
-						otherMonth = document.getElementById('nc-address-since-month-'+oth).value;
+					if (document.getElementById('cur-address-since-year-'+oth).value == '' && document.getElementById('nc-address-since-year-'+oth).value == '') {
+						// Address has been deleted so skip
+						datesSatisfied=false;
 					} else {
-						otherYear = document.getElementById('cur-address-since-year-'+oth).value;
-						otherMonth = document.getElementById('cur-address-since-month-'+oth).value;
-					}
-					
-					console.log(otherYear);
-
-					if (otherYear <= (yyyy-5)) {
-						if (otherYear<(yyyy-5)){
-							datesSatisfied=true;
-							console.log('dates satisfied now');
-						} else if (otherYear==(yyyy-5)) {
-							if (otherMonth <= mm) {
-								datesSatisfied=true;
-								console.log('Dates staisfied by other yyyy and mm');
-							}
+						if (document.getElementById('cur-address-since-year-'+oth).value == '') {
+							otherYear = document.getElementById('nc-address-since-year-'+oth).value;
+							otherMonth = document.getElementById('nc-address-since-month-'+oth).value;
+						} else {
+							otherYear = document.getElementById('cur-address-since-year-'+oth).value;
+							otherMonth = document.getElementById('cur-address-since-month-'+oth).value;
 						}
+						
+						console.log(otherYear);
 
+						if (otherYear <= (yyyy-5)) {
+							if (otherYear<(yyyy-5)){
+								datesSatisfied=true;
+								console.log('dates satisfied now');
+							} else if (otherYear==(yyyy-5)) {
+								if (otherMonth <= mm) {
+									datesSatisfied=true;
+									console.log('Dates staisfied by other yyyy and mm');
+								}
+							}
+
+						}
 					}
 
 					oth++;
 				}
 			}
-
-
-
 
 
 			
@@ -829,6 +824,186 @@
 				$('#addressCheck').find('input,select,radio').prop('disabled',true);
 			}
 
+			checkGaps();
+
+		}
+
+
+		function checkGaps() {
+			// Check if there are gaps in the dates
+			// Get all dates, create YYYYMM strings, compare them to make sure there are no gaps
+			var gaps = false;
+			// Store all address from - to pairs
+			var addresses = [];
+
+
+			// Get address since for current address on previous page
+			var curSinceMonth;
+			var curSinceYear;
+			var curToMonth;
+			var curToYear;
+			if (document.getElementById('prevPage-current-month').value == '') {
+				curSinceMonth = document.getElementById('prevPage-incorrect-month').value;
+				curSinceYear = document.getElementById('prevPage-incorrect-year').value;
+			} else {
+				curSinceMonth = document.getElementById('prevPage-current-month').value;
+				curSinceYear = document.getElementById('prevPage-current-year').value;
+			}
+			if (String(curSinceMonth).length < 2){
+				curSinceMonth = '0'+curSinceMonth;
+			}
+			var curSinceDate = String(curSinceYear) + String(curSinceMonth);
+
+			// As cureent address, set TO date as today's date
+			var today = new Date();
+			curToMonth = today.getMonth()+1;
+			curToYear = today.getFullYear();
+			if (String(curToMonth).length < 2){
+				curToMonth = '0'+curToMonth;
+			}
+			var curToDate = String(curToYear) + String(curToMonth);
+
+			var curAddress = {};
+			curAddress['from']=curSinceDate;
+			curAddress['to']=curToDate;
+			addresses.push(curAddress);
+
+
+
+			
+			var othAddsTotal = document.getElementById('other-addresses-total').value;
+			othAddsTotal++;
+
+			var oth=1;
+			while (oth < othAddsTotal) {
+				// Calculate date SINCE
+				if (document.getElementById('cur-address-since-year-'+oth).value == '' && document.getElementById('nc-address-since-year-'+oth).value == '')
+				{
+					// Address deleted so ignore
+				}
+				else
+				{
+					var sinceYear;
+					var sinceMonth;
+					if (document.getElementById('cur-address-since-year-'+oth).value == '') {
+						sinceYear = document.getElementById('nc-address-since-year-'+oth).value;
+						sinceMonth = document.getElementById('nc-address-since-month-'+oth).value;
+					} else {
+						sinceYear = document.getElementById('cur-address-since-year-'+oth).value;
+						sinceMonth = document.getElementById('cur-address-since-month-'+oth).value;
+					}
+					console.log('Since year '+sinceYear);
+					console.log('Since month '+sinceMonth);
+					if (String(sinceMonth).length < 2){
+						sinceMonth = '0'+sinceMonth;
+					}
+					var sinceDate = sinceYear + sinceMonth;
+					console.log(sinceDate);
+
+					// Calculate date TO
+					// If current, set toDate to current date
+					var toYear;
+					var toMonth;
+					if (document.getElementById('nc-address-to-year-'+oth).value == '') {
+						toMonth = today.getMonth()+1;
+						toYear = today.getFullYear();
+					} else {
+						toYear = document.getElementById('nc-address-to-year-'+oth).value;
+						toMonth = document.getElementById('nc-address-to-month-'+oth).value;
+					}
+					if (String(toMonth).length < 2){
+						toMonth = '0'+toMonth;
+					}
+					var toDate = String(toYear) + String(toMonth);
+					console.log(toDate);
+
+					var address = {};
+					address['from']=sinceDate;
+					address['to']=toDate;
+					addresses.push(address);
+				}
+
+				oth++;
+
+			}
+
+
+			console.log("dates: %s", JSON.stringify(addresses));
+
+
+			// Sort based on FROM date
+			addresses.sort(function (a, b) {
+	  			if (a.from > b.from) {
+	    			return 1;
+	  			}
+	  			if (a.from < b.from) {
+	    			return -1;
+	  			}
+	  			// a must be equal to b
+	  			return 0;
+			});
+			console.log("dates: %s", JSON.stringify(addresses));
+
+
+
+
+			// Search through sorted array to check for gaps
+			// First check if oldest address is still current
+			var addHistCutOff = String(curToYear-5) + String(curToMonth);;
+			var oldest = addresses[0];
+			if (oldest.from <= addHistCutOff) {
+				console.log('Oldest address from date is older than 5 years');
+				if (oldest.to == curToDate) {
+					console.log('Current address covers enough');
+					gaps = false;
+				}
+				else {
+					gaps = true;
+				}
+			}
+			else {
+				console.log("Oldest address isn't old enough");
+				gaps = true;
+			}
+
+			if (gaps) {
+				console.log('Gap exists in current address so checking others');
+				var i=0;
+				var j=1;
+				var gapExist = false;
+				while (j < addresses.length) {
+					if (addresses[i].to >= addresses[j].from){
+						if (addresses[i].to >= addresses[j].to) {
+							// if i TO is greater than both FROM and TO of j
+							j++;
+							console.log('i is greater than both From and To of j');
+						} else {
+							// if i TO is greater than j FROM but smaller than j TO
+							i=j;
+							j++;
+							console.log('i is greater than j From but not To of j');
+						}
+					} else {
+						// if i TO is smaller than j FROM, then there is a GAP
+						gapExist = true;
+						console.log('i is smaller than j From so gap exists - BREAK');
+						break;
+					}
+				}
+
+				gaps = gapExist;
+			}
+
+
+
+
+
+			// If gaps is TRUE (aka gaps exist) enable the validation field 
+			if (gaps) {
+				$('#gapsCheck').find('input,select,radio').prop('disabled',false);
+			} else {
+				$('#gapsCheck').find('input,select,radio').prop('disabled',true);
+			}
 		}
 
 
