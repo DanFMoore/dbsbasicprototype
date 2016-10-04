@@ -55,20 +55,39 @@
 
 					    	<!-- Add other names -->
 					    	{% if formdata["other-family-name"] %}
-					    	<tr>
-					    		<td>
-					    			<h2 class="text-secondary">Other name</h2>
-					    			<div>{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}</div>
-					    			<h2 class="text-secondary">Date from</h2>
-					    			<div>{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}</div>
-					    			<h2 class="text-secondary">Date to</h2>
-					    			<div>{{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"] }}</div>
-					    		</td>
-					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
-					    		</td>
-					    	</tr>
-					    	{% endif %}
+						    	<tr>
+						    		<td>
+						    			<h2 class="text-secondary">Other name</h2>
+						    			<div>{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}</div>
+						    			<h2 class="text-secondary">Date from</h2>
+						    			<div>{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}</div>
+						    			<h2 class="text-secondary">Date to</h2>
+						    			<div>{{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"] }}</div>
+						    		</td>
+						    		<td class="editButton">
+						    			<a class="button button-secondary">Edit</a>
+						    		</td>
+						    	</tr>
+						    {% endif %}
+
+					    	{% for n in range(1, formdata["other-names-total"]+1) %}
+						    	{% if formdata["other-family-name-"+n] %}
+						    	<tr>
+						    		<td>
+						    			<h2 class="text-secondary">Other name {{n}}</h2>
+						    			<div>{{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n] }}</div>
+						    			<h2 class="text-secondary">Date from</h2>
+						    			<div>{{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n] }}</div>
+						    			<h2 class="text-secondary">Date to</h2>
+						    			<div>{{ formdata["other-name-to-month-"+n] }}/{{ formdata["other-name-to-year-"+n] }}</div>
+						    		</td>
+						    		<td class="editButton">
+						    			<a class="button button-secondary">Edit</a>
+						    		</td>
+						    	</tr>
+						    	{% endif %}
+
+						    {% endfor %}
 
 					    	
 

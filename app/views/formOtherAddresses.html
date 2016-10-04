@@ -17,7 +17,15 @@
 
 				
 			    <div class="form-group" id="yes-no-addresses">
-
+			    	<div id="addressCheck">
+				    <div id="addressHistoryCheck-error-message" class="form-error validation-message"></div>
+				    <input disabled id="addressHistoryCheck" class="js-hidden"
+				    	data-parsley-class-handler="#addressCheck" 
+						data-parsley-errors-container="#addressHistoryCheck-error-message"
+						data-parsley-required="true"
+						data-parsley-required-message="Your address history doesn't cover 5 years"
+				    >
+				</div>
 					<fieldset class="inline">
 			    		<legend class="heading-medium">Have you lived at any other addresses in the past 5 years?</legend>
 			    		<p class="form-hint">This includes temporary addresses, for example if you're a student.</p>
@@ -25,7 +33,7 @@
 			    		<label class="block-label" data-target="yes-other-addresses-block" for="addresses-radio-1">
 						    <input id="addresses-radio-1" type="radio" name="addresses-radio-group" value="Yes"
 						    	data-parsley-class-handler="#yes-no-addresses" 
-          							data-parsley-errors-container="#ddresses-group-error-message"
+          							data-parsley-errors-container="#addresses-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Confirm if you have lived at other addresses"
     								onClick="javascript:reEnable();"
@@ -599,14 +607,18 @@
 				    </div> <!-- CLOSE YES ADDRESSES BLOCK -->
 			    </div> <!-- Form group close-->
 
-
+			    
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
+			    	<input type="submit" class="button" value="Save and continue" onClick="javascript:checkDates();">
 				</div> <!-- Form group close-->
 
 			</form>
+			<input disabled class="js-hidden" value='{{ formdata["correct-address-since-month"] }}' id="prevPage-current-month">
+			<input disabled class="js-hidden" value='{{ formdata["correct-address-since-year"] }}' id="prevPage-current-year">
+			<input disabled class="js-hidden" value='{{ formdata["incorrect-address-since-month"] }}' id="prevPage-incorrect-month">
+			<input disabled class="js-hidden" value='{{ formdata["incorrect-address-since-year"] }}' id="prevPage-incorrect-year">
 		</div>
 	</div>
 
@@ -699,6 +711,125 @@
 				
 			}
 		});
+
+		function checkDates() {
+			// Scan through the dates supplied checking that at least one of them is at least 5 years old - must have at least 5 years of addresses supplied
+
+			var datesSatisfied = false;
+
+			// Get today's date
+			var today = new Date();
+			var mm = today.getMonth()+1;
+			var yyyy = today.getFullYear();
+			console.log(mm);
+			console.log(yyyy);
+
+			// Get dates from current address page (previous page)
+			var curSinceMonth = document.getElementById('prevPage-current-month').value;
+			var curSinceYear = document.getElementById('prevPage-current-year').value;
+			var incorSinceMonth = document.getElementById('prevPage-incorrect-month').value;
+			var incorSinceYear = document.getElementById('prevPage-incorrect-year').value;
+			console.log(curSinceMonth);
+			console.log(curSinceYear);
+			console.log(incorSinceMonth);
+			console.log(incorSinceYear);
+			// If the current date or the incorrect date is empty, set values to be huge
+			var curQ = true;
+			if (curSinceMonth=='') {
+				curSinceMonth=99;
+				curSinceYear=9999;
+				curQ=false;
+			}
+
+			if (incorSinceMonth=='') {
+				incorSinceMonth=99;
+				incorSinceYear=9999;
+				curQ=true;
+			}
+
+			//yyyy=2002;
+
+			// Check if the dates from the previous page satisfy the date constraints 
+			if (curQ) {
+				if (curSinceYear <= (yyyy-5)) {
+					if (curSinceYear < (yyyy-5)) {
+						console.log("Current year is over 5 years ago");
+						datesSatisfied=true;
+					} else if (curSinceYear == (yyyy-5)) {
+						if (curSinceMonth <= mm) {
+							datesSatisfied=true;
+							console.log("Current year and month is over 5 years ago");
+						}
+					}
+				}
+			} else {
+				if (incorSinceYear <= (yyyy-5)) {
+					if (incorSinceYear < (yyyy-5)) {
+						console.log("Not Current year is over 5 years ago");
+						datesSatisfied=true;
+					} else if (incorSinceYear == (yyyy-5)) {
+						if (incorSinceMonth <= mm) {
+							datesSatisfied=true;
+							console.log("Not Current year and month is over 5 years ago");
+						}
+					}
+				}
+			}
+
+
+			// Check through other addresses to see if 5 year address history is satisfied 
+			if (!datesSatisfied) {
+				console.log('Dates not satisfied yet');
+				var othAddsTotal = document.getElementById('other-addresses-total').value;
+				othAddsTotal++;
+				console.log(othAddsTotal);
+				var oth=1;
+				while (oth < (othAddsTotal) && !datesSatisfied) {
+					console.log(oth);
+					var otherYear;
+					var otherMonth;
+					if (document.getElementById('cur-address-since-year-'+oth).value == '') {
+						otherYear = document.getElementById('nc-address-since-year-'+oth).value;
+						otherMonth = document.getElementById('nc-address-since-month-'+oth).value;
+					} else {
+						otherYear = document.getElementById('cur-address-since-year-'+oth).value;
+						otherMonth = document.getElementById('cur-address-since-month-'+oth).value;
+					}
+					
+					console.log(otherYear);
+
+					if (otherYear <= (yyyy-5)) {
+						if (otherYear<(yyyy-5)){
+							datesSatisfied=true;
+							console.log('dates satisfied now');
+						} else if (otherYear==(yyyy-5)) {
+							if (otherMonth <= mm) {
+								datesSatisfied=true;
+								console.log('Dates staisfied by other yyyy and mm');
+							}
+						}
+
+					}
+
+					oth++;
+				}
+			}
+
+
+
+
+
+			
+			// At least one has to be a current address
+
+			// If dates NOT satisfied, then enable the hidden input to allow validationt to kick in. Else disable to remove validation
+			if (!datesSatisfied){
+				$('#addressCheck').find('input,select,radio').prop('disabled',false);
+			} else {
+				$('#addressCheck').find('input,select,radio').prop('disabled',true);
+			}
+
+		}
 
 
 </script>

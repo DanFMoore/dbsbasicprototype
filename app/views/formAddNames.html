@@ -36,6 +36,10 @@
 					    </label>
 
 			    	</fieldset>
+
+			    	<!-- Store number of names the user has entered -->
+					<input class="js-hidden" id="other-names-total" name="other-names-total">
+
 			    	<!-- Expandable panel area -->
 			    	<div class="panel panel-border-narrow js-hidden" id="name-change">
 						
@@ -43,7 +47,7 @@
 						
 						<div id="add-name-container">
 							<div id="add-name-block">
-								<span class="heading-medium" id="new-name-title-">Name </span>
+								<span class="heading-medium" id="new-name-title">Name </span>
 					    		<!-- Given names -->
 								<div id="expand-given-name-group" class="form-group">
 									<label class="form-label" for="given-names">First name(s)</label>
@@ -52,7 +56,7 @@
 										data-parsley-class-handler="#expand-given-name-group" 
 		          							data-parsley-errors-container="#expand-given-name-group-error-message"
 		          							data-parsley-required="true"
-		    								data-parsley-required-message="Enter your other given name(s)"
+		    								data-parsley-required-message="Enter your other first name(s)"
 									>
 								</div> <!-- Form group close-->
 
@@ -64,7 +68,7 @@
 										data-parsley-class-handler="#expand-family-name-group" 
 		          							data-parsley-errors-container="#expand-family-name-group-error-message"
 		          							data-parsley-required="true"
-		    								data-parsley-required-message="Enter your other family name"
+		    								data-parsley-required-message="Enter your other last name"
 									>
 								</div> <!-- Form group close-->
 
@@ -172,7 +176,7 @@
 			data-parsley-class-handler="#expand-given-name-group-" 
 			data-parsley-errors-container="#expand-given-name-group-error-message-"
 			data-parsley-required="true"
-			data-parsley-required-message="Enter your other given name(s)"
+			data-parsley-required-message="Enter your other first name(s)"
 			>
 		</div> <!-- Form group close-->
 
@@ -184,7 +188,7 @@
 			data-parsley-class-handler="#expand-family-name-group-" 
 			data-parsley-errors-container="#expand-family-name-group-error-message-"
 			data-parsley-required="true"
-			data-parsley-required-message="Enter your other family name"
+			data-parsley-required-message="Enter your other last name"
 			>
 		</div> <!-- Form group close-->
 
@@ -343,7 +347,7 @@
 		  	
 		  	document.getElementById('new-name-title-'+counter).innerHTML +=String(counter);
 
-
+		  	document.getElementById('other-names-total').value = counter;
 		  	
 
 
