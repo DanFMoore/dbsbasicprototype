@@ -18,7 +18,8 @@
 			    <div id="names-group" class="form-group">
 			    	<fieldset>
 			    		<legend class="heading-medium">Have you ever been known by any other names?</legend>
-			    		<p class="form-hint">You must tell us about any other first or last names you've used.</p>
+			    		<p class="form-hint">This could be a different first or last name. For example if you got married, or changed your name by deed poll.<br>
+			    		You don't need to include any names you only used before the age of 10.</p>
 			    		<div id="names-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" for="name-radio-2">
 						    <input id="name-radio-2" type="radio" name="name-radio-group" value="No">
@@ -72,14 +73,13 @@
 									>
 								</div> <!-- Form group close-->
 
-								<p class="form-hint">When did you last use this name?</p>
+
 								<!-- Date from -->
 								<div id="expand-date-from-group" class="form-group">
 									<fieldset>
-										<legend class="form-label">Date from:</legend>
-										<p class="form-hint">For example, 03 1980</p>
+										
 										<div class="form-date">
-											
+											<legend class="form-label">When did you start using this name?</legend>
 											<div id="expand-date-from-group-error-message" class="form-error validation-message"></div>
 											<div class="form-group form-group-month" id="expand-date-from-month-group">
 												<label for="name-from-month">Month</label>
@@ -99,14 +99,17 @@
 		    										data-parsley-required-message="Enter the year from"
 												>
 											</div> <!-- Form group close-->
+											
 										</div> <!-- Form group close-->
+
 									</fieldset>
+									<p class="form-hint">For example, 03 1980</p>
 									
 								</div> <!-- Form group close-->
 
 
 								<!-- Date to -->
-								<div id="expand-date-to-group" class="form-group">
+								<div id="expand-date-to-group" class="form-group js-hidden">
 									<fieldset>
 										<legend class="form-label">Date to:</legend>
 										<p class="form-hint">For example, 03 2014</p>
@@ -192,12 +195,12 @@
 			>
 		</div> <!-- Form group close-->
 
-		<p class="form-hint">When did you last use this name?</p>
+
 		<!-- Date from -->
 		<div id="expand-date-from-group-" class="form-group">
 			<fieldset>
-				<legend class="form-label">Date from:</legend>
-				<p class="form-hint">For example, 03 1980</p>
+				<legend class="form-label">When did you start using this name?</legend>
+				
 				<div class="form-date">
 
 				<div id="expand-date-from-group-error-message-" class="form-error validation-message"></div>
@@ -221,12 +224,12 @@
 					</div> <!-- Form group close-->
 				</div> <!-- Form group close-->
 			</fieldset>
-
+			<p class="form-hint">For example, 03 1980</p>
 		</div> <!-- Form group close-->
 
 
 		<!-- Date to -->
-		<div id="expand-date-to-group-" class="form-group">
+		<div id="expand-date-to-group-" class="form-group js-hidden">
 			<fieldset>
 				<legend class="form-label">Date to:</legend>
 				<p class="form-hint">For example, 03 2014</p>

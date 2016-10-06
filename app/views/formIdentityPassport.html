@@ -13,12 +13,12 @@
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 			
 
-			<form action="formConvictions" method="post" class="form">
+			<form action="formSendAddress" method="post" class="form">
 
 			    <!-- Passport -->
 				<div id="passport-form-group" class="form-group">
 			    	<fieldset class="inline">
-			    		<legend class="heading-medium">Do you have a current passport?</legend>
+			    		<legend class="heading-medium">Do you have a current UK passport?</legend>
 			    		<p class="form-hint">If you can provide this information your application will be processed quicker.</p>
 			    		<div id="passport-form-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="passport-number" for="radio-passport-1">
@@ -48,18 +48,6 @@
           							data-parsley-errors-container="#passport-number-expand-form-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter your passport number"
-							>
-						</div> <!-- Form group close-->
-
-						<!-- Passport Country -->
-						<div id="passport-country-expand-form-group" class="form-group">
-							<label class="form-label" for="passport-country">Country of issue</label>
-							<div id="passport-country-expand-form-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control" name="passport-country" type="text" id="passport-country"
-								data-parsley-class-handler="#passport-country-expand-form-group" 
-          							data-parsley-errors-container="#passport-country-expand-form-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Enter the country of issue"
 							>
 						</div> <!-- Form group close-->
 

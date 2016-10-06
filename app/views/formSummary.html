@@ -53,6 +53,19 @@
 					    		</td>
 					    	</tr>
 
+					    	<!-- Place of birth -->
+					    	<tr>
+					    		<td>
+					    			<h2 class="text-secondary">Place of birth</h2>
+					    			<div>{{ formdata["country-of-birth"] }}</div>
+					    			<div>{{ formdata["city-of-birth"] }}</div>
+					    			
+					    		</td>
+					    		<td class="editButton">
+					    			<a class="button button-secondary">Edit</a>
+					    		</td>
+					    	</tr>
+
 					    	<!-- Add other names -->
 					    	{% if formdata["other-family-name"] %}
 						    	<tr>
@@ -61,8 +74,7 @@
 						    			<div>{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}</div>
 						    			<h2 class="text-secondary">Date from</h2>
 						    			<div>{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}</div>
-						    			<h2 class="text-secondary">Date to</h2>
-						    			<div>{{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"] }}</div>
+						    			</div>
 						    		</td>
 						    		<td class="editButton">
 						    			<a class="button button-secondary">Edit</a>
@@ -78,8 +90,7 @@
 						    			<div>{{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n] }}</div>
 						    			<h2 class="text-secondary">Date from</h2>
 						    			<div>{{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n] }}</div>
-						    			<h2 class="text-secondary">Date to</h2>
-						    			<div>{{ formdata["other-name-to-month-"+n] }}/{{ formdata["other-name-to-year-"+n] }}</div>
+						    			
 						    		</td>
 						    		<td class="editButton">
 						    			<a class="button button-secondary">Edit</a>
@@ -177,9 +188,6 @@
 					    		<td>
 					    			<h2 class="text-secondary">Driving licence number</h2>
 					    			<div>{{ formdata["driving-licence-number-input"] }}</div>
-					    			<h2 class="text-secondary">Country of issue</h2>
-					    			<div>{{ formdata["driving-country-input"] }}</div>
-					    			
 					    		</td>
 					    		<td class="editButton">
 					    			<a class="button button-secondary">Edit</a>
@@ -193,8 +201,6 @@
 					    		<td>
 					    			<h2 class="text-secondary">Passport number</h2>
 					    			<div>{{ formdata["passport-number-input"] }}</div>
-					    			<h2 class="text-secondary">Country of issue</h2>
-					    			<div>{{ formdata["passport-country"] }}</div>
 					    		</td>
 					    		<td class="editButton">
 					    			<a class="button button-secondary">Edit</a>
@@ -202,7 +208,7 @@
 					    	</tr>
 					    	{% endif %}
 
-					    	<!-- Previous convictions -->
+					    	<!-- Previous convictions 
 					    	<tr>
 					    		<td>
 					    			<h2 class="text-secondary">Previous Convictions</h2>
@@ -216,7 +222,7 @@
 					    			<a class="button button-secondary">Edit</a>
 					    		</td>
 					    	</tr>
-
+							-->
 
 					    	<!-- Send address -->
 					    	{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}

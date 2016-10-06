@@ -12,34 +12,36 @@
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
-			<form action="formPlaceBirth" method="post" class="form">
+			<form action="formAddNames" method="post" class="form">
+
+				
+			  	<!-- Where were you born? -->
+			    <div id="country-of-birth-form-group" class="form-group">
+			      	<legend class="heading-medium">Where were you born?</legend>
 
 
-			  	<!-- Gender -->
-				<div id="radio-gender-group-form-group" class="form-group">
-					<fieldset>
-						<legend class="heading-medium">What is your gender?</legend>
-						
-						<div id="radio-gender-group-error-message" class="form-error validation-message"></div>
+			      	<label class="form-label" for="country-of-birth">Country</label>
+			      	<div id="country-of-birth-form-group-error-message" class="form-error validation-message"></div>
+			      	<input type="text" class="form-control" name="country-of-birth" id="country-of-birth"
+			      			data-parsley-class-handler="#country-of-birth-form-group" 
+          					data-parsley-errors-container="#country-of-birth-form-group-error-message"
+          					data-parsley-required="true"
+    						data-parsley-required-message="Enter your country of birth" 
+    				>
+			    </div> <!-- Form group close-->
 
-						<label class="block-label" for="gender-radio-1">
-							<input id="gender-radio-1" type="radio" name="radio-gender-group" value="Female" 
-								data-parsley-class-handler="#radio-gender-group-form-group" 
-          							data-parsley-errors-container="#radio-gender-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Select your gender" >
-							Female
-						</label>
-						<label class="block-label" for="gender-radio-2">
-							<input id="gender-radio-2" type="radio" name="radio-gender-group" value="Male"  >
-							Male
-						</label>
-						<label class="block-label" for="gender-radio-3">
-							<input id="gender-radio-3" type="radio" name="radio-gender-group" value="Intersex" >
-							Intersex
-						</label>
-					</fieldset>
-				</div> <!-- Form group close-->
+			    <!-- City of birth-->
+			    <div id="city-of-birth-form-group" class="form-group">
+			      	<label class="form-label" for="city-of-birth">Town/City</label>
+			      	<div id="city-of-birth-form-group-error-message" class="form-error validation-message"></div>
+			      	<input type="text" class="form-control" name="city-of-birth" id="city-of-birth"
+			      			data-parsley-class-handler="#city-of-birth-form-group" 
+          					data-parsley-errors-container="#city-of-birth-form-group-error-message"
+          					data-parsley-required="true"
+    						data-parsley-required-message="Enter your town/city of birth" 
+    				>
+			    </div> <!-- Form group close-->
+
 
 			    <!-- Continue button -->
 			    <div class="form-group">
@@ -104,6 +106,7 @@
 
 
 </script>
+
 {% endblock %}
 
 

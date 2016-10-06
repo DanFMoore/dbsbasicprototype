@@ -38,6 +38,10 @@ router.post('/formFirstPage', function(req, res) {
 router.post('/formGender', function(req, res) {
   res.render('formGender', req.session)
 })
+// Section 1 - Place of birth
+router.post('/formPlaceBirth', function(req, res) {
+  res.render('formPlaceBirth', req.session)
+})
 // Section 2 - Sensitive Application
 router.post('/formSensitive', function(req, res) {
   res.render('formSensitive', req.session)
