@@ -22,16 +22,18 @@
 			    		You don't need to include any names you only used before the age of 10.</p>
 			    		<div id="names-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" for="name-radio-2">
-						    <input id="name-radio-2" type="radio" name="name-radio-group" value="No">
+						    <input id="name-radio-2" type="radio" name="name-radio-group" value="No"
+						    	data-parsley-class-handler="#names-group" 
+          							data-parsley-errors-container="#names-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Select 'no' if you haven't used any other names, or 'yes' if you have used other names"
+						    >
 						    No, I haven't used any other names
 					    </label>
 
 			    		<label class="block-label" data-target="name-change" for="name-radio-1">
 						    <input id="name-radio-1" type="radio" name="name-radio-group" value="Yes"
-						    	data-parsley-class-handler="#names-group" 
-          							data-parsley-errors-container="#names-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Confirm if you have been known by other names"
+						    	
 						    >
 						    Yes, I've used other names
 					    </label>
@@ -69,7 +71,7 @@
 										data-parsley-class-handler="#expand-family-name-group" 
 		          							data-parsley-errors-container="#expand-family-name-group-error-message"
 		          							data-parsley-required="true"
-		    								data-parsley-required-message="Enter your other last name"
+		    								data-parsley-required-message="Enter your other last name(s)"
 									>
 								</div> <!-- Form group close-->
 
@@ -87,7 +89,7 @@
 													data-parsley-class-handler="#expand-date-from-group" 
 		          									data-parsley-errors-container="#expand-date-from-group-error-message"
 		          									data-parsley-required="true"
-		    										data-parsley-required-message="Enter the month from"
+		    										data-parsley-required-message="Enter the month you started using this name"
 												>
 											</div> <!-- Form group close-->
 											<div class="form-group form-group-year" id="expand-date-from-year-group">
@@ -96,7 +98,7 @@
 													data-parsley-class-handler="#expand-date-from-group" 
 		          									data-parsley-errors-container="#expand-date-from-group-error-message"
 		          									data-parsley-required="true"
-		    										data-parsley-required-message="Enter the year from"
+		    										data-parsley-required-message="Enter the year you started using this name"
 												>
 											</div> <!-- Form group close-->
 											
@@ -107,39 +109,8 @@
 									
 								</div> <!-- Form group close-->
 
+								<br>
 
-								<!-- Date to -->
-								<div id="expand-date-to-group" class="form-group js-hidden">
-									<fieldset>
-										<legend class="form-label">Date to:</legend>
-										<p class="form-hint">For example, 03 2014</p>
-										<div class="form-date">
-											
-											<div id="expand-date-to-group-error-message" class="form-error validation-message"></div>
-											<div class="form-group form-group-month" id="expand-date-to-month-group">
-												<label for="name-to-month">Month</label>
-												
-												<input disabled class="form-control" id="name-to-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-to-month"
-													data-parsley-class-handler="#expand-date-to-group" 
-		          									data-parsley-errors-container="#expand-date-to-group-error-message"
-		          									data-parsley-required="true"
-		    										data-parsley-required-message="Enter the month to"
-												>
-											</div> <!-- Form group close-->
-											<div class="form-group form-group-year" id="expand-date-to-year-group">
-												<label for="name-to-year">Year</label>
-												<input disabled class="form-control" id="name-to-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-to-year"
-													data-parsley-class-handler="#expand-date-to-group" 
-		          									data-parsley-errors-container="#expand-date-to-group-error-message"
-		          									data-parsley-required="true"
-		    										data-parsley-required-message="Enter the year to"
-												>
-											</div> <!-- Form group close-->
-										</div>
-									</fieldset>
-									<br>
-									
-								</div> <!-- Form group close-->
 							</div>
 						</div>
 
@@ -179,7 +150,7 @@
 			data-parsley-class-handler="#expand-given-name-group-" 
 			data-parsley-errors-container="#expand-given-name-group-error-message-"
 			data-parsley-required="true"
-			data-parsley-required-message="Enter your other first name(s)"
+			data-parsley-required-message="Enter your other first name(s) for name "
 			>
 		</div> <!-- Form group close-->
 
@@ -191,7 +162,7 @@
 			data-parsley-class-handler="#expand-family-name-group-" 
 			data-parsley-errors-container="#expand-family-name-group-error-message-"
 			data-parsley-required="true"
-			data-parsley-required-message="Enter your other last name"
+			data-parsley-required-message="Enter your other last name(s) for name "
 			>
 		</div> <!-- Form group close-->
 
@@ -210,7 +181,7 @@
 						data-parsley-class-handler="#expand-date-from-group-" 
 						data-parsley-errors-container="#expand-date-from-group-error-message-"
 						data-parsley-required="true"
-						data-parsley-required-message="Enter the month from"
+						data-parsley-required-message="Enter the month you started using name "
 						>
 					</div> <!-- Form group close-->
 					<div class="form-group form-group-year" id="expand-date-from-year-group-">
@@ -219,7 +190,7 @@
 						data-parsley-class-handler="#expand-date-from-group-" 
 						data-parsley-errors-container="#expand-date-from-group-error-message-"
 						data-parsley-required="true"
-						data-parsley-required-message="Enter the year from"
+						data-parsley-required-message="Enter the year you started using name "
 						>
 					</div> <!-- Form group close-->
 				</div> <!-- Form group close-->
@@ -228,38 +199,7 @@
 		</div> <!-- Form group close-->
 
 
-		<!-- Date to -->
-		<div id="expand-date-to-group-" class="form-group js-hidden">
-			<fieldset>
-				<legend class="form-label">Date to:</legend>
-				<p class="form-hint">For example, 03 2014</p>
-				<div class="form-date">
-
-					<div id="expand-date-to-group-error-message-" class="form-error validation-message"></div>
-					<div class="form-group form-group-month" id="expand-date-to-month-group-">
-						<label for="name-to-month-">Month</label>
-
-						<input disabled class="form-control" id="name-to-month-" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-to-month-"
-						data-parsley-class-handler="#expand-date-to-group-" 
-						data-parsley-errors-container="#expand-date-to-group-error-message-"
-						data-parsley-required="true"
-						data-parsley-required-message="Enter the month to"
-						>
-					</div> <!-- Form group close-->
-					<div class="form-group form-group-year" id="expand-date-to-year-group-">
-						<label for="name-to-year-">Year</label>
-						<input disabled class="form-control" id="name-to-year-" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-to-year-"
-						data-parsley-class-handler="#expand-date-to-group-" 
-						data-parsley-errors-container="#expand-date-to-group-error-message-"
-						data-parsley-required="true"
-						data-parsley-required-message="Enter the year to"
-						>
-					</div> <!-- Form group close-->
-				</div>
-			</fieldset>
-			<br>
-
-		</div> <!-- Form group close-->
+		<br>
 	</div> <!-- CLOSE ADD NAME BLOCK NODE -->
 
 
@@ -385,7 +325,7 @@
 						$(nodes[i]).attr('data-parsley-errors-container', newString);
 					}
 					if($(nodes[i]).data("parsley-required-message")) {
-						var newString = $(nodes[i]).data('parsley-required-message')+String(' for name ')+String(n);
+						var newString = $(nodes[i]).data('parsley-required-message')+String(n);
 						$(nodes[i]).attr('data-parsley-required-message', newString);
 					}
 		  		}

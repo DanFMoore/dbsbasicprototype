@@ -19,14 +19,14 @@
 				<div id="passport-form-group" class="form-group">
 			    	<fieldset class="inline">
 			    		<legend class="heading-medium">Do you have a current UK passport?</legend>
-			    		<p class="form-hint">If you can provide this information your application will be processed quicker.</p>
+			    		<!--<p class="form-hint">If you can provide this information your application will be processed quicker.</p>-->
 			    		<div id="passport-form-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="passport-number" for="radio-passport-1">
 						    <input id="radio-passport-1" type="radio" name="radio-passport-group" value="Yes"
 						    	data-parsley-class-handler="#passport-form-group" 
           							data-parsley-errors-container="#passport-form-group-error-message"
           							data-parsley-required="true"
-    								data-parsley-required-message="Do you have a passport?"
+    								data-parsley-required-message="Select 'yes' if you have a current UK passport"
 						    >
 						    Yes
 					    </label>
@@ -47,7 +47,7 @@
 								data-parsley-class-handler="#passport-number-expand-form-group" 
           							data-parsley-errors-container="#passport-number-expand-form-group-error-message"
           							data-parsley-required="true"
-    								data-parsley-required-message="Enter your passport number"
+    								data-parsley-required-message="Enter your UK passport number"
 							>
 						</div> <!-- Form group close-->
 

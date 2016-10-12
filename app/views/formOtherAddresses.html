@@ -40,7 +40,8 @@
 
 					<fieldset class="inline">
 			    		<legend class="heading-medium">Have you lived at any other addresses in the past 5 years?</legend>
-			    		<p class="form-hint">This includes temporary addresses, for example if you're a student.</p>
+			    		<p class="form-hint">Include temporary addresses, for example student accommodation or if you work away from home every week. You don't need to include places you've stayed on holiday or if you occasionally stay away overnight for work. <br><br>
+			    		You can't have gaps in your address history, but it's fine to have overlapping dates if you've spent time living at two addresses.</p>
 			    		<div id="addresses-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="yes-other-addresses-block" for="addresses-radio-1">
 						    <input id="addresses-radio-1" type="radio" name="addresses-radio-group" value="Yes"
@@ -619,8 +620,47 @@
 				    	<a class="" id="mylink" href="#">Add address</a>
 				    	<br><br><br><br>
 				    </div> <!-- CLOSE YES ADDRESSES BLOCK -->
-			    </div> <!-- Form group close-->
+				 </div> <!-- Form group close-->
+				<div class="form-group">
+				    <a role="button" id="helpBlock" href="#/" onClick="javascript:toggleHelp();">
+				   		<i class="arrow arrow-closed" id="helpArrow">►</i>
+				    	<span class="summary">Help with addresses</span>
+				    </a>
 
+				    <div id="helpBlockText" class="panel panel-border-narrow js-hidden" >
+				    	<h2 class="heading-small">If you have more than one address at the same time</h2>
+					    <p>
+							If you're living at a second address, for example if you're a student or work away for work, enter the address and date you moved in. Put today's month and year for the date you moved out.
+					    </p>
+
+					    <h2 class="heading-small">If you've lived overseas</h2>
+					    <p>
+							Enter any overseas addresses you've lived at in the past 5 years.
+					    </p>
+
+					    <h2 class="heading-small">If you lived on a canal boat, cruise ship or merchant vessel</h2>
+					    <p>
+							Enter the registered port address or permanent mooring address. You don't need to include each of the places you passed through or temporarily stopped off at.
+					    </p>
+
+					    <h2 class="heading-small">If you didn't have a permanent address</h2>
+					    <p>
+							If you were travelling (around the UK or overseas) and didn't have a permanent address write 'Travelling' in address field 1 and select the country you were in.
+							If you've been in HM Armed Forces enter your full BFPO (British Forces Post Office) number. 
+						</p><p>
+							If you've been homeless during the last 5 years enter 'No fixed abode' in address line 1, and put the town or city and country you were during this time. If you spent
+							time in different towns you'll need to add each one separately.
+						</p><p>
+							If you lived in temporary accommodation (for example, a hostel) enter that address. If you were in a women's refuge or sheltered
+							accommodation you don't have to say what type of accommodation it was, just enter the address.
+						</p><p>
+							If you spent time in prison enter the prison's address.
+					    </p>
+
+
+					</div> <!-- END HELP BLOCK -->
+			    
+				</div>
 			    
 
 			    <!-- Continue button -->
@@ -827,6 +867,28 @@
 			checkGaps();
 
 		}
+
+
+
+
+
+		function toggleHelp() {
+			// When the extra help link is clicked it will display help block
+			if($('#helpArrow').hasClass('arrow-closed')) {
+				$('#helpArrow').removeClass('arrow-closed');
+				$('#helpArrow').html("▼");
+				$('#helpBlockText').removeClass('js-hidden');
+			}
+			else {
+				$('#helpArrow').addClass('arrow-closed');
+				$('#helpArrow').html("►");
+				$('#helpBlockText').addClass('js-hidden');
+			}
+
+		}
+
+
+
 
 
 		function checkGaps() {
