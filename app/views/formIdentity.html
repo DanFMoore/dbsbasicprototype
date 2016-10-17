@@ -43,7 +43,7 @@
 						<!-- National Insurance number -->
 						<div id="ni-expand-form-group" class="form-group">
 							<label class="form-label" for="ni-number-input">National Insurance number</label>
-							<p class="form-hint">You can find your National Insurance number on your payslip, P60, or letters about tax, pensions, and benefits. For example, QQ 12 34 56 C.</p>
+							<p class="form-hint">For example, QQ 12 34 56 C.</p>
 							<div id="ni-expand-form-group-error-message" class="form-error validation-message"></div>
 							<input disabled class="form-control" name="ni-number-input" type="text" id="ni-number-input"
 								data-parsley-class-handler="#ni-expand-form-group" 
@@ -54,6 +54,23 @@
 						</div> <!-- Form group close-->
 					</div> <!-- Expandable panel area  Close -->
 			    </div> <!-- Form group close-->
+
+
+
+			    <div class="form-group">
+				    <a role="button" id="helpBlock" href="#/" onClick="javascript:toggleHelp();">
+				   		<i class="arrow arrow-closed" id="helpArrow">►</i>
+				    	<span class="summary">Help with National Insurance number</span>
+				    </a>
+
+				    <div id="helpBlockText" class="panel panel-border-narrow js-hidden" >
+				    	<p>You can find your National Insurance number on your payslip, P60, or letters about tax, pensions, and benefits.</p>
+				    	
+
+
+					</div> <!-- END HELP BLOCK -->
+			    
+				</div>
 
 
 
@@ -128,6 +145,22 @@
 	  		$('#ni-number-input').prop('disabled', true);
 	  	}
 	  });
+
+
+	  function toggleHelp() {
+			// When the extra help link is clicked it will display help block
+			if($('#helpArrow').hasClass('arrow-closed')) {
+				$('#helpArrow').removeClass('arrow-closed');
+				$('#helpArrow').html("▼");
+				$('#helpBlockText').removeClass('js-hidden');
+			}
+			else {
+				$('#helpArrow').addClass('arrow-closed');
+				$('#helpArrow').html("►");
+				$('#helpBlockText').addClass('js-hidden');
+			}
+
+		}
 
 
 
