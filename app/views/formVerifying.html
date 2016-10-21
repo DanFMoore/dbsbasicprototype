@@ -14,12 +14,39 @@
 
     	<h1 class="heading-large">Verifying your identity</h1>
 
-
         <p>You need to verify your identity to get a basic criminal record check.</p>
-    	
-        <div class="" id="verify-reason" style="margin-bottom: 45px; margin-top: 30px;">
-            <p>You can do this now using GOV.UK Verify. It should take about 10 minutes. </p>
+        
+        <p>You can do this online now using GOV.UK Verify.</p>
+
+        <p>It takes about 10 minutes to verify your identity the first time you use GOV.UK Verify, and a couple of minutes any time after that. </p>
+        
+
+        <div class="form-group">
+            <a role="button" id="helpBlock" href="#/" onClick="javascript:toggleHelp();">
+                <i class="arrow arrow-closed" id="helpArrow">►</i>
+                <span class="summary">What is GOV.UK Verify?</span>
+            </a>
+
+            <div id="helpBlockText" class="panel panel-border-narrow js-hidden" >
+                <p>
+                    GOV.UK Verify is the new way to prove who you are online.
+                </p><p>
+                    It gives safer, simpler and faster access to government services like filing your tax or checking the information on your driving licence.
+                </p><p>
+                    It’s safe because information is not stored centrally, and there’s no unnecessary sharing of information.
+                </p><p>
+                    It’s fast and simple because you can do it all online, without going to prove your identity in person, or waiting for something in the post.
+                </p><p>
+                    <a href="https://www.gov.uk/government/publications/introducing-govuk-verify/introducing-govuk-verify">Read more about GOV.UK Verify.</a> 
+                </p>
+                        
+
+
+            </div> <!-- END HELP BLOCK -->
+                
         </div>
+
+
 
     </div>
 
@@ -50,7 +77,7 @@
             <div class="column-one-half" style="padding-left: 30px;">
                 <div class="heading-medium" style="margin-top: 15px; margin-bottom: 15px;">Other ways to apply</div>
                 <p>You can use this service without using GOV.UK Verify.</p>
-                <p>You'll need to take documents proving your identity to the Post Office.</p>
+                <p>You'll need to take documents proving your identity in person to the Post Office.</p>
                 <p><a href="#/">Continue without verifying</a></p>
             </div>
 
@@ -121,6 +148,22 @@
         // allow the form to submit
         return true;
       });
+
+
+      function toggleHelp() {
+            // When the extra help link is clicked it will display help block
+            if($('#helpArrow').hasClass('arrow-closed')) {
+                $('#helpArrow').removeClass('arrow-closed');
+                $('#helpArrow').html("▼");
+                $('#helpBlockText').removeClass('js-hidden');
+            }
+            else {
+                $('#helpArrow').addClass('arrow-closed');
+                $('#helpArrow').html("►");
+                $('#helpBlockText').addClass('js-hidden');
+            }
+
+        }
 
 
 </script>
