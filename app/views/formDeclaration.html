@@ -7,16 +7,17 @@
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-			
-			
+
+
 			<form action="https://payments:team@payment-prototype.herokuapp.com/dbs-choose-payment" method="post" class="form">
 
 			    <div class="form-group">
-			    	<h3 class="heading-medium">By continuing with your application you confirm that:</h3>
+			    	<h1 class="heading-medium">By continuing with your application you confirm that:</h1>
 			    	<ul class="list-bullet">
 			    		<li>the information you've given is true</li>
 			    		<li>you agree to the <a href="#">terms and conditions</a> and <a href="#">privacy policy</a></li>
@@ -41,7 +42,7 @@
 			    	<div id="check-declaration-group-error-message" class="form-error validation-message"></div>
 			    	<label class="block-label" for="check-declaration">
 						<input id="check-declaration" type="checkbox" name="check-declaration-group" value="Agree"
-							data-parsley-class-handler="#check-declaration-group" 
+							data-parsley-class-handler="#check-declaration-group"
           							data-parsley-errors-container="#check-declaration-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Tick the box to confirm you agree with the declaration">
@@ -83,7 +84,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -115,5 +116,3 @@
 </script>
 
 {% endblock %}
-
-

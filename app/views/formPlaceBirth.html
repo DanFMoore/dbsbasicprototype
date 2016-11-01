@@ -3,33 +3,36 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Where were you born?" %}
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+			{% include 'includes/error_summary.html' %}
+      {# include if this page has validation requirements #}
 
-			<form action="formAddNames" method="post" class="form">
 
-				
+
+      <h1 class="heading-medium">{{ main_question }}</h1>
 			  	<!-- Where were you born? -->
+          <form action="formAddNames" method="post" class="form">
 			    <div id="country-of-birth-form-group" class="form-group">
-			      	<legend class="heading-medium">Where were you born?</legend>
+			      	<legend class="visuallyhidden">{{main_question}}</legend>
 
 
 			      	<label class="form-label" for="country-of-birth">Country</label>
 			      	<div id="country-of-birth-form-group-error-message" class="form-error validation-message"></div>
 			      	<select class="form-control" name="country-of-birth" id="country-of-birth"
-			      			data-parsley-class-handler="#country-of-birth-form-group" 
+			      			data-parsley-class-handler="#country-of-birth-form-group"
           					data-parsley-errors-container="#country-of-birth-form-group-error-message"
           					data-parsley-required="true"
-    						data-parsley-required-message="Enter your country of birth" 
+    						data-parsley-required-message="Enter your country of birth"
     				>
 
-    					
+
 						<option value="Afganistan">Afghanistan</option>
 						<option value="Albania">Albania</option>
 						<option value="Algeria">Algeria</option>
@@ -287,10 +290,10 @@
 			      	<label class="form-label" for="city-of-birth">Town/City</label>
 			      	<div id="city-of-birth-form-group-error-message" class="form-error validation-message"></div>
 			      	<input type="text" class="form-control" name="city-of-birth" id="city-of-birth"
-			      			data-parsley-class-handler="#city-of-birth-form-group" 
+			      			data-parsley-class-handler="#city-of-birth-form-group"
           					data-parsley-errors-container="#city-of-birth-form-group-error-message"
           					data-parsley-required="true"
-    						data-parsley-required-message="Enter your town/city of birth" 
+    						data-parsley-required-message="Enter your town/city of birth"
     				>
 			    </div> <!-- Form group close-->
 
@@ -328,7 +331,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -360,5 +363,3 @@
 </script>
 
 {% endblock %}
-
-

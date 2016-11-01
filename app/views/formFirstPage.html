@@ -3,44 +3,48 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Is this your correct name and date of birth?" %}
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
-			<form action="formGender" method="post" class="form">
-				<div id="verify-group" class="form-group">
-
-
-					
 
 
 
-					<fieldset class="inline">
-			    		<legend class="heading-medium">Is this your correct name and date of birth?</legend>
-			    		<p class="form-hint">These are your personal details from your GOV.UK Verify account.</p>
 
-			    		<span class="text-secondary">Name<br></span>
+
+
+
+
+			    		<h1 class="heading-medium">{{main_question}}</h1>
+			    		<p>These are your personal details from your GOV.UK Verify account.</p>
+              <form action="formGender" method="post" class="form">
+        				<div id="verify-group" class="form-group">
+              <fieldset class="inline">
+                <legend class="visuallyhidden">{{main_question}}</legend>
+			    		<span class="bold-small">Name<br></span>
 						<span>John Scott Smith<br></span>
-						<span class="text-secondary">Date of birth<br></span>
+            <br/>
+						<span class="bold-small">Date of birth<br></span>
 						<span>01/01/1960<br></span><br>
 
 			    		<div id="verify-form-group-error-message" class="form-error validation-message"></div>
 
 			    		<label class="block-label" for="radio-verify-1">
 						    <input id="radio-verify-1" type="radio" name="radio-verify-group" value="Yes"
-						    	data-parsley-class-handler="#verify-group" 
+						    	data-parsley-class-handler="#verify-group"
           							data-parsley-errors-container="#verify-form-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Select 'yes' if your name and date of birth are correct"
 						    >
 						    Yes
 					    </label>
-						
+
 					    <label class="block-label" for="radio-verify-2">
 						    <input id="radio-verify-2" type="radio" name="radio-verify-group" value="No">
 						    No
@@ -88,7 +92,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -119,5 +123,3 @@
 
 </script>
 {% endblock %}
-
-

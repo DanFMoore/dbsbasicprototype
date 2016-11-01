@@ -7,6 +7,7 @@
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
   <div class="grid-row">
   	<div class="column-two-thirds">
 
@@ -15,11 +16,11 @@
     	<h1 class="heading-large">Verifying your identity</h1>
 
         <p>You need to verify your identity to get a basic criminal record check.</p>
-        
+
         <p>You can do this online now using GOV.UK Verify.</p>
 
         <p>It takes about 10 minutes to verify your identity the first time you use GOV.UK Verify, and a couple of minutes any time after that. </p>
-        
+
 
         <div class="form-group">
             <a role="button" id="helpBlock" href="#/" onClick="javascript:toggleHelp();">
@@ -37,13 +38,13 @@
                 </p><p>
                     It’s fast and simple because you can do it all online, without going to prove your identity in person, or waiting for something in the post.
                 </p><p>
-                    <a href="https://www.gov.uk/government/publications/introducing-govuk-verify/introducing-govuk-verify">Read more about GOV.UK Verify.</a> 
+                    <a href="https://www.gov.uk/government/publications/introducing-govuk-verify/introducing-govuk-verify">Read more about GOV.UK Verify.</a>
                 </p>
-                        
+
 
 
             </div> <!-- END HELP BLOCK -->
-                
+
         </div>
 
 
@@ -63,11 +64,11 @@
                     <div id="verify-agree-group-error-message" class="form-error validation-message"></div>
                     <label class="block-label" for="verify-agree">
                         <input id="verify-agree" type="checkbox" name="verify-agree" value="Agree"
-                            data-parsley-class-handler="#verify-agree-group" 
+                            data-parsley-class-handler="#verify-agree-group"
                                     data-parsley-errors-container="#verify-agree-group-error-message"
                                     data-parsley-required="true"
                                     data-parsley-required-message="You must agree to share your details from GOV.UK Verify">
-                        I agree to the Disclosure and Barring Service using my name, address and date of birth provided by GOV.UK Verify 
+                        I agree to the Disclosure and Barring Service using my name, address and date of birth provided by GOV.UK Verify
                     </label>
                 </div>
                 <a class="button button-start" href="https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application">Continue to GOV.UK Verify</a>
@@ -88,7 +89,7 @@
 
         <div>
 
-        	
+
             <div class="">
                 <a href="https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application&verify=false">TEST fail verify</a><br>
                 <a href="formFirstPage.html">TEST skip Verify</a>
@@ -121,7 +122,7 @@
 
         var ok = true;
         // add custom validations here - set ok to false if any of them fail validation
-        
+
         //ok = ok && checkDiagnosisFutureDate();
         //ok = ok && validateDOB();
 
@@ -170,5 +171,3 @@
 
 
 {% endblock %}
-
-

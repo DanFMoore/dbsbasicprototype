@@ -3,33 +3,33 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Do you have any unspent convictions, cautions, reprimands or final warnings?" %}
 {% block content %}
 
 <main id="content" role="main">
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}		
-			
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+      <h1 class="heading-medium">{{main_question}}</h1>
+      <p>You don't need to tell us about motoring fines or penalty points unless they were court imposed.</p>
 			<form action="formSendAddress" method="post" class="form">
-
 			    <div id="convictions-group" class="form-group">
 			    	<fieldset class="inline">
-			    		<legend class="heading-medium">Do you have any unspent convictions, cautions, reprimands or final warnings?</legend>
-			    		<p class="form-hint">You don't need to tell us about motoring fines or penalty points unless they were court imposed.</p>
+			    		<legend class="visuallyhidden">{{main_question}}</legend>
+
 			    		<div id="convictions-group-error-message" class="form-error validation-message"></div>
 
 			    		<!-- Yes/No Radio -->
 			    		<label class="block-label" for="radio-convictions-1">
 						    <input id="radio-convictions-1" type="radio" name="radio-convictions-group" value="Yes"
-						    	data-parsley-class-handler="#convictions-group" 
+						    	data-parsley-class-handler="#convictions-group"
           							data-parsley-errors-container="#convictions-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Confirm if you have other convictions"  >
 						    Yes
 					    </label>
-						
+
 					    <label class="block-label" for="radio-convictions-2">
 						    <input id="radio-convictions-2" type="radio" name="radio-convictions-group" value="No">
 						    No
@@ -74,7 +74,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -106,5 +106,3 @@
 </script>
 
 {% endblock %}
-
-

@@ -3,35 +3,35 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Do you have a current UK driving licence?" %}
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-			
+			{% include 'includes/error_summary.html' %}
+      {# include if this page has validation requirements #}
 
+      <h1 class="heading-medium">{{main_question}}</h1>
 			<form action="formIdentityPassport" method="post" class="form">
-
-
 			    <!-- Driving licence -->
 				<div id="driving-form-group" class="form-group">
 			    	<fieldset class="inline">
-			    		<legend class="heading-medium">Do you have a current UK driving licence?</legend>
+			    		<legend class="visuallyhidden">{{main_question}}</legend>
 			    		<!--<p class="form-hint">If you can provide this information your application will be processed quicker.</p>-->
 			    		<div id="driving-form-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="driving-licence" for="radio-driving-licence-1">
 						    <input id="radio-driving-licence-1" type="radio" name="radio-driving-licence-group" value="Yes"
-						    	data-parsley-class-handler="#driving-form-group" 
+						    	data-parsley-class-handler="#driving-form-group"
           							data-parsley-errors-container="#driving-form-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Select 'yes' if you have a current UK driving licence"
 						    >
 						    Yes
 					    </label>
-						
+
 					    <label class="block-label" for="radio-driving-licence-2">
 						    <input id="radio-driving-licence-2" type="radio" name="radio-driving-licence-group" value="No">
 						    No
@@ -46,17 +46,17 @@
 							<p class="form-hint">For example, MORGA657054SM9IJ.</p>
 							<div id="driving-expand-form-group-error-message" class="form-error validation-message"></div>
 							<input disabled class="form-control" name="driving-licence-number-input" type="text" id="driving-licence-number-input"
-								data-parsley-class-handler="#driving-expand-form-group" 
+								data-parsley-class-handler="#driving-expand-form-group"
           							data-parsley-errors-container="#driving-expand-form-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter your UK driving licence number"
 							>
 						</div> <!-- Form group close-->
-						
+
 					</div> <!-- Expandable panel area  Close -->
 			    </div> <!-- Form group close-->
 
-			    
+
 			    <!-- Continue button -->
 			    <div class="form-group">
 			    	<input type="submit" class="button" value="Save and continue">
@@ -90,7 +90,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -118,7 +118,7 @@
 	    return true;
 	  });
 
-	
+
 
 	  $("input[name=radio-driving-licence-group]").on('click', function() {
 	  	if($(this).val() == "Yes") {
@@ -133,10 +133,8 @@
 
 
 
-	
+
 
 </script>
 
 {% endblock %}
-
-

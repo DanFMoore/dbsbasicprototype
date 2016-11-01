@@ -3,49 +3,52 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Is this your current address?" %}
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+			{% include 'includes/error_summary.html' %}
+      {# include if this page has validation requirements #}
 
 			<form action="formOtherAddresses" method="post" class="form">
 
-				
-				
-				
-				
+
+
+
+        <h1 class="heading-medium">{{main_question}}</h1>
 			  	<!-- Details correct -->
 				<div class="form-group" id="current-address-group">
 					<fieldset class="inline">
-						<legend class="heading-medium">Is this your current address?</legend>
+						<legend class="visuallyhidden">{{ main_question }}</legend>
 						<!-- Verified details -->
 						<div class="form-group">
-							<p class="form-hint">This is the address from your GOV.UK Verify account.</p>
-							<span>
+							<p>This is the address from your GOV.UK Verify account.</p>
+              <p>
+
 								1 Oxford Road<br>
 								Bristol<br>
 								South Gloucestershire<br>
 								United Kingdom<br>
 								LP1 12D
-							</span>
+							</p>
 						</div>
-						
+
 						<div id="current-address-group-error-message" class="form-error validation-message"></div>
 
 					    <label class="block-label" data-target="correct-address" for="correct-address-radio-1">
 							<input id="correct-address-radio-1" type="radio" name="radio-correct-address-group" value="Yes"
-									data-parsley-class-handler="#current-address-group" 
+									data-parsley-class-handler="#current-address-group"
           							data-parsley-errors-container="#current-address-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Select 'yes' if it is your current address, or 'no' if isn't"
 							>
 							Yes
 						</label>
-								
+
 						<label class="block-label" data-target="incorrect-address" for="correct-address-radio-2">
 							<input id="correct-address-radio-2" type="radio" name="radio-correct-address-group" value="No">
 							No
@@ -59,14 +62,14 @@
 						<div class="form-group" id="address-since-group" >
 							<fieldset>
 								<legend class="form-label">When did you move into this address?</legend>
-								
+                <p class="form-hint">For example, 03 1980</p>
 								<div class="form-date">
-									
+
 									<div id="address-since-group-error-message" class="form-error validation-message"></div>
 									<div class="form-group form-group-month">
 										<label for="correct-address-since-month">Month</label>
 										<input disabled class="form-control" name="correct-address-since-month" id="correct-address-since-month" type="number" maxlength="2" pattern="[0-9]*" min="0" max="12"
-											data-parsley-class-handler="#address-since-group" 
+											data-parsley-class-handler="#address-since-group"
           									data-parsley-errors-container="#address-since-group-error-message"
           									data-parsley-required="true"
     										data-parsley-required-message="Enter the month you moved into this address"
@@ -75,7 +78,7 @@
 									<div class="form-group form-group-year">
 										<label for="correct-address-since-year">Year</label>
 										<input disabled class="form-control" name="correct-address-since-year" id="correct-address-since-year" type="number" maxlength="4" pattern="[0-9]*" min="1900" max="2016"
-											data-parsley-class-handler="#address-since-group" 
+											data-parsley-class-handler="#address-since-group"
           									data-parsley-errors-container="#address-since-group-error-message"
           									data-parsley-required="true"
     										data-parsley-required-message="Enter the year you moved into this address"
@@ -84,8 +87,8 @@
 								</div>
 
 							</fieldset>
-							<p class="form-hint">For example, 03 1980</p>
-							
+
+
 						</div>
 					</div> <!-- Expandable panel area  Close CORRECT ADDRESS-->
 
@@ -105,7 +108,7 @@
 								<label class="form-label" for="postcode">Postcode</label>
 								<div id="postcode-block-error-message" class="form-error validation-message"></div>
 								<input disabled class="form-control" name="postcode" type="text" id="postcode"
-									data-parsley-class-handler="#postcode-block" 
+									data-parsley-class-handler="#postcode-block"
           							data-parsley-errors-container="#postcode-block-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter the address"
@@ -124,7 +127,7 @@
 						-->
 
 							<div class="form-group">
-								<label class="form-label">Postcode:</label> 
+								<label class="form-label">Postcode:</label>
 									<div id="current-entered-po" style="font-weight:bold;"></div>
 									<a href="#/" role="button" onClick="javascript:poLookup();">Change</a>
 
@@ -137,7 +140,7 @@
 									<li>
 										<label>
 											<input disabled type="radio" value="1 Oxford Road, London, United Kingdom" name="current-found-address"
-												data-parsley-class-handler="#current-po-finder-addresses" 
+												data-parsley-class-handler="#current-po-finder-addresses"
 			          							data-parsley-errors-container="#current-po-finder-error-message"
 			          							data-parsley-required="true"
 			    								data-parsley-required-message="Select the address"
@@ -185,7 +188,7 @@
 								<label class="form-label" for="new-address-line-1">Address line 1</label>
 								<div id="new-address-line-1-group-error-message" class="form-error validation-message"></div>
 								<input disabled class="form-control" name="new-address-line-1" type="text" id="new-address-line-1"
-									data-parsley-class-handler="#new-address-line-1-group" 
+									data-parsley-class-handler="#new-address-line-1-group"
           							data-parsley-errors-container="#new-address-line-1-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter the first address line"
@@ -199,7 +202,7 @@
 								<label class="form-label" for="new-address-town-city">Town/City</label>
 								<div id="new-town-group-error-message" class="form-error validation-message"></div>
 								<input disabled class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
-									data-parsley-class-handler="#new-town-group" 
+									data-parsley-class-handler="#new-town-group"
           							data-parsley-errors-container="#new-town-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter the town or city"
@@ -213,7 +216,7 @@
 								<label class="form-label" for="new-address-country">Country</label>
 								<div id="new-country-group-error-message" class="form-error validation-message"></div>
 								<input disabled class="form-control" name="new-address-country" type="text" id="new-address-country"
-									data-parsley-class-handler="#new-country-group" 
+									data-parsley-class-handler="#new-country-group"
           							data-parsley-errors-container="#new-country-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter the country"
@@ -223,7 +226,7 @@
 								<label class="form-label" for="new-address-postcode">Postcode</label>
 								<div id="new-postcode-group-error-message" class="form-error validation-message"></div>
 								<input disabled class="form-control" name="new-address-postcode" type="text" id="new-address-postcode"
-									data-parsley-class-handler="#new-postcode-group" 
+									data-parsley-class-handler="#new-postcode-group"
           							data-parsley-errors-container="#new-postcode-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter the postcode"
@@ -242,14 +245,14 @@
 						<div class="form-group" id="new-address-since-group">
 							<fieldset>
 								<legend class="form-label">When did you move into this address?</legend>
-								
+<p class="form-hint">For example, 03 1980</p>
 								<div class="form-date">
-									
+
 									<div id="new-address-since-group-error-message" class="form-error validation-message"></div>
 									<div class="form-group form-group-month">
 										<label for="incorrect-address-since-month">Month</label>
 										<input disabled class="form-control" id="incorrect-address-since-month" name="incorrect-address-since-month"type="number" pattern="[0-9]*" maxlength="2" min="0" max="12"
-											data-parsley-class-handler="#new-address-since-group" 
+											data-parsley-class-handler="#new-address-since-group"
           									data-parsley-errors-container="#new-address-since-group-error-message"
           									data-parsley-required="true"
     										data-parsley-required-message="Enter the month you moved into this address"
@@ -258,7 +261,7 @@
 									<div class="form-group form-group-year">
 										<label for="incorrect-address-since-year">Year</label>
 										<input disabled class="form-control" id="incorrect-address-since-year" name="incorrect-address-since-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016"
-											data-parsley-class-handler="#new-address-since-group" 
+											data-parsley-class-handler="#new-address-since-group"
           									data-parsley-errors-container="#new-address-since-group-error-message"
           									data-parsley-required="true"
     										data-parsley-required-message="Enter the year you moved into this address"
@@ -266,8 +269,8 @@
 									</div>
 								</div>
 							</fieldset>
-							<p class="form-hint">For example, 03 1980</p>
-							
+
+
 						</div> <!-- Form group close-->
 					</div> <!-- Expandable panel area  Close INCORRECT ADDRESS -->
 
@@ -305,7 +308,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -344,7 +347,7 @@
 			// else disable those fields
 			if ($(this).val() == "Yes") {
 				// remove disabled prop
-				
+
 				correctAddressPanel.find('input,select,radio').prop('disabled',false);
 				newAddressPanel.find('input,select,radio').prop('disabled',true);
 				}
@@ -364,7 +367,7 @@
 					addressPanel.find('input,select,radio').prop('disabled',true);
 				}
 
-				
+
 			}
 		});
 
@@ -420,10 +423,8 @@
 			var po2 = po.slice((po.length-3),(po.length));
 			document.getElementById('current-entered-po').innerHTML += (po1 + ' ' + po2);
 		}
-							
+
 	}
 </script>
 
 {% endblock %}
-
-

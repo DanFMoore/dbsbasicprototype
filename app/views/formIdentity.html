@@ -3,35 +3,37 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Do you have a National Insurance number?" %}
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+			{% include 'includes/error_summary.html' %}
+      {# include if this page has validation requirements #}
 
-			
+<h1 class="heading-medium">{{main_question}}</h1>
 
 			<form action="formIdentityDriving" method="post" class="form">
 
 				<!-- National Insurance -->
 			    <div id="ni-form-group" class="form-group">
 			    	<fieldset class="inline">
-			    		<legend class="heading-medium">Do you have a National Insurance number?</legend>
+			    		<legend class="visuallyhidden">{{main_question}}</legend>
 			    		<!--<p class="form-hint">If you can provide this information your application will be processed quicker.</p>-->
 			    		<div id="ni-form-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" data-target="ni-number" for="radio-ni-1">
 						    <input id="radio-ni-1" type="radio" name="radio-ni-group" value="Yes"
-						    	data-parsley-class-handler="#ni-form-group" 
+						    	data-parsley-class-handler="#ni-form-group"
           							data-parsley-errors-container="#ni-form-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Select 'yes' if you have a National Insurance number"
 						    >
 						    Yes
 					    </label>
-						
+
 					    <label class="block-label" for="radio-ni-2">
 						    <input id="radio-ni-2" type="radio" name="radio-ni-group" value="No">
 						    No
@@ -46,7 +48,7 @@
 							<p class="form-hint">For example, QQ 12 34 56 C.</p>
 							<div id="ni-expand-form-group-error-message" class="form-error validation-message"></div>
 							<input disabled class="form-control" name="ni-number-input" type="text" id="ni-number-input"
-								data-parsley-class-handler="#ni-expand-form-group" 
+								data-parsley-class-handler="#ni-expand-form-group"
           							data-parsley-errors-container="#ni-expand-form-group-error-message"
           							data-parsley-required="true"
     								data-parsley-required-message="Enter your National Insurance number"
@@ -65,16 +67,16 @@
 
 				    <div id="helpBlockText" class="panel panel-border-narrow js-hidden" >
 				    	<p>You can find your National Insurance number on your payslip, P60, or letters about tax, pensions, and benefits.</p>
-				    	
+
 
 
 					</div> <!-- END HELP BLOCK -->
-			    
+
 				</div>
 
 
 
-			    
+
 			    <!-- Continue button -->
 			    <div class="form-group">
 			    	<input type="submit" class="button" value="Save and continue">
@@ -108,7 +110,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -168,5 +170,3 @@
 </script>
 
 {% endblock %}
-
-

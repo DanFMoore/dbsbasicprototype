@@ -3,19 +3,21 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Confirm your details" %}
 {% block content %}
 
 <main id="content" role="main">
+
+{% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
-		<div class="column-two-thirds">			
-			
+		<div class="column-two-thirds">
+
 			<form action="formDeclaration" method="post" class="form">
 
 
-				<div class="form-group">
-			    	<h3 class="heading-medium">Confirm your details before continuing</h3>
-			    </div>
+
+			    	<h1 class="heading-large">{{ main_question}}</h3>
+
 			    <div class="form-group">
 
 				    <table>
@@ -23,20 +25,20 @@
 					    	<!-- Name -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Name</h2>
-					    			<div>John Scott Smith</div>
+					    			<span class="bold-small">Name</span><br/>
+                      John Scott Smith
 					    		</td>
-					    		<td class="editButton">
-					    		
+					    		<td>
+
 					    		</td>
 					    	</tr>
 					    	<!-- Date of Birth -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Date of birth</h2>
-					    			<div>01/01/1960</div>
+					    			<span class="bold-small">Date of birth</span><br/>
+					    			01/01/1960
 					    		</td>
-					    		<td class="editButton">
+					    		<td>
 
 					    		</td>
 					    	</tr>
@@ -44,25 +46,25 @@
 					    	<!-- Gender -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Sex</h2>
-					    			<div>{{ formdata["radio-gender-group"] }}</div>
-					    			
+					    			<span class="bold-small">Sex</span><br/>
+					    			{{ formdata["radio-gender-group"] }}
+
 					    		</td>
-					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    		<td >
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
 
 					    	<!-- Place of birth -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Place of birth</h2>
-					    			<div>{{ formdata["country-of-birth"] }}</div>
-					    			<div>{{ formdata["city-of-birth"] }}</div>
-					    			
+					    			<span class="bold-small">Place of birth</span><br/>
+					    			{{ formdata["country-of-birth"] }}
+					    			{{ formdata["city-of-birth"] }}
+
 					    		</td>
-					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    		<td>
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
 
@@ -70,14 +72,14 @@
 					    	{% if formdata["other-family-name"] %}
 						    	<tr>
 						    		<td>
-						    			<h2 class="text-secondary">Other name</h2>
-						    			<div>{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}</div>
-						    			<h2 class="text-secondary">Date from</h2>
-						    			<div>{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}</div>
-						    			</div>
+						    			<span class="bold-small">Other name</span><br/>
+						    			{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}<br/><br/>
+						    			<span class="bold-small">Date from</span><br/>
+						    			{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}
+
 						    		</td>
 						    		<td class="editButton">
-						    			<a class="button button-secondary">Edit</a>
+						    			<a href="#">Edit</a>
 						    		</td>
 						    	</tr>
 						    {% endif %}
@@ -86,38 +88,38 @@
 						    	{% if formdata["other-family-name-"+n] %}
 						    	<tr>
 						    		<td>
-						    			<h2 class="text-secondary">Other name {{n}}</h2>
-						    			<div>{{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n] }}</div>
-						    			<h2 class="text-secondary">Date from</h2>
-						    			<div>{{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n] }}</div>
-						    			
+						    			<span class="bold-small">Other name {{n}}</span><br/>
+						    			{{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n] }}
+						    			<span class="bold-small">Date from</span><br/>
+						    			{{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n] }}
+
 						    		</td>
 						    		<td class="editButton">
-						    			<a class="button button-secondary">Edit</a>
+						    			<a href="#">Edit</a>
 						    		</td>
 						    	</tr>
 						    	{% endif %}
 
 						    {% endfor %}
 
-					    	
+
 
 					    	<!-- Current address -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Current address</h2>
-					    			<div>
+					    			<span class="bold-small">Current address</span>
+					    			<p>
 					    				1 Oxford Road<br>
 										Bristol<br>
 										South Gloucestershire<br>
 										United Kingdom<br>
 										LP1 12D
-					    			</div>
-					    			<h2 class="text-secondary">At address since</h2>
-					    			<div>{{ formdata["correct-address-since-month"] }}/{{ formdata["correct-address-since-year"] }}</div>
+                  </p>
+					    			<span class="bold-small">At address since</span><br/>
+					    			{{ formdata["correct-address-since-month"] }}/{{ formdata["correct-address-since-year"] }}
 					    		</td>
 					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
 
@@ -126,57 +128,57 @@
 					    		{% if formdata["postcode-"+i] %}
 						    		<tr>
 							    		<td>
-							    			<h2 class="text-secondary">Other address {{i}}</h2>
-							    			<div>{{ formdata["postcode-"+i] }}</div>
-							    			<h2 class="text-secondary">At address since</h2>
-							    			<div>{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}</div>
-							    			{% if formdata["nc-address-to-month-"+i] %}
-							    				<h2 class="text-secondary">At address to</h2>
-							    				<div>{{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}</div>
+							    			<span class="bold-small">Other address {{i}}</span><br/>
+							    			{{ formdata["postcode-"+i] }}<br/><br/>
+							    			<span class="bold-small">At address since</span><br/>
+							    			{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}<br/>
+							    			{% if formdata["nc-address-to-month-"+i] %}<br/><br/>
+							    			<span class="bold-small">At address to</span><br/>
+							    		  {{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}<br/>
 							    			{% endif %}
 							    		</td>
 							    		<td class="editButton">
-							    			<a class="button button-secondary">Edit</a>
+							    			<a href="#">Edit</a>
 							    		</td>
 							    	</tr>
 
 						    	{% elif formdata["address-line-1-"+i] %}
 							    	<tr>
 							    		<td>
-							    			<h2 class="text-secondary">Other address {{i}}</h2>
-							    			<div>{{ formdata["address-line-1-"+i] }}</div>
-							    			<div>{{ formdata["address-line-2-"+i] }}</div>
-							    			<div>{{ formdata["address-town-city-"+i] }}</div>
-							    			<div>{{ formdata["address-county-"+i] }}</div>
-							    			<div>{{ formdata["address-country-"+i] }}</div>
-							    			<div>{{ formdata["address-postcode-"+i] }}</div>
-							    			<h2 class="text-secondary">At address since</h2>
-							    			<div>{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}</div>
-							    			{% if formdata["nc-address-to-month-"+i] %}
-							    				<h2 class="text-secondary">At address to</h2>
-							    				<div>{{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}</div>
+							    			<span class="bold-small">Other address {{i}}</span><br/>
+							    			{{ formdata["address-line-1-"+i] }}<br/>
+							    			{{ formdata["address-line-2-"+i] }}<br/>
+							    			{{ formdata["address-town-city-"+i] }}<br/>
+							    			{{ formdata["address-county-"+i] }}<br/>
+							    			{{ formdata["address-country-"+i] }}<br/>
+							    			{{ formdata["address-postcode-"+i] }}<br/><br/>
+							    			<span class="bold-small">At address since</span><br/>
+							    			{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}<br/>
+							    			{% if formdata["nc-address-to-month-"+i] %}<br/><br/>
+							    				<span class="bold-small">At address to</span><br/>
+							    				{{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}
 							    			{% endif %}
 							    		</td>
 							    		<td class="editButton">
-							    			<a class="button button-secondary">Edit</a>
+							    			<a href="#">Edit</a>
 							    		</td>
 							    	</tr>
 					    		{% endif %}
 					    	{% endfor %}
 
-					    	
+
 
 
 					    	<!-- National Insurance number -->
 					    	{% if formdata["ni-number-input"] %}
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">National Insurance number</h2>
-					    			<div>{{ formdata["ni-number-input"] }}</div>
-					    			
+					    			<span class="bold-small">National Insurance number</span><br/>
+					    			{{ formdata["ni-number-input"] }}
+
 					    		</td>
 					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
 					    	{% endif %}
@@ -185,11 +187,11 @@
 					    	{% if formdata["driving-licence-number-input"] %}
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Driving licence number</h2>
-					    			<div>{{ formdata["driving-licence-number-input"] }}</div>
+					    			<span class="bold-small">Driving licence number</span><br/>
+					    			{{ formdata["driving-licence-number-input"] }}
 					    		</td>
 					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
 					    	{% endif %}
@@ -198,11 +200,11 @@
 					    	{% if formdata["passport-number-input"] %}
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Passport number</h2>
-					    			<div>{{ formdata["passport-number-input"] }}</div>
+					    			<span class="bold-small">Passport number</span><br/>
+					    			{{ formdata["passport-number-input"] }}
 					    		</td>
 					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
 					    	{% endif %}
@@ -210,46 +212,46 @@
 					    	<!-- Previous convictions -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Unspent Convictions</h2>
+					    			<span class="bold-small">Unspent Convictions</span><br/>
 					    			{% if formdata["radio-convictions-group"] == 'Yes' %}
-					    				<div>I do have unspent convictions</div>
+					    				I do have unspent convictions
 					    			{% else %}
-					    				<div>I do not have unspent convictions</div>
+					    				I do not have unspent convictions
 					    			{% endif %}
 					    		</td>
 					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
-							
+
 
 					    	<!-- Send address -->
 					    	{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}
 							    <tr>
 							    	<td>
-							    		<h2 class="text-secondary">Send certificate to</h2>
-							    		<div>{{ formdata["send-postcode"] }}</div>
-							    		<div>{{ formdata["send-recipient"] }}</div>
-							    		<div>{{ formdata["send-address-line-1"] }}</div>
-							    		<div>{{ formdata["send-address-line-2"] }}</div>
-							    		<div>{{ formdata["send-address-town-city"] }}</div>
-							    		<div>{{ formdata["send-address-county"] }}</div>
-							    		<div>{{ formdata["send-address-country"] }}</div>
-							    		<div>{{ formdata["send-address-postcode"] }}</div>
+							    		<span class="bold-small">Send certificate to</span><br/>
+							    		{{ formdata["send-postcode"] }}<br/>
+							    		{{ formdata["send-recipient"] }}<br/>
+							    		{{ formdata["send-address-line-1"] }}<br/>
+							    		{{ formdata["send-address-line-2"] }}<br/>
+							    		{{ formdata["send-address-town-city"] }}<br/>
+							    		{{ formdata["send-address-county"] }}<br/>
+							    		{{ formdata["send-address-country"] }}<br/>
+							    		{{ formdata["send-address-postcode"] }}
 							    	</td>
 							    	<td class="editButton">
-							    		<a class="button button-secondary">Edit</a>
+							    		<a href="#">Edit</a>
 							    	</td>
 							    </tr>
 
 							{% else %}
 								<tr>
 							    	<td>
-							    		<h2 class="text-secondary">Send certificate to</h2>
-							    		<div>Send to my current address</div>
+							    		<span class="bold-small">Send certificate to</span><br/>
+							    		Send to my current address
 							    	</td>
 							    	<td class="editButton">
-							    		<a class="button button-secondary">Edit</a>
+							    		<a href="#">Edit</a>
 							    	</td>
 							    </tr>
 					    	{% endif %}
@@ -259,12 +261,12 @@
 					    	<!-- Email address -->
 					    	<tr>
 					    		<td>
-					    			<h2 class="text-secondary">Email address</h2>
-					    			<div>{{ formdata["email-address"] }}</div>
-					    			
+					    			<span class="bold-small">Email address</span><br/>
+					    			{{ formdata["email-address"] }}
+
 					    		</td>
 					    		<td class="editButton">
-					    			<a class="button button-secondary">Edit</a>
+					    			<a href="#">Edit</a>
 					    		</td>
 					    	</tr>
 
@@ -289,5 +291,3 @@
 </main>
 
 {% endblock %}
-
-
