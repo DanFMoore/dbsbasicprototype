@@ -3,36 +3,39 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-
+{% set main_question = "Have you ever been known by any other names?" %}
 {% block content %}
 
 <main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
 		<div class="column-two-thirds">
 
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+			{% include 'includes/error_summary.html' %}
+      {# include if this page has validation requirements #}
 
-
+      <h1 class="heading-medium">{{main_question}}</h1>
+      <p>This could be a different first or last name. For example if you got married, or changed your name by deed poll.</p>
 			<form action="formAddress" method="post" class="form">
+        <fieldset class="inline">
+          <legend class="visuallyhidden">{{main_question}}</legend>
 
 			    <div id="names-group" class="form-group">
-			    	<fieldset>
-			    		<legend class="heading-medium">Have you ever been known by any other names?</legend>
-			    		<p class="form-hint">This could be a different first or last name. For example if you got married, or changed your name by deed poll.</p>
+
 			    		<div id="names-group-error-message" class="form-error validation-message"></div>
 			    		<label class="block-label" for="name-radio-2">
 						    <input id="name-radio-2" type="radio" name="name-radio-group" value="No"
-						    	data-parsley-class-handler="#names-group" 
-          							data-parsley-errors-container="#names-group-error-message"
-          							data-parsley-required="true"
-    								data-parsley-required-message="Select 'no' if you haven't used any other names, or 'yes' if you have used other names"
+						    	data-parsley-class-handler="#names-group"
+          				data-parsley-errors-container="#names-group-error-message"
+          				data-parsley-required="true"
+    							data-parsley-required-message="Select 'no' if you haven't used any other names, or 'yes' if you have used other names"
 						    >
 						    No, I haven't used any other names
 					    </label>
 
 			    		<label class="block-label" data-target="name-change" for="name-radio-1">
 						    <input id="name-radio-1" type="radio" name="name-radio-group" value="Yes"
-						    	
+
 						    >
 						    Yes, I've used other names
 					    </label>
@@ -44,9 +47,9 @@
 
 			    	<!-- Expandable panel area -->
 			    	<div class="panel panel-border-narrow js-hidden" id="name-change">
-						
-						<p class="form-hint">Enter all your names in full - don't use initials.</p>
-						
+
+						<p>Enter all your names in full - don't use initials.</p>
+
 						<div id="add-name-container">
 							<div id="add-name-block">
 								<span class="heading-medium" id="new-name-title">Name </span>
@@ -55,7 +58,7 @@
 									<label class="form-label" for="given-names">First name(s)</label>
 									<div id="expand-given-name-group-error-message" class="form-error validation-message"></div>
 									<input disabled class="form-control" name="other-given-names" type="text" id="given-names"
-										data-parsley-class-handler="#expand-given-name-group" 
+										data-parsley-class-handler="#expand-given-name-group"
 		          							data-parsley-errors-container="#expand-given-name-group-error-message"
 		          							data-parsley-required="true"
 		    								data-parsley-required-message="Enter your other first name(s)"
@@ -67,7 +70,7 @@
 									<label class="form-label" for="family-name">Last name(s)</label>
 									<div id="expand-family-name-group-error-message" class="form-error validation-message"></div>
 									<input disabled class="form-control" name="other-family-name" type="text" id="family-name"
-										data-parsley-class-handler="#expand-family-name-group" 
+										data-parsley-class-handler="#expand-family-name-group"
 		          							data-parsley-errors-container="#expand-family-name-group-error-message"
 		          							data-parsley-required="true"
 		    								data-parsley-required-message="Enter your other last name(s)"
@@ -78,14 +81,15 @@
 								<!-- Date from -->
 								<div id="expand-date-from-group" class="form-group">
 									<fieldset>
-										
+
 										<div class="form-date">
 											<legend class="form-label">When did you start using this name?</legend>
+                      <p class="form-hint">For example, 03 1980</p>
 											<div id="expand-date-from-group-error-message" class="form-error validation-message"></div>
 											<div class="form-group form-group-month" id="expand-date-from-month-group">
 												<label for="name-from-month">Month</label>
 												<input disabled class="form-control" id="name-from-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-from-month"
-													data-parsley-class-handler="#expand-date-from-group" 
+													data-parsley-class-handler="#expand-date-from-group"
 		          									data-parsley-errors-container="#expand-date-from-group-error-message"
 		          									data-parsley-required="true"
 		    										data-parsley-required-message="Enter the month you started using this name"
@@ -94,18 +98,18 @@
 											<div class="form-group form-group-year" id="expand-date-from-year-group">
 												<label for="name-from-year">Year</label>
 												<input disabled class="form-control" id="name-from-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-from-year"
-													data-parsley-class-handler="#expand-date-from-group" 
+													data-parsley-class-handler="#expand-date-from-group"
 		          									data-parsley-errors-container="#expand-date-from-group-error-message"
 		          									data-parsley-required="true"
 		    										data-parsley-required-message="Enter the year you started using this name"
 												>
 											</div> <!-- Form group close-->
-											
+
 										</div> <!-- Form group close-->
 
 									</fieldset>
-									<p class="form-hint">For example, 03 1980</p>
-									
+
+
 								</div> <!-- Form group close-->
 
 								<br>
@@ -119,7 +123,6 @@
 						</div>
 
 					</div> <!-- Expandable panel area  Close -->
-			    </div> <!-- Form group close-->
 
 
 			    <!-- Continue button -->
@@ -146,7 +149,7 @@
 			<label class="form-label" for="given-names-">First name(s)</label>
 			<div id="expand-given-name-group-error-message-" class="form-error validation-message"></div>
 			<input disabled class="form-control" name="other-given-names-" type="text" id="given-names-"
-			data-parsley-class-handler="#expand-given-name-group-" 
+			data-parsley-class-handler="#expand-given-name-group-"
 			data-parsley-errors-container="#expand-given-name-group-error-message-"
 			data-parsley-required="true"
 			data-parsley-required-message="Enter your other first name(s) for name "
@@ -158,7 +161,7 @@
 			<label class="form-label" for="family-name-">Last name(s)</label>
 			<div id="expand-family-name-group-error-message-" class="form-error validation-message"></div>
 			<input disabled class="form-control" name="other-family-name-" type="text" id="family-name-"
-			data-parsley-class-handler="#expand-family-name-group-" 
+			data-parsley-class-handler="#expand-family-name-group-"
 			data-parsley-errors-container="#expand-family-name-group-error-message-"
 			data-parsley-required="true"
 			data-parsley-required-message="Enter your other last name(s) for name "
@@ -170,14 +173,14 @@
 		<div id="expand-date-from-group-" class="form-group">
 			<fieldset>
 				<legend class="form-label">When did you start using this name?</legend>
-				
+        	<p class="form-hint">For example, 03 1980</p>
 				<div class="form-date">
 
 				<div id="expand-date-from-group-error-message-" class="form-error validation-message"></div>
 					<div class="form-group form-group-month" id="expand-date-from-month-group-">
 						<label for="name-from-month-">Month</label>
 						<input disabled class="form-control" id="name-from-month-" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12" name="other-name-from-month-"
-						data-parsley-class-handler="#expand-date-from-group-" 
+						data-parsley-class-handler="#expand-date-from-group-"
 						data-parsley-errors-container="#expand-date-from-group-error-message-"
 						data-parsley-required="true"
 						data-parsley-required-message="Enter the month you started using name "
@@ -186,7 +189,7 @@
 					<div class="form-group form-group-year" id="expand-date-from-year-group-">
 						<label for="name-from-year-">Year</label>
 						<input disabled class="form-control" id="name-from-year-" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016" name="other-name-from-year-"
-						data-parsley-class-handler="#expand-date-from-group-" 
+						data-parsley-class-handler="#expand-date-from-group-"
 						data-parsley-errors-container="#expand-date-from-group-error-message-"
 						data-parsley-required="true"
 						data-parsley-required-message="Enter the year you started using name "
@@ -194,7 +197,7 @@
 					</div> <!-- Form group close-->
 				</div> <!-- Form group close-->
 			</fieldset>
-			<p class="form-hint">For example, 03 1980</p>
+
 		</div> <!-- Form group close-->
 
 
@@ -230,7 +233,7 @@
 
 	    var ok = true;
 	    // add custom validations here - set ok to false if any of them fail validation
-	    
+
 	    //ok = ok && checkDiagnosisFutureDate();
 	    //ok = ok && validateDOB();
 
@@ -282,15 +285,15 @@
 
 		  	changeId(children, counter);
 		  	document.getElementById('add-name-container').appendChild(obj);
-		  	
 
-		  	
+
+
 		  	$(document.getElementById('add-name-block-'+counter)).find('input,select,radio').prop('disabled', false);
-		  	
+
 		  	document.getElementById('new-name-title-'+counter).innerHTML +=String(counter);
 
 		  	document.getElementById('other-names-total').value = counter;
-		  	
+
 
 
 		  	counter+=1;
@@ -346,5 +349,3 @@
 </script>
 
 {% endblock %}
-
-
