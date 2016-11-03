@@ -47,7 +47,7 @@
 							<label class="form-label" for="ni-number-input">National Insurance number</label>
 							<p class="form-hint">For example, QQ 12 34 56 C.</p>
 							<div id="ni-expand-form-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control" name="ni-number-input" type="text" id="ni-number-input"
+							<input disabled class="form-control input-ni" name="ni-number-input" type="text" id="ni-number-input"
 								data-parsley-class-handler="#ni-expand-form-group"
           							data-parsley-errors-container="#ni-expand-form-group-error-message"
           							data-parsley-required="true"
@@ -99,9 +99,12 @@
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
 
+
+
 <script type="text/javascript">
 	var parsleyForm;
 	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
 
 	// attach parsley validation to the form
 	parsleyForm = thisFormInstance.parsley({
@@ -168,6 +171,9 @@
 
 		}
 
+
+
+		
 
 
 

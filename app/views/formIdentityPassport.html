@@ -44,7 +44,7 @@
 						<div id="passport-number-expand-form-group" class="form-group">
 							<label class="form-label" for="passport-number-input">Passport number</label>
 							<div id="passport-number-expand-form-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control" name="passport-number-input" type="text" id="passport-number-input"
+							<input disabled class="form-control input-pp" name="passport-number-input" type="text" id="passport-number-input"
 								data-parsley-class-handler="#passport-number-expand-form-group"
           							data-parsley-errors-container="#passport-number-expand-form-group-error-message"
           							data-parsley-required="true"
@@ -66,6 +66,7 @@
 			</form>
 		</div>
 	</div>
+	<input class='test-input js-hidden' disabled>
 
 
 
@@ -75,6 +76,7 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
+
 
 <script type="text/javascript">
 	var parsleyForm;
@@ -131,6 +133,8 @@
 				passportPanel.find('input,select,radio').prop('disabled', true);
 			}
 		});
+
+
 
 
 </script>

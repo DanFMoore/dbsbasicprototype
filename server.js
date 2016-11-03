@@ -1,6 +1,7 @@
 var path = require('path')
 var express = require('express')
 var session = require('express-session')
+var Cleave = require('cleave.js')
 var nunjucks = require('express-nunjucks')
 var routes = require('./app/routes.js')
 var favicon = require('serve-favicon')
@@ -165,3 +166,5 @@ utils.findAvailablePort(app, function (port) {
     })
   }
 })
+
+module.exports =Cleave
