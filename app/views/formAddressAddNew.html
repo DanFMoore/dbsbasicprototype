@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+{% set main_question = "Add another address" %}
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	<div class="grid-row">
+		<div class="column-two-thirds reduceMargin">
+
+			{% include 'includes/error_summary.html' %}
+      {# include if this page has validation requirements #}
+
+			<form action="formPostcodeResults" method="post" class="form">
+
+
+
+
+        <h1 class="heading-medium">{{main_question}}</h1>
+			  	<!-- Details correct -->
+				<div class="form-group" id="add-new-address-group">
+					<fieldset class="inline">
+						<legend class="visuallyhidden">{{ main_question }}</legend>
+						<!-- Verified details -->
+						<div class="form-group">
+              <!-- Postcode block -->
+              <fieldset class="inline">
+                <label class="form-label" for="house-number">House number or name
+              <!--  <span class="form-hint">for example, Flat 20A</span>-->
+                </label>
+                    <input class="form-control" id="house-number" type="text" name="house-number">
+                  </div>
+  							<!-- Postcode -->
+                	<div class="form-group" id="postcode-block" >
+  								<label class="form-label" for="postcode">UK postcode
+                <!--  <span class="form-hint">for example, SW1 2AB</span>-->
+                  </label>
+  								<div id="postcode-block-error-message" class="form-error validation-message"></div>
+  								<input class="form-control" style="text-transform: uppercase;" maxlength="8" name="postcode" type="text" id="postcode"
+  									data-parsley-class-handler="#postcode-block"
+            							data-parsley-errors-container="#postcode-block-error-message"
+            							data-parsley-required="true"
+      								data-parsley-required-message="Enter the address"
+  								>
+
+  							</fieldset>
+
+            </div> <!-- Form group close - Postcode block -->
+
+
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Save and continue">
+				</div> <!-- Form group close-->
+        <p><a href="formAddressManual">Enter address manually</a></p>
+			</form>
+		</div>
+	</div>
+
+
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+	  $("input[name=radio-correct-address-group]").on('click', function() {
+			var postcodePanel = $('#postcode-block');
+			var addressPanel = $('#new-address-fields-block');
+
+			var correctAddressPanel = $('#correct-address');
+			var newAddressPanel = $('#incorrect-address');
+
+			// if Another address selected, enable fields depending on whether manual is selected
+			// else disable those fields
+			if ($(this).val() == "Yes") {
+				// remove disabled prop
+
+				correctAddressPanel.find('input,select,radio').prop('disabled',false);
+				newAddressPanel.find('input,select,radio').prop('disabled',true);
+				}
+			else if($(this).val() == "No") {
+
+				correctAddressPanel.find('input,select,radio').prop('disabled',true);
+				newAddressPanel.find('input,select,radio').prop('disabled',false);
+
+				// If Postcode finder NOT active, enable address fields
+				// Else enable postcode finder field
+				if ($('#new-manual-toggle-link').hasClass("manual")) {
+					postcodePanel.find('input,select,radio').prop('disabled',true);
+					addressPanel.find('input,select,radio').prop('disabled',false);
+				}
+				else {
+					postcodePanel.find('input,select,radio').prop('disabled',false);
+					addressPanel.find('input,select,radio').prop('disabled',true);
+				}
+
+
+			}
+		});
+
+
+
+	function swapBlock(blockID){
+		var newPostcodePanel = $('#postcode-block');
+		var newAddressPanel = $('#new-address-fields-block');
+
+		$("#"+blockID).toggleClass("manual");
+		$("#postcode-block").toggleClass("js-hidden");
+		$("#new-address-fields-block").toggleClass("js-hidden");
+
+		if ($("#"+blockID).hasClass("manual")){
+			$("#"+blockID).html("Use Postcode finder");
+			newAddressPanel.find('input,select,radio').prop('disabled', false);
+			newPostcodePanel.find('input,select,radio').prop('disabled', true);
+		}
+		else {
+			$("#"+blockID).html("Enter address manually");
+			newAddressPanel.find('input,select,radio').prop('disabled', true);
+			newPostcodePanel.find('input,select,radio').prop('disabled', false);
+		}
+
+		// Use Postcode finder
+		// Enter address manually
+		return false;
+	}
+
+	function poLookup(){
+		var lookupBlock = '#current-postcode-lookup-block';
+		var postcodeBlock = '#postcode-block';
+
+		// When Lookup Postcode button is clicked, hide the postcode block and display the lookup block
+		$(lookupBlock).toggleClass('js-hidden');
+		$(postcodeBlock).toggleClass('js-hidden');
+		$('#new-manual-toggle-link').toggleClass('js-hidden');
+
+		// Disable fields in postcodeBlock to avoid validation error
+		if ($(lookupBlock).hasClass('js-hidden')) {
+			$(postcodeBlock).find('input,select,radio').prop('disabled',false);
+			$(lookupBlock).find('input,select,radio').prop('disabled',true);
+			$('#postcode').val('');
+			document.getElementById('current-entered-po').innerHTML ='';
+		}
+		else {
+			$(postcodeBlock).find('input,select,radio').prop('disabled',true);
+			$(lookupBlock).find('input,select,radio').prop('disabled',false);
+
+			// Add the entered postcode to the Postcode: line
+			var po = ($('#postcode').val()).toUpperCase();
+			var po1 = po.slice(0,(po.length-3));
+			var po2 = po.slice((po.length-3),(po.length));
+			document.getElementById('current-entered-po').innerHTML += (po1 + ' ' + po2);
+		}
+
+	}
+</script>
+
+{% endblock %}

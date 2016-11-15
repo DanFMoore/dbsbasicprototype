@@ -66,6 +66,56 @@ router.post('/formOtherAddresses', function(req, res) {
 router.post('/formSendAddress', function(req, res) {
   res.render('formSendAddress', req.session)
 })
+
+//Address history overview
+router.all('/formAddressHistory', function (req, res) {
+ res.render('formAddressHistory', {
+   'form_action' : '/formAddressGaps',
+   'addressline1':req.session.addressline1,
+   'addressline2':req.session.addressline2,
+   'town':req.session.town,
+   'postcode':req.session.postcode,
+   'additionaladdress':req.session.additionaladdress
+  });
+ });
+
+//Address results
+router.all('/formPostcodeResults', function (req, res) {
+ res.render('formPostcodeResults', { 'form_action' : '/radio-address-store' });
+ });
+
+//Store address results
+ router.post('/radio-address-store', function (req, res){
+   //Set additional address to true;
+   req.session.additionaladdress=true;
+   //Store additional address choice
+   req.session.address = req.body['address-results-radio-group'];
+   console.log(req.session.address);
+   if (req.session.address=="Flat 7a"){
+     req.session.addressline1 = "Flat 7a South Bank Tower";
+     req.session.addressline2 = "Upper Ground";
+     req.session.town = "London";
+     req.session.postcode = "SE1 9EY"
+   }
+   else {
+     req.session.addressline1 = "Flat 7b South Bank Tower";
+     req.session.addressline2 = "Upper Ground";
+     req.session.town = "London";
+     req.session.postcode = "SE1 9EY"
+   }
+   res.redirect('formAddressDates');
+ })
+
+//formAddressGaps
+router.post('/formAddressGaps', function(req, res) {
+  res.render('formAddressGaps', req.session)
+})
+
+//Form address dates
+router.post('/formAddressDates', function(req, res) {
+  console.log(req.session.address);
+  res.render('formAddressDates', req.session)
+})
 // Section 8 - Identity Details
 router.post('/formIdentity', function(req, res) {
   res.render('formIdentity', req.session)
@@ -140,7 +190,7 @@ router.get('/examples/over-18', function (req, res) {
       res.redirect('ineligible');
 
     }
-    
+
   });
 
   // Write the user input to the check your answers page
@@ -150,7 +200,7 @@ router.get('/examples/over-18', function (req, res) {
     var feat = req.query.jugglingfeat;
 
     res.render('training/check-your-answers-page', { 'feat' : feat });
-    
+
   });
 
 
@@ -164,7 +214,7 @@ router.get('/examples/over-18', function (req, res) {
   router.post('/training/check-your-answers-page-post', function (req, res) {
     var feat = req.query.jugglingfeat;
     res.render('training/check-your-answers-page', { 'feat' : feat });
-    
+
   });
 
 
