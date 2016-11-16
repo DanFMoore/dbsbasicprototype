@@ -167,4 +167,5 @@ utils.findAvailablePort(app, function (port) {
   }
 })
 
-module.exports =Cleave
+module.exports = Cleave
+module.exports = bodyParser

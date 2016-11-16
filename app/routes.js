@@ -47,9 +47,12 @@ router.post('/formSensitive', function(req, res) {
   res.render('formSensitive', req.session)
 })
 // Section 3 - Add other names
-router.post('/formAddNames', function(req, res) {
-  res.render('formAddNames', req.session)
-})
+router.all('/formAddNames', function (req, res) {
+  //Sets address info to display by default
+  req.session.addressentry1 = true;
+  req.session.addressentry2 = true;
+ res.render('formAddNames', {'form_action' : '/formAddressHistory'});
+ });
 // Section 4 - Email Address
 router.post('/formEmail', function(req, res) {
   res.render('formEmail', req.session)
@@ -70,13 +73,40 @@ router.post('/formSendAddress', function(req, res) {
 //Address history overview
 router.all('/formAddressHistory', function (req, res) {
  res.render('formAddressHistory', {
-   'form_action' : '/formAddressGaps',
+  'form_action' : '/formAddressGaps',
+   'delete_action_1' : '/deleteAction1',
+   'delete_action_2': '/deleteAction2',
+   'delete_action_3' : '/deleteAction3',
    'addressline1':req.session.addressline1,
    'addressline2':req.session.addressline2,
    'town':req.session.town,
    'postcode':req.session.postcode,
-   'additionaladdress':req.session.additionaladdress
-  });
+   'frommonth' : req.session.frommonth,
+   'fromyear' : req.session.fromyear,
+   'tomonth' : req.session.tomonth,
+   'toyear' : req.session.toyear,
+   'additionaladdress':req.session.additionaladdress,
+   'addressentry1':req.session.addressentry1,
+   'addressentry2':req.session.addressentry2
+ });
+ });
+
+ //Delete Address entry 1
+ router.all('/deleteAction1', function (req,res){
+   req.session.addressentry1 = false;
+   res.redirect('/formAddressHistory');
+ });
+
+ //Delete Address entry 2
+ router.all('/deleteAction2', function (req,res){
+   req.session.addressentry2 = false;
+   res.redirect('/formAddressHistory');
+ });
+
+ //Delete Address entry 2
+ router.all('/deleteAction3', function (req,res){
+   req.session.additionaladdress = false;
+   res.redirect('/formAddressHistory');
  });
 
 //Address results
@@ -103,8 +133,35 @@ router.all('/formPostcodeResults', function (req, res) {
      req.session.town = "London";
      req.session.postcode = "SE1 9EY"
    }
+      console.log(req.session.addressline1);
+
    res.redirect('formAddressDates');
- })
+ });
+
+
+ //Address results
+ router.all('/formAddressManual', function (req, res) {
+  res.render('formAddressManual', { 'form_action' : '/address-manual-store' });
+  });
+
+  //Stores manual address Details
+  router.post('/address-manual-store', function (req, res){
+      req.session.additionaladdress = true;
+      req.session.addressline1 = req.body['new-address-line-1'];
+      req.session.addressline2 = req.body['new-address-line-2'];
+      req.session.town = req.body['new-address-town-city'];
+      req.session.county = req.body['new-address-county'];
+      req.session.country = req.body['new-address-country'];
+      req.session.postcode = req.body['new-address-postcode'];
+      console.log(req.session.addressline1);
+      console.log(req.session.addressline2);
+      console.log(req.session.town);
+      console.log(req.session.county);
+      console.log(req.session.country);
+      console.log(req.session.postcode);
+  res.redirect('formAddressDates');
+  });
+
 
 //formAddressGaps
 router.post('/formAddressGaps', function(req, res) {
@@ -112,10 +169,27 @@ router.post('/formAddressGaps', function(req, res) {
 })
 
 //Form address dates
-router.post('/formAddressDates', function(req, res) {
-  console.log(req.session.address);
-  res.render('formAddressDates', req.session)
-})
+router.all('/formAddressDates', function (req, res) {
+ res.render('formAddressDates', { 'form_action' : '/address-dates-store' });
+ });
+
+ //Store address dates
+ router.post('/address-dates-store', function (req, res){
+   req.session.monthnames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   req.session.frommonth = req.session.monthnames[req.body['correct-address-since-month']-1];
+   req.session.fromyear = req.body['correct-address-since-year'];
+   if (req.body['current-address'] == 'current-address'){
+     req.session.tomonth = "Present";
+     req.session.toyear = "";
+   }
+   else {
+     req.session.tomonth = req.session.monthnames[req.body['correct-address-until-month']-1];
+     req.session.toyear = req.body['correct-address-until-year'];
+   }
+res.redirect('/formAddressHistory');
+ });
+
+
 // Section 8 - Identity Details
 router.post('/formIdentity', function(req, res) {
   res.render('formIdentity', req.session)

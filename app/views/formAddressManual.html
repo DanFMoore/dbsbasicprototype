@@ -15,7 +15,7 @@
 			{% include 'includes/error_summary.html' %}
       {# include if this page has validation requirements #}
 
-			<form action="formAddressDates" method="post" class="form">
+			<form action="{{form_action}}" method="post" class="form">
 
 
 
@@ -42,7 +42,7 @@
 							<div id="new-town-group" class="form-group">
 								<label class="form-label" for="new-address-town-city">Town/City</label>
 								<div id="new-town-group-error-message" class="form-error validation-message"></div>
-								<input disabled class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
+								<input class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
 									data-parsley-class-handler="#new-town-group"
           							data-parsley-errors-container="#new-town-group-error-message"
           							data-parsley-required="true"
@@ -73,6 +73,7 @@
     								data-parsley-required-message="Enter the postcode"
 								>
 							</div>
+                <a href="formAddressAddNew">Use postcode lookup</a>
 						</div> <!-- Form group close - New address block -->
 
 

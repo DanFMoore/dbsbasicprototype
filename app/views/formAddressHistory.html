@@ -28,6 +28,7 @@
               <table>
                 <tbody>
                   <!--Addresses -->
+                  {% if addressentry1 %}
                   <tr>
                     <td>
                       <span class="bold-small">November 2015 - Present</span><br/><br/>
@@ -36,9 +37,12 @@
                         M1 2GL
                     </td>
                     <td>
-                      <a href="#">Edit</a>
+                      <a href="#">Edit</a><br/>
+                      <a href="{{delete_action_1}}">Delete</a>
                     </td>
                   </tr>
+                  {% endif %}
+                  {% if addressentry2 %}
                   <tr>
                     <td>
                       <span class="bold-small">October 2014 - November 2015</span><br/><br/>
@@ -47,21 +51,33 @@
                         WA1 2LD</p>
                     </td>
                     <td>
-                      <a href="formAddressEdit">Edit</a>
+                      <a href="formAddressEdit">Edit</a><br/>
+                      <a href="{{delete_action_2}}">Delete</a>
                     </td>
                   </tr>
+                  {% endif %}
 
             <!-- Show additional address only when added -->
             {% if additionaladdress %}
                   <tr>
                     <td>
-                      <span class="bold-small"></span>{{frommonth}} {{fromyear}} - {{tomonth}} {{toyear}}<br/><br/>
+                      <span class="bold-small">{{frommonth}} {{fromyear}} - {{tomonth}} {{toyear}}</span><br/><br/>
                       <p>{{addressline1}}<br/>
+                        {% if addressline2 %}
+                        {{addressline2}}<br/>
+                        {% endif %}
                       {{town}}<br/>
+                        {% if county %}
+                        {{county}}<br/>
+                        {% endif %}
+                        {% if country %}
+                        {{country}}<br/>
+                        {% endif %}
                       {{postcode}}</p>
                     </td>
                     <td>
-                      <a href="formAddressEdit">Edit</a>
+                      <a href="formAddressEdit">Edit</a><br/>
+                      <a href="{{delete_action_3}}">Delete</a>
                     </td>
                   </tr>
               {% endif %}
