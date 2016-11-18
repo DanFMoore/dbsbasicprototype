@@ -1,15 +1,10 @@
-{% extends "layout.html" %}
-
-{% block page_title %}
-  DBS Prototype
-{% endblock %}
-{% set main_question = "Confirm your details" %}
-{% block content %}
+{% extends "layout.html" %} {% block page_title %} DBS Prototype {% endblock %} {% set main_question = "Confirm your details"
+%} {% block content %}
 
 <main id="content" role="main">
 
-{% include 'includes/phase_banner_alpha.html' %}
-<a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	{% include 'includes/phase_banner_alpha.html' %}
+	<a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
 
@@ -17,256 +12,239 @@
 
 
 
-			    	<h1 class="heading-medium">{{ main_question}}</h3>
+				<h1 class="heading-medium">{{ main_question}}</h1>
 
-			    <div class="form-group">
+				<div class="form-group">
 
-				    <table>
-					    <tbody>
-					    	<!-- Name -->
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Name</span><br/>
-                      John Scott Smith
-					    		</td>
-					    		<td>
+					<table>
+						<tbody>
+							<!-- Name -->
+							<tr>
+								<td>
+									<span class="bold-small">Name</span><br/> John Scott Smith
+								</td>
+								<td>
 
-					    		</td>
-					    	</tr>
-					    	<!-- Date of Birth -->
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Date of birth</span><br/>
-					    			01/01/1960
-					    		</td>
-					    		<td>
+								</td>
+							</tr>
+							<!-- Date of Birth -->
+							<tr>
+								<td>
+									<span class="bold-small">Date of birth</span><br/> 01/01/1960
+								</td>
+								<td>
 
-					    		</td>
-					    	</tr>
+								</td>
+							</tr>
 
-					    	<!-- Gender -->
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Sex</span><br/>
-					    			{{ formdata["radio-gender-group"] }}
+							<!-- Sex -->
+							<tr>
+								<td>
+									<span class="bold-small">Sex</span><br/> {{ formdata["radio-gender-group"] }}
 
-					    		</td>
-					    		<td >
-					    			<a href="#">Edit</a>
-					    		</td>
-					    	</tr>
+								</td>
+								<td>
+									<a href="#">Edit</a>
+								</td>
+							</tr>
 
-					    	<!-- Place of birth -->
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Place of birth</span><br/>
-					    			{{ formdata["country-of-birth"] }}<br/>
-					    			{{ formdata["city-of-birth"] }}
+							<!-- Place of birth -->
+							<tr>
+								<td>
+									<span class="bold-small">Place of birth</span><br/> {{ formdata["country-of-birth"] }}<br/> {{ formdata["city-of-birth"]
+									}}
 
-					    		</td>
-					    		<td>
-					    			<a href="#">Edit</a>
-					    		</td>
-					    	</tr>
+								</td>
+								<td>
+									<a href="#">Edit</a>
+								</td>
+							</tr>
 
-					    	<!-- Add other names -->
-					    	{% if formdata["other-family-name"] %}
-						    	<tr>
-						    		<td>
-						    			<span class="bold-small">Other name</span><br/>
-						    			{{ formdata["other-given-names"] }} {{ formdata["other-family-name"] }}<br/><br/>
-						    			<span class="bold-small">Date from</span><br/>
-						    			{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"] }}
+							<!-- Add other names -->
+							{% if formdata["other-family-name"] %}
+							<tr>
+								<td>
+									<span class="bold-small">Other name</span><br/> {{ formdata["other-given-names"] }} {{ formdata["other-family-name"]
+									}}
+									<br/><br/>
+									<span class="bold-small">Date from</span><br/> {{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"]
+									}}
+									<span class="bold-small">Date to</span><br/> {{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"]
+									}}
 
-						    		</td>
-						    		<td class="editButton">
-						    			<a href="#">Edit</a>
-						    		</td>
-						    	</tr>
-						    {% endif %}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %} {% for n in range(1, formdata["other-names-total"]+1) %} {% if formdata["other-family-name-"+n] %}
+							<tr>
+								<td>
+									<span class="bold-small">Other name {{n}}</span><br/> {{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n]
+									}}
+									<span class="bold-small">Date from</span><br/> {{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n]
+									}}
+									<span class="bold-small">Date to</span><br/> {{ formdata["other-name-to-month-"+n] }}/{{ formdata["other-name-to-year-"+n]
+									}}
 
-					    	{% for n in range(1, formdata["other-names-total"]+1) %}
-						    	{% if formdata["other-family-name-"+n] %}
-						    	<tr>
-						    		<td>
-						    			<span class="bold-small">Other name {{n}}</span><br/>
-						    			{{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n] }}
-						    			<span class="bold-small">Date from</span><br/>
-						    			{{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n] }}
-
-						    		</td>
-						    		<td class="editButton">
-						    			<a href="#">Edit</a>
-						    		</td>
-						    	</tr>
-						    	{% endif %}
-
-						    {% endfor %}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %} {% endfor %}
 
 
 
-					    	<!-- Current address -->
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Current address</span>
-					    			<p>
-					    				1 Oxford Road<br>
-										Bristol<br>
-										South Gloucestershire<br>
-										United Kingdom<br>
-										LP1 12D
-                  </p>
-					    			<span class="bold-small">At address since</span><br/>
-					    			{{ formdata["correct-address-since-month"] }}/{{ formdata["correct-address-since-year"] }}
-					    		</td>
-					    		<td class="editButton">
-					    			<a href="#">Edit</a>
-					    		</td>
-					    	</tr>
+							<!-- Current address -->
+							<tr>
+								<td>
+									<span class="bold-small">Current address</span>
+									<p>
+										1 Oxford Road<br> Bristol
+										<br> South Gloucestershire<br> United Kingdom<br> LP1 12D
+									</p>
+									<span class="bold-small">At address since</span><br/> {{ formdata["correct-address-since-month"] }}/{{ formdata["correct-address-since-year"]
+									}}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
 
-					    	<!-- Other Addresses -->
-					    	{% for i in range(1, formdata["other-addresses-total"]+1) %}
-					    		{% if formdata["postcode-"+i] %}
-						    		<tr>
-							    		<td>
-							    			<span class="bold-small">Other address {{i}}</span><br/>
-							    			{{ formdata["postcode-"+i] }}<br/><br/>
-							    			<span class="bold-small">At address since</span><br/>
-							    			{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}<br/>
-							    			{% if formdata["nc-address-to-month-"+i] %}<br/><br/>
-							    			<span class="bold-small">At address to</span><br/>
-							    		  {{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}<br/>
-							    			{% endif %}
-							    		</td>
-							    		<td class="editButton">
-							    			<a href="#">Edit</a>
-							    		</td>
-							    	</tr>
+							<!-- Other Addresses -->
+							{% for i in range(1, formdata["other-addresses-total"]+1) %} {% if formdata["postcode-"+i] %}
+							<tr>
+								<td>
+									<span class="bold-small">Other address {{i}}</span><br/> {{ formdata["postcode-"+i] }}<br/><br/>
+									<span class="bold-small">At address since</span><br/> {{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i]
+									}}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}<br/> {% if formdata["nc-address-to-month-"+i]
+									%}
+									<br/><br/>
+									<span class="bold-small">At address to</span><br/> {{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i]
+									}}
+									<br/> {% endif %}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
 
-						    	{% elif formdata["address-line-1-"+i] %}
-							    	<tr>
-							    		<td>
-							    			<span class="bold-small">Other address {{i}}</span><br/>
-							    			{{ formdata["address-line-1-"+i] }}<br/>
-							    			{{ formdata["address-line-2-"+i] }}<br/>
-							    			{{ formdata["address-town-city-"+i] }}<br/>
-							    			{{ formdata["address-county-"+i] }}<br/>
-							    			{{ formdata["address-country-"+i] }}<br/>
-							    			{{ formdata["address-postcode-"+i] }}<br/><br/>
-							    			<span class="bold-small">At address since</span><br/>
-							    			{{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i] }}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}<br/>
-							    			{% if formdata["nc-address-to-month-"+i] %}<br/><br/>
-							    				<span class="bold-small">At address to</span><br/>
-							    				{{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i] }}
-							    			{% endif %}
-							    		</td>
-							    		<td class="editButton">
-							    			<a href="#">Edit</a>
-							    		</td>
-							    	</tr>
-					    		{% endif %}
-					    	{% endfor %}
+							{% elif formdata["address-line-1-"+i] %}
+							<tr>
+								<td>
+									<span class="bold-small">Other address {{i}}</span><br/> {{ formdata["address-line-1-"+i] }}<br/> {{ formdata["address-line-2-"+i]
+									}}
+									<br/> {{ formdata["address-town-city-"+i] }}<br/> {{ formdata["address-county-"+i] }}<br/> {{ formdata["address-country-"+i]
+									}}
+									<br/> {{ formdata["address-postcode-"+i] }}<br/><br/>
+									<span class="bold-small">At address since</span><br/> {{ formdata["cur-address-since-month-"+i] }}{{ formdata["nc-address-since-month-"+i]
+									}}/{{ formdata["cur-address-since-year-"+i] }}{{ formdata["nc-address-since-year-"+i] }}<br/> {% if formdata["nc-address-to-month-"+i]
+									%}
+									<br/><br/>
+									<span class="bold-small">At address to</span><br/> {{ formdata["nc-address-to-month-"+i] }}/{{ formdata["nc-address-to-year-"+i]
+									}} {% endif %}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %} {% endfor %}
 
 
 
 
-					    	<!-- National Insurance number -->
-					    	{% if formdata["ni-number-input"] %}
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">National Insurance number</span><br/>
-					    			{{ formdata["ni-number-input"] }}
+							<!-- National Insurance number -->
+							{% if formdata["ni-number-input"] %}
+							<tr>
+								<td>
+									<span class="bold-small">National Insurance number</span><br/> {{ formdata["ni-number-input"] }}
 
-					    		</td>
-					    		<td class="editButton">
-					    			<a href="#">Edit</a>
-					    		</td>
-					    	</tr>
-					    	{% endif %}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %}
 
-					    	<!-- Driving licence number -->
-					    	{% if formdata["driving-licence-number-input"] %}
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Driving licence number</span><br/>
-					    			{{ formdata["driving-licence-number-input"] }}
-					    		</td>
-					    		<td class="editButton">
-					    			<a href="#">Edit</a>
-					    		</td>
-					    	</tr>
-					    	{% endif %}
+							<!-- Driving licence number -->
+							{% if formdata["driving-licence-number-input"] %}
+							<tr>
+								<td>
+									<span class="bold-small">Driving licence number</span><br/> {{ formdata["driving-licence-number-input"] }}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %}
 
-					    	<!-- Passport details -->
-					    	{% if formdata["passport-number-input"] %}
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Passport number</span><br/>
-					    			{{ formdata["passport-number-input"] }}
-					    		</td>
-					    		<td class="editButton">
-					    			<a href="#">Edit</a>
-					    		</td>
-					    	</tr>
-					    	{% endif %}
+							<!-- Passport details -->
+							{% if formdata["passport-number-input"] %}
+							<tr>
+								<td>
+									<span class="bold-small">Passport number</span><br/> {{ formdata["passport-number-input"] }}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %}
 
 
-					    	<!-- Send address -->
-					    	{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}
-							    <tr>
-							    	<td>
-							    		<span class="bold-small">Send certificate to</span><br/>
-							    		{{ formdata["send-postcode"] }}<br/>
-							    		{{ formdata["send-recipient"] }}<br/>
-							    		{{ formdata["send-address-line-1"] }}<br/>
-							    		{{ formdata["send-address-line-2"] }}<br/>
-							    		{{ formdata["send-address-town-city"] }}<br/>
-							    		{{ formdata["send-address-county"] }}<br/>
-							    		{{ formdata["send-address-country"] }}<br/>
-							    		{{ formdata["send-address-postcode"] }}
-							    	</td>
-							    	<td class="editButton">
-							    		<a href="#">Edit</a>
-							    	</td>
-							    </tr>
+							<!-- Send address -->
+							{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}
+							<tr>
+								<td>
+									<span class="bold-small">Send certificate to</span><br/> {{ formdata["send-postcode"] }}<br/> {{ formdata["send-recipient"]
+									}}
+									<br/> {{ formdata["send-address-line-1"] }}<br/> {{ formdata["send-address-line-2"] }}<br/> {{ formdata["send-address-town-city"]
+									}}
+									<br/> {{ formdata["send-address-county"] }}<br/> {{ formdata["send-address-country"] }}<br/> {{ formdata["send-address-postcode"]
+									}}
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
 
 							{% else %}
-								<tr>
-							    	<td>
-							    		<span class="bold-small">Send certificate to</span><br/>
-							    		Send to my current address
-							    	</td>
-							    	<td class="editButton">
-							    		<a href="#">Edit</a>
-							    	</td>
-							    </tr>
-					    	{% endif %}
+							<tr>
+								<td>
+									<span class="bold-small">Send certificate to</span><br/> Send to my current address
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %}
 
 
 
-					    	<!-- Email address -->
-					    	<tr>
-					    		<td>
-					    			<span class="bold-small">Email address</span><br/>
-					    			{{ formdata["email-address"] }}
+							<!-- Email address -->
+							<tr>
+								<td>
+									<span class="bold-small">Email address</span><br/> {{ formdata["email-address"] }}
 
-					    		</td>
-					    		<td class="editButton">
-					    			<a href="#">Edit</a>
-					    		</td>
-					    	</tr>
+								</td>
+								<td class="editButton">
+									<a href="#">Edit</a>
+								</td>
+							</tr>
 
-					    </tbody>
-				    </table>
+						</tbody>
+					</table>
 
-			    </div> <!-- Form group close-->
+				</div>
+				<!-- Form group close-->
 
 
 
-			    <!-- Confirm button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Confirm and continue">
-				</div> <!-- Form group close-->
+				<!-- Confirm button -->
+				<div class="form-group">
+					<input type="submit" class="button" value="Confirm and continue">
+				</div>
+				<!-- Form group close-->
 
 			</form>
 		</div>
