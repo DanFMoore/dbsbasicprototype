@@ -1,133 +1,70 @@
-{% extends "layout.html" %}
-
-{% block page_title %}
-  DBS Prototype
-{% endblock %}
-{% set main_question = "Where have you lived in the last 5 years?" %}
-{% block content %}
+{% extends "layout.html" %} 
+{% block page_title %} DBS Prototype {% endblock %} 
+{% set main_question = "Why didn't you have
+an address?" %} {% block content %}
 
 <main id="content" role="main">
-  {% include 'includes/phase_banner_alpha.html' %}
-  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
-	<div class="grid-row">
-		<div class="column-two-thirds reduceMargin">
+    {% include 'includes/phase_banner_alpha.html' %}
+    <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds reduceMargin">
 
-			{% include 'includes/error_summary.html' %}
-      {# include if this page has validation requirements #}
+            {% include 'includes/error_summary.html' %} {# include if this page has validation requirements #}
 
-			<form action="formIdentity" method="post" class="form">
+            <form action="formAddressUnusualDates" method="post" class="form">
 
-        <h1 class="heading-medium">{{main_question}}</h1>
-        <p>Include details of all addresses including secondary addresses if you work away or are a student.</p>
-			  	<!-- Details correct -->
-				<div class="form-group" id="current-address-group">
-					<fieldset class="inline">
-						<legend class="visuallyhidden">{{ main_question }}</legend>
-						<!-- Verified details -->
-						<div class="form-group">
-              <table>
-                <tbody>
-                  <!--Addresses -->
-                  {% if addressentry1 %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">November 2015 - Present</span><br/><br/>
-                        <p>1 Oxford Road<br/>
-                        Manchester<br/>
-                        M1 2GL
-                    </td>
-                    <td>
-                      <a href="#">Edit</a><br/>
-                      <a href="{{delete_action_1}}">Delete</a>
-                    </td>
-                  </tr>
-                  {% endif %}
-                  {% if addressentry2 %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">October 2014 - November 2015</span><br/><br/>
-                        <p>2 Knutsford Road<br/>
-                        Warrington<br/>
-                        WA1 2LD</p>
-                    </td>
-                    <td>
-                      <a href="formAddressEdit">Edit</a><br/>
-                      <a href="{{delete_action_2}}">Delete</a>
-                    </td>
-                  </tr>
-                  {% endif %}
+                <h1 class="heading-medium">{{main_question}}</h1>
 
-            <!-- Show additional address only when added -->
-            {% if additionaladdress %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">{{frommonth}} {{fromyear}} - {{tomonth}} {{toyear}}</span><br/><br/>
-                      <p>{{addressline1}}<br/>
-                        {% if addressline2 %}
-                        {{addressline2}}<br/>
-                        {% endif %}
-                      {{town}}<br/>
-                        {% if county %}
-                        {{county}}<br/>
-                        {% endif %}
-                        {% if country %}
-                        {{country}}<br/>
-                        {% endif %}
-                      {{postcode}}</p>
-                    </td>
-                    <td>
-                      <a href="formAddressEdit">Edit</a><br/>
-                      <a href="{{delete_action_3}}">Delete</a>
-                    </td>
-                  </tr>
-              {% endif %}
-              <!-- Ends additional address -->
+                <!-- Details correct -->
+                <div class="form-group" id="unusual-address-group">
+                    <fieldset>
+                        <legend class="visually-hidden">{{main_question}}</legend>
 
-							<!-- Show Unusual address if present -->
-							{% if unusualaddress %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">{{unfrommonth}} {{unfromyear}} - {{untomonth}} {{untoyear}}</span><br/><br/>
-                      <p>
-                        {% if homeless %}
-												Homeless in {{homelesstown}}, {{homelesscountry}}
-                        {% endif %}
-                        {% if travelling %}
-												Travelling in {{travelcountry}}<br/>
-                        {% endif %}
-												</p>
-                    </td>
-                    <td>
-                      <a href="formAddressEdit">Edit</a><br/>
-                      <a href="{{delete_action_4}}">Delete</a>
-                    </td>
-                  </tr>
-              {% endif %}
-							<!-- Ends Unusual address -->
 
-                </tbody>
-              </table>
-              <br/>
-              <p><a href="formAddressAddNew">Add an address</a></p>
-							<p><a href="formAddressAddUnusual">I didn't have an address</a></p>
+                        <label class="block-label" data-target="travel" for="travelling-details">
+        <input id="travelling-details" type="radio" name="unusual-address-group" value="I was travelling">
+      I was travelling
+      </label>
+                        <div class="panel panel-border-narrow js-hidden" id="travel">
+                            <h3 class="heading-small">Where were you travelling?</h3>
+                            <label class="form-label" for="travel-country">Country</label>
+                            <input class="form-control" name="travel-country" type="text" id="travel-country">
+                        </div>
 
-            </div> <!-- Close form group -->
-					</fieldset>
+                        <label class="block-label" data-target="homeless" for="homeless-details">
+        <input id="homeless-details" type="radio" name="unusual-address-group" value="I was homeless">
+        I was homeless
+      </label>
+                        <div class="panel panel-border-narrow js-hidden" id="homeless">
+                            <h3 class="heading-small">Where were you homeless?</h3>
+                            <label class="form-label" for="homeless-town">Town</label>
+                            <input class="form-control" name="homeless-town" type="text" id="homeless-town">
+                            <br/><br/>
+                            <label class="form-label" for="homeless-country">Country</label>
+                            <input class="form-control" name="homeless-country" type="text" id="homeless-country">
+                        </div>
+
+                        <!--  <label class="block-label" data-target="another-reason" for="another-reason-details">
+        <input id="another-reason-details" type="radio" name="unusual-address-group" value="I have another reason">
+        I have another reason
+      </label>
+      <div class="panel panel-border-narrow js-hidden" id="another-reason">
+        <label class="form-label" for="details">Provide details</label>
+        <textarea class="form-control" rows="6" name="details" type="text" id="contact-phone"></textarea>
+      </div>-->
 
 
 
-
-
-
-
-
-			    <!-- Continue button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
-				</div> <!-- Form group close-->
-			</form>
-		</div>
-	</div>
+                    </fieldset>
+                </div>
+                <!-- Continue button -->
+                <div class="form-group">
+                    <input type="submit" class="button" value="Save and continue">
+                </div>
+                <!-- Form group close-->
+            </form>
+        </div>
+    </div>
 
 
 </main>
@@ -269,6 +206,4 @@
 		}
 
 	}
-</script>
-
-{% endblock %}
+</script> {% endblock %}

@@ -73,10 +73,11 @@ router.post('/formSendAddress', function(req, res) {
 //Address history overview
 router.all('/formAddressHistory', function (req, res) {
  res.render('formAddressHistory', {
-  'form_action' : '/formAddressGaps',
+  'form_action' : '/formIdentity',
    'delete_action_1' : '/deleteAction1',
    'delete_action_2': '/deleteAction2',
    'delete_action_3' : '/deleteAction3',
+   'delete_action_4' : '/deleteAction4',
    'addressline1':req.session.addressline1,
    'addressline2':req.session.addressline2,
    'town':req.session.town,
@@ -85,11 +86,76 @@ router.all('/formAddressHistory', function (req, res) {
    'fromyear' : req.session.fromyear,
    'tomonth' : req.session.tomonth,
    'toyear' : req.session.toyear,
+   'unfrommonth' : req.session.unfrommonth,
+   'unfromyear' : req.session.unfromyear,
+   'untomonth' : req.session.untomonth,
+   'untoyear' : req.session.untoyear,
+   'homeless' : req.session.homeless,
+   'travelling' : req.session.travelling,
    'additionaladdress':req.session.additionaladdress,
    'addressentry1':req.session.addressentry1,
-   'addressentry2':req.session.addressentry2
+   'addressentry2':req.session.addressentry2,
+   'unusualaddress':req.session.unusualaddress,
+   'homelesstown' : req.session.homelesstown,
+   'homelesscountry' : req.session.homelesscountry,
+   'travelcountry' : req.session.travelcountry
  });
  });
+
+ //formAddressAddNew
+router.post('/formAddressAddNew', function(req, res) {
+  res.render('formAddressAddNew', req.session)
+});
+
+//formAddressAddUnusual
+router.post('/formAddressAddUnusual', function(req, res) {
+  res.render('formAddressAddUnusual', req.session)
+});
+
+
+
+//formAddressUnusualDates
+router.all('/formAddressUnusualDates', function(req, res) {
+  if (req.body['unusual-address-group'] == "I was homeless"){
+    req.session.question = "When were you homeless?";
+    req.session.homeless = true;
+    req.session.travelling = false;
+  }
+  else if (req.body['unusual-address-group'] == "I was travelling"){
+    req.session.question = "When were you travelling?";
+    req.session.travelling = true;
+    req.session.homeless = false;
+  }
+  req.session.homelesstown = req.body['homeless-town'];
+  req.session.homelesscountry = req.body['homeless-country'];
+  req.session.travelcountry = req.body['travel-country'];
+  res.render('formAddressUnusualDates', { 
+    'form_action' : '/unusual-dates-store',
+    'question' : req.session.question
+ })
+});
+
+//Store unusual address dates
+ router.post('/unusual-dates-store', function (req, res){
+   req.session.unusualaddress = true;
+   console.log(req.session.unusualaddress);
+   req.session.monthnames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   req.session.unfrommonth = req.session.monthnames[req.body['unusual-address-since-month']-1];
+   req.session.unfromyear = req.body['unusual-address-since-year'];
+   if (req.body['unusual-current-address'] == 'unusual-current-address'){
+     req.session.untomonth = "Present";
+     req.session.untoyear = "";
+   }
+   else {
+     req.session.untomonth = req.session.monthnames[req.body['unusual-address-until-month']-1];
+     req.session.untoyear = req.body['unusual-address-until-year'];
+   }
+res.redirect('/formAddressHistory');
+ });
+
+
+
+
 
  //Delete Address entry 1
  router.all('/deleteAction1', function (req,res){
@@ -103,9 +169,15 @@ router.all('/formAddressHistory', function (req, res) {
    res.redirect('/formAddressHistory');
  });
 
- //Delete Address entry 2
+ //Delete Address entry 3
  router.all('/deleteAction3', function (req,res){
    req.session.additionaladdress = false;
+   res.redirect('/formAddressHistory');
+ });
+
+ //Delete Unusual Address entry 4
+ router.all('/deleteAction4', function (req,res){
+   req.session.unusualaddress = false;
    res.redirect('/formAddressHistory');
  });
 
