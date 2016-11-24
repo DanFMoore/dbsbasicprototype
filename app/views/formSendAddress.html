@@ -15,7 +15,7 @@
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
       <h1 class="heading-medium">{{main_question}}</h1>
-      <p>Your certificate can be sent to your current address, another personal address, or your employer.</p>
+      <p>Your certificate can be sent to a current address, a different chosen address, or your employer.</p>
 			<form action="formEmail" method="post" class="form">
 			  	<!-- Details correct -->
 				<div id="send-details-group" class="form-group">
@@ -24,33 +24,26 @@
 
 						<div id="send-details-group-error-message" class="form-error validation-message"></div>
 
-					    <label class="block-label" for="correct-radio-1" data-target="current-address">
+					    <label class="block-label" for="correct-radio-1">
 							<input id="correct-radio-1" type="radio" name="radio-correct-group" value="Current"
 									data-parsley-class-handler="#send-details-group"
           							data-parsley-errors-container="#send-details-group-error-message"
           							data-parsley-required="true"
-    								data-parsley-required-message="Select if you want your certificate to be sent to your current address or another address"
+    								data-parsley-required-message="Select where you want your certificate to be sent"
 							>
-							To my current address
+							1 Oxford Road, Manchester, M1 2GL
 						</label>
-
-						<!-- Expandable panel area  ANOTHER ADDRESS-->
-			    		<div class="panel panel-border-narrow js-hidden" id="current-address">
-			    			<div class="form-group">
-								<p>This is your current address:</p>
-								<p>
-									1 Oxford Road<br>
-									Bristol<br>
-									South Gloucestershire<br>
-									United Kingdom<br>
-									LP1 12D
-								<p>
-							</div>
-			    		</div>
+						{% if tomonth == "Present" %}
+						<label class="block-label" for="correct-radio-2">
+							<input id="correct-radio-2" type="radio" name="radio-correct-group" value="OtherCurrent">
+							{{addressline1}}, {{town}}, {{postcode}}
+						</label>
+						{% endif %}
 
 
-						<label class="block-label" data-target="another-address" for="correct-radio-2">
-							<input id="correct-radio-2" type="radio" name="radio-correct-group" value="Another">
+
+						<label class="block-label" data-target="another-address" for="correct-radio-3">
+							<input id="correct-radio-3" type="radio" name="radio-correct-group" value="Another">
 							To another address
 						</label>
 					</fieldset>
