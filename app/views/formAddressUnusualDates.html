@@ -1,7 +1,7 @@
 {% extends "layout.html" %} 
 {% block page_title %} DBS Prototype {% endblock %} 
 {% if formdata["unusual-address-group"] == "I was travelling" %} 
-{% set main_question = "When were you travelling?" %} 
+{% set main_question = "When were you travelling in " + formdata["travel-country"] + "?" %} 
 {% elif formdata["unusual-address-group"] == "I was homeless" %} 
 {% set main_question = "When were you homeless?" %} 
 {% endif %} 
