@@ -103,7 +103,7 @@ known by any other names?" %} {% block content %}
 							<div id="expand-date-to-group" class="form-group">
 								<fieldset>
 
-									<div class="form-date">
+									<div class="form-date" id="end-date">
 										<legend class="form-label">When did you stop using this name?</legend>
 										<p class="form-hint">For example, 03 1980</p>
 										<div id="expand-date-to-group-error-message" class="form-error validation-message"></div>
@@ -124,6 +124,13 @@ known by any other names?" %} {% block content %}
 
 									</div>
 									<!-- Form group close-->
+									<div class="form-group">
+										<br/>
+										<label class="block-label" for="currently-used-name">
+										<input id="currently-used-name" name="currently-used-name" type="checkbox" value="currently-used-name" onClick="javascript:flipDisable();" >
+										I still use this name
+										</label>
+									</div>
 
 								</fieldset>
 
@@ -216,7 +223,7 @@ known by any other names?" %} {% block content %}
 			<div id="expand-date-to-group-" class="form-group">
 				<fieldset>
 
-					<div class="form-date">
+					<div class="form-date" id="end-date-">
 						<legend class="form-label">When did you stop using this name?</legend>
 						<p class="form-hint">For example, 03 1980</p>
 						<div id="expand-date-to-group-error-message-" class="form-error validation-message"></div>
@@ -237,6 +244,13 @@ known by any other names?" %} {% block content %}
 
 					</div>
 					<!-- Form group close-->
+					<div class="form-group">
+						<br/>
+						<label class="block-label" for="currently-used-name-">
+						<input id="currently-used-name-" name="currently-used-name-" type="checkbox" value="currently-used-name" onClick="javascript:flipDisable();" >
+						I still use this name
+						</label>
+					</div>
 
 				</fieldset>
 
@@ -389,6 +403,18 @@ known by any other names?" %} {% block content %}
 			$(nameBlock).find('input,select,radio').prop('disabled', true);
 			$(nameBlock).find('input,select,radio').val('');
 	  }
+
+	  function flipDisable(){
+
+      if ($('#end-date').hasClass("disabled")) {
+        $('#end-date').find('input').prop('disabled', false);
+        $('#end-date').toggleClass("disabled");
+      } else  {
+        $('#end-date').find('input').prop('disabled', true);
+        $('#end-date').toggleClass("disabled");
+      }
+
+    }
 
 
 </script> {% endblock %}

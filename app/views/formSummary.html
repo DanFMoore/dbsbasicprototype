@@ -64,12 +64,19 @@
 							{% if formdata["other-family-name"] %}
 							<tr>
 								<td>
-									<span class="bold-small">Other name</span><br/> {{ formdata["other-given-names"] }} {{ formdata["other-family-name"]
+									<span class="bold-small">Other names</span><br/> 
+									
+									{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"]
+									}} - 
+
+									{% if formdata["other-name-to-month"] %}
+									{{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"]
 									}}
-									<br/><br/>
-									<span class="bold-small">Date from</span><br/> {{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"]
-									}}
-									<span class="bold-small">Date to</span><br/> {{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"]
+									{% else %}
+									Present
+									{% endif %}
+									<br/>
+									{{ formdata["other-given-names"] }} {{ formdata["other-family-name"]
 									}}
 
 								</td>
@@ -80,13 +87,17 @@
 							{% endif %} {% for n in range(1, formdata["other-names-total"]+1) %} {% if formdata["other-family-name-"+n] %}
 							<tr>
 								<td>
-									<span class="bold-small">Other name {{n}}</span><br/> {{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n]
+									{{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n]
+									}} - 
+									{% if formdata["other-name-to-month-"+n] %}
+									{{ formdata["other-name-to-month-"+n] }}/{{ formdata["other-name-to-year-"+n]
 									}}
-									<span class="bold-small">Date from</span><br/> {{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n]
+									{% else %}
+									Present
+									{% endif %}
+									<br/>
+									{{ formdata["other-given-names-"+n] }} {{ formdata["other-family-name-"+n]
 									}}
-									<span class="bold-small">Date to</span><br/> {{ formdata["other-name-to-month-"+n] }}/{{ formdata["other-name-to-year-"+n]
-									}}
-
 								</td>
 								<td>
 									<a href="#">Edit</a>
@@ -100,7 +111,7 @@
 							<tr>
 								<td>
 									<span class="bold-small">Address history</span><br/>
-									<span>November 2015 - Present</span><br/>
+									<span>2015 - Present</span><br/>
 									1 Oxford Road<br/>
                         				Manchester<br/>
                         				M1 2GL
@@ -112,7 +123,7 @@
 
 							<tr>
 								<td>
-									<span>October 2014 - November 2015</span><br/>
+									<span>2014 - 2015</span><br/>
 										2 Knutsford Road<br/>
 										Warrington<br/>
 										WA1 2LD
@@ -126,7 +137,7 @@
 							{% if additionaladdress %}
 							<tr>
 								<td>
-									<span>{{frommonth}} {{fromyear}} - {{tomonth}} {{toyear}}</span><br/>
+									<span>{{fromyear}} - {{toyear}}</span><br/>
 									{{addressline1}}<br/>
 										{% if addressline2 %}
 										{{addressline2}}<br/>
@@ -149,7 +160,7 @@
 							{% if unusualaddress %}
 							<tr>
 								<td>
-									<span>{{unfrommonth}} {{unfromyear}} - {{untomonth}} {{untoyear}}</span><br/>
+									<span>{{unfromyear}} - {{untoyear}}</span><br/>
 										{% if homeless %}
 											Homeless in {{homelesstown}}, {{homelesscountry}}
 										{% endif %}
@@ -196,6 +207,7 @@
 							<tr>
 								<td>
 									<span class="bold-small">Passport number</span><br/> {{ formdata["passport-number-input"] }}
+									<br/><span class="bold-small">Country of issue</span><br/> {{ formdata["country-of-issue"] }}
 								</td>
 								<td>
 									<a href="#">Edit</a>
@@ -268,6 +280,18 @@
 									<a href="#">Edit</a>
 								</td>
 							</tr>
+
+							<!-- Contact number -->
+							{% if formdata["contact-no"] %}
+							<tr>
+								<td>
+									<span class="bold-small">Contact number</span><br/> {{ formdata["contact-no"] }}
+								</td>
+								<td>
+									<a href="#">Edit</a>
+								</td>
+							</tr>
+							{% endif %}
 
 						</tbody>
 					</table>

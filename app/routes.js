@@ -57,6 +57,10 @@ router.all('/formAddNames', function (req, res) {
 router.post('/formEmail', function(req, res) {
   res.render('formEmail', req.session)
 })
+
+router.post('/formContactNumber', function(req, res) {
+  res.render('formContactNumber', req.session)
+})
 // Section 5 - Verify address
 router.post('/formAddress', function(req, res) {
   res.render('formAddress', req.session)

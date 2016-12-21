@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+{% set main_question = "Can we contact you by phone?" %}
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	<div class="grid-row">
+		<div class="column-two-thirds reduceMargin">
+
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+            <h1 class="heading-medium">{{main_question}}</h1>
+            <p>This will only be used to contact you if there is a problem with your application.</p>
+			<form action="formSummary" method="post" class="form">
+			  	
+                <div class="form-group" id="contact-no-group">
+                    <fieldset class="inline">
+                        <legend class="visuallyhidden">{{main_question}}</legend>
+                        
+                        <div id="contact-no-group-error-message" class="form-error validation-message"></div>
+                        <label class="block-label" data-target="contact-no-expand" for="radio-contact-no-1">
+                            <input id="radio-contact-no-1" type="radio" name="radio-contact-no-group" value="Yes"
+                                data-parsley-class-handler="#contact-no-form-group"
+                                    data-parsley-errors-container="#contact-no-form-group-error-message"
+                                    data-parsley-required="true"
+                                    data-parsley-required-message="Select 'yes' if you want to provide your contact number"
+                            >
+                            Yes
+                        </label>
+
+                        <label class="block-label" for="radio-contact-no-2">
+                            <input id="radio-contact-no-2" type="radio" name="radio-contact-no-group" value="No">
+                            No
+                        </label>
+
+                    </fieldset>
+
+                    <!-- Expandable panel area -->
+			    	<div class="panel panel-border-narrow js-hidden" id="contact-no-expand">
+                        <!-- Contact number -->
+                        <div id="contact-no-form-group" class="form-group">
+                            <label class="form-label" for="contact-no">Contact number</label>
+
+                            <div id="contact-no-form-group-error-message" class="form-error validation-message"></div>
+                            <input disabled type="number" class="form-control" name="contact-no" id="contact-no"
+                                            data-parsley-class-handler="#contact-no-form-group"
+                                            data-parsley-errors-container="#contact-no-form-group-error-message"
+                                            data-parsley-required="true"
+                                            data-parsley-required-message="Enter your contact number"
+                            >
+                        </div> <!-- Form group close-->
+			    	</div> <!-- Close Expandable area -->
+
+                </div> <!-- Close contact-no-group -->
+
+			    <!-- Continue button -->
+			    <div class="form-group">
+			    	<input type="submit" class="button" value="Save and continue">
+				</div> <!-- Form group close-->
+
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+      // Enabled or disable hidden fields based on selected button
+
+	  $("input[name=radio-contact-no-group]").on('click', function() {
+			var contactNoPanel = $('#contact-no-expand');
+
+            console.log('TEST');
+			if ($(this).val() == "Yes") {
+				// remove disabled prop
+                console.log('Yes');
+				contactNoPanel.find('input,select,radio').prop('disabled', false);
+			} else {
+                console.log('No');
+				contactNoPanel.find('input,select,radio').prop('disabled', true);
+			}
+		});
+
+
+</script>
+
+{% endblock %}
