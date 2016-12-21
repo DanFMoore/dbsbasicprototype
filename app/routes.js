@@ -143,15 +143,11 @@ router.all('/formAddressUnusualDates', function(req, res) {
  router.post('/unusual-dates-store', function (req, res){
    req.session.unusualaddress = true;
    console.log(req.session.unusualaddress);
-   req.session.monthnames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-   req.session.unfrommonth = req.session.monthnames[req.body['unusual-address-since-month']-1];
    req.session.unfromyear = req.body['unusual-address-since-year'];
    if (req.body['unusual-current-address'] == 'unusual-current-address'){
-     req.session.untomonth = "Present";
-     req.session.untoyear = "";
+     req.session.untoyear = "Present";
    }
    else {
-     req.session.untomonth = req.session.monthnames[req.body['unusual-address-until-month']-1];
      req.session.untoyear = req.body['unusual-address-until-year'];
    }
 res.redirect('/formAddressHistory');
@@ -251,15 +247,11 @@ router.all('/formAddressDates', function (req, res) {
 
  //Store address dates
  router.post('/address-dates-store', function (req, res){
-   req.session.monthnames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-   req.session.frommonth = req.session.monthnames[req.body['correct-address-since-month']-1];
    req.session.fromyear = req.body['correct-address-since-year'];
    if (req.body['current-address'] == 'current-address'){
-     req.session.tomonth = "Present";
-     req.session.toyear = "";
+     req.session.toyear = "Present";
    }
    else {
-     req.session.tomonth = req.session.monthnames[req.body['correct-address-until-month']-1];
      req.session.toyear = req.body['correct-address-until-year'];
    }
 res.redirect('/formAddressHistory');

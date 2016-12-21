@@ -50,10 +50,18 @@ known by any other names?" %} {% block content %}
 							<span class="heading-medium" id="new-name-title">Name </span>
 							<!-- Given names -->
 							<div id="expand-given-name-group" class="form-group">
-								<label class="form-label" for="given-names">First name(s)</label>
+								<label class="form-label" for="given-names">First name</label>
 								<div id="expand-given-name-group-error-message" class="form-error validation-message"></div>
 								<input disabled class="form-control" name="other-given-names" type="text" id="given-names" data-parsley-class-handler="#expand-given-name-group"
-									data-parsley-errors-container="#expand-given-name-group-error-message" data-parsley-required="true" data-parsley-required-message="Enter your other first name(s)">
+									data-parsley-errors-container="#expand-given-name-group-error-message" data-parsley-required="true" data-parsley-required-message="Enter your other first name">
+							</div>
+							<!-- Form group close-->
+
+							<div id="expand-middle-name-group" class="form-group">
+								<label class="form-label" for="middle-names">Middle name(s)</label>
+								<div id="expand-middle-name-group-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="other-middle-names" type="text" id="middle-names" data-parsley-class-handler="#expand-given-name-group"
+									data-parsley-errors-container="#expand-middle-name-group-error-message" data-parsley-required="true" data-parsley-required-message="Enter your other middle name(s)">
 							</div>
 							<!-- Form group close-->
 
@@ -173,10 +181,18 @@ known by any other names?" %} {% block content %}
 			<div style="float: right;"><a href="#/" id="del-name-" onClick="javascript:delName($(this).attr('id'));" role="button">Delete name</a></div><br>
 			<!-- Given names -->
 			<div id="expand-given-name-group-" class="form-group">
-				<label class="form-label" for="given-names-">First name(s)</label>
+				<label class="form-label" for="given-names-">First name</label>
 				<div id="expand-given-name-group-error-message-" class="form-error validation-message"></div>
 				<input disabled class="form-control" name="other-given-names-" type="text" id="given-names-" data-parsley-class-handler="#expand-given-name-group-"
-					data-parsley-errors-container="#expand-given-name-group-error-message-" data-parsley-required="true" data-parsley-required-message="Enter your other first name(s) for name ">
+					data-parsley-errors-container="#expand-given-name-group-error-message-" data-parsley-required="true" data-parsley-required-message="Enter your other first name for name ">
+			</div>
+			<!-- Form group close-->
+
+			<div id="expand-middle-name-group-" class="form-group">
+				<label class="form-label" for="middle-names-">Middle name(s)</label>
+				<div id="expand-middle-name-group-error-message-" class="form-error validation-message"></div>
+				<input disabled class="form-control" name="other-middle-names-" type="text" id="middle-names-" data-parsley-class-handler="#expand-given-name-group-"
+					data-parsley-errors-container="#expand-middle-name-group-error-message-" data-parsley-required="true" data-parsley-required-message="Enter your other middle name(s) for name ">
 			</div>
 			<!-- Form group close-->
 
