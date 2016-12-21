@@ -54,6 +54,17 @@
 
 			    	<!-- Postcode block -->
 			    		<div class="form-group" id="postcode-block">
+							<div id="recipient-group" class="form-group">
+								<label class="form-label" for="send-recipient">Recipient</label>
+								<div id="recipient-group-error-message" class="form-error validation-message"></div>
+								<input disabled class="form-control" name="send-recipient" type="text" id="send-recipient"
+									data-parsley-class-handler="#recipient-group"
+          							data-parsley-errors-container="#recipient-group-error-message"
+          							data-parsley-required="true"
+    								data-parsley-required-message="Enter the recipient"
+								>
+							</div>
+							<div id="pc-lookup-block">
 			    			<fieldset class="inline">
 							<!-- Postcode -->
 								<label class="form-label" for="postcode">Postcode</label>
@@ -66,6 +77,7 @@
 								>
 								<a class="button secondary-button" href="#/" onClick="javascript:poLookup();" role="button">Find UK address</a>
 							</fieldset>
+							</div>
 						</div> <!-- Form group close-->
 
 
@@ -73,7 +85,7 @@
 						<!-- 	If they use postcode lookup, flip hidden on this block and the postcode-block block.
 								Display the postcode they entered, format to Upper and Split. Display possible addresses
 						-->
-
+							
 							<div class="form-group">
 								<label class="form-label">Postcode:</label>
 									<div id="entered-po" style="font-weight:bold;"></div>
@@ -224,7 +236,7 @@
 
 						function poLookup(){
 							var lookupBlock = '#postcode-lookup-block';
-							var postcodeBlock = '#postcode-block';
+							var postcodeBlock = '#pc-lookup-block';
 
 							// When Lookup Postcode button is clicked, hide the postcode block and display the lookup block
 							$(lookupBlock).toggleClass('js-hidden');
