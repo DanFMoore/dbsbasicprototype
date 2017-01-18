@@ -121,7 +121,7 @@ router.post('/formAddressAddUnusual', function(req, res) {
 //formAddressUnusualDates
 router.all('/formAddressUnusualDates', function(req, res) {
   if (req.body['unusual-address-group'] == "I was homeless"){
-    req.session.question = "When were you homeless " + req.body['homeless-town'] + "?";
+    req.session.question = "When were you homeless in " + req.body['homeless-town'] + "?";
     req.session.homeless = true;
     req.session.travelling = false;
   }
