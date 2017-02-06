@@ -34,6 +34,14 @@ router.get('/examples/template-data', function (req, res) {
 router.post('/formFirstPage', function(req, res) {
   res.render('formFirstPage', req.session)
 })
+router.post('/formEnterName', function(req, res) {
+  res.render('formEnterName', req.session)
+})
+router.post('/formEnterDob', function(req, res) {
+  res.render('formEnterDob', req.session)
+})
+
+
 // Section 1 - First form page
 router.post('/formGender', function(req, res) {
   res.render('formGender', req.session)
@@ -280,11 +288,25 @@ router.post('/formSummary', function(req, res) {
 })
 // Decalaration- Declaration page
 router.post('/formDeclaration', function(req, res) {
-  res.render('formDeclaration', req.session)
+  var docs = req.session.formdata['documents-group'];
+  console.log(docs);
+  if (docs != undefined) {
+    res.redirect('formDeclarationExc')
+  } else {
+    res.render('formDeclaration', req.session)
+  }
 })
 // Payment - Payment page
 router.post('/formPayment', function(req, res) {
   res.render('formPayment', req.session)
+})
+router.post('/paymentScreens', function(req, res) {
+  res.render('paymentScreens', req.session)
+})
+router.post('/exceptionDocsPrint', function(req, res) {
+  res.render('exceptionDocsPrint', {
+    'documents' : req.session.formdata['documents-group']
+  })
 })
 // Complete - Application Complete
 router.post('/formComplete', function(req, res) {
@@ -293,26 +315,6 @@ router.post('/formComplete', function(req, res) {
 
 // Branching
 
-router.get('/examples/over-18', function (req, res) {
-  // get the answer from the query string (eg. ?over18=false)
-  var over18 = req.query.over18
-
-  if (over18 === 'false') {
-    // redirect to the relevant page
-    res.redirect('/examples/under-18')
-  } else {
-    // if over18 is any other value (or is missing) render the page requested
-    res.render('examples/over-18')
-  }
-})
-
-
-
-
-
-
-// Training routes
-// Routes for Tutorial 4
 
 
   // Ineligible users are routed to 'ineligible.html'
@@ -334,34 +336,6 @@ router.get('/examples/over-18', function (req, res) {
     }
 
   });
-
-  // Write the user input to the check your answers page
-
-  router.get('/training/check-your-answers-page', function (req, res) {
-
-    var feat = req.query.jugglingfeat;
-
-    res.render('training/check-your-answers-page', { 'feat' : feat });
-
-  });
-
-
-  router.post('/training/test-post', function(req, res) {
-    res.render('training/test-post', {})
-  })
-  router.post('/training/test-post-2', function (req, res) {
-    var eligibile1 = req.query.eligible;
-    res.render('training/test-post-2', { 'eligible' : eligibile1});
-  });
-  router.post('/training/check-your-answers-page-post', function (req, res) {
-    var feat = req.query.jugglingfeat;
-    res.render('training/check-your-answers-page', { 'feat' : feat });
-
-  });
-
-
-
-
 
 
 

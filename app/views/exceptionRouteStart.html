@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content">
+  
+<div class="grid-row">
+  <div class="column-two-thirds reduceMargin">
+    <h1 class="heading-xlarge">Continue without using Verify</h1>
+
+    <p>To continue without using Verify, you will need to visit a Post Office after completing your application. Taking along with you several documents.</p>
+
+    <h2 class="heading-medium">Which documents do you have?</h2>
+
+    <p>You will need to take 2 or more of the following to the Post Office to complete your application.</p>
+    <form action="formEnterName" method="post" class="form">
+    <div id="documents-group" class="form-group">
+
+        <label class="block-label" for="document1">
+            <input id="document1" type="checkbox" name="documents-group" value="Passport">
+            Passport
+        </label>
+        <label class="block-label" for="document2">
+            <input id="document2" type="checkbox" name="documents-group" value="Driving licence">
+            Driving licence
+        </label>
+        <label class="block-label" for="document3">
+            <input id="document3" type="checkbox" name="documents-group" value="Birth certificate">
+            Birth certificate
+        </label>
+        <label class="block-label" for="document4">
+            <input id="document4" type="checkbox" name="documents-group" value="Vehicle Registration Document">
+            Vehicle Registration Document
+        </label>
+        <label class="block-label" for="document5">
+            <input id="document5" type="checkbox" name="documents-group" value="etc etc">
+            etc etc
+        </label>
+    </div>
+
+    <p>At the end of your application you will be given a sheet to print off and take to your local Post office, along with the above documents you have selected.</p>
+    
+    <!-- Continue button -->
+        <div class="form-group">
+            <input type="submit" class="button" value="Save and continue">
+        </div> <!-- Form group close-->
+
+    </form>
+
+  </div>
+</div>
+
+</main>
+
+{% endblock %}

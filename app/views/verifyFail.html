@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content">
+  
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <h1 class="heading-xlarge">You might not be able to have your identity verified</h1>
+
+    <p>To verify an identity, certified companies access credit records then ask you to confirm this information. Most young people and newcomers to the UK have a limited ‘credit history’, companies might not be able to check your identity in this way.</p>
+
+    <h2 class="heading-medium">What you’ll need on your credit record</h2>
+
+    <p>Your identity might be verified if you have 2 or more of the following:</p>
+
+    <ul class="list-bullet list">
+      <li>current account with a UK bank</li>
+      <li>credit card</li>
+      <li>personal loan</li>
+      <li>mortgage</li>
+      <li>gas or electricity bills</li>
+      <li>mobile phone contract</li>
+      <li>you’re registered to vote</li>
+    </ul>
+
+    <p>You’ll also need a UK passport or a UK driving licence.</p>
+
+    <p><a id="verify-identity-online" href="/formGovStart.html">I’d like to try to verify my identity online</a></p>
+
+
+    <h2 class="heading-medium">Other ways to dBS Basic application</h2>
+    <div class="other-ways-to-complete-transaction">
+        <p>You can still complete your application without Verifying your identity by using our exception route.</p>
+        <p><a id="exception-route" href="/exceptionRouteStart.html">I’d like to continue without Verifying my identity</a></p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+{% endblock %}

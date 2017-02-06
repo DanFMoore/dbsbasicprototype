@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+{% set main_question = "Please print this screen" %}
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	<div class="grid-row">
+		<div class="column-two-thirds reduceMargin">
+
+			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+            <h1 class="heading-medium">{{ main_question }}</h1>
+			<form action="formComplete" method="post" class="form">
+                <div class="form-group">
+                    <p>You will need to print this screen and take it to the Post Office after completing your application.</p>
+                    <p>Your application will not be processed until you have taken this screen and your documents to the Post Office.</p>
+                    <p>The documents you said you can bring with you are:</p>
+                    <ol>
+                        {% if documents %}
+                            {% for doc in documents %}
+                                <li> {{ doc }}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ol>
+                    <br>
+                    <p style="color:red;">THERE WILL BE BARCODES ON HERE RETURNED FROM THE POST OFFICE API</p>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="button" value="Complete application">
+                </div> <!-- Form group close-->
+			</form>
+		</div>
+	</div>
+
+
+
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset]',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+
+</script>
+
+{% endblock %}
