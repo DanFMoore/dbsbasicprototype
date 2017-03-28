@@ -34,13 +34,6 @@ router.get('/examples/template-data', function (req, res) {
 router.post('/formFirstPage', function(req, res) {
   res.render('formFirstPage', req.session)
 })
-router.post('/formEnterName', function(req, res) {
-  res.render('formEnterName', req.session)
-})
-router.post('/formEnterDob', function(req, res) {
-  res.render('formEnterDob', req.session)
-})
-
 
 // Section 1 - First form page
 router.post('/formGender', function(req, res) {
@@ -303,6 +296,25 @@ router.post('/formPayment', function(req, res) {
 router.post('/paymentScreens', function(req, res) {
   res.render('paymentScreens', req.session)
 })
+
+
+
+
+// EXCEPTION ROUTE routes
+
+router.post('/exceptionRouteDocs1', function(req, res) {
+  res.render('exceptionRouteDocs1', req.session)
+})
+router.post('/exceptionRouteDocs2', function(req, res) {
+  res.render('exceptionRouteDocs2', req.session)
+})
+router.post('/formEnterName', function(req, res) {
+  res.render('formEnterName', req.session)
+})
+router.post('/formEnterDob', function(req, res) {
+  res.render('formEnterDob', req.session)
+})
+
 router.post('/exceptionDocsPrint', function(req, res) {
   res.render('exceptionDocsPrint', {
     'documents' : req.session.formdata['documents-group']
