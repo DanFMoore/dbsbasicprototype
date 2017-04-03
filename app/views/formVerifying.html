@@ -17,36 +17,12 @@
 
         <p>You need to verify your identity to get a basic criminal record check.</p>
 
-        <p>You can do this online now using GOV.UK Verify.</p>
+        <h2 class="heading-medium">How to verify your identity</h2>
 
-        <p>It takes about 10 minutes to verify your identity the first time you use GOV.UK Verify, and a couple of minutes any time after that. </p>
-
-
-
-        <details>
-
-  <summary><span class="summary">What is GOV.UK Verify?</span></summary>
-
-  <div class="panel panel-border-narrow">
-
-    <p>
-        GOV.UK Verify is the new way to prove who you are online.
-    </p><p>
-        It gives safer, simpler and faster access to government services like filing your tax or checking the information on your driving licence.
-    </p><p>
-        It’s safe because information is not stored centrally, and there’s no unnecessary sharing of information.
-    </p><p>
-        It’s fast and simple because you can do it all online, without going to prove your identity in person, or waiting for something in the post.
-    </p><p>
-        <a href="https://www.gov.uk/government/publications/introducing-govuk-verify/introducing-govuk-verify">Read more about GOV.UK Verify.</a>
-    </p>
-
-  </div>
-
-</details>
-
-
-
+        <p>You can verify your identity online now for free using GOV.UK Verify.</p>
+        <p>GOV.UK Verify is the new government service that lets you prove who you are online.</p>
+        <p>It takes about 10 minutes to verify your identity the first time you use GOV.UK Verify, and a couple of minutes any time after that.</p>
+        
     </div>
 
     <!-- Split area -->
@@ -54,10 +30,7 @@
     <!-- https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application -->
 
         <div class="grid-row" style="padding-right: 15px; padding-left: 15px;">
-            <div class="column-one-half" style="border-right: 3px solid silver; padding-right: 30px;">
-
-                <p> </p>
-
+            <div class="column-two-thirds">
                 <div id="verify-agree-group" class="form-group">
                     <div id="verify-agree-group-error-message" class="form-error validation-message"></div>
                     <label class="block-label" for="verify-agree">
@@ -66,24 +39,20 @@
                                     data-parsley-errors-container="#verify-agree-group-error-message"
                                     data-parsley-required="true"
                                     data-parsley-required-message="You must agree to share your details from GOV.UK Verify">
-                        I agree to the Disclosure and Barring Service using my name, address and date of birth provided by GOV.UK Verify
+                        I agree to the Basic criminal record check service using my name, date of birth, and address provided by GOV.UK Verify.
                     </label>
                 </div>
                 <a class="button button-start" href="https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application">Continue to GOV.UK Verify</a>
                 <input type="submit" class="button button-start js-hidden" style="margin-bottom: 15px;" value="GOV.UK Verify">
-            </div>
 
-            <div class="column-one-half" style="padding-left: 30px;">
-                <div class="heading-medium" style="margin-top: 15px; margin-bottom: 15px;">Other ways to apply</div>
-                <p>You can use this service without using GOV.UK Verify.</p>
-                <p>You'll need to take documents proving your identity in person to the Post Office.</p>
-                <p><a href="#/">Continue without verifying</a></p>
-            </div>
 
+                <h2 class="heading-medium">If you cannot verify your identity online</h2>
+
+                <p>You'll have to go to the Post Office in person with your identity documents if you cannot use GOV.UK Verify to prove your identity online. </p>
+                <p>This may delay your application being processed.</p>
+                <p><a href="exceptionRouteStart.html" class="button button-start">Continue without using GOV.UK Verify</a></p>
+            </div>
         </div>
-
-
-
 
         <div>
 

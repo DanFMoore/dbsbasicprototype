@@ -10,40 +10,99 @@
   
 <div class="grid-row">
   <div class="column-two-thirds reduceMargin">
-    <h1 class="heading-xlarge">Continue without using Verify</h1>
+    {% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+    <h1 class="heading-large">Select what identity documents you have</h1>
 
-    <p>To continue without using Verify, you will need to visit a Post Office after completing your application. Taking along with you several documents.</p>
+    <p>You'll need to take 3 identity documents to the Post Office to prove your identity. You must take the original documents – you can't use photocopies or statements you've printed from online accounts.</p>
 
-    <h2 class="heading-medium">Which documents do you have?</h2>
+    <h2 class="heading-medium">Do you have any of these documents?</h2>
 
-    <p>You will need to take 2 or more of the following to the Post Office to complete your application.</p>
+    <p>Select 3 documents you have from the following list. At least one of your documents must show your current address.</p>
     <form action="exceptionRouteDocs2" method="post" class="form">
     <div id="documents-group" class="form-group">
 
         <label class="block-label" for="document1">
-            <input id="document1" type="checkbox" name="documents-group" value="Passport">
-            Passport
+            <input id="document1" type="checkbox" name="documents-group" value="Passport (any current and valid passport)">
+            Passport (any current and valid passport)
         </label>
         <label class="block-label" for="document2">
-            <input id="document2" type="checkbox" name="documents-group" value="Driving licence">
-            Driving licence
+            <input id="document2" type="checkbox" name="documents-group" value="Current driving licence - full or provisional">
+            Current driving licence - full or provisional
         </label>
         <label class="block-label" for="document3">
-            <input id="document3" type="checkbox" name="documents-group" value="Birth certificate">
-            Birth certificate
+            <input id="document3" type="checkbox" name="documents-group" value="Birth certificate (UK, Isle of Man and Channel Islands - including those issued by UK authorities overseas, for example embassies, High Commissions and HM Forces)">
+            Birth certificate (UK, Isle of Man and Channel Islands - including those issued by UK authorities overseas, for example embassies, High Commissions and HM Forces)
         </label>
         <label class="block-label" for="document4">
-            <input id="document4" type="checkbox" name="documents-group" value="Vehicle Registration Document">
-            Vehicle Registration Document
+            <input id="document4" type="checkbox" name="documents-group" value="Marriage or civil partnership certificate">
+            Marriage or civil partnership certificate
         </label>
         <label class="block-label" for="document5">
-            <input id="document5" type="checkbox" name="documents-group" value="etc etc">
-            etc etc
+            <input id="document5" type="checkbox" name="documents-group" value="Bank or building society statement">
+            Bank or building society statement
+        </label>
+        <label class="block-label" for="document6">
+            <input id="document6" type="checkbox" name="documents-group" value="Credit card statement">
+            Credit card statement
+        </label>
+        <label class="block-label" for="document7">
+            <input id="document7" type="checkbox" name="documents-group" value="Utility bill">
+            Utility bill
+        </label>
+        <label class="block-label" for="document8">
+            <input id="document8" type="checkbox" name="documents-group" value="Council tax statement">
+            Council tax statement
+        </label>
+        <label class="block-label" for="document9">
+            <input id="document9" type="checkbox" name="documents-group" value="Financial statement, for example student loans company or pension">
+            Financial statement, for example student loans company or pension
+        </label>
+        <label class="block-label" for="document10">
+            <input id="document10" type="checkbox" name="documents-group" value="P45 or P60">
+            P45 or P60
+        </label>
+        <label class="block-label" for="document11">
+            <input id="document11" type="checkbox" name="documents-group" value="Mortgage statement">
+            Mortgage statement
+        </label>
+        <label class="block-label" for="document12">
+            <input id="document12" type="checkbox" name="documents-group" value="Adoption certificate (UK and channel islands)">
+            Adoption certificate (UK and channel islands)
+        </label>
+        <label class="block-label" for="document13">
+            <input id="document13" type="checkbox" name="documents-group" value="UK biometric residence permit">
+            UK biometric residence permit
+        </label>
+        <label class="block-label" for="document14">
+            <input id="document14" type="checkbox" name="documents-group" value="Work permit or visa">
+            Work permit or visa
+        </label>
+        <label class="block-label" for="document15">
+            <input id="document15" type="checkbox" name="documents-group" value="EU national ID card">
+            EU national ID card
+        </label>
+        <label class="block-label" for="document16">
+            <input id="document16" type="checkbox" name="documents-group" value="Benefit statement, for example child benefit, pension">
+            Benefit statement, for example child benefit, pension
+        </label>
+        <label class="block-label" for="document17">
+            <input id="document17" type="checkbox" name="documents-group" value="HM Forces ID card">
+            HM Forces ID card
+        </label>
+        <label class="block-label" for="document18">
+            <input id="document18" type="checkbox" name="documents-group" value="Firearms licence">
+            Firearms licence
+        </label>
+        <label class="block-label" for="document19">
+            <input id="document19" type="checkbox" name="documents-group" value="Cards carrying the PASS accreditation logo">
+            Cards carrying the PASS accreditation logo
+        </label>
+        <label class="block-label" for="document20">
+            <input id="document20" type="checkbox" name="documents-group" value="I don't have any documents from this list">
+            I don't have any documents from this list
         </label>
     </div>
-
-    <p>At the end of your application you will be given a sheet to print off and take to your local Post office, along with the above documents you have selected.</p>
-    
+    <input hidden name="exception" value="postoffice">
     <!-- Continue button -->
         <div class="form-group">
             <input type="submit" class="button" value="Save and continue">

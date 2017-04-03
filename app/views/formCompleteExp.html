@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+	<div class="grid-row">
+		<a href="#/" style="float: right;" class="print-page">Print page</a>
+		<div class="column-two-thirds">
+            <form>
+                <div class="form-group">
+                    {% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+                    <h1 class="bold-large">Application complete</h1>
+                    <p>Your application has been submitted to the Disclosure and Barring Service (DBS).</p>
+                    <p>You now need to verify your identity by x date so the DBS can process your check.</p>
+                    
+                    <div class="form-group">
+                        <div class="notice">
+                            <i class="icon icon-important">
+                                <span class="visually-hidden">Warning</span>
+                            </i>
+                            <strong class="bold-small">
+                                If you don't take your identity documents to the Post Office within 28 days DBS will delete your application and refund the application fee.
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <h2 class="heading-medium">What you need to do next</h2>
+                    <ol class="list list-number">
+                        <li>Print out the barcodes on this page</li>
+                        <li>Take the barcodes and the 3 documents you selected today to a Post Office document checking service</li>
+                    </ol>
+                    <p>Check where your nearest Post Office document checking service is.</p>
+                    
+                    <div class="form-group">
+                        <div class="notice">
+                            <i class="icon icon-important">
+                                <span class="visually-hidden">Warning</span>
+                            </i>
+                            <strong class="bold-small">
+                                You must take the same 3 documents you selected today or the Post Office will not be able to verify your identity and you will have to pay for another check.
+                            </strong>
+                        </div>
+                    </div>
+
+                    <p><a href="#">What did you think of this service?</a> (takes 30 seconds).</p>
+
+                </div>
+            </form>
+		</div>
+	</div>
+
+
+
+</main>
+
+{% endblock %}

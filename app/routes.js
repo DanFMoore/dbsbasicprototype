@@ -20,16 +20,6 @@ router.get('/', function (req, res) {
   res.render('index')
 })
 
-// Example routes - feel free to delete these
-
-// Passing data into a page
-
-router.get('/examples/template-data', function (req, res) {
-  res.render('examples/template-data', { 'name': 'Foo' })
-})
-
-
-
 // Section 1 - First form page
 router.post('/formFirstPage', function(req, res) {
   res.render('formFirstPage', req.session)
@@ -322,7 +312,16 @@ router.post('/exceptionDocsPrint', function(req, res) {
 })
 // Complete - Application Complete
 router.post('/formComplete', function(req, res) {
-  res.render('formComplete', req.session)
+  var exception = req.session.formdata['exception'];
+  if (exception === null) {
+    res.render('formComplete', req.session)
+  } else {
+    res.redirect('formCompleteExp');
+  }
+})
+
+router.post('/formCompleteExp', function(req, res) {
+  res.render('formCompleteExp', req.session);
 })
 
 // Branching
