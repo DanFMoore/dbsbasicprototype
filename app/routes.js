@@ -330,7 +330,8 @@ router.post('/exceptionDocsPrint', function(req, res) {
 // Complete - Application Complete
 router.post('/formComplete', function(req, res) {
   var exception = req.session.formdata['exception'];
-  if (exception === null) {
+  console.log(exception);
+  if (typeof exception == 'undefined') {
     res.render('formComplete', req.session)
   } else {
     res.redirect('formCompleteExp');
