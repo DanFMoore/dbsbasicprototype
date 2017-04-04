@@ -296,7 +296,24 @@ router.post('/exceptionRouteDocs1', function(req, res) {
   res.render('exceptionRouteDocs1', req.session)
 })
 router.post('/exceptionRouteDocs2', function(req, res) {
-  res.render('exceptionRouteDocs2', req.session)
+  var docs = req.body['documents-group'];
+  console.log(docs);
+  if (typeof docs != 'undefined') {
+    if (Array.isArray(docs)) {
+      var docsLength = docs.length;
+    } else {
+      var docsLength = 1;
+    }
+  } else {
+    var docsLength = 0;
+  }
+  console.log(docsLength);
+  req.session.docsLength = docsLength;
+  if (docsLength < 3) {
+    res.render('exceptionRouteDocs2', req.session);
+  } else {
+    res.redirect('formEnterName');
+  }
 })
 router.post('/formEnterName', function(req, res) {
   res.render('formEnterName', req.session)
