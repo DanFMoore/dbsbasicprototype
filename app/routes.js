@@ -259,7 +259,12 @@ router.post('/formIdentityDriving', function(req, res) {
 })
 // Section 8 - Identity Details - Passport
 router.post('/formIdentityPassport', function(req, res) {
-  res.render('formIdentityPassport', req.session)
+  var exception = req.session.formdata['exception'];
+  if (typeof exception == 'undefined') {
+    res.render('formIdentityPassport', req.session)
+  } else {
+    res.redirect('formSendAddress');
+  }
 })
 // Section 9 - Convictions
 router.post('/formConvictions', function(req, res) {
@@ -312,7 +317,7 @@ router.post('/exceptionRouteDocs2', function(req, res) {
   if (docsLength < 3) {
     res.render('exceptionRouteDocs2', req.session);
   } else {
-    res.redirect('formEnterName');
+    res.redirect('exceptionRouteDocDetails1');
   }
 })
 router.post('/formEnterName', function(req, res) {
@@ -330,7 +335,6 @@ router.post('/exceptionDocsPrint', function(req, res) {
 // Complete - Application Complete
 router.post('/formComplete', function(req, res) {
   var exception = req.session.formdata['exception'];
-  console.log(exception);
   if (typeof exception == 'undefined') {
     res.render('formComplete', req.session)
   } else {
