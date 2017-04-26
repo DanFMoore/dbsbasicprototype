@@ -3,7 +3,7 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-{% set main_question= "Where would you like your certificate to be sent?" %}
+{% set main_question= "Where would you like us to send your certificate?" %}
 {% block content %}
 
 <main id="content" role="main">
@@ -15,7 +15,7 @@
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
 
       <h1 class="heading-medium">{{main_question}}</h1>
-      <p>Your certificate can be sent to a current address, a different chosen address, or your employer.</p>
+      <p>We can send your certificate to your current address, another personal address (for example a family member), or your employer.</p>
 			<form action="formEmail" method="post" class="form">
 			  	<!-- Details correct -->
 				<div id="send-details-group" class="form-group">
@@ -165,7 +165,7 @@
 								<input disabled class="form-control" name="send-address-line-2" type="text" id="send-address-line-2">
 							</div>
 							<div id="town-group" class="form-group">
-								<label class="form-label" for="send-address-town-city">Town/City</label>
+								<label class="form-label" for="send-address-town-city">Town or City</label>
 								<div id="town-group-error-message" class="form-error validation-message"></div>
 								<input disabled class="form-control" name="send-address-town-city" type="text" id="send-address-town-city"
 									data-parsley-class-handler="#town-group"
