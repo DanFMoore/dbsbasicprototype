@@ -320,6 +320,9 @@ router.post('/exceptionRouteDocs2', function(req, res) {
     res.redirect('exceptionRouteDocDetails1');
   }
 })
+router.post('/exceptionRouteDocDetails1', function(req, res) {
+  res.render('exceptionRouteDocDetails1', req.session)
+})
 router.post('/formEnterName', function(req, res) {
   res.render('formEnterName', req.session)
 })

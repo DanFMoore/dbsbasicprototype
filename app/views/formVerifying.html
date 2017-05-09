@@ -15,30 +15,15 @@
 
     	<h1 class="heading-large">Verifying your identity</h1>
 
-        <p>You need to verify your identity to get a basic criminal record check.<P>
+        <p>Before getting a criminal record check you need to verify your identity.<P>
             
-        <p>You can do this online now using GOV.UK Verify, before completing the rest of your application.</p>
+        <p>You can do this online now using the government identity checking service, GOV.UK Verify.<p> 
+            
+        <p>If you haven’t used GOV.UK Verify before, it takes about 15 minutes.</p>
 
-        <p>If you haven’t used GOV.UK Verify before, it takes about 15 minutes to sign up. You’ll then be able to use it with other government services.</p>
-        
+        <p>We will use the name, date of birth and address provided by GOV.UK Verify in your application. 
     </div>
-
-    <!-- Split area -->
-    <form action="https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application" method="post" class="form">
-    <!-- https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application -->
-
-        <div class="grid-row" style="padding-right: 15px; padding-left: 15px;">
-            <div class="column-two-thirds">
-                <div id="verify-agree-group" class="form-group">
-                    <div id="verify-agree-group-error-message" class="form-error validation-message"></div>
-                    <label class="block-label" for="verify-agree">
-                        <input id="verify-agree" type="checkbox" name="verify-agree" value="Agree"
-                            data-parsley-class-handler="#verify-agree-group"
-                                    data-parsley-errors-container="#verify-agree-group-error-message"
-                                    data-parsley-required="true"
-                                    data-parsley-required-message="You must agree to share your details from GOV.UK Verify">
-                        I agree to the basic criminal record check service using my name, date of birth, and address provided by GOV.UK Verify.
-                    </label>
+     
                 </div>
                 <a class="button button-start" href="https://govuk-verify.herokuapp.com/intro?requestId=dbs-basic-application">Continue to GOV.UK Verify</a>
                 <input type="submit" class="button button-start js-hidden" style="margin-bottom: 15px;" value="GOV.UK Verify">
@@ -46,10 +31,10 @@
 
                 <h2 class="heading-medium">If you cannot verify your identity online</h2>
 
-                <p>To continue without using GOV.UK Verify you will need to verify your identity at a Post Office, after completing your application.<p> 
+                <p>If you cannot verify your identity online you'll need to go to Post Office, after completing your application.<p> 
                 
                 <p>This will delay your application.</p>
-                <p><a href="exceptionRouteStart.html">Continue without using GOV.UK Verify</a></p>
+                <p><a href="exceptionRouteStart.html">Continue without verifying your identity online</a></p>
             </div>
         </div>
 

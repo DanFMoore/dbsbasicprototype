@@ -11,13 +11,13 @@
 <div class="grid-row">
   <div class="column-two-thirds reduceMargin">
     {% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-    <h1 class="heading-large">Your identity documents</h1>
+    <h1 class="heading-large">Select your identity documents</h1>
 
-    <p>Select 3 documents you can take to the Post Office from this list.<p> 
+    <p>Select 3 documents you can take to the Post Office.<p> 
         
     <p>At least one of the documents must show your current address.<p>
         
-    <p>You must take the original documents – you can't use photocopies or statements you've printed from online accounts.</p>
+    <p>You must be able to take the original documents – you can't use photocopies or statements you've printed from online accounts.</p>
 
     <p> </p>
     <form action="exceptionRouteDocs2" method="post" class="form">
@@ -49,7 +49,7 @@
         </label>
         <label class="block-label" for="document7">
             <input id="document7" type="checkbox" name="documents-group" value="Utility bill">
-            Utility bill
+            Utility bill, for example water or electricity bills - you cannot use mobile phone bills
         </label>
         <label class="block-label" for="document8">
             <input id="document8" type="checkbox" name="documents-group" value="Council tax statement">
