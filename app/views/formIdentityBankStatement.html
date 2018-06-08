@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+{% set main_question = "Do you have a current passport?" %}
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	<div class="grid-row">
+		<div class="column-two-thirds reduceMargin">
+
+			<h1 class="heading-medium page-heading">Bank or Building Society statement details</h1>
+
+			<form action="formSummary" method="post" class="form">
+
+				<p>The statement must have been issued within the last 3 months.</p>
+				<p></p>
+
+				<div class="form-group ">
+
+					<label class="form-label" for="uid-input">
+						Account number
+						<span class="form-hint">Enter the last 4 digits of the number</span>
+					</label>
+
+					<div class="form-uid">
+						<div class="form-group">
+							<input class="form-control input-pp" name="uid-input-1" type="text" id="uid-input-1" value="" maxlength="1">
+						</div>
+						<div class="form-group">
+							<input class="form-control input-pp" name="uid-input-2" type="text" id="uid-input-2" value="" maxlength="1">
+						</div>
+						<div class="form-group">
+							<input class="form-control input-pp" name="uid-input-3" type="text" id="uid-input-3" value="" maxlength="1">
+						</div>
+						<div class="form-group">
+							<input class="form-control input-pp" name="uid-input-4" type="text" id="uid-input-4" value="" maxlength="1">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group ">
+					<fieldset>
+						<legend>
+							<span class="form-label">Statement date</span>
+							<span class="form-hint">For example, 16 04 2018</span>
+						</legend>
+
+						<div class="form-date">
+							<div class="form-group form-group-day">
+								<label class="form-label" for="issue-date-day">Day</label>
+								<input id="issue-date-day" class="form-control " type="number" name="issue-date-day" value="">
+							</div>
+
+							<div class="form-group form-group-month">
+								<label class="form-label" for="issue-date-month">Month</label>
+								<input id="issue-date-month" class="form-control " type="number" name="issue-date-month" value="">
+							</div>
+
+							<div class="form-group form-group-year">
+								<label class="form-label" for="issue-date-year">Year</label>
+								<input id="issue-date-year" class="form-control " type="number" name="issue-date-year" value="">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+
+				<input type="hidden" name="_csrf" value="73MtHgg7-Yq-mrnACmDhyc0YDESzMJoMofww">
+
+				<div class="form-group">
+					<input type="submit" class="button" id="save-and-continue" value="Continue">
+				</div>
+			</form>
+		</div>
+	</div>
+	<input class='test-input js-hidden' disabled>
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+	  // Enabled or disable hidden fields based on selected button
+
+	  $("input[name=radio-passport-group]").on('click', function() {
+			var passportPanel = $('#passport-number');
+
+			if ($(this).val() == "Yes") {
+				// remove disabled prop
+				passportPanel.find('input,select,radio').prop('disabled', false);
+			} else {
+				passportPanel.find('input,select,radio').prop('disabled', true);
+			}
+		});
+
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+#start-declaration {
+  .block-label {
+    background: $panel-colour;
+    border: 5px solid $panel-colour;
+    padding: 14px 26px 11px 41px;
+    cursor: pointer;
+    margin: 0 0 25px 0;
+
+    &.error {
+      border-color: $error-colour;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    input {
+      position: absolute;
+      top: 16px;
+      left: 15px;
+      cursor: pointer;
+      width: auto;
+      height: auto;
+      opacity: 1;
+    }
+  }
+}
+
+ul#document-list {
+  margin-bottom: 1em;
+}

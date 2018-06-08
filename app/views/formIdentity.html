@@ -8,7 +8,6 @@
 
 <main id="content" role="main">
   {% include 'includes/phase_banner_alpha.html' %}
-
   <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
@@ -26,7 +25,7 @@
 			    		<legend class="visuallyhidden">{{main_question}}</legend>
 			    		<!--<p class="form-hint">If you can provide this information your application will be processed quicker.</p>-->
 			    		<div id="ni-form-group-error-message" class="form-error validation-message"></div>
-			    		<label class="block-label" data-target="ni-number" for="radio-ni-1">
+			    		<label class="block-label selection-button-radio" data-target="ni-number" for="radio-ni-1">
 						    <input id="radio-ni-1" type="radio" name="radio-ni-group" value="Yes"
 						    	data-parsley-class-handler="#ni-form-group"
           							data-parsley-errors-container="#ni-form-group-error-message"
@@ -36,7 +35,7 @@
 						    Yes
 					    </label>
 
-					    <label class="block-label" for="radio-ni-2">
+					    <label class="block-label selection-button-radio" for="radio-ni-2">
 						    <input id="radio-ni-2" type="radio" name="radio-ni-group" value="No">
 						    No
 					    </label>
@@ -87,7 +86,7 @@
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
+			    	<input type="submit" class="button" value="Continue">
 				</div> <!-- Form group close-->
 
 			</form>

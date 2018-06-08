@@ -1977,6 +1977,82 @@ input[type=number] {
   }
 }
 
+@media (min-width: 769px) {
+  .govuk-check-your-answers {
+    display: table;
+  }
+}
+
+.govuk-check-your-answers > * {
+  position: relative;
+  border-bottom: 1px solid #bfc1c3;
+}
+
+@media (min-width: 769px) {
+  .govuk-check-your-answers > * {
+    display: table-row;
+    border-bottom-width: 0;
+  }
+}
+
+.govuk-check-your-answers > * > * {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .govuk-check-your-answers > * > * {
+    display: table-cell;
+    border-bottom: 1px solid #bfc1c3;
+    padding: 0.6315789474em 1.0526315789em 0.4736842105em 0;
+    margin: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .govuk-check-your-answers > *:first-child > * {
+    padding-top: 0;
+  }
+}
+
+.govuk-check-your-answers .cya-question {
+  font-weight: bold;
+  margin: 0.6315789474em 4em 0.2105263158em 0;
+}
+
+.govuk-check-your-answers > *:first-child .cya-question {
+  margin-top: 0;
+}
+
+@media (min-width: 769px) {
+  .govuk-check-your-answers.cya-questions-short, .govuk-check-your-answers.cya-questions-long {
+    width: 100%;
+  }
+  .govuk-check-your-answers.cya-questions-short .cya-question {
+    width: 30%;
+  }
+  .govuk-check-your-answers.cya-questions-long .cya-question {
+    width: 50%;
+  }
+}
+
+.govuk-check-your-answers .cya-answer {
+  padding-bottom: 0.4736842105em;
+}
+
+.govuk-check-your-answers .cya-change {
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media (min-width: 769px) {
+  .govuk-check-your-answers .cya-change {
+    position: static;
+    padding-right: 0;
+  }
+}
+
 .check-your-answers td {
   font-family: "nta", Arial, sans-serif;
   font-weight: 400;
@@ -1997,19 +2073,6 @@ input[type=number] {
   text-align: right;
   font-weight: bold;
   padding-right: 0;
-}
-
-.unbranded {
-  background: #fff;
-}
-
-.unbranded * {
-  font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif !important;
-}
-
-.unbranded #footer {
-  border: 0;
-  background: #fff;
 }
 
 .govuk-related-items {
@@ -2044,7 +2107,7 @@ input[type=number] {
 }
 
 .form-error {
-  font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "nta", Arial, sans-serif;
   font-weight: 400;
   text-transform: none;
   font-size: 16px;
@@ -2062,4 +2125,98 @@ input[type=number] {
 
 .reduceMargin {
   margin-top: -20px;
+}
+
+label.block-label {
+  background: transparent;
+  border: 0;
+}
+
+label.block-label input {
+  opacity: 0;
+}
+
+label.block-label.focused {
+  outline: none;
+}
+
+label.block-label.selection-button-checkbox {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+label.block-label.selection-button-checkbox::before {
+  content: "";
+  border: 2px solid;
+  background: 0 0;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+label.block-label.selection-button-radio::before {
+  content: "";
+  border: 2px solid;
+  background: 0 0;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+label.block-label.selection-button-checkbox.focused::before,
+label.block-label.selection-button-radio.focused::before {
+  -webkit-box-shadow: 0 0 0 5px #ffbf47;
+  -moz-box-shadow: 0 0 0 5px #ffbf47;
+  box-shadow: 0 0 0 5px #ffbf47;
+}
+
+label.block-label.selection-button-radio::after {
+  content: "";
+  border: 10px solid;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  zoom: 1;
+  opacity: 0;
+}
+
+label.block-label.selection-button-checkbox::after {
+  content: "";
+  border: solid;
+  border-width: 0 0 5px 5px;
+  background: 0 0;
+  width: 17px;
+  height: 7px;
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  zoom: 1;
+  opacity: 0;
+}
+
+label.block-label.selection-button-checkbox.selected::after,
+label.block-label.selection-button-radio.selected::after {
+  zoom: 1;
+  opacity: 1;
+}
+
+p#showMore {
+  clear: both;
 }

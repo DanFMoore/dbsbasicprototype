@@ -7,312 +7,339 @@
 	<a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
+			<h1 class="heading-medium page-heading">Confirm your identity validation details</h1>
 
 			<form action="formDeclaration" method="post" class="form">
+				<h2 class="heading-medium page-heading">Personal information</h2>
+				<dl class="govuk-check-your-answers cya-questions-short">
+					<div id="name first-name middle-names last-name">
+						<dt class="cya-question">
+							Name
+						</dt>
+						<dd class="cya-answer">
+							David Attenborough
+						</dd>
+						<dd class="cya-change">
+							<a href="/post-office/edit/po-current-name" id="edit-name">
+								Change<span class="visually-hidden"> Name</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="date-of-birth">
+						<dt class="cya-question">
+							Date of birth
+						</dt>
+						<dd class="cya-answer">
+							28 April 1928
+						</dd>
+						<dd class="cya-change">
+							<a href="/post-office/edit/po-date-of-birth" id="edit-date-of-birth">
+								Change<span class="visually-hidden"> Date of birth</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="sex">
+						<dt class="cya-question">
+							Sex
+						</dt>
+						<dd class="cya-answer">
+
+							Male
+						</dd>
+						<dd class="cya-change">
+							<a href="/questions/edit/sex" id="edit-sex">
+								Change<span class="visually-hidden"> Sex</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="place-of-birth pob-country pob-town-city">
+						<dt class="cya-question">
+							Place of birth
+						</dt>
+						<dd class="cya-answer">
+
+							United Kingdom<br>
+
+							London
+						</dd>
+						<dd class="cya-change">
+							<a href="/questions/edit/place-of-birth" id="edit-place-of-birth">
+								Change<span class="visually-hidden"> Place of birth</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="names">
+						<dt class="cya-question">
+							Other names
+						</dt>
+						<dd class="cya-answer">
+							Frank Sinatra<br>
+							Used from
+							March 1994
+							to
+							April 1995
+							<br>
+						</dd>
+						<dd class="cya-change">
+							<a href="/questions/edit/names" id="edit-names">
+								Change<span class="visually-hidden"> Other names</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="address">
+						<dt class="cya-question">
+							Address history (last 5 years)
+						</dt>
+						<dd class="cya-answer">
+							From 1989 to now<br>
+							8 Road Street<br>
+							Oxford<br>
+							United Kingdom<br>
+							OX7 5PJ<br>
+						</dd>
+						<dd class="cya-change">
+							<a href="/post-office/current-address/edit/address/1" id="edit-address">
+								Change<span class="visually-hidden"> Current address</span>
+							</a>
+						</dd>
+					</div>
+				</dl>
+
+				<h2 class="heading-medium">Application details</h2>
+
+				<dl class="govuk-check-your-answers cya-questions-short">
+					<div id="national-insurance ni-number">
+						<dt class="cya-question">
+							National Insurance number
+						</dt>
+						<dd class="cya-answer">
+
+							I don't have a National Insurance number / I cannot provide the details right now
+						</dd>
+						<dd class="cya-change">
+							<a href="/questions/edit/national-insurance" id="edit-national-insurance">
+								Change<span class="visually-hidden"> National Insurance number</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="send-cert">
+						<dt class="cya-question">
+							Address to send your certificate to
+						</dt>
+						<dd class="cya-answer">
+							8 Road Street<br>
+							Oxford<br>
+							United Kingdom<br>
+							CH7 5QG<br>
+						</dd>
+						<dd class="cya-change">
+							<a href="/questions/edit/send-cert" id="edit-send-cert">
+								Change<span class="visually-hidden"> Address to send your certificate to</span>
+							</a>
+						</dd>
+					</div>
 
 
+					<div id="email">
+						<dt class="cya-question">
+							Email address
+						</dt>
+						<dd class="cya-answer">
+							davyboy@hotmail.com
+						</dd>
+						<dd class="cya-change">
+							<a href="/questions/edit/email" id="edit-email">
+								Change<span class="visually-hidden"> Email address</span>
+							</a>
+						</dd>
+					</div>
 
-				<h1 class="heading-medium">{{ main_question}}</h1>
+					<div id="contact-number">
+						<dt class="cya-question">
+							Contact phone number
+						</dt>
+						<dd class="cya-answer">
+							I don't want to provide my contact number
+						</dd>
+						<dd class="cya-change">
+							<a href="/questions/edit/contact-number" id="edit-contact-number">
+								Change<span class="visually-hidden"> Contact phone number</span>
+							</a>
+						</dd>
+					</div>
+				</dl>
+
+				<h2 class="heading-medium page-heading">Identity Document details</h2>
+
+				<h3 class="heading-small" id="driving-licence">Driving Licence</h3>
+				<br>
+				<!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+				<!--   * `cya-questions-short` for short questions -->
+				<!--   * `cya-questions-long` for long questions -->
+				<!--   * none for single group of q&a -->
+				<dl class="govuk-check-your-answers cya-questions-short">
+
+					<div id="uid-driving-licence">
+						<dt class="cya-question">
+							Driving Licence number
+						</dt>
+						<dd class="cya-answer">
+							ATTEN204289DF9TE<br>
+						</dd>
+
+						<dd class="cya-change">
+							<a href="/post-office/po-document-detail/edit/driving-licence" id="edit-driving-licence">
+								Change<span class="visually-hidden"> Driving Licence details</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="country-issue-driving-licence">
+						<dt class="cya-question">
+							Country of issue
+						</dt>
+						<dd class="cya-answer">
+							United Kingdom<br>
+						</dd>
+						<dd class="cya-change">
+							<a href="/post-office/po-document-detail/edit/driving-licence" id="edit-driving-licence">
+								Change<span class="visually-hidden"> Driving Licence details</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="expiry-date-driving-licence">
+						<dt class="cya-question">
+							Expiry date
+						</dt>
+						<dd class="cya-answer">
+							30 March 2025
+							<br>
+						</dd>
+						<dd class="cya-change">
+							<a href="/post-office/po-document-detail/edit/driving-licence" id="edit-driving-licence">
+								Change<span class="visually-hidden"> Driving Licence details</span>
+							</a>
+						</dd>
+					</div>
+				</dl>
+				<br>
+
+				<h3 class="heading-small" id="passport">Passport</h3>
+				<br>
+				<!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+				<!--   * `cya-questions-short` for short questions -->
+				<!--   * `cya-questions-long` for long questions -->
+				<!--   * none for single group of q&a -->
+				<dl class="govuk-check-your-answers cya-questions-short">
+					<div id="uid-passport">
+						<dt class="cya-question">
+							Passport Number
+						</dt>
+						<dd class="cya-answer">
+							123456789<br>
+						</dd>
+						<dd class="cya-change">
+
+							<a href="/post-office/po-document-detail/edit/passport" id="edit-passport">
+								Change<span class="visually-hidden"> Passport details</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="country-issue-passport">
+						<dt class="cya-question">
+							Country of issue
+						</dt>
+						<dd class="cya-answer">
+							United Kingdom<br>
+						</dd>
+						<dd class="cya-change">
+							<a href="/post-office/po-document-detail/edit/passport" id="edit-passport">
+								Change<span class="visually-hidden"> Passport details</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="expiry-date-passport">
+						<dt class="cya-question">
+							Expiry date
+						</dt>
+						<dd class="cya-answer">
+							30 March 2025
+							<br>
+						</dd>
+						<dd class="cya-change">
+							<a href="/post-office/po-document-detail/edit/passport" id="edit-passport">
+								Change<span class="visually-hidden"> Passport details</span>
+							</a>
+						</dd>
+					</div>
+				</dl>
+				<br>
+
+				<h3 class="heading-small" id="bank-statement">Bank or Building Society statement</h3>
+				<br>
+				<!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+				<!--   * `cya-questions-short` for short questions -->
+				<!--   * `cya-questions-long` for long questions -->
+				<!--   * none for single group of q&a -->
+				<dl class="govuk-check-your-answers cya-questions-short">
+					<div id="uid-bank-statement">
+
+						<dt class="cya-question">
+							Account number
+						</dt>
+						<dd class="cya-answer">
+							9512<br>
+						</dd>
+
+						<dd class="cya-change">
+
+							<a href="/post-office/po-document-detail/edit/bank-statement" id="edit-bank-statement">
+								Change<span class="visually-hidden"> Bank or Building Society statement details</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="issue-date-bank-statement">
+						<dt class="cya-question">
+							Issue date
+						</dt>
+						<dd class="cya-answer">
+
+
+							30 March 2018
+
+							<br>
+						</dd>
+						<dd class="cya-change">
+
+							<a href="/post-office/po-document-detail/edit/bank-statement" id="edit-bank-statement">
+								Change<span class="visually-hidden"> Bank or Building Society statement details</span>
+							</a>
+						</dd>
+					</div>
+				</dl>
+
+				<br>
+
+				<input type="hidden" name="_csrf" value="w4aAd6UY-Pw3zij0NBY53OSrExoh7DbHGdNk">
 
 				<div class="form-group">
-
-					<table>
-						<tbody>
-							<!-- Name -->
-							<tr>
-								<td>
-									<span class="bold-small">Name</span><br/> John Scott Smith
-								</td>
-								<td>
-
-								</td>
-							</tr>
-							<!-- Date of Birth -->
-							<tr>
-								<td>
-									<span class="bold-small">Date of birth</span><br/> 1 January 1960
-								</td>
-								<td>
-
-								</td>
-							</tr>
-
-							<!-- Sex -->
-							<tr>
-								<td>
-									<span class="bold-small">Sex</span><br/> {{ formdata["radio-gender-group"] }}
-
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-
-							<!-- Place of birth -->
-							<tr>
-								<td>
-									<span class="bold-small">Place of birth</span><br/> {{ formdata["country-of-birth"] }}<br/> {{ formdata["city-of-birth"]
-									}}
-
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-
-							<!-- Add other names -->
-							{% if formdata["other-family-name"] %}
-							<tr>
-								<td>
-									<span class="bold-small">Other names</span><br/> 
-									
-									{{ formdata["other-name-from-month"] }}/{{ formdata["other-name-from-year"]
-									}} - 
-
-									{% if formdata["other-name-to-month"] %}
-									{{ formdata["other-name-to-month"] }}/{{ formdata["other-name-to-year"]
-									}}
-									{% else %}
-									Present
-									{% endif %}
-									<br/>
-									{{ formdata["other-given-names"] }} {{ formdata["other-middle-names"] }} {{ formdata["other-family-name"]
-									}}
-
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %} {% for n in range(1, formdata["other-names-total"]+1) %} {% if formdata["other-family-name-"+n] %}
-							<tr>
-								<td>
-									{{ formdata["other-name-from-month-"+n] }}/{{ formdata["other-name-from-year-"+n]
-									}} - 
-									{% if formdata["other-name-to-month-"+n] %}
-									{{ formdata["other-name-to-month-"+n] }}/{{ formdata["other-name-to-year-"+n]
-									}}
-									{% else %}
-									Present
-									{% endif %}
-									<br/>
-									{{ formdata["other-given-names-"+n] }} {{ formdata["other-middle-names-"+n] }} {{ formdata["other-family-name-"+n]
-									}}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %} {% endfor %}
-
-
-
-							<!-- Address history -->
-							<tr>
-								<td>
-									<span class="bold-small">Address history</span><br/>
-									<span>2015 to Present</span><br/>
-									1 Oxford Road<br/>
-                        				Manchester<br/>
-                        				M1 2GL
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-
-							<tr>
-								<td>
-									<span>2014 to 2015</span><br/>
-										2 Knutsford Road<br/>
-										Warrington<br/>
-										WA1 2LD
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-
-
-							{% if additionaladdress %}
-							<tr>
-								<td>
-									<span>{{fromyear}} - {{toyear}}</span><br/>
-									{{addressline1}}<br/>
-										{% if addressline2 %}
-										{{addressline2}}<br/>
-										{% endif %}
-									{{town}}<br/>
-										{% if county %}
-										{{county}}<br/>
-										{% endif %}
-										{% if country %}
-										{{country}}<br/>
-										{% endif %}
-									{{postcode}}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %}
-
-							{% if unusualaddress %}
-							<tr>
-								<td>
-									<span>{{unfromyear}} - {{untoyear}}</span><br/>
-										{% if homeless %}
-											Homeless in {{homelesstown}}, {{homelesscountry}}
-										{% endif %}
-										{% if travelling %}
-											Travelling in {{travelcountry}}
-										{% endif %}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %}
-
-
-
-
-							<!-- National Insurance number -->
-							{% if formdata["ni-number-input"] %}
-							<tr>
-								<td>
-									<span class="bold-small">National Insurance number</span><br/> {{ formdata["ni-number-input"] }}
-
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %}
-
-							<!-- Driving licence number -->
-							{% if formdata["driving-licence-number-input"] %}
-							<tr>
-								<td>
-									<span class="bold-small">Driving licence number</span><br/> {{ formdata["driving-licence-number-input"] }}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %}
-
-							<!-- Passport details -->
-							{% if formdata["passport-number-input"] %}
-							<tr>
-								<td>
-									<span class="bold-small">Passport number</span><br/> {{ formdata["passport-number-input"] }}
-									<br/><span class="bold-small">Country of issue</span><br/> {{ formdata["country-of-issue"] }}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %}
-
-
-							<!-- Send address -->
-							{% if formdata["send-postcode"] or formdata["send-address-line-1"] %}
-							<tr>
-								<td>
-									<span class="bold-small">Send certificate to</span><br/> {{ formdata["send-postcode"] }}<br/> {{ formdata["send-recipient"]
-									}}
-									<br/> {{ formdata["send-address-line-1"] }}<br/> {{ formdata["send-address-line-2"] }}<br/> {{ formdata["send-address-town-city"]
-									}}
-									<br/> {{ formdata["send-address-county"] }}<br/> {{ formdata["send-address-country"] }}<br/> {{ formdata["send-address-postcode"]
-									}}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-
-							{% elif formdata["radio-correct-group"] == "Current" %}
-							<tr>
-								<td>
-									<span class="bold-small">Send certificate to</span><br/> 
-									1 Oxford Road<br/>
-                        			Manchester<br/>
-                        			M1 2GL
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-
-							{% else %}
-							<tr>
-								<td>
-									<span class="bold-small">Send certificate to</span><br/> 
-									{{addressline1}}<br/>
-										{% if addressline2 %}
-										{{addressline2}}<br/>
-										{% endif %}
-									{{town}}<br/>
-										{% if county %}
-										{{county}}<br/>
-										{% endif %}
-										{% if country %}
-										{{country}}<br/>
-										{% endif %}
-									{{postcode}}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %}
-
-
-
-							<!-- Email address -->
-							<tr>
-								<td>
-									<span class="bold-small">Email address</span><br/> {{ formdata["email-address"] }}
-
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-
-							<!-- Contact number -->
-							{% if formdata["contact-no"] %}
-							<tr>
-								<td>
-									<span class="bold-small">Contact number</span><br/> {{ formdata["contact-no"] }}
-								</td>
-								<td>
-									<a href="#">Edit</a>
-								</td>
-							</tr>
-							{% endif %}
-
-						</tbody>
-					</table>
-
+					<input type="submit" class="button" id="save-and-continue" value="Continue">
 				</div>
-				<!-- Form group close-->
-
-
-
-				<!-- Confirm button -->
-				<div class="form-group">
-					<input type="submit" class="button" value="Save and continue">
-				</div>
-				<!-- Form group close-->
 
 			</form>
+
 		</div>
 	</div>
-
-
-
 </main>
 
 {% endblock %}

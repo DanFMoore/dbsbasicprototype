@@ -1,95 +1,125 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-  DBS Prototype
+DBS Prototype
 {% endblock %}
 {% set main_question = "Add another address" %}
 {% block content %}
 
 <main id="content" role="main">
-  {% include 'includes/phase_banner_alpha.html' %}
-  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	{% include 'includes/phase_banner_alpha.html' %}
+	<a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
 
 			{% include 'includes/error_summary.html' %}
-      {# include if this page has validation requirements #}
+			{# include if this page has validation requirements #}
 
 			<form action="formAddressHistory" method="post" class="form">
 
 
-
-
-        <h1 class="heading-medium">{{main_question}}</h1>
-			  	<!-- Details correct -->
+				<h1 class="heading-medium">What was your address?</h1>
+				<!-- Details correct -->
 				<div class="form-group" id="add-new-address-group">
 					<fieldset class="inline">
-            <div class="form-group" id="new-address-fields-block">
+						<div class="form-group" id="new-address-fields-block">
 							<div id="new-address-line-1-group" class="form-group">
-								<label class="form-label" for="new-address-line-1">Address line 1</label>
+								<label class="form-label" for="new-address-line-1">Number and street</label>
 								<div id="new-address-line-1-group-error-message" class="form-error validation-message"></div>
 								<input class="form-control" name="new-address-line-1" type="text" id="new-address-line-1"
-									data-parsley-class-handler="#new-address-line-1-group"
-          							data-parsley-errors-container="#new-address-line-1-group-error-message"
-          							
-    								data-parsley-required-message="Enter the first address line"
-								>
-							</div>
-							<div class="form-group">
-								<label class="form-label" for="new-address-line-2">Address line 2 (optional)</label>
-								<input class="form-control" name="new-address-line-2" type="text" id="new-address-line-2">
+									   data-parsley-class-handler="#new-address-line-1-group"
+									   data-parsley-errors-container="#new-address-line-1-group-error-message"
+									   data-parsley-required-message="Enter the first address line"
+									   value="16"
+								><br/>
+								<input class="form-control" name="new-address-line-2" type="text" id="new-address-line-2" value="Street Road">
 							</div>
 							<div id="new-town-group" class="form-group">
-								<label class="form-label" for="new-address-town-city">Town/City</label>
+								<label class="form-label" for="new-address-town-city">Town or city</label>
 								<div id="new-town-group-error-message" class="form-error validation-message"></div>
-								<input disabled class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
-									data-parsley-class-handler="#new-town-group"
-          							data-parsley-errors-container="#new-town-group-error-message"
-          							
-    								data-parsley-required-message="Enter the town or city"
-								>
-							</div>
-							<div class="form-group">
-								<label class="form-label" for="new-address-county">County (optional)</label>
-								<input class="form-control" name="new-address-county" type="text" id="new-address-county">
-							</div>
-							<div id="new-country-group" class="form-group">
-								<label class="form-label" for="new-address-country">Country</label>
-								<div id="new-country-group-error-message" class="form-error validation-message"></div>
-								<input class="form-control" name="new-address-country" type="text" id="new-address-country"
-									data-parsley-class-handler="#new-country-group"
-          							data-parsley-errors-container="#new-country-group-error-message"
-          							
-    								data-parsley-required-message="Enter the country"
+								<input class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
+									   data-parsley-class-handler="#new-town-group"
+									   data-parsley-errors-container="#new-town-group-error-message"
+									   data-parsley-required-message="Enter the town or city"
+									   value="Middlesbrough"
 								>
 							</div>
 							<div id="new-postcode-group" class="form-group">
 								<label class="form-label" for="new-address-postcode">Postcode</label>
 								<div id="new-postcode-group-error-message" class="form-error validation-message"></div>
 								<input class="form-control" style="text-transform: uppercase;" maxlength="7" name="new-address-postcode" type="text" id="new-address-postcode"
-									data-parsley-class-handler="#new-postcode-group"
-          							data-parsley-errors-container="#new-postcode-group-error-message"
-          							
-    								data-parsley-required-message="Enter the postcode"
+									   data-parsley-class-handler="#new-postcode-group"
+									   data-parsley-errors-container="#new-postcode-group-error-message"
+									   data-parsley-required-message="Enter the postcode"
+									   value="TS3 3QJ"
+								>
+							</div>
+							<div id="new-country-group" class="form-group">
+								<label class="form-label" for="new-address-country">Country</label>
+								<div id="new-country-group-error-message" class="form-error validation-message"></div>
+								<input class="form-control" name="new-address-country" type="text" id="new-address-country"
+									   data-parsley-class-handler="#new-country-group"
+									   data-parsley-errors-container="#new-country-group-error-message"
+									   data-parsley-required-message="Enter the country"
+									   value="United Kingdom"
 								>
 							</div>
 						</div> <!-- Form group close - New address block -->
+					</fieldset>
+
+					<fieldset class="inline">
+						<div class="form-group ">
+							<label for="address-since-year"
+							<span class="form-label-bold">What year did you start living here?</span>
+							<span class="form-hint">For example, 1980</span>
+							</label>
+
+							<div class="form-date">
+								<div class="form-group form-group-year">
+									<input id="address-since-year" class="form-control " type="number" name="address-since-year" value="1999">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<fieldset class=" inline ">
+								<legend id="radio-group-current-address">
+									<span class="form-label-bold">Do you still live here?</span>
+								</legend>
+
+								<label class="block-label selection-button-radio" for="radio-option-yes" data-target="" id="for-radio-option-yes">
+									<input type="radio" id="radio-option-yes" name="radio-group-current-address" value="Yes">
+									Yes
+								</label>
+
+								<label class="block-label selection-button-radio selected" for="radio-option-no" data-target="address-to-block" id="for-radio-option-no">
+									<input type="radio" id="radio-option-no" checked="checked" name="radio-group-current-address" value="No" aria-controls="address-to-block" aria-expanded="true">
+									No
+								</label>
+							</fieldset>
+
+							<div class="panel panel-border-narrow" id="address-to-block" aria-hidden="false">
+								<div class="form-group ">
+									<label for="address-to-year">
+										<span class="form-label-bold">What year did you stop living here?</span>
+										<span class="form-hint">For example, 1980</span>
+									</label>
+
+									<div class="form-date">
+										<div class="form-group form-group-year">
+											<input id="address-to-year" class="form-control " type="number" name="address-to-year" value="2015">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
 
 
-  							</fieldset>
-
-
-
-
-
-
-
-
-
-			    <!-- Continue button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
-				</div> <!-- Form group close-->
+					<!-- Continue button -->
+					<div class="form-group">
+						<input type="submit" class="button" value="Continue">
+					</div> <!-- Form group close-->
 			</form>
 		</div>
 	</div>
@@ -101,139 +131,5 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
-
-<script type="text/javascript">
-	var parsleyForm;
-	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
-
-	// attach parsley validation to the form
-	parsleyForm = thisFormInstance.parsley({
-		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
-		focus:"none"
-	});
-
-	// before form is validated, catch the event and do custom validation if needed
-	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
-
-	    var ok = true;
-	    // add custom validations here - set ok to false if any of them fail validation
-
-	    //ok = ok && checkDiagnosisFutureDate();
-	    //ok = ok && validateDOB();
-
-	    if (!ok) {
-	      formInstance.validationResult = false;
-	    } else {
-	      formInstance.validationResult = true;
-	    }
-	  });
-
-	  // what to do when form doesn't validate
-	  thisFormInstance.parsley().on('form:error', function(formInstance) {
-	    //console.log('form error');
-
-	    // construct error display
-	    GOVUK.formUtilities.showErrorSummary();
-	  });
-
-	  // what to do when form validates successfully
-	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
-	    //console.log('form success');
-	    GOVUK.formUtilities.hideErrorSummary();
-
-	    // allow the form to submit
-	    return true;
-	  });
-
-	  $("input[name=radio-correct-address-group]").on('click', function() {
-			var postcodePanel = $('#postcode-block');
-			var addressPanel = $('#new-address-fields-block');
-
-			var correctAddressPanel = $('#correct-address');
-			var newAddressPanel = $('#incorrect-address');
-
-			// if Another address selected, enable fields depending on whether manual is selected
-			// else disable those fields
-			if ($(this).val() == "Yes") {
-				// remove disabled prop
-
-				correctAddressPanel.find('input,select,radio').prop('disabled',false);
-				newAddressPanel.find('input,select,radio').prop('disabled',true);
-				}
-			else if($(this).val() == "No") {
-
-				correctAddressPanel.find('input,select,radio').prop('disabled',true);
-				newAddressPanel.find('input,select,radio').prop('disabled',false);
-
-				// If Postcode finder NOT active, enable address fields
-				// Else enable postcode finder field
-				if ($('#new-manual-toggle-link').hasClass("manual")) {
-					postcodePanel.find('input,select,radio').prop('disabled',true);
-					addressPanel.find('input,select,radio').prop('disabled',false);
-				}
-				else {
-					postcodePanel.find('input,select,radio').prop('disabled',false);
-					addressPanel.find('input,select,radio').prop('disabled',true);
-				}
-
-
-			}
-		});
-
-
-
-	function swapBlock(blockID){
-		var newPostcodePanel = $('#postcode-block');
-		var newAddressPanel = $('#new-address-fields-block');
-
-		$("#"+blockID).toggleClass("manual");
-		$("#postcode-block").toggleClass("js-hidden");
-		$("#new-address-fields-block").toggleClass("js-hidden");
-
-		if ($("#"+blockID).hasClass("manual")){
-			$("#"+blockID).html("Use Postcode finder");
-			newAddressPanel.find('input,select,radio').prop('disabled', false);
-			newPostcodePanel.find('input,select,radio').prop('disabled', true);
-		}
-		else {
-			$("#"+blockID).html("Enter address manually");
-			newAddressPanel.find('input,select,radio').prop('disabled', true);
-			newPostcodePanel.find('input,select,radio').prop('disabled', false);
-		}
-
-		// Use Postcode finder
-		// Enter address manually
-		return false;
-	}
-
-	function poLookup(){
-		var lookupBlock = '#current-postcode-lookup-block';
-		var postcodeBlock = '#postcode-block';
-
-		// When Lookup Postcode button is clicked, hide the postcode block and display the lookup block
-		$(lookupBlock).toggleClass('js-hidden');
-		$(postcodeBlock).toggleClass('js-hidden');
-		$('#new-manual-toggle-link').toggleClass('js-hidden');
-
-		// Disable fields in postcodeBlock to avoid validation error
-		if ($(lookupBlock).hasClass('js-hidden')) {
-			$(postcodeBlock).find('input,select,radio').prop('disabled',false);
-			$(lookupBlock).find('input,select,radio').prop('disabled',true);
-			$('#postcode').val('');
-			document.getElementById('current-entered-po').innerHTML ='';
-		}
-		else {
-			$(postcodeBlock).find('input,select,radio').prop('disabled',true);
-			$(lookupBlock).find('input,select,radio').prop('disabled',false);
-
-			// Add the entered postcode to the Postcode: line
-			var po = ($('#postcode').val()).toUpperCase();
-			var po1 = po.slice(0,(po.length-3));
-			var po2 = po.slice((po.length-3),(po.length));
-			document.getElementById('current-entered-po').innerHTML += (po1 + ' ' + po2);
-		}
-
-	}
-</script>
 
 {% endblock %}

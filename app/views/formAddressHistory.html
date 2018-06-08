@@ -1,134 +1,104 @@
-{% extends "layout.html" %}
-
-{% block page_title %}
-  DBS Prototype
-{% endblock %}
-{% set main_question = "Where have you lived in the last 5 years?" %}
-{% block content %}
+{% extends "layout.html" %} {% block page_title %} DBS Prototype {% endblock %} {% set main_question = "Have you ever been
+known by any other names?" %} {% block content %}
 
 <main id="content" role="main">
-  {% include 'includes/phase_banner_alpha.html' %}
-  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
-	<div class="grid-row">
-		<div class="column-two-thirds reduceMargin">
+    {% include 'includes/phase_banner_alpha.html' %}
+    <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="heading-medium page-heading">Have you lived anywhere else from 2013 to now?</h1>
 
-			{% include 'includes/error_summary.html' %}
-      {# include if this page has validation requirements #}
+            <form action="formSendAddress" method="post" class="form">
+                <div class="form-group">
+                    <p>You must tell us about all the addresses you've lived at in the last 5 years. You can't leave any gaps but it's fine to have overlapping dates.</p>
 
-			<form action="formIdentity" method="post" class="form">
+                    <p>You need to include any secondary addresses, for example student accommodation or if you work away from home.</p>
 
-        <h1 class="heading-medium">{{main_question}}</h1>
-        <p>You must tell us about all the addresses you've lived at in the last 5 years - you can't leave any gaps but it's fine to have overlapping dates.<p>
-					
-					<p>You should include secondary addresses, for example student accommodation or if you work away from home.<p>
-					
-				
-
-			  	<!-- Details correct -->
-				<div class="form-group" id="current-address-group">
-					<fieldset class="inline">
-						<legend class="visuallyhidden">{{ main_question }}</legend>
-						<!-- Verified details -->
-						<div class="form-group">
-              <table>
-                <tbody>
-                  <!--Addresses -->
-                  <!--{% if addressentry1 %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">2015 to Present</span><br/><br/>
-                        <p>1 Oxford Road<br/>
-                        Manchester<br/>
-                        M1 2GL</p>
-                    </td>
-                    <td>
-                      <a href="#">Edit</a><br/>
-                      <a href="{{delete_action_1}}">Delete</a>
-                    </td>
-                  </tr>
-                  {% endif %}
-                  {% if addressentry2 %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">2014 to 2015</span><br/><br/>
-                        <p>2 Knutsford Road<br/>
-                        Warrington<br/>
-                        WA1 2LD</p>
-                    </td>
-                    <td>
-                      <a href="formAddressEdit">Edit</a><br/>
-                      <a href="{{delete_action_2}}">Delete</a>
-                    </td>
-                  </tr>
-                  {% endif %}-->
-
-            <!-- Show additional address only when added -->
-            {% if additionaladdress %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">{{fromyear}} - {{toyear}}</span><br/><br/>
-                      <p>{{addressline1}}<br/>
-                        {% if addressline2 %}
-                        {{addressline2}}<br/>
-                        {% endif %}
-                      {{town}}<br/>
-                        {% if county %}
-                        {{county}}<br/>
-                        {% endif %}
-                        {% if country %}
-                        {{country}}<br/>
-                        {% endif %}
-                      {{postcode}}</p>
-                    </td>
-                    <td>
-                      <a href="formAddressEdit">Edit</a><br/>
-                      <a href="{{delete_action_3}}">Delete</a>
-                    </td>
-                  </tr>
-              {% endif %}
-              <!-- Ends additional address -->
-
-							<!-- Show Unusual address if present -->
-							{% if unusualaddress %}
-                  <tr>
-                    <td>
-                      <span class="bold-small">{{unfromyear}} - {{untoyear}}</span><br/><br/>
-                      <p>
-                        {% if homeless %}
-												Homeless in {{homelesstown}}, {{homelesscountry}}
-                        {% endif %}
-                        {% if travelling %}
-												Travelling in {{travelcountry}}<br/>
-                        {% endif %}
-												</p>
-                    </td>
-                    <td>
-                      <a href="formAddressEdit">Edit</a><br/>
-                      <a href="{{delete_action_4}}">Delete</a>
-                    </td>
-                  </tr>
-              {% endif %}
-							<!-- Ends Unusual address -->
-
-                </tbody>
-              </table>
-              <br/>
-              <p><a href="formAddressAddNew">Add another address</a></p>
-							<p><a href="formAddressAddUnusual">I was homeless or travelling and didn't have an address</a></p>
-
-            </div> <!-- Close form group -->
-					</fieldset>
+                    <div class="form-group">
+                        <details role="group">
+                            <summary class="help-text-link" role="button" aria-controls="details-content-0" aria-expanded="false"><span class="summary">What is a secondary address?</span></summary>
+                            <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-0" aria-hidden="true">
 
 
-			    <!-- Continue button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
-				</div> <!-- Form group close-->
-			</form>
-		</div>
-	</div>
+                                <p>If you’re a student and live in student accommodation during term time, but live with your parents (or a similar permanent home address) in the period between academic years, you need to tell us both addresses.</p>
 
+                                <p>If, for example, you work away from home and spend months living at an alternative address that’s not your permanent home address, you need to tell us this alternative address.</p>
 
+                                <p>If the nature of your work means that you often spend 1 or 2 days in different places away from your permanent address, we don’t need details of each of the places you visit.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th scope="col">Address</th>
+                            <th scope="col">Dates you lived there</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <p>12 A Road<br/>
+                                    By the brook<br/>
+                                    Manchester<br/>
+                                    United Kingdom<br/>
+                                    AA1 1AA</p>
+                            </td>
+
+                            <td>
+                                <span>2000 to now</span>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <p>12 Road Street<br/>
+                                    Manchester<br/>
+                                    United Kingdom<br/>
+                                    M1 1AA</p>
+                            </td>
+
+                            <td>
+                                <span>1999 to 2013</span>
+                            </td>
+                            <td>
+                                <a href="formAddressEdit">Edit <span class="visually-hidden">Address</span></a>
+                                <br>
+                                <a href="formAddressHistory" id="deleteAddress">Delete <span class="visually-hidden">Address</span></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table>
+                        <tbody>
+                        <tr id="address-options">
+                            <td>
+                                <ul>
+                                    <li><a href="formAddressAddNew" id="add-lookup-address">Add another address</a></li>
+                                    <li><a href="formAddressAddNew" id="add-bfpo-address">Add a British Forces Post Office (BFPO) address</a></li>
+                                    <li><a href="formAddressAddNew" id="add-other-address">I was homeless or travelling and didn't have an address</a></li>
+                                </ul>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <input type="hidden" name="_csrf" value="PbYhSUOj-efGa5h9FL8B2F0k5SCkvlXNzAjs">
+
+                <div class="form-group">
+                    <input type="submit" class="button" id="save-and-continue" value="Continue">
+                </div>
+            </form>
+        </div>
+    </div>
 </main>
 
 <!-- scripts for page validation -->
@@ -137,137 +107,8 @@
 <script src="/public/javascripts/form-utilities.js"></script>
 
 <script type="text/javascript">
-	var parsleyForm;
-	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
-
-	// attach parsley validation to the form
-	parsleyForm = thisFormInstance.parsley({
-		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
-		focus:"none"
-	});
-
-	// before form is validated, catch the event and do custom validation if needed
-	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
-
-	    var ok = true;
-	    // add custom validations here - set ok to false if any of them fail validation
-
-	    //ok = ok && checkDiagnosisFutureDate();
-	    //ok = ok && validateDOB();
-
-	    if (!ok) {
-	      formInstance.validationResult = false;
-	    } else {
-	      formInstance.validationResult = true;
-	    }
-	  });
-
-	  // what to do when form doesn't validate
-	  thisFormInstance.parsley().on('form:error', function(formInstance) {
-	    //console.log('form error');
-
-	    // construct error display
-	    GOVUK.formUtilities.showErrorSummary();
-	  });
-
-	  // what to do when form validates successfully
-	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
-	    //console.log('form success');
-	    GOVUK.formUtilities.hideErrorSummary();
-
-	    // allow the form to submit
-	    return true;
-	  });
-
-	  $("input[name=radio-correct-address-group]").on('click', function() {
-			var postcodePanel = $('#postcode-block');
-			var addressPanel = $('#new-address-fields-block');
-
-			var correctAddressPanel = $('#correct-address');
-			var newAddressPanel = $('#incorrect-address');
-
-			// if Another address selected, enable fields depending on whether manual is selected
-			// else disable those fields
-			if ($(this).val() == "Yes") {
-				// remove disabled prop
-
-				correctAddressPanel.find('input,select,radio').prop('disabled',false);
-				newAddressPanel.find('input,select,radio').prop('disabled',true);
-				}
-			else if($(this).val() == "No") {
-
-				correctAddressPanel.find('input,select,radio').prop('disabled',true);
-				newAddressPanel.find('input,select,radio').prop('disabled',false);
-
-				// If Postcode finder NOT active, enable address fields
-				// Else enable postcode finder field
-				if ($('#new-manual-toggle-link').hasClass("manual")) {
-					postcodePanel.find('input,select,radio').prop('disabled',true);
-					addressPanel.find('input,select,radio').prop('disabled',false);
-				}
-				else {
-					postcodePanel.find('input,select,radio').prop('disabled',false);
-					addressPanel.find('input,select,radio').prop('disabled',true);
-				}
-
-
-			}
-		});
-
-
-
-	function swapBlock(blockID){
-		var newPostcodePanel = $('#postcode-block');
-		var newAddressPanel = $('#new-address-fields-block');
-
-		$("#"+blockID).toggleClass("manual");
-		$("#postcode-block").toggleClass("js-hidden");
-		$("#new-address-fields-block").toggleClass("js-hidden");
-
-		if ($("#"+blockID).hasClass("manual")){
-			$("#"+blockID).html("Use Postcode finder");
-			newAddressPanel.find('input,select,radio').prop('disabled', false);
-			newPostcodePanel.find('input,select,radio').prop('disabled', true);
-		}
-		else {
-			$("#"+blockID).html("Enter address manually");
-			newAddressPanel.find('input,select,radio').prop('disabled', true);
-			newPostcodePanel.find('input,select,radio').prop('disabled', false);
-		}
-
-		// Use Postcode finder
-		// Enter address manually
-		return false;
-	}
-
-	function poLookup(){
-		var lookupBlock = '#current-postcode-lookup-block';
-		var postcodeBlock = '#postcode-block';
-
-		// When Lookup Postcode button is clicked, hide the postcode block and display the lookup block
-		$(lookupBlock).toggleClass('js-hidden');
-		$(postcodeBlock).toggleClass('js-hidden');
-		$('#new-manual-toggle-link').toggleClass('js-hidden');
-
-		// Disable fields in postcodeBlock to avoid validation error
-		if ($(lookupBlock).hasClass('js-hidden')) {
-			$(postcodeBlock).find('input,select,radio').prop('disabled',false);
-			$(lookupBlock).find('input,select,radio').prop('disabled',true);
-			$('#postcode').val('');
-			document.getElementById('current-entered-po').innerHTML ='';
-		}
-		else {
-			$(postcodeBlock).find('input,select,radio').prop('disabled',true);
-			$(lookupBlock).find('input,select,radio').prop('disabled',false);
-
-			// Add the entered postcode to the Postcode: line
-			var po = ($('#postcode').val()).toUpperCase();
-			var po1 = po.slice(0,(po.length-3));
-			var po2 = po.slice((po.length-3),(po.length));
-			document.getElementById('current-entered-po').innerHTML += (po1 + ' ' + po2);
-		}
-
-	}
-</script>
-
-{% endblock %}
+  $('#deleteAddress').click(function (e) {
+    e.preventDefault();
+    $(this).closest('tr').hide();
+  });
+</script> {% endblock %}

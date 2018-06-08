@@ -15,14 +15,14 @@
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
             <h1 class="heading-medium">{{main_question}}</h1>
             <p>We will only contact you if there is a problem with your application.</p>
-			<form action="formSummary" method="post" class="form">
+			<form action="formIdentity" method="post" class="form">
 			  	
                 <div class="form-group" id="contact-no-group">
                     <fieldset class="inline">
                         <legend class="visuallyhidden">{{main_question}}</legend>
                         
                         <div id="contact-no-group-error-message" class="form-error validation-message"></div>
-                        <label class="block-label" data-target="contact-no-expand" for="radio-contact-no-1">
+                        <label class="block-label selection-button-radio" data-target="contact-no-expand" for="radio-contact-no-1">
                             <input id="radio-contact-no-1" type="radio" name="radio-contact-no-group" value="Yes"
                                 data-parsley-class-handler="#contact-no-form-group"
                                     data-parsley-errors-container="#contact-no-form-group-error-message"
@@ -32,7 +32,7 @@
                             Yes
                         </label>
 
-                        <label class="block-label" for="radio-contact-no-2">
+                        <label class="block-label selection-button-radio" for="radio-contact-no-2">
                             <input id="radio-contact-no-2" type="radio" name="radio-contact-no-group" value="No">
                             No
                         </label>
@@ -59,7 +59,7 @@
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
+			    	<input type="submit" class="button" value="Continue">
 				</div> <!-- Form group close-->
 
 			</form>

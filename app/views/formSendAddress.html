@@ -24,7 +24,7 @@
 
 						<div id="send-details-group-error-message" class="form-error validation-message"></div>
 
-					    <label class="block-label" for="correct-radio-1">
+					    <label class="block-label selection-button-radio" for="correct-radio-1">
 							<input id="correct-radio-1" type="radio" name="radio-correct-group" value="Current"
 									data-parsley-class-handler="#send-details-group"
           							data-parsley-errors-container="#send-details-group-error-message"
@@ -34,7 +34,7 @@
 							1 Oxford Road, Manchester, M1 2GL
 						</label>
 						{% if toyear == "Present" %}
-						<label class="block-label" for="correct-radio-2">
+						<label class="block-label selection-button-radio" for="correct-radio-2">
 							<input id="correct-radio-2" type="radio" name="radio-correct-group" value="OtherCurrent">
 							{{addressline1}}, {{town}}, {{postcode}}
 						</label>
@@ -42,7 +42,7 @@
 
 
 
-						<label class="block-label" data-target="another-address" for="correct-radio-3">
+						<label class="block-label selection-button-radio" data-target="another-address" for="correct-radio-3">
 							<input id="correct-radio-3" type="radio" name="radio-correct-group" value="Another">
 							To another address
 						</label>
@@ -266,7 +266,7 @@
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
+			    	<input type="submit" class="button" value="Continue">
 				</div> <!-- Form group close-->
 
 			</form>

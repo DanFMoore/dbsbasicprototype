@@ -11,58 +11,62 @@
   <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
-
-			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-
-
 			<form action="paymentScreens" method="post" class="form">
+				<h1 class="heading-medium page-heading">By continuing with your application you confirm that:</h1>
 
-			    <div class="form-group">
-			    	<h1 class="heading-medium">By continuing with your application you confirm that:</h1>
-			    	<ul class="list-bullet">
-			    		<li>the information you've given is true</li>
-			    		<li>you agree to the <a href="#">terms and conditions</a> and <a href="#">privacy policy</a></li>
-			    		<li>you'll pay £25 for your application</li>
-			    	</ul>
-			    </div> <!-- Form group close-->
+				<div class="form-group">
+					<ul class="list-bullet">
+						<li>the information you've given is true</li>
+						<li>
+							you agree to the
+							<a href="/terms-and-conditions" target="_blank">
+								terms and conditions
+							</a>
+							and
+							<a href="https://www.gov.uk/government/publications/basic-dbs-check-privacy-policy" target="_blank">
+								privacy policy
+							</a>
+						</li>
+						<li>you'll pay ₤25 for your application</li>
+					</ul>
+				</div>
 
-			    <div class="form-group">
-
+				<div class="validation-error form-group">
 					<div class="notice">
-				  		<i class="icon icon-important">
-				    		<span class="visuallyhidden">Warning</span>
-				  		</i>
-				  		<strong class="bold-small">
-				    		You could be prosecuted if you knowingly give false information in your application
-				  		</strong>
+						<i class="icon icon-important">
+							<span class="visually-hidden">Warning</span>
+						</i>
+						<strong class="bold-small">
+							You could be prosecuted if you knowingly give false information in your application
+						</strong>
 					</div>
-			    </div>
+				</div>
 
-			    <!-- Declaration acceptance checkbox -->
-			    <div id="check-declaration-group" class="form-group">
-			    	<div id="check-declaration-group-error-message" class="form-error validation-message"></div>
-			    	<label class="block-label" for="check-declaration">
-						<input id="check-declaration" type="checkbox" name="check-declaration-group" value="Agree"
-							data-parsley-class-handler="#check-declaration-group"
-          							data-parsley-errors-container="#check-declaration-group-error-message"
-          					
-    								data-parsley-required-message="Tick the box to confirm you agree with the declaration">
-						I agree
+				<div class="form-group ">
+
+					<label class="block-label selection-button-checkbox" for="check-box-1">
+						<input type="checkbox" id="check-box-1" name="check-group-agree" value="terms">
+
+						I agree to the <a href="/terms-and-conditions" target="_blank">terms and conditions</a>
 					</label>
-			    </div>
 
+					<label class="block-label selection-button-checkbox" for="check-box-2">
+						<input type="checkbox" id="check-box-2" name="check-group-agree" value="privacy">
 
-			    <!-- Confirm button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue to payment">
-				</div> <!-- Form group close-->
-				<a class="js-hidden" href="formComplete.html">TEST skip Payment</a>
+						I have read the basic DBS check processing
+						<a href="https://www.gov.uk/government/publications/basic-dbs-check-privacy-policy" target="_blank">Privacy Policy</a>
+						and understand how the DBS will process my personal data
+					</label>
+				</div>
+
+				<input type="hidden" name="_csrf" value="Uf2LYd9l-qlvP5xGKHiGglBcDBZL2NP8wcpc">
+
+				<div class="form-group">
+					<input type="submit" class="button" id="save-and-continue" value="Continue to payment">
+				</div>
 			</form>
 		</div>
 	</div>
-
-
-
 </main>
 
 <!-- scripts for page validation -->

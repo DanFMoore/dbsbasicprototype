@@ -19,14 +19,14 @@
       <h1 class="heading-medium">{{main_question}}</h1>
 
 			  	<!-- Gender -->
-        <form action="formPlaceBirth" method="post" class="form">
+        <form action="formEnterDob" method="post" class="form">
 				<div id="radio-gender-group-form-group" class="form-group">
 					<fieldset>
 						<legend class="visuallyhidden">{{main_question}}</legend>
 
 						<div id="radio-gender-group-error-message" class="form-error validation-message"></div>
 
-						<label class="block-label" for="gender-radio-1">
+						<label class="block-label selection-button-radio" for="gender-radio-1">
 							<input id="gender-radio-1" type="radio" name="radio-gender-group" value="Female"
 								data-parsley-class-handler="#radio-gender-group-form-group"
           							data-parsley-errors-container="#radio-gender-group-error-message"
@@ -34,7 +34,7 @@
     								data-parsley-required-message="Select your sex" >
 							Female
 						</label>
-						<label class="block-label" for="gender-radio-2">
+						<label class="block-label selection-button-radio" for="gender-radio-2">
 							<input id="gender-radio-2" type="radio" name="radio-gender-group" value="Male"  >
 							Male
 						</label>
@@ -43,7 +43,7 @@
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
+			    	<input type="submit" class="button" value="Continue">
 				</div> <!-- Form group close-->
 
 			</form>

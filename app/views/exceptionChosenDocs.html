@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	<div class="grid-row">
+        <div class="column-two-thirds reduceMargin">
+
+            <h1 class="heading-medium page-heading">Post Office identity documents</h1>
+
+
+            <p>You must take these 3 documents (originals, not photocopies) to the Post Office:</p>
+
+            <form action="formEnterName" method="post" class="form">
+
+                <table>
+                    <tbody>
+                    <tr>
+                        <td name="document1">Driving Licence</td>
+                    </tr>
+                    <tr>
+                        <td name="document2">Passport</td>
+                    </tr>
+                    <tr>
+                        <td name="document3">Bank Statement</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                    <h2 class="heading-medium page-heading">By continuing with your application you confirm that:</h2>
+
+                    <p id="doc-declaration-container" class="text block-label ">
+                        <input id="confirm-docs" name="confirm-docs" value="I agree" type="checkbox">
+                        <label id="confirm-docs-label" for="confirm-privacy-policy">
+                            I have all of the documents listed above to hand.
+                        </label>
+                    </p>
+
+                    <p id="privacy-container" class="text block-label ">
+                        <input id="confirm-privacy-policy" name="confirm-privacy-policy" value="I agree" type="checkbox">
+                        <label id="confirm-privacy-policy-label" for="confirm-privacy-policy">
+                            I have read the basic DBS check online application
+                            <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                            and understand how the DBS will process my personal data
+                        </label>
+                    </p>
+
+
+                    <input type="hidden" name="_csrf" value="uvDBJyAf-8Dxga7F8pn5LGnoohs4xFA9EpGc">
+
+
+
+                    <div class="form-group">
+                        <input type="submit" class="button" id="save-and-continue" value="Continue">
+                    </div>
+
+            </form>
+
+
+        </div>
+	</div>
+
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+
+{% endblock %}

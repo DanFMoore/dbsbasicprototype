@@ -204,7 +204,11 @@ router.all('/formPostcodeResults', function (req, res) {
 
  //Address results
  router.all('/formAddressManual', function (req, res) {
-  res.render('formAddressManual', { 'form_action' : '/address-manual-store' });
+    res.render('formAddressManual', { 'form_action' : '/address-manual-store' });
+  });
+
+  router.all('/formAddressCurrentManual', function (req, res) {
+    res.render('formAddressCurrentManual');
   });
 
   //Stores manual address Details
@@ -250,7 +254,7 @@ res.redirect('/formAddressHistory');
 
 
 // Section 8 - Identity Details
-router.post('/formIdentity', function(req, res) {
+router.post('/formIdentity', function (req, res) {
   res.render('formIdentity', req.session)
 })
 // Section 8 - Identity Details Driving Licence
@@ -259,12 +263,11 @@ router.post('/formIdentityDriving', function(req, res) {
 })
 // Section 8 - Identity Details - Passport
 router.post('/formIdentityPassport', function(req, res) {
-  var exception = req.session.formdata['exception'];
-  if (typeof exception == 'undefined') {
-    res.render('formIdentityPassport', req.session)
-  } else {
-    res.redirect('formSendAddress');
-  }
+  res.render('formIdentityPassport', req.session)
+})
+// Section 8 - Identity Details - Bank statement
+router.post('/formIdentityBankStatement', function(req, res) {
+  res.render('formIdentityBankStatement', req.session)
 })
 // Section 9 - Convictions
 router.post('/formConvictions', function(req, res) {
@@ -296,32 +299,36 @@ router.post('/paymentScreens', function(req, res) {
 
 
 // EXCEPTION ROUTE routes
-
-router.post('/exceptionRouteDocs1', function(req, res) {
+router.post('/exceptionRouteDocs1', function (req, res) {
   res.render('exceptionRouteDocs1', req.session)
 })
-router.post('/exceptionRouteDocs2', function(req, res) {
-  var docs = req.body['documents-group'];
-  console.log(docs);
-  if (typeof docs != 'undefined') {
-    if (Array.isArray(docs)) {
-      var docsLength = docs.length;
-    } else {
-      var docsLength = 1;
-    }
+router.post('/exceptionRouteCheckDocs', function (req, res) {
+  console.log('post body', req.body);
+
+  if (!req.body['documents-group'] || // none selected
+    typeof req.body['documents-group'] === 'string' || // only one selected
+    req.body['documents-group'].length < 3) {
+    // not enough docs
+    res.redirect('/exceptionDocsErrorNotEnough')
+  } else if (req.body['documents-group'].indexOf('both') !== -1) {
+    // there are enough docs and one of them has both attributes - happy path
+    res.redirect('/exceptionChosenDocs')
+  } else if (req.body['documents-group'].indexOf('addr') === -1) {
+    // no address docs
+    res.redirect('/exceptionDocsErrorNoAddress')
+  } else if (req.body['documents-group'].indexOf('dob') === -1) {
+    // no dob docs
+    res.redirect('/exceptionDocsErrorNoDob')
   } else {
-    var docsLength = 0;
-  }
-  console.log(docsLength);
-  req.session.docsLength = docsLength;
-  if (docsLength < 3) {
-    res.render('exceptionRouteDocs2', req.session);
-  } else {
-    res.redirect('exceptionRouteDocDetails1');
+    // there are enough docs, at least one has address and at least one has dob - happy path
+    res.redirect('/exceptionChosenDocs')
   }
 })
 router.post('/exceptionRouteDocDetails1', function(req, res) {
   res.render('exceptionRouteDocDetails1', req.session)
+})
+router.post('/exceptionChosenDocs', function(req, res) {
+  res.render('exceptionChosenDocs', req.session)
 })
 router.post('/formEnterName', function(req, res) {
   res.render('formEnterName', req.session)

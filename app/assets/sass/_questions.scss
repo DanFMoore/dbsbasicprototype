@@ -1,0 +1,36 @@
+legend h1, legend h2 {
+  display: inline-block;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 15px;
+  margin-right: 15px;
+  padding-left: 14px;
+  border-bottom: #0b0c0c 1px solid;
+  color: #0b0c0c;
+  text-decoration: none;
+  background: url(images/icon-caret-left.png) no-repeat 0 4px;
+  font-family: "nta",Arial,sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  font-size: 14px;
+  line-height: 1.14286;
+
+  &:link, &:visited {
+    color: #0b0c0c;
+  }
+}
+
+/* Hack to stop margins collapsing into each other. Place between the two elements */
+.margin-collapser {
+  height: 1px;
+  margin-top: -1px;
+}
+
+@media (min-width: 641px) {
+  .back-link {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}

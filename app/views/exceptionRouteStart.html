@@ -7,20 +7,22 @@
 {% block content %}
 
 <main id="content">
-  
+<a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 <div class="grid-row">
   <div class="column-two-thirds reduceMargin">
     {% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
-    <h1 class="heading-large">Verifying your identity at the Post Office</h1>
+    <h1 class="heading-medium">Validating your identity at the Post Office</h1>
 
   <p>To verify your identity at the Post Office you need to follow 3 steps:</p>
 
-  <p>1. Select 3 identity documents from our list.</p>
-  <p>2. Print the barcodes we'll generate for you.</p>
-  <p>3. Take your documents and the barcodes to a Post Office identity checking service within 28 days.</p>
+    <ol>
+      <p><i class="icon icon-step-1"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select 3 identity documents from our list.</p>
+      <p><i class="icon icon-step-2"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print the letter we'll generate for you after you complete the rest of your application.</p>
+      <p><i class="icon icon-step-3"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Take your documents and the letter to a Post Office within 14 days.</p>
+    </ol>
       
     
-    <a class="button button-start" href="exceptionRouteDocs1.html" role="button">Continue</a>
+    <a class="button button-start" href="exceptionRouteDocs1.html" role="button">Continue to document list</a>
   </div>
 </div>
 

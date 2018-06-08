@@ -15,25 +15,25 @@
 			{% include 'includes/error_summary.html' %}
       {# include if this page has validation requirements #}
 
-			<form action="formPostcodeResults" method="post" class="form">
+			<form action="formAddressManual" method="post" class="form">
 
 
 
 
-        <h1 class="heading-medium">{{main_question}}</h1>
+        <h1 class="heading-medium">Find your address</h1>
 			  	<!-- Details correct -->
 				<div class="form-group" id="add-new-address-group">
 					<fieldset class="inline">
-						<legend class="visuallyhidden">{{ main_question }}</legend>
+						<legend class="visuallyhidden">Find your address</legend>
 						<!-- Verified details -->
 						<div class="form-group">
               <!-- Postcode block -->
               <fieldset class="inline">
-                <label class="form-label" for="house-number">House number or name
-              <!--  <span class="form-hint">for example, Flat 20A</span>-->
-                </label>
-                    <input class="form-control" id="house-number" type="text" name="house-number">
-                  </div>
+
+				  <div class="panel panel-border-wide">
+					  <p>Non-UK addresses: <a href="formAddressManual">Add address manually</a></p>
+				  </div>
+
   							<!-- Postcode -->
                 	<div class="form-group" id="postcode-block" >
   								<label class="form-label" for="postcode">UK postcode
@@ -46,15 +46,14 @@
             							data-parsley-required="true"
       								data-parsley-required-message="Enter the address"
   								>
-
+					</div>
   							</fieldset>
-<a href="formAddressManual">Enter address manually</a>
             </div> <!-- Form group close - Postcode block -->
 
 
 			    <!-- Continue button -->
 			    <div class="form-group">
-			    	<input type="submit" class="button" value="Save and continue">
+			    	<input type="submit" class="button" value="Continue">
 				</div> <!-- Form group close-->
 
 			</form>

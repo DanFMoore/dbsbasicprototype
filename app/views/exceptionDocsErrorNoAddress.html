@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+{% set main_question = "Please print this screen" %}
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+  <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+	<div class="grid-row">
+        <div class="column-two-thirds reduceMargin">
+            <h1 class="heading-medium page-heading">We are unable to validate your identity</h1>
+
+            <form action="" method="post" class="form">
+                <p>This is because you said you do not have any documents from our list that show your address.</p>
+                <p>You cannot continue applying for a basic DBS check until you validate your identity.</p>
+
+                <p>Documents that show your address include:</p>
+
+                <ul class="list-bullet">
+                    <li>Current driving licence</li>
+                    <li>Bank or building society statement</li>
+                    <li>Credit card statement</li>
+                    <li>Utility bill</li>
+                    <li>Council tax statement</li>
+                    <li>Financial statement</li>
+                    <li>P45 / P60</li>
+                    <li>Mortgage statement</li>
+                    <li>Central or local government entitlement document</li>
+                    <li>Benefit statement</li>
+                    <li>Firearms licence</li>
+                    <li>Bank or building society account opening letter</li>
+                </ul>
+
+                <h2 class="heading-small">What to do next</h2>
+
+                <div class="form-group">
+                    <details role="group">
+                        <summary class="help-text-link" role="button" aria-controls="details-content-0" aria-expanded="false"><span class="summary">Check the list of identity documents again</span></summary>
+                        <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-0" aria-hidden="true">
+                            <p>
+                                <a href="exceptionRouteDocs1">You can check the list of identity documents we accept again.</a>
+                            </p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="form-group">
+                    <details role="group">
+                        <summary class="help-text-link" role="button" aria-controls="details-content-1" aria-expanded="false"><span class="summary">Try verifying online again</span></summary>
+                        <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-1" aria-hidden="true">
+                            <p>
+                                <a href="/">You can try verifying online again with another company through GOV.UK Verify.</a>
+                            </p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="form-group">
+                    <details role="group">
+                        <summary class="help-text-link" role="button" aria-controls="details-content-2" aria-expanded="false"><span class="summary">Apply for identity documents</span></summary>
+                        <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-2" aria-hidden="true">
+                            <p>If you do not have enough identity documents from our list you might be able to apply for some documents, for example you could:</p>
+
+                            <ul class="list-bullet">
+                                <li><a href="https://www.gov.uk/order-copy-birth-death-marriage-certificate">order a copy of your birth or marriage certificate</li>
+                                <li><a href="https://www.gov.uk/apply-first-provisional-driving-licence">apply for your first provisional driving licence</a></li>
+                                <li><a href="https://www.gov.uk/apply-renew-passport">apply online for a UK passport</a></li>
+                            </ul>
+                            <br />
+                            <p>You will need to contact the relevant providers (for example, your bank or electricity supplier) to get any financial statements or utility bills.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <input type="hidden" name="_csrf" value="Hz8V7Bbj-lVAj_-_O-MYn9OnWg5GtaC4cOwY">
+            </form>
+        </div>
+	</div>
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+	var parsleyForm;
+	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+	// attach parsley validation to the form
+	parsleyForm = thisFormInstance.parsley({
+		excluded: 'input[type=button], input[type=submit], input[type=reset]',
+		focus:"none"
+	});
+
+	// before form is validated, catch the event and do custom validation if needed
+	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+	    var ok = true;
+	    // add custom validations here - set ok to false if any of them fail validation
+
+	    //ok = ok && checkDiagnosisFutureDate();
+	    //ok = ok && validateDOB();
+
+	    if (!ok) {
+	      formInstance.validationResult = false;
+	    } else {
+	      formInstance.validationResult = true;
+	    }
+	  });
+
+	  // what to do when form doesn't validate
+	  thisFormInstance.parsley().on('form:error', function(formInstance) {
+	    //console.log('form error');
+
+	    // construct error display
+	    GOVUK.formUtilities.showErrorSummary();
+	  });
+
+	  // what to do when form validates successfully
+	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+	    //console.log('form success');
+	    GOVUK.formUtilities.hideErrorSummary();
+
+	    // allow the form to submit
+	    return true;
+	  });
+
+
+</script>
+
+{% endblock %}

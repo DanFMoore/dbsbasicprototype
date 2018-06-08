@@ -1,10 +1,11 @@
+// Path to assets for use with the file-url function
+// in the govuk frontend toolkit's url-helpers partial
+$path: "/public/images/";
+
 // Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
 // Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
 @import 'govuk-elements';
-
-// Take a look at in app/assets/sass/patterns/ to see which files are imported.
-@import 'patterns/check-your-answers';
-@import 'patterns/unbranded';
+@import 'check-your-answers';
 
 // Related items
 // (These styles will be moved to GOV.UK elements, duplicating here for now.)
@@ -50,4 +51,98 @@
 //Custom
 .reduceMargin {
     margin-top: -20px;
+}
+
+label.block-label {
+  background: transparent;
+  border: 0;
+}
+
+label.block-label input {
+  opacity: 0;
+}
+
+label.block-label.focused {
+  outline: none;
+}
+
+label.block-label.selection-button-checkbox {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+label.block-label.selection-button-checkbox::before {
+  content: "";
+  border: 2px solid;
+  background: 0 0;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+label.block-label.selection-button-radio::before {
+  content: "";
+  border: 2px solid;
+  background: 0 0;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+label.block-label.selection-button-checkbox.focused::before,
+label.block-label.selection-button-radio.focused::before {
+  -webkit-box-shadow: 0 0 0 5px #ffbf47;
+  -moz-box-shadow: 0 0 0 5px #ffbf47;
+  box-shadow: 0 0 0 5px #ffbf47;
+}
+
+label.block-label.selection-button-radio::after {
+  content: "";
+  border: 10px solid;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  zoom: 1;
+  opacity: 0;
+}
+
+label.block-label.selection-button-checkbox::after {
+  content: "";
+  border: solid;
+  border-width: 0 0 5px 5px;
+  background: 0 0;
+  width: 17px;
+  height: 7px;
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  zoom: 1;
+  opacity: 0;
+}
+
+label.block-label.selection-button-checkbox.selected::after,
+label.block-label.selection-button-radio.selected::after {
+  zoom: 1;
+  opacity: 1;
+}
+
+p#showMore {
+  clear: both;
 }

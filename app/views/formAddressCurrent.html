@@ -3,7 +3,7 @@
 {% block page_title %}
   DBS Prototype
 {% endblock %}
-{% set main_question = "Address results" %}
+{% set main_question = "Add another address" %}
 {% block content %}
 
 <main id="content" role="main">
@@ -15,48 +15,44 @@
 			{% include 'includes/error_summary.html' %}
       {# include if this page has validation requirements #}
 
-			<form action="{{form_action}}" method="post" class="form">
+			<form action="formAddressCurrentManual" method="post" class="form">
 
-        <h1 class="heading-medium">{{main_question}}</h1>
+        <h1 class="heading-medium">What is your current address?</h1>
 			  	<!-- Details correct -->
 				<div class="form-group" id="add-new-address-group">
-
-						<legend class="visuallyhidden">{{ main_question }}</legend>
+					<fieldset class="inline">
+						<legend class="visuallyhidden">What is your current address?</legend>
 						<!-- Verified details -->
-
+						<div class="form-group">
               <!-- Postcode block -->
-              <fieldset>
+              <fieldset class="inline">
 
-                   <label class="block-label" for="radio-1">
-                     <input id="radio-1" type="radio" name="address-results-radio-group" value="Flat 7a">
-                     Flat 7a South Bank Tower, Upperground, London SE1 9EY
-                   </label>
-                   <label class="block-label" for="radio-2">
-                     <input id="radio-2" type="radio" name="address-results-radio-group" value="Flat 7b">
-                  Flat 7b South Bank Tower, Upperground, London SE1 9EY
-                   </label>
+				  <div class="panel panel-border-wide">
+					  <p>Non-UK addresses: <a href="formAddressCurrentManual">Add address manually</a></p>
+				  </div>
 
-
+  							<!-- Postcode -->
+                	<div class="form-group" id="postcode-block" >
+  								<label class="form-label" for="postcode">UK postcode
+                <!--  <span class="form-hint">for example, SW1 2AB</span>-->
+                  </label>
+  								<div id="postcode-block-error-message" class="form-error validation-message"></div>
+  								<input class="form-control" style="text-transform: uppercase;" maxlength="8" name="postcode" type="text" id="postcode"
+  									data-parsley-class-handler="#postcode-block"
+            							data-parsley-errors-container="#postcode-block-error-message"
+            							data-parsley-required="true"
+      								data-parsley-required-message="Enter the address"
+  								>
+					</div>
   							</fieldset>
-
-             <!-- Form group close - Postcode block -->
-
-
-            </div>
-
-
-
-
-
-
-
+            </div> <!-- Form group close - Postcode block -->
 
 
 			    <!-- Continue button -->
 			    <div class="form-group">
 			    	<input type="submit" class="button" value="Continue">
 				</div> <!-- Form group close-->
-        <p><a href="formAddressManual">Enter address manually</a></p>
+
 			</form>
 		</div>
 	</div>
