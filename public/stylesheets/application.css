@@ -2232,3 +2232,13 @@ p#showMore {
   margin-bottom: 10px;
   cursor: pointer;
 }
+
+.block-label input {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
+  margin: 0;
+  width: 29px;
+  height: 29px;
+}
