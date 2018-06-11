@@ -279,13 +279,7 @@ router.post('/formSummary', function(req, res) {
 })
 // Decalaration- Declaration page
 router.post('/formDeclaration', function(req, res) {
-  var docs = req.session.formdata['documents-group'];
-  console.log(docs);
-  if (docs != undefined) {
-    res.redirect('formDeclarationExc')
-  } else {
-    res.render('formDeclaration', req.session)
-  }
+  res.redirect('formDeclarationExc')
 })
 // Payment - Payment page
 router.post('/formPayment', function(req, res) {
