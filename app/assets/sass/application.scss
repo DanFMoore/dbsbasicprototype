@@ -176,3 +176,15 @@ p#showMore {
 #privacy-container {
   margin-bottom: 1em;
 }
+
+.form-uid .form-group {
+  float: left;
+  width: 50px;
+  margin-right: 20px;
+  margin-bottom: 0;
+  clear: none;
+}
+
+.form-uid .form-group input {
+  width: 100%;
+}
