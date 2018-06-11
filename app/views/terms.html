@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+    {% include 'includes/phase_banner_alpha.html' %}
+
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+
+
+
+
+
+
+
+            <header class="page-header group">
+                <h1 id="product_title" class="heading-large">Terms and conditions</h1>
+            </header>
+
+            <p>By using this service you accept these terms and conditions and agree to abide by them.</p>
+
+
+            <h2 class="heading-small">The service</h2>
+
+            <p>The Basic DBS check is processed by the Disclosure and Barring Service (DBS) which is responsible for processing criminal record checks for England and Wales.</p>
+            <p>The check compares the applicant's details to records on the Police National Computer and discloses any unspent convictions.</p>
+
+
+            <h2 class="heading-small">Eligibility</h2>
+
+            <p>You must be 16 years old or over to apply for a Basic DBS check.</p>
+
+
+            <h2 class="heading-small">Fees and payment</h2>
+
+            <p>The Basic DBS check costs £25.</p>
+            <p>You can pay the £25 fee or someone else can pay on your behalf, for example an employer or relative.</p>
+
+
+            <h2 class="heading-small">Cancellations and refunds</h2>
+
+            <p>You are entitled to cancel your check at any point until the certificate is printed. To cancel your check you must contact the DBS. You are not entitled to a refund if you cancel your check after you have submitted your application and verified your identity.</p>
+            <p>If you do not validate your identity within 14 days of your application date your application will be automatically cancelled. The information you submitted will be deleted and you will get an automatic refund, made to the payment card.</p>
+
+
+            <h2 class="heading-small">Information you provide</h2>
+
+            <p>You must provide accurate and correct information in your application. You could be prosecuted if you knowingly give false information in your application.</p>
+            <p>The DBS may ask you to submit further information so they can complete your check.</p>
+
+
+            <h2 class="heading-small">Email address</h2>
+
+            <p>You can provide your own email address or use someone else's, for example a relative. This means they may receive information about your application.</p>
+            <p>We will only use the email address to contact you about your application.</p>
+
+
+            <h2 class="heading-small">Verifying your identity</h2>
+
+            <p>You must validate your identity to get a Basic DBS check. You must do this within 14 days of submitting an application. If you do not validate your identity, DBS will not process your check and will delete your application.</p>
+
+
+            <h2 class="heading-small">Possible matches to records</h2>
+
+            <p>The information you provide in your application is used to identify possible matches to records held by the Police National Computer (PNC) in line with the DBS privacy policy.</p>
+            <p>The DBS is not responsible for the accuracy of police records or records held by other third party data sources.</p>
+
+
+            <h2 class="heading-small">Basic DBS check certificate</h2>
+
+            <p>Your certificate will include any unspent convictions that appear to match your identity.</p>
+            <p>DBS certificates are issued in line with Part V of the Police Act 1997.</p>
+
+
+            <h2 class="heading-small">Incorrect information on the certificate</h2>
+
+            <p>You should follow the DBS appeals and disputes process if you think any information on your Basic DBS check certificate is wrong.</p>
+
+
+            <h2 class="heading-small">Timescales</h2>
+
+            <p>Your check should be processed within 10 working days. This can be longer if DBS needs to ask you for more information to complete the check.</p>
+            <p>Certificates are sent to you by 2nd class post, which can take 2 to 3 working days.</p>
+
+
+            <h2 class="heading-small">Printed information</h2>
+
+            <p>You must not change any information you have printed or downloaded in any way.</p>
+
+
+            <h2 class="heading-small">Your privacy</h2>
+
+            <p>The service will use cookies to temporarily store the information you enter in your application.</p>
+            <p>The service will delete your personal information once your completed application is passed to the DBS, or if you cancel your application part-way through.</p>
+            <p>Your information will be used in line with our <a href="/privacy-policy">privacy policy</a> and our <a href="/cookies">cookie policy</a>.</p>
+
+
+            <h2 class="heading-small">Last updated</h2>
+
+            <p>These terms and conditions were published 15 November 2017.</p>
+            <!--<p>These terms and conditions were last updated on xxxxxx.</p>-->
+
+
+
+        </div>
+    </div>
+</main>
+
+<!-- scripts for page validation -->
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+  var parsleyForm;
+  var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
+
+  // attach parsley validation to the form
+  parsleyForm = thisFormInstance.parsley({
+    excluded: 'input[type=button], input[type=submit], input[type=reset]',
+    focus:"none"
+  });
+
+  // before form is validated, catch the event and do custom validation if needed
+  thisFormInstance.parsley().on('form:validate', function(formInstance) {
+
+    var ok = true;
+    // add custom validations here - set ok to false if any of them fail validation
+
+    //ok = ok && checkDiagnosisFutureDate();
+    //ok = ok && validateDOB();
+
+    if (!ok) {
+      formInstance.validationResult = false;
+    } else {
+      formInstance.validationResult = true;
+    }
+  });
+
+  // what to do when form doesn't validate
+  thisFormInstance.parsley().on('form:error', function(formInstance) {
+    //console.log('form error');
+
+    // construct error display
+    GOVUK.formUtilities.showErrorSummary();
+  });
+
+  // what to do when form validates successfully
+  thisFormInstance.parsley().on('form:submit', function(formInstance) {
+    //console.log('form success');
+    GOVUK.formUtilities.hideErrorSummary();
+
+    // allow the form to submit
+    return true;
+  });
+
+
+</script>
+
+{% endblock %}
