@@ -13,11 +13,9 @@
 
             <h1 class="heading-medium page-heading">Post Office identity documents</h1>
 
+            <p>You must take these 3 documents (originals, not photocopies) to the Post Office after you have completed the rest of your application:</p>
 
-            <p>You must take these 3 documents (originals, not photocopies) to the Post Office:</p>
-
-            <form action="formIdentity" method="post" class="form">
-
+            <form action="{{ 'formIdentityDriving' if licenceSelected else 'formIdentityBirthCert' }}" method="post" class="form">
                 <table>
                     <tbody>
                     <tr>
@@ -50,10 +48,7 @@
                     </label>
                 </p>
 
-
                 <input type="hidden" name="_csrf" value="uvDBJyAf-8Dxga7F8pn5LGnoohs4xFA9EpGc">
-
-
 
                 <div class="form-group">
                     <input type="submit" class="button" id="save-and-continue" value="Continue">

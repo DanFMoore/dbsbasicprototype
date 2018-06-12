@@ -12,12 +12,11 @@
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
 
-			{% include 'includes/error_summary.html' %}
-      {# include if this page has validation requirements #}
+		{% include 'includes/error_summary.html' %}
+      	{# include if this page has validation requirements #}
 
-<h1 class="heading-medium">{{main_question}}</h1>
-
-			<form action="{{ 'formIdentityDriving' if licenceSelected else 'formIdentityBirthCert' }}" method="post" class="form">
+		<h1 class="heading-medium">{{main_question}}</h1>
+			<form action="formEmail" method="post" class="form">
 
 				<!-- National Insurance -->
 			    <div id="ni-form-group" class="form-group">

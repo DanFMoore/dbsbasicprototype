@@ -8,31 +8,61 @@
 
 <main id="content" role="main">
   <div class="grid-row">
-  	<div class="column-two-thirds">
-    	<h1 class="heading-large">VERIFY PLACEHOLDER</h1>
-    </div>
-    <div class="column-two-thirds">
+      <div class="column-two-thirds reduceMargin">
+          <h1 class="heading-medium page-heading">Validating your identity</h1>
 
-      <div class="class-form">
-    	  <a class="button button-start" href="formGovStart.html" role="button">Pass Verify - New User</a>
-        <br>
-        <br>
+          <p>Before getting a criminal record check you need to validate your identity. You can do this online for free using the government identity checking service, GOV.UK Verify.</p>
+
+          <p>Verify allows you to prove who you are online by choosing from a list of companies that the government has approved to validate your identity.</p>
+
+          <p>The company you choose will ask you for some personal details, so make sure you’re somewhere you can easily access:</p>
+
+          <ul class="list-bullet" id="document-list">
+              <li>your financial information, for example debit or credit cards, bank statements, loan information (or details of other financial contracts)</li>
+              <li>your identity documents, for example a passport or driving licence</li>
+          </ul>
+
+          <p>We will use the name, date of birth and address provided by GOV.UK Verify in your application.</p>
+
+          <form action="" method="post" class="form" id="start-declaration">
+              <p id="verify-container" class="text block-label ">
+                  <input id="confirm-allow-verify" name="confirm-allow-verify" value="I agree" type="checkbox">
+                  <label id="confirm-allow-verify-label" for="confirm-allow-verify">
+                      I agree to the Basic DBS Check Service using my name, date of birth and address provided by GOV.UK Verify
+                  </label>
+              </p>
+              <p id="privacy-container" class="text block-label ">
+                  <input id="confirm-privacy-policy" name="confirm-privacy-policy" value="I agree" type="checkbox">
+                  <label id="confirm-privacy-policy-label" for="confirm-privacy-policy">
+                      I have read the basic DBS check online application
+                      <a href="/privacy" target="_blank">Privacy Policy</a>
+                      and understand how the DBS will process my personal data
+                  </label>
+              </p>
+
+
+              <div class="form-group">
+                  <input id="save-and-continue" class="button" role="button" type="submit" value="Continue to GOV.UK Verify">
+              </div>
+          </form>
+
+          <div class="form-group">
+              <details role="group">
+                  <summary class="help-text-link" role="button" aria-controls="details-content-0" aria-expanded="true"><span class="summary">Other ways to apply</span></summary>
+                  <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-0" aria-hidden="false">
+                      <p>If you cannot validate your identity online with GOV.UK Verify, you can continue to apply online. You still need your financial and identity documents to hand.</p>
+
+                      <p>But you'll also need to go to the Post Office in person after completing your application.</p>
+
+                      <p>You'll have 14 days to take your identity documents to a Post Office that has a DBS ID validation service.</p>
+
+                      <p>We will only start processing your application after you've been to the Post Office and validated your identity.</p>
+
+                      <p><a href="exceptionRouteStart">Continue to application without using Verify</a></p>
+                  </div>
+              </details>
+          </div>
       </div>
-      <div class="class-form">
-    	  <a class="button button-start" href="formGovStart.html" role="button">Pass Verify - Previous User</a>
-        <br>
-        <br>
-      </div>
-      <div class="class-form">
-    	  <a class="button button-start" href="exceptionRouteStart.html" role="button">Fail Verify - Exception Route</a>
-        <br>
-        <br>
-      </div>
-
-    </div>
-
-   
-
   </div>
 </main>
 

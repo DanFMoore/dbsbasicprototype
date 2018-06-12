@@ -14,56 +14,47 @@
             <h1 class="heading-medium page-heading">We are unable to validate your identity</h1>
 
             <form action="" method="post" class="form">
-                <p>This is because you said you do not have 3 documents from our list that show your date of birth.</p>
+                <p>This is because you said you do not have documents from our list that show your date of birth.</p>
                 <p>You cannot continue applying for a basic DBS check until you validate your identity.</p>
 
-                <p>Documents that show your date of birth include:</p>
-
-                <ul class="list-bullet">
-                    <li>Passport</li>
-                    <li>Current driving licence</li>
-                    <li>Birth certificate</li>
-                    <li>Adoption certificate</li>
-                    <li>UK biometric residence permit</li>
-                    <li>HM Forces ID card</li>
-                    <li>EU national ID card</li>
-                    <li>Firearms licence</li>
-                    <li>Cards carrying the PASS accreditation logo</li>
-                </ul>
+                <details role="group">
+                    <summary class="help-text-link" role="button" aria-controls="details-content-1" aria-expanded="false"><span class="summary">Which documents show my date of birth?</span></summary>
+                    <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-1" aria-hidden="true">
+                        <ul class="list-bullet">
+                            <li>Passport</li>
+                            <li>Current driving licence</li>
+                            <li>Birth certificate</li>
+                            <li>Adoption certificate</li>
+                            <li>UK biometric residence permit</li>
+                            <li>HM Forces ID card</li>
+                            <li>EU national ID card</li>
+                            <li>Firearms licence</li>
+                            <li>Cards carrying the PASS accreditation logo</li>
+                        </ul>
+                    </div>
+                </details>
 
                 <h2 class="heading-small">What to do next</h2>
 
-                <div class="form-group">
-                    <a href="exceptionRouteDocs1?checkAgain=1">Check the list of identity documents again</a>
-                </div>
+                <ul class="list-bullet">
+                    <li><a href="exceptionRouteDocs1?checkAgain=1">Check the list of identity documents again</a></li>
+                    <li><a href="/">Try verifying online again with another company through GOV.UK Verify.</a></li>
+                </ul>
 
-                <div class="form-group">
-                    <details role="group">
-                        <summary class="help-text-link" role="button" aria-controls="details-content-1" aria-expanded="false"><span class="summary">Try verifying online again</span></summary>
-                        <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-1" aria-hidden="true">
-                            <p>
-                                <a href="/">You can try verifying online again with another company through GOV.UK Verify.</a>
-                            </p>
-                        </div>
-                    </details>
-                </div>
+                <h2 class="heading-small">Apply for identity documents</h2>
 
-                <div class="form-group">
-                    <details role="group">
-                        <summary class="help-text-link" role="button" aria-controls="details-content-2" aria-expanded="false"><span class="summary">Apply for identity documents</span></summary>
-                        <div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-2" aria-hidden="true">
-                            <p>If you do not have enough identity documents from our list you might be able to apply for some documents, for example you could:</p>
+                <p>
+                    If you do not have enough identity documents from our list you might be able to apply for some documents, for example you could:
+                </p>
 
-                            <ul class="list-bullet">
-                                <li><a href="https://www.gov.uk/order-copy-birth-death-marriage-certificate">order a copy of your birth or marriage certificate</li>
-                                <li><a href="https://www.gov.uk/apply-first-provisional-driving-licence">apply for your first provisional driving licence</a></li>
-                                <li><a href="https://www.gov.uk/apply-renew-passport">apply online for a UK passport</a></li>
-                            </ul>
-                            <br />
-                            <p>You will need to contact the relevant providers (for example, your bank or electricity supplier) to get any financial statements or utility bills.</p>
-                        </div>
-                    </details>
-                </div>
+                <ul class="list-bullet">
+                    <li><a href="https://www.gov.uk/order-copy-birth-death-marriage-certificate">order a copy of your birth or marriage certificate</li>
+                    <li><a href="https://www.gov.uk/apply-first-provisional-driving-licence">apply for your first provisional driving licence</a></li>
+                    <li><a href="https://www.gov.uk/apply-renew-passport">apply online for a UK passport</a></li>
+                    <li><a href="http://www.pass-scheme.org.uk/about-us/">apply for a PASS card</a></li>
+                </ul>
+                <br />
+                <p>You will need to contact the relevant providers (for example, your bank or electricity supplier) to get any financial statements or utility bills.</p>
 
                 <input type="hidden" name="_csrf" value="Hz8V7Bbj-lVAj_-_O-MYn9OnWg5GtaC4cOwY">
             </form>

@@ -56,6 +56,9 @@ router.post('/formContactNumber', function(req, res) {
 router.post('/formAddress', function(req, res) {
   res.render('formAddress', req.session)
 })
+router.post('/formAddressCurrent', function(req, res) {
+  res.render('formAddressCurrent', req.session)
+})
 // Section 6 - Add other addresses
 router.post('/formOtherAddresses', function(req, res) {
   res.render('formOtherAddresses', req.session)
