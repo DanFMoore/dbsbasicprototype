@@ -17,7 +17,7 @@
 
 <h1 class="heading-medium">{{main_question}}</h1>
 
-			<form action="formIdentityDriving" method="post" class="form">
+			<form action="{{ 'formIdentityDriving' if licenceSelected else 'formIdentityBirthCert' }}" method="post" class="form">
 
 				<!-- National Insurance -->
 			    <div id="ni-form-group" class="form-group">

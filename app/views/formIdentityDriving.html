@@ -25,7 +25,7 @@
 					<input class="form-control input-pp" name="uid-input" type="text" id="uid-input">
 				</div>
 
-				<div class="form-group ">
+				<div class="form-group">
 					<fieldset>
 						<legend>
 							<span class="form-label">Expiry date</span>
@@ -55,7 +55,7 @@
 					</fieldset>
 				</div>
 
-				<div class="form-group ">
+				<div class="form-group">
 					<label class="form-label" for="country-of-issue-input">Country of issue</label>
 
 					<select name="country-of-issue-input" id="country-of-issue-input" autocorrect="off" autocomplete="off" class="form-control input-pp" style="display: none;">
@@ -310,6 +310,67 @@
 						<option value="Zimbabwe" data-alternative-spellings="ZW">Zimbabwe</option>
 					</select><input type="text" name="country-of-issue-input-lookup" autocorrect="off" autocomplete="off" class="form-control input-pp ui-autocomplete-input">
 				</div>
+
+				<fieldset>
+					<legend>
+						<span class="form-label-bold">What is your current name?</span>
+					</legend>
+
+					<div class="form-group">
+						<label class="form-label" for="first-name-input">First name</label>
+						<input class="form-control input-pp" name="first-name-input" type="text" id="first-name-input" value="">
+					</div>
+
+					<div class="form-group">
+						<label class="form-label" for="middle-names-input">Middle name(s)</label>
+						<input class="form-control input-pp" name="middle-names-input" type="text" id="middle-names-input" value="">
+					</div>
+
+					<div class="form-group">
+						<label class="form-label" for="last-name-input">Last name</label>
+						<input class="form-control input-pp" name="last-name-input" type="text" id="last-name-input" value="">
+					</div>
+				</fieldset>
+
+				<fieldset id="driving-licence-dob">
+					<legend>
+						<span class="form-label-bold">What is your date of birth?</span>
+						<span class="form-hint">For example, 28 03 1980</span>
+					</legend>
+
+					<div class="form-date">
+						<div class="form-group form-group-day">
+							<label class="form-label" for="date-of-birth-day">Day</label>
+							<input id="date-of-birth-day" class="form-control " type="number" name="date-of-birth-day" value="">
+						</div>
+
+						<div class="form-group form-group-month">
+							<label class="form-label" for="date-of-birth-month">Month</label>
+							<input id="date-of-birth-month" class="form-control " type="number" name="date-of-birth-month" value="">
+						</div>
+
+						<div class="form-group form-group-year">
+							<label class="form-label" for="date-of-birth-year">Year</label>
+							<input id="date-of-birth-year" class="form-control " type="number" name="date-of-birth-year" value="">
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset id="driving-licence-sex">
+					<legend id="radio-group-sex">
+						<span class="form-label-bold">What is your sex?</span>
+					</legend>
+
+					<label class="block-label selection-button-radio" for="radio-option-female" data-target="" id="for-radio-option-female">
+						<input type="radio" id="radio-option-female" name="radio-group-sex" value="Female">
+						Female
+					</label>
+
+					<label class="block-label selection-button-radio" for="radio-option-male" data-target="" id="for-radio-option-male">
+						<input type="radio" id="radio-option-male" name="radio-group-sex" value="Male">
+						Male
+					</label>
+				</fieldset>
 
 				<input type="hidden" name="_csrf" value="9xziQwy2-YNS78BksoRNQSDOKddial3TgrPo">
 

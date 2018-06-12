@@ -1,0 +1,185 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content">
+
+<a href="javascript: window.history.go(-1)" class="link-back">Back</a>
+<div class="grid-row">
+  <div class="column-two-thirds reduceMargin">
+    {% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
+    <h1 class="heading-medium">Select your identity documents</h1>
+
+    <p>Select all of the following documents you would be able to take to the Post Office within the next 14 days.</p>
+
+    <p>The documents must be:</p>
+
+    <ul class="list-bullet">
+      <li>in your current name (except your birth certificate, which is also acceptable in a different name)</li>
+      <li>in your current address (where an address is included)</li>
+      <li>original documents (you cannot use photocopies)</li>
+    </ul>
+
+    <p> </p>
+    <form action="exceptionRouteCheckDocs" method="post" class="form">
+        <input type="hidden" name="page" value="{{ page }}" />
+
+        <div class="form-group ">
+            <fieldset>
+                {% if page === 1 %}
+                    <legend id="documents-group">
+                        <span class="visually-hidden">Select your identity documents</span>
+                    </legend>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-1">
+                        <input type="checkbox" id="check-box-1" name="documents-group" value="dob">
+                        Passport (any current and valid)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-2">
+                        <input type="checkbox" id="check-box-2" name="documents-group" value="driving">
+                        Driving licence (any current photocard or paper, full or provisional)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-3">
+                        <input type="checkbox" id="check-box-3" name="documents-group" value="dob">
+                        Birth certificate (UK, Isle of Man and Channel Islands)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-4">
+                        <input type="checkbox" id="check-box-4" name="documents-group" value="addr">
+                        Bank or building society statement (UK or EEA - issued in last 3 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-5">
+                        <input type="checkbox" id="check-box-5" name="documents-group" value="addr" {% if checkAgain %}checked="checked"{% endif %}>
+                        Credit card statement (UK or EEA - issued in last 3 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-6">
+                        <input type="checkbox" id="check-box-6" name="documents-group" value="addr">
+                        Utility bill, for example water or electricity you cannot use mobile phone bills (UK - issued in last 3 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-7">
+                        <input type="checkbox" id="check-box-7" name="documents-group" value="dob">
+                        Biometric residence permit (UK)
+                    </label>
+
+                    <p><a href="exceptionRouteDocs2">I do not have any documents from this list</a></p>
+
+                {% elseif page === 2 %}
+
+                    <label class="block-label selection-button-checkbox" for="check-box-1">
+                        <input type="checkbox" id="check-box-1" name="documents-group" value="dob">
+                        Adoption certificate (UK)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-2">
+                        <input type="checkbox" id="check-box-2" name="documents-group" value="none">
+                        Marriage or civil partnership certificate (UK)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-3">
+                        <input type="checkbox" id="check-box-3" name="documents-group" value="dob">
+                        HM Forces ID card (UK)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-4">
+                        <input type="checkbox" id="check-box-4" name="documents-group" value="addr" {% if checkAgain %}checked="checked"{% endif %}>
+                        Mortgage statement (UK or EEA - issued in last 12 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-5">
+                        <input type="checkbox" id="check-box-5" name="documents-group" value="addr">
+
+                        Financial statement, for example pension or endowment (UK - issued in last 12 months)
+
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-6">
+                        <input type="checkbox" id="check-box-6" name="documents-group" value="addr">
+
+                        Council tax statement (UK - issued in last 12 months)
+
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-7">
+                        <input type="checkbox" id="check-box-7" name="documents-group" value="addr">
+                        Benefit statement, for example child benefit, pension (UK - issued in last 3 months)
+                    </label>
+
+                    <p><a href="exceptionRouteDocs3">I do not have any documents from this list</a></p>
+
+                {% elseif page === 3 %}
+
+                    <legend id="documents-group">
+                        <span class="visually-hidden">Select your identity documents</span>
+                    </legend>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-1">
+                        <input type="checkbox" id="check-box-1" name="documents-group" value="both">
+                        Firearms licence (UK)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-2">
+                        <input type="checkbox" id="check-box-2" name="documents-group" value="addr">
+                        Bank or building society account opening confirmation letter (UK - issued in last 3 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-3">
+                        <input type="checkbox" id="check-box-3" name="documents-group" value="addr">
+                        P45 or P60 statement (UK or EEA - issued in last 12 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-4">
+                        <input type="checkbox" id="check-box-4" name="documents-group" value="addr">
+                        Central or local government entitlement document, for example HMRC or Jobcentre (UK - issued in last 3 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-5">
+                        <input type="checkbox" id="check-box-5" name="documents-group" value="dob">
+                        EU National ID card (current and valid)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-6">
+                        <input type="checkbox" id="check-box-6" name="documents-group" value="dob" {% if checkAgain %}checked="checked"{% endif %}>
+                        Card with PASS accreditation logo (UK)
+                    </label>
+
+                    <p><a href="exceptionDocsErrorNotEnough">I do not have any documents from this list</a></p>
+
+                {% endif %}
+            </fieldset>
+        </div>
+    <input hidden name="exception" value="postoffice">
+    <!-- Continue button -->
+        <div class="form-group">
+            <input type="submit" class="button" value="Continue">
+        </div> <!-- Form group close-->
+
+    </form>
+
+  </div>
+</div>
+
+</main>
+
+<script src="/public/javascripts/jquery-1.11.3.js"></script>
+<script src="/public/javascripts/parsley.min.js"></script>
+<script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+    $('#showMore a').click(function (e) {
+      e.preventDefault();
+
+      $(this).parent().hide();
+      $('#moreDocs').removeClass('js-hidden');
+    });
+</script>
+
+{% endblock %}

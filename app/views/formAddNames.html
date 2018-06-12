@@ -10,7 +10,7 @@ known by any other names?" %} {% block content %}
 			<h1 class="heading-medium page-heading">Have you ever been known by any other names?</h1>
 
 
-			<form action="formGender" method="post" class="form">
+			<form action="{{ 'formPlaceBirth' if licenceSelected else 'formGender' }}" method="post" class="form">
 				<div class="form-group">
 					<p>You must tell us about all other names you’ve used, including middle names.</p> <p>For example, you may have changed your name through marriage.</p>
 

@@ -20,7 +20,7 @@
 							David Attenborough
 						</dd>
 						<dd class="cya-change">
-							<a href="formEnterName" id="edit-name">
+							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterName' }}" id="edit-name">
 								Change<span class="visually-hidden"> Name</span>
 							</a>
 						</dd>
@@ -34,7 +34,7 @@
 							28 April 1928
 						</dd>
 						<dd class="cya-change">
-							<a href="formEnterDob" id="edit-date-of-birth">
+							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterDob' }}" id="edit-date-of-birth">
 								Change<span class="visually-hidden"> Date of birth</span>
 							</a>
 						</dd>
@@ -49,7 +49,7 @@
 							Male
 						</dd>
 						<dd class="cya-change">
-							<a href="formGender" id="edit-sex">
+							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formGender' }}" id="edit-sex">
 								Change<span class="visually-hidden"> Sex</span>
 							</a>
 						</dd>
@@ -60,9 +60,7 @@
 							Place of birth
 						</dt>
 						<dd class="cya-answer">
-
 							United Kingdom<br>
-
 							London
 						</dd>
 						<dd class="cya-change">
@@ -118,7 +116,6 @@
 							National Insurance number
 						</dt>
 						<dd class="cya-answer">
-
 							I don't have a National Insurance number / I cannot provide the details right now
 						</dd>
 						<dd class="cya-change">
@@ -144,7 +141,6 @@
 							</a>
 						</dd>
 					</div>
-
 
 					<div id="email">
 						<dt class="cya-question">

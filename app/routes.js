@@ -42,7 +42,7 @@ router.all('/formAddNames', function (req, res) {
   //Sets address info to display by default
   req.session.addressentry1 = true;
   req.session.addressentry2 = true;
- res.render('formAddNames', {'form_action' : '/formAddressHistory'});
+ res.render('formAddNames', req.session);
  });
 // Section 4 - Email Address
 router.post('/formEmail', function(req, res) {
@@ -261,6 +261,10 @@ router.post('/formIdentity', function (req, res) {
 router.post('/formIdentityDriving', function(req, res) {
   res.render('formIdentityDriving', req.session)
 })
+// Section 8 - Identity Details Birth Certificate
+router.post('/formIdentityBirthCert', function(req, res) {
+  res.render('formIdentityBirthCert', req.session)
+})
 // Section 8 - Identity Details - Passport
 router.post('/formIdentityPassport', function(req, res) {
   res.render('formIdentityPassport', req.session)
@@ -293,26 +297,56 @@ router.post('/paymentScreens', function(req, res) {
 
 
 // EXCEPTION ROUTE routes
-router.post('/exceptionRouteDocs1', function (req, res) {
-  res.render('exceptionRouteDocs1', req.session)
-})
-router.post('/exceptionRouteCheckDocs', function (req, res) {
-  console.log('post body', req.body);
+router.get('/exceptionRouteDocs1', function (req, res) {
+  req.session.documentsGroup = [];
 
-  if (!req.body['documents-group'] || // none selected
-    typeof req.body['documents-group'] === 'string' || // only one selected
-    req.body['documents-group'].length < 3) {
+  req.session.page = 1
+  req.session.checkAgain = req.query.checkAgain
+  res.render('exceptionRouteDocs', req.session)
+})
+
+router.get('/exceptionRouteDocs2', function (req, res) {
+  req.session.page = 2
+  res.render('exceptionRouteDocs', req.session)
+})
+
+router.get('/exceptionRouteDocs3', function (req, res) {
+  req.session.page = 3
+  res.render('exceptionRouteDocs', req.session)
+})
+
+router.post('/exceptionRouteCheckDocs', function (req, res) {
+  let documents = [];
+
+  if (req.body['documents-group']) {
+    documents = req.body['documents-group'].constructor === Array
+      ? req.body['documents-group']
+      : [req.body['documents-group']]
+  }
+
+  req.session.documentsGroup = req.session.documentsGroup.concat(documents);
+
+  const page = Number(req.body.page);
+  const nextPage = '/exceptionRouteDocs' + (page + 1);
+  req.session.licenceSelected = false;
+
+  if (req.session.documentsGroup.length < 3) {
     // not enough docs
-    res.redirect('/exceptionDocsErrorNotEnough')
-  } else if (req.body['documents-group'].indexOf('both') !== -1) {
+    res.redirect(page === 3 ? '/exceptionDocsErrorNotEnough' : nextPage)
+  } else if (req.session.documentsGroup.indexOf('driving') !== -1) {
+    // there are enough docs and one of them is the driving licence - happy path
+    req.session.licenceSelected = true;
+
+    res.redirect('/exceptionChosenDocs');
+  } else if (req.session.documentsGroup.indexOf('both') !== -1) {
     // there are enough docs and one of them has both attributes - happy path
-    res.redirect('/exceptionChosenDocs')
-  } else if (req.body['documents-group'].indexOf('addr') === -1) {
+    res.redirect('/exceptionChosenDocs');
+  } else if (req.session.documentsGroup.indexOf('addr') === -1) {
     // no address docs
-    res.redirect('/exceptionDocsErrorNoAddress')
-  } else if (req.body['documents-group'].indexOf('dob') === -1) {
+    res.redirect(page === 3 ? '/exceptionDocsErrorNoAddress' : nextPage)
+  } else if (req.session.documentsGroup.indexOf('dob') === -1) {
     // no dob docs
-    res.redirect('/exceptionDocsErrorNoDob')
+    res.redirect(page === 3 ? '/exceptionDocsErrorNoDob' : nextPage)
   } else {
     // there are enough docs, at least one has address and at least one has dob - happy path
     res.redirect('/exceptionChosenDocs')
@@ -321,7 +355,7 @@ router.post('/exceptionRouteCheckDocs', function (req, res) {
 router.post('/exceptionRouteDocDetails1', function(req, res) {
   res.render('exceptionRouteDocDetails1', req.session)
 })
-router.post('/exceptionChosenDocs', function(req, res) {
+router.get('/exceptionChosenDocs', function(req, res) {
   res.render('exceptionChosenDocs', req.session)
 })
 router.post('/formEnterName', function(req, res) {

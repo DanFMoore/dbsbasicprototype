@@ -2262,3 +2262,11 @@ p#showMore {
 .form-uid .form-group input {
   width: 100%;
 }
+
+#driving-licence-dob {
+  margin-bottom: 2em;
+}
+
+#driving-licence-sex {
+  margin-bottom: 1em;
+}
