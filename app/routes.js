@@ -207,11 +207,11 @@ router.all('/formPostcodeResults', function (req, res) {
 
  //Address results
  router.all('/formAddressManual', function (req, res) {
-    res.render('formAddressManual', { 'form_action' : '/address-manual-store' });
+    res.render('formAddressManual', { address: req.query.address });
   });
 
   router.all('/formAddressCurrentManual', function (req, res) {
-    res.render('formAddressCurrentManual');
+    res.render('formAddressCurrentManual', { address: req.query.address });
   });
 
   //Stores manual address Details

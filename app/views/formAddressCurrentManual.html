@@ -27,9 +27,10 @@
 							<label class="form-label" for="new-address-line-1">Number and street</label>
 							<div id="new-address-line-1-group-error-message" class="form-error validation-message"></div>
 							<input class="form-control" name="new-address-line-1" type="text" id="new-address-line-1"
-								data-parsley-class-handler="#new-address-line-1-group"
-								data-parsley-errors-container="#new-address-line-1-group-error-message"
-								data-parsley-required-message="Enter the first address line"
+								   data-parsley-class-handler="#new-address-line-1-group"
+								   data-parsley-errors-container="#new-address-line-1-group-error-message"
+								   data-parsley-required-message="Enter the first address line"
+								   {% if address %}value="12 Road Street"{% endif %}
 							><br/>
 							<input class="form-control" name="new-address-line-2" type="text" id="new-address-line-2">
 						</div>
@@ -37,29 +38,32 @@
 							<label class="form-label" for="new-address-town-city">Town or city</label>
 							<div id="new-town-group-error-message" class="form-error validation-message"></div>
 							<input class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
-								data-parsley-class-handler="#new-town-group"
-								data-parsley-errors-container="#new-town-group-error-message"
+								   data-parsley-class-handler="#new-town-group"
+								   data-parsley-errors-container="#new-town-group-error-message"
 
-								data-parsley-required-message="Enter the town or city"
+								   data-parsley-required-message="Enter the town or city"
+								   {% if address %}value="Liverpool"{% endif %}
 							>
 						</div>
 						<div id="new-postcode-group" class="form-group">
 							<label class="form-label" for="new-address-postcode">Postcode</label>
 							<div id="new-postcode-group-error-message" class="form-error validation-message"></div>
 							<input class="form-control" style="text-transform: uppercase;" maxlength="7" name="new-address-postcode" type="text" id="new-address-postcode"
-							   data-parsley-class-handler="#new-postcode-group"
-							   data-parsley-errors-container="#new-postcode-group-error-message"
-							   data-parsley-required-message="Enter the postcode"
+								   data-parsley-class-handler="#new-postcode-group"
+								   data-parsley-errors-container="#new-postcode-group-error-message"
+								   data-parsley-required-message="Enter the postcode"
+								   {% if address %}value="L3 8QJ"{% endif %}
 							>
 						</div>
 						<div id="new-country-group" class="form-group">
 							<label class="form-label" for="new-address-country">Country</label>
 							<div id="new-country-group-error-message" class="form-error validation-message"></div>
 							<input class="form-control" name="new-address-country" type="text" id="new-address-country"
-								data-parsley-class-handler="#new-country-group"
-								data-parsley-errors-container="#new-country-group-error-message"
+								   data-parsley-class-handler="#new-country-group"
+								   data-parsley-errors-container="#new-country-group-error-message"
 
-								data-parsley-required-message="Enter the country"
+								   data-parsley-required-message="Enter the country"
+								   {% if address %}value="United Kingdom"{% endif %}
 							>
 						</div>
 					</div> <!-- Form group close - New address block -->
