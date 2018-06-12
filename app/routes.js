@@ -316,7 +316,7 @@ router.get('/exceptionRouteDocs3', function (req, res) {
 })
 
 router.post('/exceptionRouteCheckDocs', function (req, res) {
-  let documents = [];
+  var documents = [];
 
   if (req.body['documents-group']) {
     documents = req.body['documents-group'].constructor === Array
