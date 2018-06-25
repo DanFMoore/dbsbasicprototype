@@ -319,7 +319,12 @@ router.get('/exceptionRouteDocs3', function (req, res) {
 })
 
 router.post('/exceptionRouteCheckDocs', function (req, res) {
+  const page = Number(req.body.page);
   var documents = [];
+
+  if (page === 1) {
+    req.session.documentsGroup = [];
+  }
 
   if (req.body['documents-group']) {
     documents = req.body['documents-group'].constructor === Array
@@ -329,7 +334,6 @@ router.post('/exceptionRouteCheckDocs', function (req, res) {
 
   req.session.documentsGroup = req.session.documentsGroup.concat(documents);
 
-  const page = Number(req.body.page);
   const nextPage = '/exceptionRouteDocs' + (page + 1);
   req.session.licenceSelected = false;
 

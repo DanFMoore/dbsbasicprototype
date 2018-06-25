@@ -1,4 +1,4 @@
-{% extends "layout.html" %} {% block page_title %} DBS Prototype {% endblock %} {% set main_question = "Have you ever been
+{% extends "layout.html" %} {% block page_title %} DS Prototype {% endblock %} {% set main_question = "Have you ever been
 known by any other names?" %} {% block content %}
 
 <main id="content" role="main">
@@ -12,12 +12,17 @@ known by any other names?" %} {% block content %}
 
 			<form action="{{ 'formPlaceBirth' if licenceSelected else 'formGender' }}" method="post" class="form">
 				<div class="form-group">
-					<p>You must tell us about all other names you’ve used, including middle names.</p> <p>For example, you may have changed your name through marriage.</p>
+					<p>You must tell us about all other names you’ve used, including middle names.</p>
+					<p>For example, you may have changed your name through marriage or deed poll.</p>
 
-					<div class="panel panel-border-wide">
-						<p>You must include all names that are on your official documents, for example your driving licence.</p>
-						<p>We need these names so we can check your application against our records.</p>
-					</div>
+					<details role="group">
+						<summary class="help-text-link" role="button" aria-controls="details-content-0" aria-expanded="true"><span class="summary">Which names should I include?</span></summary>
+						<div class="panel panel-border-narrow" data-dbs-id="help-text-text" id="details-content-0" aria-hidden="false">
+							<p>You must include all names that are on your official documents, for example your driving licence or passport.</p>
+
+							<p>We need these names so we can check your application against our records.</p>
+						</div>
+					</details>
 
 					<table>
 						<thead>
