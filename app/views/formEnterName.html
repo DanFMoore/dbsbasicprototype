@@ -14,25 +14,44 @@
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
             <h1 class="heading-medium">{{ main_question }}</h1>
-			<form action="formAddNames" method="post" class="form">
+			<form action="handleEnterName" method="post" class="form">
 			    <div id="name-entry-form-group" class="form-group">
 
                     <div class="form-group">
                         <label class="form-label" for="first-name">First name</label>
-                        <input class="form-control" name="first-name" type="text" id="first-name">
+                        <input
+                            class="form-control"
+                            name="first-name"
+                            type="text"
+                            id="first-name"
+                            {% if from %}value="John"{% endif %}
+                        >
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="middle-names">Middle name(s)</label>
-                        <input class="form-control" name="middle-names" type="text" id="middle-names">
+                        <input
+                            class="form-control"
+                            name="middle-names"
+                            type="text"
+                            id="middle-names"
+                            {% if from %}value="Danel"{% endif %}
+                        >
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="last-name">Last name</label>
-                        <input class="form-control" name="last-name" type="text" id="last-name">
+                        <input
+                            class="form-control"
+                            name="last-name"
+                            type="text"
+                            id="last-name"
+                            {% if from %}value="Smith"{% endif %}
+                        >
                     </div>
 			    </div> <!-- Form group close-->
 
 			    <!-- Continue button -->
 			    <div class="form-group">
+                    <input type="hidden" name="from" value="{{ from }}">
 			    	<input type="submit" class="button" value="Continue">
 				</div> <!-- Form group close-->
 

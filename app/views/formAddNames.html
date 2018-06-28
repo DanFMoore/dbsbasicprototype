@@ -46,7 +46,9 @@ known by any other names?" %} {% block content %}
 									Current name
 								</p>
 							</td>
-							<td></td>
+							<td>
+								<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterName' }}?from=names">Edit <span class="visually-hidden">Name</span></a>
+							</td>
 						</tr>
 
 						<tr>

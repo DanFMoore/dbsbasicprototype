@@ -11,89 +11,90 @@
   <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
-
-		{% include 'includes/error_summary.html' %}
-      	{# include if this page has validation requirements #}
-
-		<h1 class="heading-medium">{{main_question}}</h1>
 			<form action="{{ 'formAddNames' if licenceSelected else 'formEnterName' }}" method="post" class="form">
+				<fieldset>
+					<legend>
+						<h1 class="heading-medium page-heading">Do you have a National Insurance number?</h1>
+					</legend>
+					<div class="form-group ">
+						<fieldset class="">
+							<legend id="radio-group-ni-av">
+								<p>If you can&#39;t provide a National Insurance number you can still carry on with your application, but it might take us longer to process your check.</p>
+							</legend>
 
-				<!-- National Insurance -->
-			    <div id="ni-form-group" class="form-group">
-			    	<fieldset class="inline">
-			    		<legend class="visuallyhidden">{{main_question}}</legend>
-			    		<!--<p class="form-hint">If you can provide this information your application will be processed quicker.</p>-->
-			    		<div id="ni-form-group-error-message" class="form-error validation-message"></div>
-			    		<label class="block-label selection-button-radio" data-target="ni-number" for="radio-ni-1">
-						    <input id="radio-ni-1" type="radio" name="radio-ni-group" value="Yes"
-						    	data-parsley-class-handler="#ni-form-group"
-          							data-parsley-errors-container="#ni-form-group-error-message"
-          							
-    								data-parsley-required-message="Select 'yes' if you have a National Insurance number"
-						    >
-						    Yes
-					    </label>
-
-					    <label class="block-label selection-button-radio" for="radio-ni-2">
-						    <input id="radio-ni-2" type="radio" name="radio-ni-group" value="No">
-						    No
-					    </label>
-
-			    	</fieldset>
-			    	<!-- Expandable panel area -->
-			    	<div class="panel panel-border-narrow js-hidden" id="ni-number">
-						<!-- National Insurance number -->
-						<div id="ni-expand-form-group" class="form-group">
-							<label class="form-label" for="ni-number-input">National Insurance number</label>
-							<p class="form-hint">For example, QQ 12 34 56 C.</p>
-							<div id="ni-expand-form-group-error-message" class="form-error validation-message"></div>
-							<input disabled class="form-control input-ni" name="ni-number-input" type="text" id="ni-number-input"
-								data-parsley-class-handler="#ni-expand-form-group"
-          							data-parsley-errors-container="#ni-expand-form-group-error-message"
-          							
-    								data-parsley-required-message="Enter your National Insurance number"
+							<label
+									class="block-label selection-button-radio"
+									for="radio-option-yes"
+									data-target="ni-number"
+									id="for-radio-option-yes"
 							>
-						</div> <!-- Form group close-->
-					</div> <!-- Expandable panel area  Close -->
-			    </div> <!-- Form group close-->
+								<input
+										type="radio"
+										id="radio-option-yes"
+										name="radio-group-ni-av"
+										value="Yes"
 
+								/>
+								Yes
+							</label>
 
+							<label
+									class="block-label selection-button-radio"
+									for="radio-option-no"
+									data-target=""
+									id="for-radio-option-no"
+							>
+								<input
+										type="radio"
+										id="radio-option-no"
+										name="radio-group-ni-av"
+										value="No"
 
-			    <div class="form-group">
+								/>
+								No / I cannot provide the details right now
+							</label>
+						</fieldset>
 
+						<div class="panel panel-border-narrow js-hidden" id="ni-number">
+							<div class="form-group ">
 
-          <details>
+								<label class="form-label" for="ni-number-input">
+									National Insurance number
+									<span class="form-hint">For example, QQ123456C.</span>
+								</label>
 
-  <summary><span class="summary">I don't have my National Insurance number</span></summary>
+								<input
+										class="form-control input-pp"
+										name="ni-number-input"
+										type="text"
+										id="ni-number-input"
+										value=""
+								>
 
-  <div class="panel panel-border-narrow">
+							</div>
+						</div>
+					</div>
+				</fieldset>
 
-    <p>You can find your National Insurance number on your payslip, P60, or letters about tax, pensions, and benefits.</p>
-
-
-<p>If you can't provide your National Insurance number you can carry on with your application, but it might take us longer to process your check.<p>
-  </div>
-
-</details>
-
+				<div class="form-group">
+					<details>
+						<summary class="help-text-link"><span class="summary">I don&#39;t know my National Insurance number</span></summary>
+						<div class="panel panel-border-narrow" data-dbs-id="help-text-text">
+							<p>
+								You can find your National Insurance number on your payslip or letters about tax, pensions or benefits.
+							</p>
+						</div>
+					</details>
 				</div>
 
+				<input type="hidden" name="_csrf" value="fuNDtPFb-le0nvo0kl22a_GJ7OCnOBdq58TM" />
 
-
-
-
-
-			    <!-- Continue button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
-				</div> <!-- Form group close-->
-
+				<div class="form-group">
+					<input type="submit" class="button" id="save-and-continue" value="Continue">
+				</div>
 			</form>
 		</div>
 	</div>
-
-
-
 </main>
 
 <!-- scripts for page validation -->

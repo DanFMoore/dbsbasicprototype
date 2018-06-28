@@ -15,7 +15,7 @@ DBS Prototype
 			{% include 'includes/error_summary.html' %}
 			{# include if this page has validation requirements #}
 
-			<form action="formAddressManual" method="post" class="form" id="postcode-form">
+			<form action="{{ action }}" method="post" class="form" id="postcode-form">
 
 				<h1 class="heading-medium">Find your address</h1>
 				<!-- Details correct -->
@@ -44,7 +44,7 @@ DBS Prototype
 					</fieldset>
 
 					<div class="panel panel-border-wide">
-						<p>Non-UK addresses: <a href="formAddressManual">Add address manually</a></p>
+						<p>Non-UK addresses: <a href="{{ action }}">Add address manually</a></p>
 					</div>
 
 					<!-- Continue button -->
@@ -54,7 +54,7 @@ DBS Prototype
 				</div>
 			</form>
 
-			<form action="formAddressManual?address=1" method="post" class="form" id="select-address" style="display: none">
+			<form action="{{ action }}?address=1" method="post" class="form" id="select-address" style="display: none">
 				<div class="form-group">
 					<div class="form-group ">
 						<label class="form-label" for="select-box">Select your address</label>
@@ -62,13 +62,13 @@ DBS Prototype
 
 						<select class="form-control" id="select-box" name="select-box">
 							<option>Select your address</option>
-							<option value="0" data-address="Line 1, Line 2 - Line 3">Line 1, Line 2 - Line 3</option>
+							<option value="0" data-address="12 Road Street, Liverpool, L3 8QJ">12 Road Street, Liverpool, L3 8QJ</option>
 
 
 						</select>
 					</div>
 
-					<a href="formAddressManual">Add address manually</a>
+					<a href="{{ action }}">Add address manually</a>
 
 				</div>
 

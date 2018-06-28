@@ -20,6 +20,10 @@ router.get('/', function (req, res) {
   res.render('index')
 })
 
+router.post('/verifyPages', function (req, res) {
+  res.redirect('formVerifyFail')
+})
+
 // Section 1 - First form page
 router.post('/formFirstPage', function(req, res) {
   res.render('formFirstPage', req.session)
@@ -42,8 +46,8 @@ router.all('/formAddNames', function (req, res) {
   //Sets address info to display by default
   req.session.addressentry1 = true;
   req.session.addressentry2 = true;
- res.render('formAddNames', req.session);
- });
+  res.render('formAddNames', req.session);
+});
 // Section 4 - Email Address
 router.post('/formEmail', function(req, res) {
   res.render('formEmail', req.session)
@@ -66,6 +70,14 @@ router.post('/formOtherAddresses', function(req, res) {
 // Section 7 - Send address
 router.post('/formSendAddress', function(req, res) {
   res.render('formSendAddress', req.session)
+})
+
+router.post('/handleFormSendAddress', function(req, res) {
+  if (req.body['radio-correct-group'] === 'Another') {
+    res.redirect('formSendCert');
+  } else {
+    res.redirect('formEmail');
+  }
 })
 
 //Address history overview
@@ -101,8 +113,18 @@ router.all('/formAddressHistory', function (req, res) {
  });
 
  //formAddressAddNew
-router.post('/formAddressAddNew', function(req, res) {
+router.all('/formAddressAddNew', function(req, res) {
+  req.session.action = 'formAddressManual';
   res.render('formAddressAddNew', req.session)
+});
+
+router.all('/formSendCert', function(req, res) {
+  req.session.action = 'formSendCertManual';
+  res.render('formAddressAddNew', req.session)
+});
+
+router.all('/formSendCertManual', function(req, res) {
+  res.render('formSendCertManual', { address: req.query.address })
 });
 
 //formAddressAddUnusual
@@ -211,7 +233,10 @@ router.all('/formPostcodeResults', function (req, res) {
   });
 
   router.all('/formAddressCurrentManual', function (req, res) {
-    res.render('formAddressCurrentManual', { address: req.query.address });
+    res.render('formAddressCurrentManual', {
+      address: req.query.address,
+      year: req.query.year
+    });
   });
 
   //Stores manual address Details
@@ -261,9 +286,22 @@ router.post('/formIdentity', function (req, res) {
   res.render('formIdentity', req.session)
 })
 // Section 8 - Identity Details Driving Licence
-router.post('/formIdentityDriving', function(req, res) {
+router.all('/formIdentityDriving', function(req, res) {
+  req.session.from = req.query.from;
+
   res.render('formIdentityDriving', req.session)
 })
+
+router.post('/handleIdentityDriving', function (req, res) {
+  if (req.body.from === 'names') {
+    res.redirect('/formAddNames');
+  } else if (req.body.from === 'summary') {
+    res.redirect('/formSummary');
+  } else {
+    res.redirect('/formIdentityPassport');
+  }
+});
+
 // Section 8 - Identity Details Birth Certificate
 router.post('/formIdentityBirthCert', function(req, res) {
   res.render('formIdentityBirthCert', req.session)
@@ -365,9 +403,19 @@ router.post('/exceptionRouteDocDetails1', function(req, res) {
 router.get('/exceptionChosenDocs', function(req, res) {
   res.render('exceptionChosenDocs', req.session)
 })
-router.post('/formEnterName', function(req, res) {
+router.all('/formEnterName', function(req, res) {
+  req.session.from = req.query.from;
   res.render('formEnterName', req.session)
 })
+
+router.post('/handleEnterName', function (req, res) {
+  if (req.body.from === 'summary') {
+    res.redirect('/formSummary');
+  } else {
+    res.redirect('/formAddNames');
+  }
+});
+
 router.post('/formEnterDob', function(req, res) {
   res.render('formEnterDob', req.session)
 })

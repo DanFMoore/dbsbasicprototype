@@ -11,54 +11,102 @@
   <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
+			<h1 class="heading-medium page-heading">What is the address you want your certificate sending to?</h1>
 
-			{% include 'includes/error_summary.html' %}
-      {# include if this page has validation requirements #}
+			<form action="formEmail" method="post" class="form">
+				<div class="form-group">
+					<fieldset class="inline">
 
-			<form action="formAddressHistory" method="post" class="form">
+						<div class="form-group ">
+							<label class="form-label" for="recipient-name-input">
+								Recipient name
+							</label>
 
-
-        <h1 class="heading-medium">What is your current address?</h1>
-			<!-- Details correct -->
-			<div class="form-group" id="add-new-address-group">
-				<fieldset class="inline">
-					<div class="form-group" id="new-address-fields-block">
-						<div id="new-address-line-1-group" class="form-group">
-							<label class="form-label" for="new-address-line-1">Number and street</label>
-							<div id="new-address-line-1-group-error-message" class="form-error validation-message"></div>
-							<input class="form-control" name="new-address-line-1" type="text" id="new-address-line-1"
-								   data-parsley-class-handler="#new-address-line-1-group"
-								   data-parsley-errors-container="#new-address-line-1-group-error-message"
-								   data-parsley-required-message="Enter the first address line"
-								   {% if address %}value="12 Road Street"{% endif %}
-							><br/>
-							<input class="form-control" name="new-address-line-2" type="text" id="new-address-line-2">
-						</div>
-						<div id="new-town-group" class="form-group">
-							<label class="form-label" for="new-address-town-city">Town or city</label>
-							<div id="new-town-group-error-message" class="form-error validation-message"></div>
-							<input class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
-								   data-parsley-class-handler="#new-town-group"
-								   data-parsley-errors-container="#new-town-group-error-message"
-
-								   data-parsley-required-message="Enter the town or city"
-								   {% if address %}value="Liverpool"{% endif %}
+							<input
+								class="form-control input-pp"
+								name="recipient-name-input"
+								type="text"
+								id="recipient-name-input"
+								{% if address %}value="Fred Bloggs"{% endif %}
 							>
 						</div>
-						<div id="new-postcode-group" class="form-group">
-							<label class="form-label" for="new-address-postcode">Postcode</label>
-							<div id="new-postcode-group-error-message" class="form-error validation-message"></div>
-							<input class="form-control" style="text-transform: uppercase;" maxlength="7" name="new-address-postcode" type="text" id="new-address-postcode"
-								   data-parsley-class-handler="#new-postcode-group"
-								   data-parsley-errors-container="#new-postcode-group-error-message"
-								   data-parsley-required-message="Enter the postcode"
-								   {% if address %}value="L3 8QJ"{% endif %}
+
+						<div class="form-group ">
+							<label class="form-label" for="department-input">
+								Department (optional)
+							</label>
+
+							<input
+								class="form-control input-pp"
+								name="department-input"
+								type="text"
+								id="department-input"
+								{% if address %}value="Finance"{% endif %}
 							>
 						</div>
-						<div id="new-country-group" class="form-group">
-							<label class="form-label" for="new-address-country">Country</label>
-							<div id="new-country-group-error-message" class="form-error validation-message"></div>
-							<select name="new-address-country" id="new-address-country" autocorrect="off" autocomplete="off" class="form-control input-pp">
+
+						<div class="form-group ">
+							<label
+								class="form-label"
+								id="address-lines-label"
+								for="address-line-1-input">Number and street</label>
+
+							<div class="form-group-mini">
+								<input
+									class="form-control input-pp "
+									name="address-line-1-input"
+									type="text"
+									id="address-line-1-input"
+									aria-label="Number and street. Line 1"
+									{% if address %}value="12 Road Street"{% endif %}
+									value="">
+							</div>
+							<div class="form-group-mini">
+								<input
+									class="form-control input-pp "
+									name="address-line-2-input"
+									type="text"
+									id="address-line-2-input"
+									aria-label="Number and street. Line 2"
+									{% if address %}value="Georgian Quarter"{% endif %}
+									value="">
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<label class="form-label" for="town-input">
+								Town or city
+							</label>
+
+							<input
+								class="form-control input-pp"
+								name="town-input"
+								type="text"
+								id="town-input"
+								{% if address %}value="Liverpool"{% endif %}
+							>
+						</div>
+
+						<div class="form-group ">
+							<label class="form-label" for="postcode-input">
+								Postcode
+							</label>
+
+							<input
+								class="form-control input-pp"
+								name="postcode-input"
+								type="text"
+								id="postcode-input"
+								{% if address %}value="L3 8QJ"{% endif %}
+							>
+						</div>
+
+						<legend class="visuallyhidden">What was your address?</legend>
+
+						<div class="form-group ">
+							<label class="form-label" for="country-input">Country</label>
+
+							<select name="country-input" id="country-input"  autocorrect="off" autocomplete="off" class="form-control input-pp">
 								<option value="" selected="selected">Select Country</option>
 								<option value="Afghanistan"  data-alternative-spellings="AF افغانستان">Afghanistan</option>
 								<option value="Åland Islands"  data-alternative-spellings="AX Aaland Aland" data-relevancy-booster="0.5">Åland Islands</option>
@@ -310,35 +358,13 @@
 								<option value="Zimbabwe"  data-alternative-spellings="ZW">Zimbabwe</option>
 							</select>
 						</div>
-					</div> <!-- Form group close - New address block -->
-				</fieldset>
+					</fieldset>
+				</div>
+				<input type="hidden" name="_csrf" value="nT3mUZ7B-wEJbPP1-wHBbWLeYqNAMhDHYdhQ" />
 
-				<fieldset class="inline">
-					<div class="form-group ">
-						<label for="address-since-year"
-							<span class="form-label-bold">What year did you start living here?</span>
-							<span class="form-hint">For example, 1980</span>
-						</label>
-
-						<div class="form-date">
-							<div class="form-group form-group-year">
-								<input
-									id="address-since-year"
-									class="form-control"
-									type="number"
-									name="address-since-year"
-									{% if address %}value="2000"{% endif %}
-								>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-
-
-			    <!-- Continue button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
-				</div> <!-- Form group close-->
+				<div class="form-group">
+					<input type="submit" class="button" id="save-and-continue" value="Continue">
+				</div>
 			</form>
 		</div>
 	</div>
