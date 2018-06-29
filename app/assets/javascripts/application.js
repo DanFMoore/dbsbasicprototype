@@ -99,13 +99,15 @@ function ShowHideContent () {
   }
 }
 
-function myTestFunc(dTarget) {
-  $("#"+dTarget).toggle()
-  }
+function removeHidden(dTarget) {
+  $("#"+dTarget).removeClass('js-hidden')
+}
 
 
 
 $(document).ready(function () {
+  $('select').selectToAutocomplete();
+
   // Use GOV.UK selection-buttons.js to set selected
   // and focused states for block labels
   var $blockLabels = $(".block-label input[type='radio'], .block-label input[type='checkbox']")

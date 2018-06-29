@@ -101,7 +101,7 @@ function ShowHideContent () {
 
 function removeHidden(dTarget) {
   $("#"+dTarget).removeClass('js-hidden')
-  }
+}
 
 
 

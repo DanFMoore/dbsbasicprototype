@@ -7,3 +7,4 @@ govuk_modules
 node_modules/*
 .tmuxp.*
 public/*
+.idea
