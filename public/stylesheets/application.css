@@ -2308,6 +2308,9 @@ input[type=number] {
 label.block-label {
   background: transparent;
   border: 0;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 10px;
 }
 
 label.block-label input {
@@ -2447,4 +2450,28 @@ p#showMore {
 
 #driving-licence-sex {
   margin-bottom: 1em;
+}
+
+table {
+  margin-bottom: 2em;
+}
+
+td > p {
+  margin-bottom: 0;
+}
+
+.panel {
+  margin-top: 1em;
+}
+
+.inline .block-label {
+  display: inline-block;
+  clear: none;
+}
+
+@media (min-width: 641px) {
+  .inline .block-label {
+    margin-bottom: 0;
+    margin-right: 30px;
+  }
 }

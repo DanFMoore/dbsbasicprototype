@@ -8,7 +8,7 @@ known by any other names?" %} {% block content %}
         <div class="column-two-thirds reduceMargin">
             <h1 class="heading-medium page-heading">Have you lived anywhere else from 2013 to now?</h1>
 
-            <form action="formSendAddress" method="post" class="form">
+            <form action="{% if onSummary %}formSummary{% else %}formSendAddress{% endif %}" method="post" class="form">
                 <div class="form-group">
                     <p>You must tell us about all the addresses you've lived at in the last 5 years. You can't leave any gaps but it's fine to have overlapping dates.</p>
 
@@ -40,11 +40,11 @@ known by any other names?" %} {% block content %}
                         <tbody>
                         <tr>
                             <td>
-                                <p>12 A Road<br/>
-                                    By the brook<br/>
-                                    Manchester<br/>
-                                    United Kingdom<br/>
-                                    AA1 1AA</p>
+                                <p>37 Stroma Road<br>
+                                    Allerton<br>
+                                    Liverpool<br>
+                                    United Kingdom<br>
+                                    L18 9SN<br>
                             </td>
 
                             <td>
@@ -54,30 +54,30 @@ known by any other names?" %} {% block content %}
                                 <a href="formAddressCurrentManual?address=1&year=1">Edit <span class="visually-hidden">Address</span></a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-                                <p>12 Road Street<br/>
-                                    Manchester<br/>
-                                    United Kingdom<br/>
-                                    M1 1AA</p>
-                            </td>
-
-                            <td>
-                                <span>1999 to 2013</span>
-                            </td>
-                            <td>
-                                <a href="formAddressEdit">Edit <span class="visually-hidden">Address</span></a>
-                                <br>
-                                <a href="formAddressHistory" id="deleteAddress">Delete <span class="visually-hidden">Address</span></a>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
 
+                    <div class="form-group ">
+                        <fieldset class=" inline ">
+                            <legend id="radio-group-addresses-av">
+                                <span class="visually-hidden">Have you lived anywhere else from $year to now?</span>
+                            </legend>
+
+                            <label class="block-label selection-button-radio" for="radio-option-yes" data-target="address-options" id="for-radio-option-yes">
+                                <input type="radio" id="radio-option-yes" name="radio-group-addresses-av" value="Yes" aria-controls="address-options" aria-expanded="false">
+                                Yes
+                            </label>
+
+                            <label class="block-label selection-button-radio {% if from === 'summary' %}selected{% endif %}" for="radio-option-no" data-target="" id="for-radio-option-no">
+                                <input type="radio" id="radio-option-no" name="radio-group-addresses-av" value="No" {% if from === 'summary' %}selected="selected"{% endif %}>
+                                No
+                            </label>
+                        </fieldset>
+                    </div>
+
                     <table>
                         <tbody>
-                        <tr id="address-options">
+                        <tr id="address-options" class="js-hidden">
                             <td>
                                 <ul>
                                     <li><a href="formAddressAddNew" id="add-lookup-address">Add another address</a></li>

@@ -51,30 +51,28 @@ known by any other names?" %} {% block content %}
 							</td>
 						</tr>
 
-						<tr>
-							<td>
-								<p>Joe
-
-									Bloggs</p>
-							</td>
-							<td>
-      <span>
-
-   March 1990 to<br>
-   September 1990
-            </span>
-							</td>
-							<td>
-								<a href="formEditName">Edit <span class="visually-hidden">Name</span></a>
-								<br>
-								<a href="formAddNames" id="deleteName">Delete <span class="visually-hidden">Name</span></a>
-							</td>
-						</tr>
-
 						</tbody>
 					</table>
 
-					<p class="" id="name-options">
+					<div class="form-group ">
+						<fieldset class=" inline ">
+							<legend id="radio-group-names-av">
+								<span class="visually-hidden">Have you ever been known by any other names?</span>
+							</legend>
+
+							<label class="block-label selection-button-radio" for="radio-option-yes" data-target="name-options" id="for-radio-option-yes">
+								<input type="radio" id="radio-option-yes" name="radio-group-names-av" value="Yes" aria-controls="name-options" aria-expanded="false">
+								Yes
+							</label>
+
+							<label class="block-label selection-button-radio" for="radio-option-no" data-target="" id="for-radio-option-no">
+								<input type="radio" id="radio-option-no" name="radio-group-names-av" value="No">
+								No
+							</label>
+						</fieldset>
+					</div>
+
+					<p class="js-hidden" id="name-options" aria-hidden="true">
 						<a href="formAddName">Add another name</a>
 					</p>
 				</div>

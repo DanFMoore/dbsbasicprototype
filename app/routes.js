@@ -12,7 +12,8 @@ router.use(function (req, res, next) {
       req.session.formdata[key] = req.body[key];
     }
   }
-  console.log(req.session.formdata);
+
+  req.session.from = req.query.from;
   next();
 });
 
@@ -108,7 +109,9 @@ router.all('/formAddressHistory', function (req, res) {
    'unusualaddress':req.session.unusualaddress,
    'homelesstown' : req.session.homelesstown,
    'homelesscountry' : req.session.homelesscountry,
-   'travelcountry' : req.session.travelcountry
+   'travelcountry' : req.session.travelcountry,
+   from: req.query.from,
+   onSummary: req.session.onSummary,
  });
  });
 
@@ -124,7 +127,10 @@ router.all('/formSendCert', function(req, res) {
 });
 
 router.all('/formSendCertManual', function(req, res) {
-  res.render('formSendCertManual', { address: req.query.address })
+  res.render('formSendCertManual', {
+    address: req.query.address,
+    from: req.query.from,
+  })
 });
 
 //formAddressAddUnusual
@@ -320,6 +326,8 @@ router.post('/formConvictions', function(req, res) {
 })
 // Summary - Summary page
 router.post('/formSummary', function(req, res) {
+  req.session.onSummary = true;
+
   res.render('formSummary', req.session)
 })
 // Decalaration- Declaration page
@@ -334,12 +342,10 @@ router.post('/paymentScreens', function(req, res) {
   res.render('paymentScreens', req.session)
 })
 
-
-
-
 // EXCEPTION ROUTE routes
 router.get('/exceptionRouteDocs1', function (req, res) {
   req.session.documentsGroup = [];
+  req.session.onSummary = false;
 
   req.session.page = 1
   req.session.checkAgain = req.query.checkAgain
@@ -463,7 +469,9 @@ router.post('/formCompleteExp', function(req, res) {
 
   });
 
-
+router.get('/:viewScript', function (req, res) {
+  res.render(req.params.viewScript, req.session);
+});
 
 // add your routes here
 

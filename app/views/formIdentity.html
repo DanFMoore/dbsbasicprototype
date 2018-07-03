@@ -23,7 +23,7 @@
 							</legend>
 
 							<label
-									class="block-label selection-button-radio"
+									class="block-label selection-button-radio {% if from === 'summary' %}selected{% endif %}"
 									for="radio-option-yes"
 									data-target="ni-number"
 									id="for-radio-option-yes"
@@ -33,7 +33,7 @@
 										id="radio-option-yes"
 										name="radio-group-ni-av"
 										value="Yes"
-
+										{% if from === 'summary' %}selected="selected"{% endif %}
 								/>
 								Yes
 							</label>
@@ -55,7 +55,7 @@
 							</label>
 						</fieldset>
 
-						<div class="panel panel-border-narrow js-hidden" id="ni-number">
+						<div class="panel panel-border-narrow {% if from !== 'summary' %}js-hidden{% endif %}" id="ni-number">
 							<div class="form-group ">
 
 								<label class="form-label" for="ni-number-input">
@@ -68,7 +68,7 @@
 										name="ni-number-input"
 										type="text"
 										id="ni-number-input"
-										value=""
+										{% if from === 'summary' %}value="RF235498K"{% endif %}
 								>
 
 							</div>
@@ -101,85 +101,5 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
-
-
-
-<script type="text/javascript">
-	var parsleyForm;
-	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
-
-
-	// attach parsley validation to the form
-	parsleyForm = thisFormInstance.parsley({
-		excluded: 'input[type=button], input[type=submit], input[type=reset], :disabled',
-		focus:"none"
-	});
-
-	// before form is validated, catch the event and do custom validation if needed
-	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
-
-	    var ok = true;
-	    // add custom validations here - set ok to false if any of them fail validation
-
-	    //ok = ok && checkDiagnosisFutureDate();
-	    //ok = ok && validateDOB();
-
-	    if (!ok) {
-	      formInstance.validationResult = false;
-	    } else {
-	      formInstance.validationResult = true;
-	    }
-	  });
-
-	  // what to do when form doesn't validate
-	  thisFormInstance.parsley().on('form:error', function(formInstance) {
-	    //console.log('form error');
-
-	    // construct error display
-	    GOVUK.formUtilities.showErrorSummary();
-	  });
-
-	  // what to do when form validates successfully
-	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
-	    //console.log('form success');
-	    GOVUK.formUtilities.hideErrorSummary();
-
-	    // allow the form to submit
-	    return true;
-	  });
-
-	  // Enabled or disable hidden fields based on selected button
-	  $("input[name=radio-ni-group]").on('click', function() {
-	  	if($(this).val() == "Yes") {
-	  		$('#ni-number-input').prop('disabled', false);
-	  	}
-	  	else {
-	  		$('#ni-number-input').prop('disabled', true);
-	  	}
-	  });
-
-
-	  function toggleHelp() {
-			// When the extra help link is clicked it will display help block
-			if($('#helpArrow').hasClass('arrow-closed')) {
-				$('#helpArrow').removeClass('arrow-closed');
-				$('#helpArrow').html("▼");
-				$('#helpBlockText').removeClass('js-hidden');
-			}
-			else {
-				$('#helpArrow').addClass('arrow-closed');
-				$('#helpArrow').html("►");
-				$('#helpBlockText').addClass('js-hidden');
-			}
-
-		}
-
-
-
-
-
-
-
-</script>
 
 {% endblock %}

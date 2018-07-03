@@ -255,7 +255,7 @@
 						<option value="Uganda"  data-alternative-spellings="UG">Uganda</option>
 						<option value="Ukraine"  data-alternative-spellings="UA Ukrayina Україна">Ukraine</option>
 						<option value="United Arab Emirates"  data-alternative-spellings="AE UAE الإمارات">United Arab Emirates</option>
-						<option value="United Kingdom"  data-alternative-spellings="GB Great Britain England UK Wales Scotland Northern Ireland" data-relevancy-booster="5">United Kingdom</option>
+						<option value="United Kingdom" {% if from === 'summary' %}selected="selected"{% endif %} data-alternative-spellings="GB Great Britain England UK Wales Scotland Northern Ireland" data-relevancy-booster="5">United Kingdom</option>
 						<option value="United States"  data-relevancy-booster="3.5" data-alternative-spellings="US USA United States of America">United States</option>
 						<option value="United States Minor Outlying Islands"  data-alternative-spellings="UM">United States Minor Outlying Islands</option>
 						<option value="Uruguay"  data-alternative-spellings="UY">Uruguay</option>
@@ -283,7 +283,7 @@
 						name="town-city-input"
 						type="text"
 						id="town-city-input"
-						value=""
+						{% if from === 'summary' %}value="Liverpool"{% endif %}
 					>
 				</div>
 

@@ -106,6 +106,15 @@ function removeHidden(dTarget) {
 
 
 $(document).ready(function () {
+  if (window.location.href.indexOf('from=summary') !== -1) {
+    $('form').submit(function (e) {
+      e.preventDefault();
+
+      window.location.href = 'formSummary';
+      return false;
+    });
+  }
+
   $('select').selectToAutocomplete();
 
   // Use GOV.UK selection-buttons.js to set selected

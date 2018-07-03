@@ -58,6 +58,9 @@ $path: "/public/images/";
 label.block-label {
   background: transparent;
   border: 0;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 10px;
 }
 
 label.block-label input {
@@ -197,4 +200,27 @@ p#showMore {
 
 #driving-licence-sex {
   margin-bottom: 1em;
+}
+
+table {
+  margin-bottom: 2em;
+}
+
+td > p {
+  margin-bottom: 0;
+}
+
+.panel {
+  margin-top: 1em;
+}
+
+// To stack horizontally, use .inline on parent, to sit block labels next to each other
+.inline .block-label {
+  display: inline-block;
+  clear: none;
+
+  @include media (tablet) {
+    margin-bottom: 0;
+    margin-right: $gutter;
+  }
 }

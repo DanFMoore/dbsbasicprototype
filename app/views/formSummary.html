@@ -17,25 +17,11 @@
 							Name
 						</dt>
 						<dd class="cya-answer">
-							David Attenborough
+							John Daniel Smith
 						</dd>
 						<dd class="cya-change">
 							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterName' }}?from=summary" id="edit-name">
 								Change<span class="visually-hidden"> Name</span>
-							</a>
-						</dd>
-					</div>
-
-					<div id="date-of-birth">
-						<dt class="cya-question">
-							Date of birth
-						</dt>
-						<dd class="cya-answer">
-							28 April 1928
-						</dd>
-						<dd class="cya-change">
-							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterDob' }}?from=summary" id="edit-date-of-birth">
-								Change<span class="visually-hidden"> Date of birth</span>
 							</a>
 						</dd>
 					</div>
@@ -55,36 +41,31 @@
 						</dd>
 					</div>
 
+					<div id="date-of-birth">
+						<dt class="cya-question">
+							Date of birth
+						</dt>
+						<dd class="cya-answer">
+							05 November 1976
+						</dd>
+						<dd class="cya-change">
+							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterDob' }}?from=summary" id="edit-date-of-birth">
+								Change<span class="visually-hidden"> Date of birth</span>
+							</a>
+						</dd>
+					</div>
+
 					<div id="place-of-birth pob-country pob-town-city">
 						<dt class="cya-question">
 							Place of birth
 						</dt>
 						<dd class="cya-answer">
 							United Kingdom<br>
-							London
+							Liverpool
 						</dd>
 						<dd class="cya-change">
-							<a href="formPlaceBirth" id="edit-place-of-birth">
+							<a href="formPlaceBirth?from=summary" id="edit-place-of-birth">
 								Change<span class="visually-hidden"> Place of birth</span>
-							</a>
-						</dd>
-					</div>
-
-					<div id="names">
-						<dt class="cya-question">
-							Other names
-						</dt>
-						<dd class="cya-answer">
-							Frank Sinatra<br>
-							Used from
-							March 1994
-							to
-							April 1995
-							<br>
-						</dd>
-						<dd class="cya-change">
-							<a href="formAddNames" id="edit-names">
-								Change<span class="visually-hidden"> Other names</span>
 							</a>
 						</dd>
 					</div>
@@ -94,14 +75,15 @@
 							Address history (last 5 years)
 						</dt>
 						<dd class="cya-answer">
-							From 1989 to now<br>
-							8 Road Street<br>
-							Oxford<br>
+							From 2000 to now<br>
+							37 Stroma Road<br>
+							Allerton<br>
+							Liverpool<br>
 							United Kingdom<br>
-							OX7 5PJ<br>
+							L18 9SN<br>
 						</dd>
 						<dd class="cya-change">
-							<a href="formAddressHistory" id="edit-address">
+							<a href="formAddressHistory?from=summary" id="edit-address">
 								Change<span class="visually-hidden"> Current address</span>
 							</a>
 						</dd>
@@ -110,58 +92,78 @@
 
 				<h2 class="heading-medium page-heading">Identity Document details</h2>
 
-				<h3 class="heading-small" id="driving-licence">Driving Licence</h3>
-				<br>
-				<!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
-				<!--   * `cya-questions-short` for short questions -->
-				<!--   * `cya-questions-long` for long questions -->
-				<!--   * none for single group of q&a -->
-				<dl class="govuk-check-your-answers cya-questions-short">
+				{% if licenceSelected %}
+					<h3 class="heading-small" id="driving-licence">Driving Licence</h3>
+					<br>
+					<dl class="govuk-check-your-answers cya-questions-short">
 
-					<div id="uid-driving-licence">
-						<dt class="cya-question">
-							Driving Licence number
-						</dt>
-						<dd class="cya-answer">
-							ATTEN204289DF9TE<br>
-						</dd>
+						<div id="uid-driving-licence">
+							<dt class="cya-question">
+								Driving Licence number
+							</dt>
+							<dd class="cya-answer">
+								SMITJ123456L69TM<br>
+							</dd>
 
-						<dd class="cya-change">
-							<a href="formIdentityDriving" id="edit-driving-licence">
-								Change<span class="visually-hidden"> Driving Licence details</span>
-							</a>
-						</dd>
-					</div>
+							<dd class="cya-change">
+								<a href="formIdentityDriving?from=summary" id="edit-driving-licence">
+									Change<span class="visually-hidden"> Driving Licence details</span>
+								</a>
+							</dd>
+						</div>
 
-					<div id="country-issue-driving-licence">
-						<dt class="cya-question">
-							Country of issue
-						</dt>
-						<dd class="cya-answer">
-							United Kingdom<br>
-						</dd>
-						<dd class="cya-change">
-							<a href="formIdentityDriving" id="edit-driving-licence">
-								Change<span class="visually-hidden"> Driving Licence details</span>
-							</a>
-						</dd>
-					</div>
+						<div id="country-issue-driving-licence">
+							<dt class="cya-question">
+								Country of issue
+							</dt>
+							<dd class="cya-answer">
+								United Kingdom<br>
+							</dd>
+							<dd class="cya-change">
+								<a href="formIdentityDriving?from=summary" id="edit-driving-licence">
+									Change<span class="visually-hidden"> Driving Licence details</span>
+								</a>
+							</dd>
+						</div>
 
-					<div id="expiry-date-driving-licence">
-						<dt class="cya-question">
-							Expiry date
-						</dt>
-						<dd class="cya-answer">
-							30 March 2025
-							<br>
-						</dd>
-						<dd class="cya-change">
-							<a href="formIdentityDriving" id="edit-driving-licence">
-								Change<span class="visually-hidden"> Driving Licence details</span>
-							</a>
-						</dd>
-					</div>
-				</dl>
+						<div id="expiry-date-driving-licence">
+							<dt class="cya-question">
+								Expiry date
+							</dt>
+							<dd class="cya-answer">
+								23 September 2021
+								<br>
+							</dd>
+							<dd class="cya-change">
+								<a href="formIdentityDriving?from=summary" id="edit-driving-licence">
+									Change<span class="visually-hidden"> Driving Licence details</span>
+								</a>
+							</dd>
+						</div>
+					</dl>
+				{% else %}
+					<h3 class="heading-small" id="birth-certificate">Birth Certificate</h3>
+					<br>
+					<dl class="govuk-check-your-answers cya-questions-short">
+						<div id="uid-birth-certificate">
+	
+							<dt class="cya-question">
+								Certificate number
+							</dt>
+							<dd class="cya-answer">
+								3884<br>
+							</dd>
+	
+							<dd class="cya-change">
+	
+								<a href="formIdentityBirthCert?from=summary" id="edit-birth-certificate">
+									Change<span class="visually-hidden"> Birth Certificate details</span>
+								</a>
+							</dd>
+						</div>
+					</dl>
+				{% endif %}
+
 				<br>
 
 				<h3 class="heading-small" id="passport">Passport</h3>
@@ -176,11 +178,11 @@
 							Passport Number
 						</dt>
 						<dd class="cya-answer">
-							123456789<br>
+							112523556<br>
 						</dd>
 						<dd class="cya-change">
 
-							<a href="formIdentityPassport" id="edit-passport">
+							<a href="formIdentityPassport?from=summary" id="edit-passport">
 								Change<span class="visually-hidden"> Passport details</span>
 							</a>
 						</dd>
@@ -194,7 +196,7 @@
 							United Kingdom<br>
 						</dd>
 						<dd class="cya-change">
-							<a href="formIdentityPassport" id="edit-passport">
+							<a href="formIdentityPassport?from=summary" id="edit-passport">
 								Change<span class="visually-hidden"> Passport details</span>
 							</a>
 						</dd>
@@ -205,11 +207,11 @@
 							Expiry date
 						</dt>
 						<dd class="cya-answer">
-							30 March 2025
+							14 July 2019
 							<br>
 						</dd>
 						<dd class="cya-change">
-							<a href="formIdentityPassport" id="edit-passport">
+							<a href="formIdentityPassport?from=summary" id="edit-passport">
 								Change<span class="visually-hidden"> Passport details</span>
 							</a>
 						</dd>
@@ -230,12 +232,12 @@
 							Account number
 						</dt>
 						<dd class="cya-answer">
-							9512<br>
+							6321<br>
 						</dd>
 
 						<dd class="cya-change">
 
-							<a href="formIdentityBankStatement" id="edit-bank-statement">
+							<a href="formIdentityBankStatement?from=summary" id="edit-bank-statement">
 								Change<span class="visually-hidden"> Bank or Building Society statement details</span>
 							</a>
 						</dd>
@@ -246,15 +248,12 @@
 							Issue date
 						</dt>
 						<dd class="cya-answer">
-
-
-							30 March 2018
-
+							20 June 2018
 							<br>
 						</dd>
 						<dd class="cya-change">
 
-							<a href="formIdentityBankStatement" id="edit-bank-statement">
+							<a href="formIdentityBankStatement?from=summary" id="edit-bank-statement">
 								Change<span class="visually-hidden"> Bank or Building Society statement details</span>
 							</a>
 						</dd>
@@ -269,10 +268,10 @@
 							National Insurance number
 						</dt>
 						<dd class="cya-answer">
-							I don't have a National Insurance number / I cannot provide the details right now
+							RF235498K
 						</dd>
 						<dd class="cya-change">
-							<a href="formIdentity" id="edit-national-insurance">
+							<a href="formIdentity?from=summary" id="edit-national-insurance">
 								Change<span class="visually-hidden"> National Insurance number</span>
 							</a>
 						</dd>
@@ -283,13 +282,14 @@
 							Address to send your certificate to
 						</dt>
 						<dd class="cya-answer">
-							8 Road Street<br>
-							Oxford<br>
-							United Kingdom<br>
-							CH7 5QG<br>
+							John Daniel Smith<br>
+							14 Kingsland Road<br>
+							Dalston<br>
+							London<br>
+							E13 9PA<br>
 						</dd>
 						<dd class="cya-change">
-							<a href="formSendAddress" id="edit-send-cert">
+							<a href="formSendCertManual?from=summary&address=1" id="edit-send-cert">
 								Change<span class="visually-hidden"> Address to send your certificate to</span>
 							</a>
 						</dd>
@@ -300,10 +300,10 @@
 							Email address
 						</dt>
 						<dd class="cya-answer">
-							davyboy@hotmail.com
+							johndsmith@gmail.com
 						</dd>
 						<dd class="cya-change">
-							<a href="formEmail" id="edit-email">
+							<a href="formEmail?from=summary" id="edit-email">
 								Change<span class="visually-hidden"> Email address</span>
 							</a>
 						</dd>
@@ -314,10 +314,10 @@
 							Contact phone number
 						</dt>
 						<dd class="cya-answer">
-							I don't want to provide my contact number
+							0151 436 2344
 						</dd>
 						<dd class="cya-change">
-							<a href="formContactNumber" id="edit-contact-number">
+							<a href="formContactNumber?from=summary" id="edit-contact-number">
 								Change<span class="visually-hidden"> Contact phone number</span>
 							</a>
 						</dd>

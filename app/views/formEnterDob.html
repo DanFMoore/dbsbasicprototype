@@ -24,18 +24,22 @@
                             <div class="form-group form-group-day" id="dob-day">
                                 <label for="dob-day">Day</label>
                                 <input class="form-control" id="dob-day" type="number" pattern="[0-9]*" maxlength="2" min="0" max="31"
-                                    name="dob-day">
+                                    name="dob-day"
+                                   {% if from === 'summary' %}value="05"{% endif %}
+                                >
                             </div>
                             <div class="form-group form-group-month" id="dob-month">
                                 <label for="dob-month">Month</label>
                                 <input class="form-control" id="dob-month" type="number" pattern="[0-9]*" maxlength="2" min="0" max="12"
+                                    {% if from === 'summary' %}value="11"{% endif %}
                                     name="dob-month">
                             </div>
                             <!-- Form group close-->
                             <div class="form-group form-group-year" id="dob-year">
                                 <label for="dob-year">Year</label>
                                 <input class="form-control" id="dob-year" type="number" pattern="[0-9]*" maxlength="4" min="1900" max="2016"
-                                    name="dob-year">
+                                   {% if from === 'summary' %}value="1976"{% endif %}
+                                   name="dob-year">
                             </div>
                             <!-- Form group close-->
                         </div>
@@ -60,51 +64,5 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
-
-<script type="text/javascript">
-	var parsleyForm;
-	var thisFormInstance = $( "form:first-of-type" ); // assuming we're validating first form on this page
-
-	// attach parsley validation to the form
-	parsleyForm = thisFormInstance.parsley({
-		excluded: 'input[type=button], input[type=submit], input[type=reset]',
-		focus:"none"
-	});
-
-	// before form is validated, catch the event and do custom validation if needed
-	  thisFormInstance.parsley().on('form:validate', function(formInstance) {
-
-	    var ok = true;
-	    // add custom validations here - set ok to false if any of them fail validation
-
-	    //ok = ok && checkDiagnosisFutureDate();
-	    //ok = ok && validateDOB();
-
-	    if (!ok) {
-	      formInstance.validationResult = false;
-	    } else {
-	      formInstance.validationResult = true;
-	    }
-	  });
-
-	  // what to do when form doesn't validate
-	  thisFormInstance.parsley().on('form:error', function(formInstance) {
-	    //console.log('form error');
-
-	    // construct error display
-	    GOVUK.formUtilities.showErrorSummary();
-	  });
-
-	  // what to do when form validates successfully
-	  thisFormInstance.parsley().on('form:submit', function(formInstance) {
-	    //console.log('form success');
-	    GOVUK.formUtilities.hideErrorSummary();
-
-	    // allow the form to submit
-	    return true;
-	  });
-
-
-</script>
 
 {% endblock %}
