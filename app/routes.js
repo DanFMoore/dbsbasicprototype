@@ -432,17 +432,8 @@ router.post('/exceptionDocsPrint', function(req, res) {
   })
 })
 // Complete - Application Complete
-router.post('/formComplete', function(req, res) {
-  var exception = req.session.formdata['exception'];
-  if (typeof exception == 'undefined') {
-    res.render('formComplete', req.session)
-  } else {
-    res.redirect('formCompleteExp');
-  }
-})
-
-router.post('/formCompleteExp', function(req, res) {
-  res.render('formCompleteExp', req.session);
+router.all('/formComplete', function(req, res) {
+  res.redirect('formCompleteExp');
 })
 
 // Branching
