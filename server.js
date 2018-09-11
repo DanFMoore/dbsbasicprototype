@@ -123,7 +123,7 @@ app.get(/\.html?$/i, function (req, res) {
 })
 
 // auto render any view that exists
-app.get(/^\/([^.]+)$/, function (req, res) {
+app.all(/^\/([^.]+)$/, function (req, res) {
   var path = (req.params[0])
 
   res.render(path, function (err, html) {
