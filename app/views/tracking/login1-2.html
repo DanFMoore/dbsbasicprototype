@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Track application status
+{% endblock %}
+
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+  <div class="grid-row">
+    <div class="column-two-thirds reduceMargin">
+      <h1 class="heading-medium page-heading">See where your application is up to</h1> 
+<form action="login1-3" method="post" class="form">
+        <div class="form-group">
+          <label class="form-label-bold" for="surname">
+             What is your surname?
+          </label>
+
+          <input class="form-control input-pp" name="uid-input" type="text" id="surname">
+        </div>
+
+        <input type="hidden" name="_csrf" value="fsDHaEKY-J587eCDRFy2itIQy6FAevPIBFc8">
+
+        <div class="form-group">
+          <input type="submit" class="button" id="save-and-continue" value="Continue">
+        </div>
+      </form>
+    </div>
+  </div>
+  <input class='test-input js-hidden' disabled>
+</main>
+
+{% endblock %}
