@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-  Track application status
+Track application status
 {% endblock %}
 
 
@@ -11,21 +11,33 @@
   {% include 'includes/phase_banner_alpha.html' %}
   <div class="grid-row">
     <div class="column-two-thirds reduceMargin">
-      <h1 class="heading-medium page-heading">Track application status</h1>
+      <h1 class="heading-medium page-heading">See where your application is up to</h1>
+
+      <p>If you made an online application with the DBS for a basic check, you can enter your details below to see where it's up to.</p>
 
       <form action="view" method="post" class="form">
         <div class="form-group">
-          <label class="form-label" for="ref-number">
-            Reference number
+          <label class="form-label-bold" for="ref-number">
+            What is your application reference number?
+            <span class="form-hint">For example, E1234567890</span>
           </label>
 
           <input class="form-control input-pp" name="uid-input" type="text" id="ref-number">
         </div>
 
+        <div class="form-group">
+          <label class="form-label-bold" for="surname">
+            What is your surname?
+          </label>
+
+          <input class="form-control input-pp" name="uid-input" type="text" id="surname">
+        </div>
+
         <div class="form-group ">
           <fieldset>
             <legend>
-              <span class="form-label">Date of birth</span>
+              <span class="form-label-bold">What is your date of birth?</span>
+              <span class="form-hint">For example, 28 03 1980</span>
             </legend>
 
             <div class="form-date">
@@ -47,20 +59,12 @@
           </fieldset>
         </div>
 
-        <div class="form-group">
-          <label class="form-label" for="surname">
-            Surname
-          </label>
-
-          <input class="form-control input-pp" name="uid-input" type="text" id="surname">
-        </div>
-
 
 
         <input type="hidden" name="_csrf" value="fsDHaEKY-J587eCDRFy2itIQy6FAevPIBFc8">
 
         <div class="form-group">
-          <input type="submit" class="button" id="save-and-continue" value="Log in">
+          <input type="submit" class="button" id="save-and-continue" value="Continue">
         </div>
       </form>
     </div>
