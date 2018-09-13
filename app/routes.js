@@ -410,6 +410,9 @@ router.get('/exceptionChosenDocs', function(req, res) {
   res.render('exceptionChosenDocs', req.session)
 })
 router.all('/formEnterName', function(req, res) {
+  if (req.body) {
+  }
+
   req.session.from = req.query.from;
   res.render('formEnterName', req.session)
 })
