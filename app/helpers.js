@@ -1,5 +1,5 @@
 function getMonthName(n) {
-  const months = [
+  var months = [
     'January',
     'February',
     'March',
@@ -14,7 +14,7 @@ function getMonthName(n) {
     'December'
   ];
 
-  const month = months[Number(n)];
+  var month = months[Number(n)];
 
   if (!month) {
     return months[0];

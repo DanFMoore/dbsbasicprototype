@@ -275,7 +275,7 @@ router.all('/formPostcodeResults', function (req, res) {
   });
 
   router.post('/handlePostcodeForm', function (req, res) {
-    let type = 'standard';
+    var type = 'standard';
 
     if (!req.session.addresses) {
       req.session.addresses = [];
@@ -428,7 +428,7 @@ router.get('/exceptionRouteDocs3', function (req, res) {
 })
 
 router.post('/exceptionRouteCheckDocs', function (req, res) {
-  const page = Number(req.body.page);
+  var page = Number(req.body.page);
   var documents = [];
 
   if (page === 1) {
@@ -443,7 +443,7 @@ router.post('/exceptionRouteCheckDocs', function (req, res) {
 
   req.session.documentsGroup = req.session.documentsGroup.concat(documents);
 
-  const nextPage = '/exceptionRouteDocs' + (page + 1);
+  var nextPage = '/exceptionRouteDocs' + (page + 1);
   req.session.licenceSelected = false;
 
   if (req.session.documentsGroup.length < 3) {
@@ -534,13 +534,13 @@ router.get('/formAddName/:index', function (req, res) {
 });
 
 router.post('/formAddName/:index', function (req, res) {
-  const fromMonth = helpers.getMonthName(req.body['name-since-month']);
-  const from = `${fromMonth} ${req.body['name-since-year']}`;
+  var fromMonth = helpers.getMonthName(req.body['name-since-month']);
+  var from = `${fromMonth} ${req.body['name-since-year']}`;
 
-  let to = 'now';
+  var to = 'now';
 
   if (req.body['radio-group-current-name'] === 'No') {
-    const toMonth = helpers.getMonthName(req.body['name-to-month']);
+    var toMonth = helpers.getMonthName(req.body['name-to-month']);
     to = `${toMonth} ${req.body['name-to-year']}`;
   }
 
@@ -566,13 +566,13 @@ router.post('/formAddName', function (req, res) {
     req.session.names = [];
   }
 
-  const fromMonth = helpers.getMonthName(req.body['name-since-month']);
-  const from = `${fromMonth} ${req.body['name-since-year']}`;
+  var fromMonth = helpers.getMonthName(req.body['name-since-month']);
+  var from = `${fromMonth} ${req.body['name-since-year']}`;
 
-  let to = 'now';
+  var to = 'now';
 
   if (req.body['radio-group-current-name'] === 'No') {
-    const toMonth = helpers.getMonthName(req.body['name-to-month']);
+    var toMonth = helpers.getMonthName(req.body['name-to-month']);
     to = `${toMonth} ${req.body['name-to-year']}`;
   }
 
