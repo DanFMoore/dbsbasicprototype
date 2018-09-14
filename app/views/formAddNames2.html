@@ -7,9 +7,42 @@ known by any other names?" %} {% block content %}
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
 
+			<div
+				id="error-select-another-name"
+				class="error-summary validation-error js-hidden"
+				role="group"
+				aria-labelledby="error-summary-heading"
+				tabindex="-1"
+			>
+				<h2 class="heading-medium error-summary-heading" id="error-summary-heading">
+					There is a problem
+				</h2>
+
+				<ul class="error-summary-list">
+					<li><a href="#radio-group-names-av">Select 'Add another name' to enter your other names</a></li>
+				</ul>
+			</div>
+
+			<div
+					id="error-select-yes-no"
+					class="error-summary validation-error js-hidden"
+					role="group"
+					aria-labelledby="error-summary-heading"
+					tabindex="-1"
+			>
+				<h2 class="heading-medium error-summary-heading" id="error-summary-heading">
+					There is a problem
+				</h2>
+
+				<ul class="error-summary-list">
+					<li><a href="#radio-group-names-av">Select yes or no</a></li>
+				</ul>
+			</div>
+
 			<h1 class="heading-medium page-heading">Have you ever been known by any other names?</h1>
 
 			<form action="{{ 'formPlaceBirth' if licenceSelected else 'formGender' }}" method="post" class="form">
+				{% if not names %}
 				<div class="form-group ">
 					<fieldset class=" inline ">
 						<legend id="radio-group-names-av">
@@ -27,8 +60,15 @@ known by any other names?" %} {% block content %}
 						</label>
 					</fieldset>
 				</div>
+				{% endif %}
 
-				<p class="js-hidden" id="name-options" aria-hidden="true">
+				<p
+					{% if not names %}
+						class="js-hidden"
+					{% endif %}
+					id="name-options"
+					aria-hidden="true"
+				>
 					<a href="formAddName">Add another name</a>
 				</p>
 
@@ -57,9 +97,9 @@ known by any other names?" %} {% block content %}
 						<tr>
 							<td>
 								<p>
-									John
-									Daniel
-									Smith
+									{{ mainName['first-name'] }}
+									{{ mainName['middle-names'] }}
+									{{ mainName['last-name'] }}
 								</p>
 							</td>
 							<td>
@@ -68,9 +108,34 @@ known by any other names?" %} {% block content %}
 								</p>
 							</td>
 							<td>
+								{% if names %}
 								<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterName' }}?from=names">Edit <span class="visually-hidden">Name</span></a>
+								{% endif %}
 							</td>
 						</tr>
+
+						{% for name in names %}
+						<tr>
+							<td>
+								<p>
+									{{ name['first-name-input'] }}
+									{{ name['middle-names-input'] }}
+									{{ name['last-name-input'] }}
+								</p>
+							</td>
+							<td>
+								<p>
+									{{ name.from }} to {{ name.to }}
+								</p>
+							</td>
+							<td>
+								<a
+									href="formAddName/{{ loop.index - 1 }}">Edit <span class="visually-hidden">Name</span></a><br/>
+								<a
+									href="deleteName/{{ loop.index - 1 }}">Delete <span class="visually-hidden">Name</span></a>
+							</td>
+						</tr>
+						{% endfor %}
 
 						</tbody>
 					</table>
@@ -92,8 +157,17 @@ known by any other names?" %} {% block content %}
 <script src="/public/javascripts/form-utilities.js"></script>
 
 <script type="text/javascript">
-  $('#deleteName').click(function (e) {
-    e.preventDefault();
-	$(this).closest('tr').hide();
-  });
+	$('form').submit(function (e) {
+	  $('.error-summary').addClass('js-hidden');
+
+      if ($('#radio-option-yes').length) {
+        if ($('#radio-option-yes').prop('checked')) {
+          $('#error-select-another-name').removeClass('js-hidden');
+          e.preventDefault();
+        } else if (!$('#radio-option-no').prop('checked')) {
+          $('#error-select-yes-no').removeClass('js-hidden');
+          e.preventDefault();
+        }
+      }
+	});
 </script> {% endblock %}

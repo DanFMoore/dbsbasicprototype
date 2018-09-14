@@ -24,7 +24,7 @@
                             name="first-name"
                             type="text"
                             id="first-name"
-                            {% if from %}value="John"{% endif %}
+                            value="{{ mainName['first-name'] }}"
                         >
                     </div>
                     <div class="form-group">
@@ -34,7 +34,7 @@
                             name="middle-names"
                             type="text"
                             id="middle-names"
-                            {% if from %}value="Danel"{% endif %}
+                            value="{{ mainName['middle-names'] }}"
                         >
                     </div>
                     <div class="form-group">
@@ -44,7 +44,7 @@
                             name="last-name"
                             type="text"
                             id="last-name"
-                            {% if from %}value="Smith"{% endif %}
+                            value="{{ mainName['last-name'] }}"
                         >
                     </div>
 			    </div> <!-- Form group close-->

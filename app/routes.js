@@ -1,3 +1,4 @@
+var helpers = require('./helpers');
 var express = require('express')
 var router = express.Router()
 
@@ -114,6 +115,17 @@ router.all('/formAddressHistory', function (req, res) {
    onSummary: req.session.onSummary,
  });
  });
+
+router.all('/formAddressHistory2', function (req, res) {
+  req.session.from = req.query.from;
+  res.render('formAddressHistory2', req.session);
+});
+
+
+router.get('/deleteAddress/:index', function (req, res) {
+  req.session.addresses.splice(req.params.index, 1);
+  res.redirect('/formAddressHistory2');
+});
 
  //formAddressAddNew
 router.all('/formAddressAddNew', function(req, res) {
@@ -234,15 +246,68 @@ router.all('/formPostcodeResults', function (req, res) {
 
 
  //Address results
- router.all('/formAddressManual', function (req, res) {
+  router.get('/formAddressManual', function (req, res) {
     res.render('formAddressManual', { address: req.query.address });
   });
 
+  router.post('/formAddressManual', function (req, res) {
+    req.body.type = 'standard';
+    req.session.addresses.push(req.body);
+
+    res.redirect('/formAddressHistory2');
+  });
+
+  router.get('/formAddressManual/:index', function (req, res) {
+    req.session.editAddress = req.session.addresses[req.params.index];
+    res.render('formAddressManual', req.session);
+  });
+
+  router.post('/formAddressManual/:index', function (req, res) {
+    req.body.type = 'standard';
+    req.session.addresses[req.params.index] = req.body;
+
+    res.redirect('/formAddressHistory2')
+  });
+
   router.all('/formAddressCurrentManual', function (req, res) {
-    res.render('formAddressCurrentManual', {
-      address: req.query.address,
-      year: req.query.year
+    req.session.currentAddress = req.session.addresses ? req.session.addresses[0] : {};
+    res.render('formAddressCurrentManual', req.session);
+  });
+
+  router.post('/handlePostcodeForm', function (req, res) {
+    let type = 'standard';
+
+    if (!req.session.addresses) {
+      req.session.addresses = [];
+      type = 'main';
+    }
+
+    req.session.addresses.push({
+      'new-address-line-1': '37 Stroma Road',
+      'new-address-line-2': 'Allerton',
+      'new-address-town-city': 'Liverpool',
+      'new-address-country': 'United Kingdom',
+      'new-address-postcode': 'L18 9SN',
+      type,
+      to: 'now'
     });
+
+    if (type === 'main') {
+      res.redirect('/formAddressCurrentManual');
+    } else {
+      res.redirect('/formAddressManual/' + (req.session.addresses.length - 1));
+    }
+  });
+
+  router.post('/handleAddressCurrent', function (req, res) {
+    if (!req.session.addresses) {
+      req.session.addresses = [];
+    }
+
+    req.body.type = 'main';
+    req.session.addresses[0] = req.body;
+
+    res.redirect('/formAddressHistory2');
   });
 
   //Stores manual address Details
@@ -410,18 +475,17 @@ router.get('/exceptionChosenDocs', function(req, res) {
   res.render('exceptionChosenDocs', req.session)
 })
 router.all('/formEnterName', function(req, res) {
-  if (req.body) {
-  }
-
   req.session.from = req.query.from;
   res.render('formEnterName', req.session)
 })
 
 router.post('/handleEnterName', function (req, res) {
+  req.session.mainName = req.body;
+
   if (req.body.from === 'summary') {
     res.redirect('/formSummary');
   } else {
-    res.redirect('/formAddNames');
+    res.redirect('/formAddNames2');
   }
 });
 
@@ -462,6 +526,62 @@ router.all('/formComplete', function(req, res) {
     }
 
   });
+
+router.get('/formAddName/:index', function (req, res) {
+  res.render('formAddName', {
+    name: req.session.names[req.params.index]
+  });
+});
+
+router.post('/formAddName/:index', function (req, res) {
+  const fromMonth = helpers.getMonthName(req.body['name-since-month']);
+  const from = `${fromMonth} ${req.body['name-since-year']}`;
+
+  let to = 'now';
+
+  if (req.body['radio-group-current-name'] === 'No') {
+    const toMonth = helpers.getMonthName(req.body['name-to-month']);
+    to = `${toMonth} ${req.body['name-to-year']}`;
+  }
+
+  req.body.from = from;
+  req.body.to = to;
+
+  req.session.names[req.params.index] = req.body;
+  res.redirect('/formAddNames2');
+});
+
+router.get('/deleteName/:index', function (req, res) {
+  req.session.names.splice(req.params.index, 1);
+
+  if (req.session.names.length === 0) {
+    delete req.session.names;
+  }
+
+  res.redirect('/formAddNames2');
+});
+
+router.post('/formAddName', function (req, res) {
+  if (!req.session.names) {
+    req.session.names = [];
+  }
+
+  const fromMonth = helpers.getMonthName(req.body['name-since-month']);
+  const from = `${fromMonth} ${req.body['name-since-year']}`;
+
+  let to = 'now';
+
+  if (req.body['radio-group-current-name'] === 'No') {
+    const toMonth = helpers.getMonthName(req.body['name-to-month']);
+    to = `${toMonth} ${req.body['name-to-year']}`;
+  }
+
+  req.body.from = from;
+  req.body.to = to;
+
+  req.session.names.push(req.body);
+  res.redirect('/formAddNames2');
+});
 
 router.get('/:viewScript', function (req, res) {
   res.render(req.params.viewScript, req.session);

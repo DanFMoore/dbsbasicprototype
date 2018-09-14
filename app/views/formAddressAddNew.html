@@ -12,9 +12,6 @@ DBS Prototype
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
 
-			{% include 'includes/error_summary.html' %}
-			{# include if this page has validation requirements #}
-
 			<form action="{{ action }}" method="post" class="form" id="postcode-form">
 
 				<h1 class="heading-medium">Find your address</h1>
@@ -54,7 +51,7 @@ DBS Prototype
 				</div>
 			</form>
 
-			<form action="{{ action }}?address=1" method="post" class="form" id="select-address" style="display: none">
+			<form action="handlePostcodeForm" method="post" class="form" id="select-address" style="display: none">
 				<div class="form-group">
 					<div class="form-group ">
 						<label class="form-label" for="select-box">Select your address</label>

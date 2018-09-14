@@ -12,10 +12,23 @@
 	<div class="grid-row">
 		<div class="column-two-thirds reduceMargin">
 
-			{% include 'includes/error_summary.html' %}
-      {# include if this page has validation requirements #}
+			<div
+					id="error-select-yes-no"
+					class="error-summary validation-error js-hidden"
+					role="group"
+					aria-labelledby="error-summary-heading"
+					tabindex="-1"
+			>
+				<h2 class="heading-medium error-summary-heading" id="error-summary-heading">
+					There is a problem
+				</h2>
 
-			<form action="formAddressHistory" method="post" class="form">
+				<ul class="error-summary-list">
+					<li><a href="#radio-group-names-av">Select yes or no</a></li>
+				</ul>
+			</div>
+
+			<form action="" method="post" class="form">
 
 
         <h1 class="heading-medium">What was your address?</h1>
@@ -30,14 +43,14 @@
 								data-parsley-class-handler="#new-address-line-1-group"
 								data-parsley-errors-container="#new-address-line-1-group-error-message"
 								data-parsley-required-message="Enter the first address line"
-							    {% if address %}value="37 Stroma Road"{% endif %}
+							    value="{{ editAddress['new-address-line-1'] }}"
 							><br/>
 							<input
 								class="form-control"
 								name="new-address-line-2"
 								type="text"
 								id="new-address-line-2"
-								{% if address %}value="Allerton"{% endif %}
+								value="{{ editAddress['new-address-line-2'] }}"
 							>
 						</div>
 						<div id="new-town-group" class="form-group">
@@ -45,10 +58,10 @@
 							<div id="new-town-group-error-message" class="form-error validation-message"></div>
 							<input class="form-control" name="new-address-town-city" type="text" id="new-address-town-city"
 								data-parsley-class-handler="#new-town-group"
-								data-parsley-errors-container="#new-town-group-error-message"
+							 	data-parsley-errors-container="#new-town-group-error-message"
 
-								data-parsley-required-message="Enter the town or city"
-							    {% if address %}value="Liverpool"{% endif %}
+							   data-parsley-required-message="Enter the town or city"
+							   value="{{ editAddress['new-address-town-city'] }}"
 							>
 						</div>
 						<div id="new-postcode-group" class="form-group">
@@ -58,7 +71,7 @@
 							   data-parsley-class-handler="#new-postcode-group"
 							   data-parsley-errors-container="#new-postcode-group-error-message"
 							   data-parsley-required-message="Enter the postcode"
-							   {% if address %}value="L18 9SN"{% endif %}
+							   value="{{ editAddress['new-address-postcode'] }}"
 							>
 						</div>
 						<div id="new-country-group" class="form-group">
@@ -299,7 +312,11 @@
 								<option value="Uganda"  data-alternative-spellings="UG">Uganda</option>
 								<option value="Ukraine"  data-alternative-spellings="UA Ukrayina Україна">Ukraine</option>
 								<option value="United Arab Emirates"  data-alternative-spellings="AE UAE الإمارات">United Arab Emirates</option>
-								<option value="United Kingdom" {% if address %}selected="selected"{% endif %} data-alternative-spellings="GB Great Britain England UK Wales Scotland Northern Ireland" data-relevancy-booster="5">United Kingdom</option>
+								<option
+									value="United Kingdom"
+									{% if editAddress['new-address-country'] %}selected="selected"{% endif %}
+									data-alternative-spellings="GB Great Britain England UK Wales Scotland Northern Ireland"
+									data-relevancy-booster="5">United Kingdom</option>
 								<option value="United States"  data-relevancy-booster="3.5" data-alternative-spellings="US USA United States of America">United States</option>
 								<option value="United States Minor Outlying Islands"  data-alternative-spellings="UM">United States Minor Outlying Islands</option>
 								<option value="Uruguay"  data-alternative-spellings="UY">Uruguay</option>
@@ -328,7 +345,13 @@
 
 						<div class="form-date">
 							<div class="form-group form-group-year">
-								<input id="address-since-year" class="form-control " type="number" name="address-since-year" value="">
+								<input
+									id="address-since-year"
+									class="form-control "
+									type="number"
+									name="address-since-year"
+									value="{{ editAddress['address-since-year'] }}"
+								>
 							</div>
 						</div>
 					</div>
@@ -340,17 +363,44 @@
 							</legend>
 
 							<label class="block-label selection-button-radio" for="radio-option-yes" data-target="" id="for-radio-option-yes">
-								<input type="radio" id="radio-option-yes" name="radio-group-current-address" value="Yes">
+								<input
+									type="radio"
+									id="radio-option-yes"
+									name="radio-group-current-address"
+									value="Yes"
+									{% if editAddress['radio-group-current-address'] === 'Yes' %}
+										checked="checked"
+									{% endif %}
+								>
 								Yes
 							</label>
 
 							<label class="block-label selection-button-radio" for="radio-option-no" data-target="address-to-block" id="for-radio-option-no">
-								<input type="radio" id="radio-option-no" name="radio-group-current-address" value="No" aria-controls="address-to-block" aria-expanded="true">
+								<input
+									type="radio"
+									id="radio-option-no"
+									name="radio-group-current-address"
+									value="No"
+									aria-controls="address-to-block"
+									aria-expanded="true"
+									{% if editAddress['radio-group-current-address'] === 'No' %}
+										checked="checked"
+									{% endif %}
+								>
 								No
 							</label>
 						</fieldset>
 
-						<div class="panel panel-border-narrow js-hidden" id="address-to-block" aria-hidden="false">
+						<div class="
+							panel
+							panel-border-narrow
+							{% if editAddress['radio-group-current-address'] !== 'No' %}
+								js-hidden
+							{% endif %}
+							"
+						 	id="address-to-block"
+							aria-hidden="false"
+						>
 							<div class="form-group ">
 								<label for="address-to-year">
 									<span class="form-label-bold">What year did you stop living here?</span>
@@ -359,7 +409,13 @@
 
 								<div class="form-date">
 									<div class="form-group form-group-year">
-										<input id="address-to-year" class="form-control " type="number" name="address-to-year" value="">
+										<input
+											id="address-to-year"
+											class="form-control "
+											type="number"
+											name="address-to-year"
+											value="{{ editAddress['address-to-year'] }}"
+										>
 									</div>
 								</div>
 							</div>
@@ -385,6 +441,15 @@
 <script src="/public/javascripts/form-utilities.js"></script>
 
 <script type="text/javascript">
+  $(function () {
+    $('form').submit(function (e) {
+      if (!$('#radio-option-yes').prop('checked') && !$('#radio-option-no').prop('checked')) {
+        $('#error-select-yes-no').removeClass('js-hidden');
+        window.scrollTo(0, 0);
+        e.preventDefault();
+      }
+    });
+  });
 </script>
 
 {% endblock %}

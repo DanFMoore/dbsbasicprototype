@@ -11,9 +11,25 @@
   <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
 	<div class="grid-row">
       <div class="column-two-thirds reduceMargin">
+          <div
+              id="error-select-yes-no"
+              class="error-summary validation-error js-hidden"
+              role="group"
+              aria-labelledby="error-summary-heading"
+              tabindex="-1"
+          >
+              <h2 class="heading-medium error-summary-heading" id="error-summary-heading">
+                  There is a problem
+              </h2>
+
+              <ul class="error-summary-list">
+                  <li><a href="#radio-group-names-av">Select yes or no</a></li>
+              </ul>
+          </div>
+
             <h1 class="heading-medium page-heading">What was your name?</h1>
 
-            <form action="formAddNames" method="post" class="form">
+            <form action="" method="post" class="form">
                 <div class="form-group other-name-fields">
                     <fieldset class="inline">
                         <div class="form-group ">
@@ -22,7 +38,13 @@
                                 <span class="form-hint">Enter this even if it hasn't changed</span>
                             </label>
 
-                            <input class="form-control input-pp" name="first-name-input" type="text" id="first-name-input">
+                            <input
+                                class="form-control input-pp"
+                                name="first-name-input"
+                                type="text"
+                                id="first-name-input"
+                                value="{{ name['first-name-input'] }}"
+                            >
                         </div>
 
                         <div class="form-group ">
@@ -31,7 +53,13 @@
                                 <span class="form-hint">Enter these even if they haven't changed</span>
                             </label>
 
-                            <input class="form-control input-pp" name="middle-names-input" type="text" id="middle-names-input">
+                            <input
+                                class="form-control input-pp"
+                                name="middle-names-input"
+                                type="text"
+                                id="middle-names-input"
+                                value="{{ name['middle-names-input'] }}"
+                            >
                         </div>
 
                         <div class="form-group ">
@@ -40,7 +68,13 @@
                                 <span class="form-hint">Enter this even if it hasn't changed</span>
                             </label>
 
-                            <input class="form-control input-pp" name="last-name-input" type="text" id="last-name-input">
+                            <input
+                                class="form-control input-pp"
+                                name="last-name-input"
+                                type="text"
+                                id="last-name-input"
+                                value="{{ name['last-name-input'] }}"
+                            >
                         </div>
 
                         <div class="form-group ">
@@ -53,12 +87,26 @@
                                 <div class="form-date">
                                     <div class="form-group form-group-month">
                                         <label class="form-label" for="name-since-month">Month</label>
-                                        <input id="name-since-month" class="form-control " type="number" name="name-since-month">
+
+                                        <input
+                                            id="name-since-month"
+                                            class="form-control"
+                                            type="number"
+                                            name="name-since-month"
+                                            value="{{ name['name-since-month'] }}"
+                                        >
                                     </div>
 
                                     <div class="form-group form-group-year">
                                         <label class="form-label" for="name-since-year">Year</label>
-                                        <input id="name-since-year" class="form-control " type="number" name="name-since-year">
+
+                                        <input
+                                            id="name-since-year"
+                                            class="form-control"
+                                            type="number"
+                                            name="name-since-year"
+                                            value="{{ name['name-since-year'] }}"
+                                        >
                                     </div>
                                 </div>
 
@@ -72,17 +120,43 @@
                                 </legend>
 
                                 <label class="block-label selection-button-radio" for="current-name-yes" data-target="" id="for-current-name-yes">
-                                    <input type="radio" id="current-name-yes" name="radio-group-current-name" value="Yes">
+                                    <input
+                                        type="radio"
+                                        id="current-name-yes"
+                                        name="radio-group-current-name"
+                                        value="Yes"
+                                        {% if name['radio-group-current-name'] === 'Yes' %}
+                                            checked="checked"
+                                        {% endif %}
+                                    >
                                     Yes
                                 </label>
 
                                 <label class="block-label selection-button-radio" for="current-name-no" data-target="name-to-block" id="for-current-name-no">
-                                    <input type="radio" id="current-name-no" name="radio-group-current-name" value="No" aria-controls="name-to-block" aria-expanded="true">
+                                    <input
+                                        type="radio"
+                                        id="current-name-no"
+                                        name="radio-group-current-name"
+                                        value="No"
+                                        aria-controls="name-to-block"
+                                        aria-expanded="true"
+                                        {% if name['radio-group-current-name'] === 'No' %}
+                                            checked="checked"
+                                        {% endif %}
+                                    >
                                     No
                                 </label>
                             </fieldset>
 
-                            <div class="panel panel-border-narrow js-hidden" id="name-to-block">
+                            <div class="
+                                panel
+                                panel-border-narrow
+                                {% if name['radio-group-current-name'] !== 'No' %}
+                                    js-hidden
+                                {% endif %}
+                                "
+                                id="name-to-block"
+                            >
                                 <div class="form-group ">
                                     <fieldset>
                                         <legend>
@@ -93,12 +167,24 @@
                                         <div class="form-date">
                                             <div class="form-group form-group-month">
                                                 <label class="form-label" for="name-to-month">Month</label>
-                                                <input id="name-to-month" class="form-control " type="number" name="name-to-month">
+                                                <input
+                                                    id="name-to-month"
+                                                    class="form-control"
+                                                    type="number"
+                                                    name="name-to-month"
+                                                    value="{{ name['name-to-month'] }}"
+                                                >
                                             </div>
 
                                             <div class="form-group form-group-year">
                                                 <label class="form-label" for="name-to-year">Year</label>
-                                                <input id="name-to-year" class="form-control " type="number" name="name-to-year">
+                                                <input
+                                                    id="name-to-year"
+                                                    class="form-control"
+                                                    type="number"
+                                                    name="name-to-year"
+                                                    value="{{ name['name-to-year'] }}"
+                                                >
                                             </div>
                                         </div>
                                     </fieldset>
@@ -125,5 +211,16 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
+
+<script>
+    $(function () {
+      $('form').submit(function (e) {
+        if (!$('#current-name-yes').prop('checked') && !$('#current-name-no').prop('checked')) {
+          $('#error-select-yes-no').removeClass('js-hidden');
+          e.preventDefault();
+        }
+      });
+    });
+</script>
 
 {% endblock %}

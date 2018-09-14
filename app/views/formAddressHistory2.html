@@ -6,9 +6,42 @@ known by any other names?" %} {% block content %}
     <a href="javascript: window.history.go(-1)" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds reduceMargin">
+            <div
+                    id="error-select-another-name"
+                    class="error-summary validation-error js-hidden"
+                    role="group"
+                    aria-labelledby="error-summary-heading"
+                    tabindex="-1"
+            >
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading">
+                    There is a problem
+                </h2>
+
+                <ul class="error-summary-list">
+                    <li><a href="#radio-group-names-av">Select 'Add another name' to enter your other names</a></li>
+                </ul>
+            </div>
+
+            <div
+                    id="error-select-yes-no"
+                    class="error-summary validation-error js-hidden"
+                    role="group"
+                    aria-labelledby="error-summary-heading"
+                    tabindex="-1"
+            >
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading">
+                    There is a problem
+                </h2>
+
+                <ul class="error-summary-list">
+                    <li><a href="#radio-group-names-av">Select yes or no</a></li>
+                </ul>
+            </div>
+
             <h1 class="heading-medium page-heading">Have you lived anywhere else from 2013 to now?</h1>
 
-            <form action="{% if onSummary %}formSummary{% else %}formSendAddress{% endif %}" method="post" class="form">
+            <form action="/formCompleteExp" method="post" class="form">
+                {% if addresses.length === 1 %}
                 <div class="form-group ">
                     <fieldset class=" inline ">
                         <legend id="radio-group-addresses-av">
@@ -26,8 +59,15 @@ known by any other names?" %} {% block content %}
                         </label>
                     </fieldset>
                 </div>
+                {% endif %}
 
-                <ul id="address-options" class="js-hidden" style="margin-bottom: 1.2em">
+                <ul
+                    id="address-options"
+                    {% if addresses.length === 1 %}
+                        class="js-hidden"
+                    {% endif %}
+                    style="margin-bottom: 1.2em"
+                >
                     <li><a href="formAddressAddNew" id="add-lookup-address">Add another address</a></li>
                     <li><a href="formAddressAddNew" id="add-bfpo-address">Add a British Forces Post Office (BFPO) address</a></li>
                     <li><a href="formAddressAddNew" id="add-other-address">I was homeless or travelling and didn't have an address</a></li>
@@ -62,22 +102,47 @@ known by any other names?" %} {% block content %}
                         </tr>
                         </thead>
                         <tbody>
+
+                        {% for address in addresses %}
                         <tr>
                             <td>
-                                <p>37 Stroma Road<br>
-                                    Allerton<br>
-                                    Liverpool<br>
-                                    United Kingdom<br>
-                                    L18 9SN<br>
+                                <p>
+                                    {{ address['new-address-line-1'] }}<br>
+                                    {% if address['new-address-line-2'] %}
+                                        {{ address['new-address-line-2'] }}<br>
+                                    {% endif %}
+
+                                    {{ address['new-address-town-city'] }}<br>
+                                    {{ address['new-address-country'] }}
+
+                                    {% if address['new-address-postcode'] %}
+                                        <br>{{ address['new-address-postcode'] }}
+                                    {% endif %}
+                                </p>
                             </td>
 
                             <td>
-                                <span>2000 to now</span>
+                                <span>{{ address['address-since-year'] }} to
+                                {% if address['radio-group-current-address'] === 'No' %}
+                                    {{ address['address-to-year'] }}
+                                {% else %}
+                                    now
+                                {% endif %}
+                                </span>
                             </td>
                             <td>
-                                <a href="formAddressCurrentManual?address=1&year=1">Edit <span class="visually-hidden">Address</span></a>
+                                {% if addresses.length > 1 %}
+                                {% if address.type === 'main' %}
+                                    <a href="formAddressCurrentManual">Edit</a>
+                                {% else %}
+                                    <a href="formAddressManual/{{ loop.index - 1 }}">Edit</a><br>
+                                    <a href="deleteAddress/{{ loop.index - 1 }}">Delete</a><br>
+                                {% endif %}
+                                {% endif %}
                             </td>
                         </tr>
+                        {% endfor %}
+
                         </tbody>
                     </table>
                 </div>
@@ -98,8 +163,17 @@ known by any other names?" %} {% block content %}
 <script src="/public/javascripts/form-utilities.js"></script>
 
 <script type="text/javascript">
-  $('#deleteAddress').click(function (e) {
-    e.preventDefault();
-    $(this).closest('tr').hide();
+  $('form').submit(function (e) {
+    $('.error-summary').addClass('js-hidden');
+
+    if ($('#radio-option-yes').length) {
+      if ($('#radio-option-yes').prop('checked')) {
+        $('#error-select-another-name').removeClass('js-hidden');
+        e.preventDefault();
+      } else if (!$('#radio-option-no').prop('checked')) {
+        $('#error-select-yes-no').removeClass('js-hidden');
+        e.preventDefault();
+      }
+    }
   });
 </script> {% endblock %}
