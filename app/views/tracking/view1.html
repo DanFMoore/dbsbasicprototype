@@ -1,51 +1,48 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-  View application status
+View application status
 {% endblock %}
 
 {% block content %}
 
 <main id="content" role="main">
   {% include 'includes/phase_banner_alpha.html' %}
-  <div class="grid-row">
-    <div class="column-two-thirds reduceMargin">
-    <h1 class="heading-medium">
-      View application status
-    </h1>
+  <h1 class="heading-medium">
+    View application status
+  </h1>
 
-    <table class="check-your-answers">
-      <tbody>
-        <tr>
-          <td>Stage 1</td>
-          <td>Application received</td>
-          <td>Completed</td>
-          <td>29/08/2018</td>
-        </tr>
-        <tr>
-          <td>Stage 2</td>
-          <td>Police national computer search</td>
-          <td>Completed</td>
-          <td>30/08/2018</td>
-        </tr>
-        <tr>
-          <td>Stage 3</td>
-          <td>Assemble certificate</td>
-          <td>Completed</td>
-          <td>01/09/2018</td>
-        </tr>
-        <tr>
-          <td>Stage 4</td>
-          <td>Certificate issued / despatched</td>
-          <td>Completed</td>
-          <td>02/09/2018</td>
-        </tr>
-      </tbody>
-    </table>
+  <table class="check-your-answers">
+    <tbody>
+    <tr>
+      <td>Step 1</td>
+      <td>Application received</td>
+      <td>Completed</td>
+      <td>29/08/2018</td>
+    </tr>
+    <tr>
+      <td>Step 2</td>
+      <td>Police national computer search</td>
+      <td>Completed</td>
+      <td>30/08/2018</td>
+    </tr>
+    <tr>
+      <td>Step 3</td>
+      <td>Assemble certificate</td>
+      <td>In progress</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Step 4</td>
+      <td>Certificate issued / despatched</td>
+      <td>Pending</td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
 
-    <div class="form-group">
-      <a href="login1" class="button">Log out</a>
-    </div>
+  <div class="form-group">
+    <a href="login" class="button">Log out</a>
   </div>
 
 </main>
