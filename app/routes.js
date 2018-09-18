@@ -1,6 +1,5 @@
 var helpers = require('./helpers');
-var express = require('express')
-var config = require('./config.js')
+var express = require('express');
 var router = express.Router()
 
 // store all form values in a session object
@@ -589,6 +588,21 @@ router.post('/formAddName', function (req, res) {
 
   req.session.names.push(req.body);
   res.redirect('/formAddNames2');
+});
+
+router.post('/tracking/handleLogin', function (req, res) {
+  var url = helpers.getRedirectFromSurname(req.body.surname);
+  res.redirect(url);
+});
+
+router.post('/tracking/handleLogin12', function (req, res) {
+  req.session.trackingSurname = req.body.surname;
+  res.redirect('/tracking/login1-3');
+});
+
+router.post('/tracking/handleLogin13', function (req, res) {
+  var url = helpers.getRedirectFromSurname(req.session.trackingSurname);
+  res.redirect(url);
 });
 
 router.get('/:viewScript', function (req, res) {
