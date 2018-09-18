@@ -1,5 +1,6 @@
 var helpers = require('./helpers');
 var express = require('express')
+var config = require('./config.js')
 var router = express.Router()
 
 // store all form values in a session object
@@ -473,6 +474,13 @@ router.post('/exceptionRouteDocDetails1', function(req, res) {
 })
 router.get('/exceptionChosenDocs', function(req, res) {
   res.render('exceptionChosenDocs', req.session)
+
+  // clear the session for new users
+  req.session.destroy(function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
 })
 router.all('/formEnterName', function(req, res) {
   req.session.from = req.query.from;
