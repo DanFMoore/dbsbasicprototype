@@ -1,69 +1,120 @@
 {% extends "layout.html" %}
 
 {% block page_title %}
-Where your application is up to
+  {% if step == 4 %}Application complete{% else %}Where your application is up to{% endif %}
 {% endblock %}
 
 {% block content %}
 
 <main id="content" role="main">
   {% include 'includes/phase_banner_alpha.html' %}
+
+  {% if step == 4 %}
+    <div class="govuk-box-highlight">
+      <h1 class="heading-xlarge">Application complete</h1>
+    </div>
+  {% else %}
     <h1 class="heading-medium">
       Where your application is up to
     </h1>
+  {% endif %}
 
+  {% if step == 4 %}
+    <p>Your application is complete and your certificate has been posted to you.</p>
+  {% else %}
     <p>The steps below tell you where your application for a basic DBS check is currently up to.</p>
+  {% endif %}
 
-    <ul class="progress-tracker progress-tracker--word progress-tracker--word-center" aria-hidden="true">
+    <ul class="progress-tracker progress-tracker--vertical mobile-only {% if step == 4 %}complete{% endif %}">
       <li class="progress-step is-complete">
         <span class="progress-marker"></span>
-        <span class="progress-text">Step 1</span>
+        <div class="progress-text {% if step == 1 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view?step=1">Step 1</a></h4>
+          <p>Your application has been received</p>
+          <p>Completed 29/08/2018</p>
+        </div>
       </li>
 
-      <li class="progress-step is-active">
+      <li class="progress-step {%if step > 1 %}is-complete{% else %}is-incomplete{% endif %}">
         <span class="progress-marker"></span>
-        <span class="progress-text">Step 2</span>
+        <div class="progress-text {% if step == 2 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view?step=2">Step 2</a></h4>
+          <p>{% if step > 1 %}Your application has been processed{% else %}Application processing{% endif %}</p>
+          <p>{% if step > 1 %}Completed 30/08/2018{% else %}In progress{% endif %}</p>
+        </div>
       </li>
 
-      <li class="progress-step is-incomplete">
+      <li class="progress-step {%if step > 2 %}is-complete{% else %}is-incomplete{% endif %}">
         <span class="progress-marker"></span>
-        <span class="progress-text">Step 3</span>
+        <div class="progress-text {% if step == 3 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view?step=3">Step 3</a></h4>
+          <p>{% if step > 2 %}Your certificate has been created{% else %}Certificate creation{% endif %}</p>
+          <p>{% if step > 2 %}Completed 31/08/2018{% elseif step > 1 %}In progress{% else %}Pending{% endif %}</p>
+        </div>
       </li>
 
-      <li class="progress-step is-incomplete">
+      <li class="progress-step {%if step > 3 %}is-complete{% else %}is-incomplete{% endif %}">
         <span class="progress-marker"></span>
-        <span class="progress-text">Step 4</span>
+        <div class="progress-text {% if step == 4 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view?step=4">Step 4</a></h4>
+          <p>{% if step > 3 %}Your certificate has been posted to you{% else %}Certificate dispatch{% endif %}</p>
+          <p>{% if step > 3 %}Completed 01/09/2018{% elseif step > 2 %}In progress{% else %}Pending{% endif %}</p>
+        </div>
       </li>
     </ul>
 
-    <table class="check-your-answers">
-      <tbody>
-        <tr>
+    <div class="desktop-only">
+      <ul class="progress-tracker progress-tracker--word progress-tracker--word-center {% if step == 4 %}complete{% endif %}" aria-hidden="true">
+        <li class="progress-step is-complete">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view?step=1">Step 1</a></span>
+        </li>
+
+        <li class="progress-step {%if step > 1 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view?step=2">Step 2</a></span>
+        </li>
+
+        <li class="progress-step {%if step > 2 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view?step=3">Step 3</a></span>
+        </li>
+
+        <li class="progress-step {%if step > 3 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view?step=4">Step 4</a></span>
+        </li>
+      </ul>
+
+      <table class="check-your-answers">
+        <tbody>
+        <tr {% if step == 1 %}class="active"{% endif %}>
           <td>Step 1</td>
           <td>Your application has been received</td>
           <td>Completed</td>
           <td>29/08/2018</td>
         </tr>
-        <tr>
+        <tr {% if step == 2 %}class="active"{% endif %}>
           <td>Step 2</td>
-          <td>Your application has been processed</td>
-          <td>Completed</td>
-          <td>30/08/2018</td>
+          <td>{% if step > 1 %}Your application has been processed{% else %}Application processing{% endif %}</td>
+          <td>{% if step > 1 %}Completed{% else %}In progress{% endif %}</td>
+          <td>{% if step > 1 %}30/08/2018{% endif %}</td>
         </tr>
-        <tr>
+        <tr {% if step == 3 %}class="active"{% endif %}>
           <td>Step 3</td>
-          <td>Certificate creation</td>
-          <td>In progress</td>
-          <td></td>
+          <td>{% if step > 2 %}Your certificate has been created{% else %}Certificate creation{% endif %}</td>
+          <td>{% if step > 2 %}Completed{% elseif step > 1 %}In progress{% else %}Pending{% endif %}</td>
+          <td>{% if step > 2 %}31/08/2018{% endif %}</td>
         </tr>
-        <tr>
+        <tr {% if step == 4 %}class="active"{% endif %}>
           <td>Step 4</td>
-          <td>Certificate dispatch</td>
-          <td>Pending</td>
-          <td></td>
+          <td>{% if step > 3 %}Your certificate has been posted to you{% else %}Certificate dispatch{% endif %}</td>
+          <td>{% if step > 3 %}Completed{% elseif step > 2 %}In progress{% else %}Pending{% endif %}</td>
+          <td>{% if step > 3 %}01/09/2018{% endif %}</td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
 
     <div class="form-group">
       <a href="login" class="button">Log out</a>

@@ -2149,12 +2149,25 @@ input[type=number] {
   text-overflow: ellipsis;
 }
 
+.progress-text a {
+  text-decoration: none;
+  color: black;
+}
+
+.progress-text.active p {
+  font-weight: bold;
+}
+
 .progress-title {
   margin-top: 0;
   font-weight: bold;
 }
 
 .progress-step.is-incomplete .progress-text {
+  color: #858585;
+}
+
+.progress-step.is-incomplete .progress-text a {
   color: #858585;
 }
 
@@ -2172,27 +2185,15 @@ input[type=number] {
 }
 
 .progress-step.is-active .progress-marker {
-  background-color: #1976D2;
+  background-color: #2b8cc4;
 }
 
 .progress-step.is-complete .progress-marker {
-  background-color: #1976D2;
+  background-color: #2b8cc4;
 }
 
 .progress-step.is-complete::after {
-  background-color: #1976D2;
-}
-
-.progress-tracker--vertical .progress-step.is-active::after {
-  background: repeating-linear-gradient(-45deg, #b6b6b6, #b6b6b6 5px, #1976D2 5px, #1976D2 10px);
-}
-
-.progress-tracker--word .progress-step.is-active::after {
-  background-color: #1976D2;
-}
-
-.progress-step:hover .progress-marker {
-  background-color: #56ADF5;
+  background-color: #2b8cc4;
 }
 
 .progress-tracker--center .progress-step {
@@ -2477,6 +2478,32 @@ input[type=number] {
 
 .anim-path .progress-step.is-complete::after {
   background-position: -100% 100%;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+  .desktop-only {
+    display: none;
+  }
+}
+
+table.application-statuses a {
+  text-decoration: none;
+  color: black;
+}
+
+.govuk-box-highlight.refunded {
+  background: #df3034;
+}
+
+table tr.active td {
+  font-weight: bold;
 }
 
 /*! jQuery UI - v1.11.0 - 2014-08-12
@@ -2883,3 +2910,5 @@ td > p {
 strong {
   font-weight: bold;
 }
+
+/*# sourceMappingURL=application.css.map */

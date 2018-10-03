@@ -1,5 +1,6 @@
 var helpers = require('./helpers');
 var express = require('express');
+var moment = require('moment');
 var router = express.Router()
 
 // store all form values in a session object
@@ -167,7 +168,7 @@ router.all('/formAddressUnusualDates', function(req, res) {
   req.session.homelesstown = req.body['homeless-town'];
   req.session.homelesscountry = req.body['homeless-country'];
   req.session.travelcountry = req.body['travel-country'];
-  res.render('formAddressUnusualDates', { 
+  res.render('formAddressUnusualDates', {
     'form_action' : '/unusual-dates-store',
     'question' : req.session.question
  })
@@ -603,6 +604,19 @@ router.post('/tracking/handleLogin12', function (req, res) {
 router.post('/tracking/handleLogin13', function (req, res) {
   var url = helpers.getRedirectFromSurname(req.session.trackingSurname);
   res.redirect(url);
+});
+
+router.get('/tracking/view', function (req, res) {
+  req.session.step = req.query.step || 2;
+  res.render('tracking/view', req.session);
+});
+
+router.get('/tracking/view-po', function (req, res) {
+  req.session.step = req.query.step || 2;
+  req.session.refunded = req.query.refunded || false;
+  req.session.date = moment().subtract(1, 'day').format('DD/MM/YYYY');
+
+  res.render('tracking/view-po', req.session);
 });
 
 router.get('/:viewScript', function (req, res) {

@@ -70,6 +70,7 @@
 								id="date-of-birth-day"
 								class="form-control "
 								type="number"
+								maxlength="2"
 								name="date-of-birth-day"
 								{% if from %}value="05"{% endif %}
 							>
@@ -81,6 +82,7 @@
 								id="date-of-birth-month"
 								class="form-control "
 								type="number"
+								maxlength="2"
 								name="date-of-birth-month"
 								{% if from %}value="11"{% endif %}
 							>
@@ -91,6 +93,7 @@
 							<input
 								id="date-of-birth-year"
 								class="form-control "
+								maxlength="4"
 								type="number"
 								name="date-of-birth-year"
 								{% if from %}value="1976"{% endif %}
@@ -158,6 +161,7 @@
 									id="expiry-date-day"
 									class="form-control "
 									type="number"
+									maxlength="2"
 									name="expiry-date-day"
 									{% if from %}value="23"{% endif %}
 								>
@@ -170,6 +174,7 @@
 									id="expiry-date-month"
 									class="form-control "
 									type="number"
+									maxlength="2"
 									name="expiry-date-month"
 									{% if from %}value="09"{% endif %}
 								>
@@ -181,6 +186,7 @@
 									id="expiry-date-year"
 									class="form-control "
 									type="number"
+									maxlength="4"
 									name="expiry-date-year"
 									{% if from %}value="2021"{% endif %}
 								>

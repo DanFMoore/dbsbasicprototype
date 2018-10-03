@@ -35,17 +35,17 @@
 						<div class="form-date">
 							<div class="form-group form-group-day">
 								<label class="form-label" for="expiry-date-day">Day</label>
-								<input id="expiry-date-day" class="form-control " type="number" name="expiry-date-day" {% if from === 'summary' %}value="14"{% endif %}>
+								<input id="expiry-date-day" class="form-control " maxlength="2" type="number" name="expiry-date-day" {% if from === 'summary' %}value="14"{% endif %}>
 							</div>
 
 							<div class="form-group form-group-month">
 								<label class="form-label" for="expiry-date-month">Month</label>
-								<input id="expiry-date-month" class="form-control " type="number" name="expiry-date-month" {% if from === 'summary' %}value="07"{% endif %}>
+								<input id="expiry-date-month" class="form-control " maxlength="2" type="number" name="expiry-date-month" {% if from === 'summary' %}value="07"{% endif %}>
 							</div>
 
 							<div class="form-group form-group-year">
 								<label class="form-label" for="expiry-date-year">Year</label>
-								<input id="expiry-date-year" class="form-control " type="number" name="expiry-date-year" {% if from === 'summary' %}value="2019"{% endif %}>
+								<input id="expiry-date-year" class="form-control " maxlength="4" type="number" name="expiry-date-year" {% if from === 'summary' %}value="2019"{% endif %}>
 							</div>
 						</div>
 					</fieldset>
