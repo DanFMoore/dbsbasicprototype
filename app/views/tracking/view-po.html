@@ -64,7 +64,7 @@
         <span class="progress-marker"></span>
         <div class="progress-text {% if step == 3 %}active{% endif %}">
           <h4 class="progress-title"><a href="view-po?step=3">Step 3</a></h4>
-          <p>{% if step > 2 %}Your application has been received{% else %}Application received{% endif %}</p>
+          <p>{% if step > 2 %}Your application has been received{% else %}Receipt of application{% endif %}</p>
           <p>{% if refunded %}Cancelled{% elseif step > 2 %}Completed 29/08/2018{% elseif step > 1 %}In progress{% else %}Pending{% endif %}</p>
         </div>
       </li>
@@ -153,25 +153,25 @@
           <td>{% if refunded %}Refunded{% elseif step > 1 %}Completed{% else %}In progress{% endif %}</td>
           <td>{% if step > 1 or refunded %}28/08/2018{% endif %}</td>
         </tr>
-        <tr {% if step == 3 %}class="active"{% endif %}>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 3 %}class="active"{% endif %}>
           <td>Step 3</td>
-          <td>{% if step > 2 %}Your application has been received{% else %}Application receiving{% endif %}</td>
+          <td>{% if step > 2 %}Your application has been received{% else %}Receipt of application{% endif %}</td>
           <td>{% if refunded %}Cancelled{% elseif step > 2 %}Completed{% elseif step > 1 %}In progress{% else %}Pending{% endif %}</td>
           <td>{% if step > 2 %}29/08/2018{% endif %}</td>
         </tr>
-        <tr {% if step == 4 %}class="active"{% endif %}>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 4 %}class="active"{% endif %}>
           <td>Step 4</td>
           <td>{% if step > 3 %}Your application has been processed{% else %}Application processing{% endif %}</td>
           <td>{% if refunded %}Cancelled{% elseif step > 3 %}Completed{% elseif step > 2 %}In progress{% else %}Pending{% endif %}</td>
           <td>{% if step > 3 %}30/08/2018{% endif %}</td>
         </tr>
-        <tr {% if step == 5 %}class="active"{% endif %}>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 5 %}class="active"{% endif %}>
           <td>Step 5</td>
           <td>{% if step > 4 %}Your certificate has been created{% else %}Certificate creation{% endif %}</td>
           <td>{% if refunded %}Cancelled{% elseif step > 4 %}Completed{% elseif step > 3 %}In progress{% else %}Pending{% endif %}</td>
           <td>{% if step > 4 %}31/08/2018{% endif %}</td>
         </tr>
-        <tr {% if step == 6 %}class="active"{% endif %}>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 6 %}class="active"{% endif %}>
           <td>Step 6</td>
           <td>{% if step > 5 %}Your certificate has been posted to you{% else %}Certificate dispatch{% endif %}</td>
           <td>{% if refunded %}Cancelled{% elseif step > 5 %}Completed{% elseif step > 4 %}In progress{% else %}Pending{% endif %}</td>

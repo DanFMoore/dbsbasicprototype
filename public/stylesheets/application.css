@@ -2506,6 +2506,10 @@ table tr.active td {
   font-weight: bold;
 }
 
+table tr.cancelled td {
+  color: #858585;
+}
+
 /*! jQuery UI - v1.11.0 - 2014-08-12
 * http://jqueryui.com
 * Includes: core.css, autocomplete.css, menu.css
