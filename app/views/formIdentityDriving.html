@@ -27,10 +27,10 @@
 						<label class="form-label" for="first-name-input">First name</label>
 						<input
 							class="form-control input-pp"
-							name="first-name-input"
+							name="first-name"
 							type="text"
 							id="first-name-input"
-							{% if from %}value="John"{% endif %}
+							value="{{ mainName['first-name'] }}"
 						>
 					</div>
 
@@ -38,10 +38,10 @@
 						<label class="form-label" for="middle-names-input">Middle name(s)</label>
 						<input
 							class="form-control input-pp"
-							name="middle-names-input"
+							name="middle-names"
 							type="text"
 							id="middle-names-input"
-							{% if from %}value="Daniel"{% endif %}
+							value="{{ mainName['middle-names'] }}"
 						>
 					</div>
 
@@ -49,10 +49,10 @@
 						<label class="form-label" for="last-name-input">Last name</label>
 						<input
 							class="form-control input-pp"
-							name="last-name-input"
+							name="last-name"
 							type="text"
 							id="last-name-input"
-							{% if from %}value="Smith"{% endif %}
+							value="{{ mainName['last-name'] }}"
 						>
 					</div>
 				</fieldset>
@@ -107,23 +107,24 @@
 						<span class="form-label-bold">What is your sex?</span>
 					</legend>
 
-					<label class="block-label selection-button-radio" for="radio-option-female" data-target="" id="for-radio-option-female">
+					<label class="block-label selection-button-radio {% if gender === 'Female' %}selected{% endif %}" for="radio-option-female" data-target="" id="for-radio-option-female">
 						<input
 							type="radio"
 							id="radio-option-female"
 							name="radio-group-sex"
 							value="Female"
+							{% if gender === 'Female' %}selected="selected"{% endif %}
 						>
 						Female
 					</label>
 
-					<label class="block-label selection-button-radio {% if from %}selected{% endif %}" for="radio-option-male" data-target="" id="for-radio-option-male">
+					<label class="block-label selection-button-radio {% if gender === 'Male' %}selected{% endif %}" for="radio-option-male" data-target="" id="for-radio-option-male">
 						<input
 							type="radio"
 							id="radio-option-male"
 							name="radio-group-sex"
 							value="Male"
-							{% if from %}selected="selected"{% endif %}
+							{% if gender === 'Male' %}selected="selected"{% endif %}
 						>
 						Male
 					</label>
