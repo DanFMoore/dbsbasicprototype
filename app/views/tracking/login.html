@@ -10,12 +10,12 @@ Track application status
 <main id="content" role="main">
   {% include 'includes/phase_banner_alpha.html' %}
   <div class="grid-row">
-    <div class="column-two-thirds reduceMargin">
+    <div class="column-two-thirds">
       <h1 class="heading-medium page-heading">See where your application is up to</h1>
 
       <p>If you made an online application with the DBS for a basic check, you can enter your details below to see where it's up to.</p>
 
-      <form action="view" method="post" class="form">
+      <form action="handleLogin" method="post" class="form">
         <div class="form-group">
           <label class="form-label-bold" for="ref-number">
             What is your application reference number?
@@ -30,7 +30,7 @@ Track application status
             What is your surname?
           </label>
 
-          <input class="form-control input-pp" name="uid-input" type="text" id="surname">
+          <input class="form-control input-pp" name="surname" type="text" id="surname">
         </div>
 
         <div class="form-group ">
@@ -43,17 +43,17 @@ Track application status
             <div class="form-date">
               <div class="form-group form-group-day">
                 <label class="form-label" for="birth-date-day">Day</label>
-                <input id="birth-date-day" class="form-control " type="number" name="birth-date-day">
+                <input id="birth-date-day" class="form-control " type="number" name="birth-date-day" maxlength="2">
               </div>
 
               <div class="form-group form-group-month">
                 <label class="form-label" for="birth-date-month">Month</label>
-                <input id="birth-date-month" class="form-control " type="number" name="birth-date-month">
+                <input id="birth-date-month" class="form-control " type="number" name="birth-date-month" maxlength="2">
               </div>
 
               <div class="form-group form-group-year">
                 <label class="form-label" for="birth-date-year">Year</label>
-                <input id="birth-date-year" class="form-control " type="number" name="birth-date-year">
+                <input id="birth-date-year" class="form-control " type="number" name="birth-date-year" maxlength="4">
               </div>
             </div>
           </fieldset>

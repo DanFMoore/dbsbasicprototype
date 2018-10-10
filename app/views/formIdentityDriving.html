@@ -27,10 +27,10 @@
 						<label class="form-label" for="first-name-input">First name</label>
 						<input
 							class="form-control input-pp"
-							name="first-name-input"
+							name="first-name"
 							type="text"
 							id="first-name-input"
-							{% if from %}value="John"{% endif %}
+							value="{{ mainName['first-name'] }}"
 						>
 					</div>
 
@@ -38,10 +38,10 @@
 						<label class="form-label" for="middle-names-input">Middle name(s)</label>
 						<input
 							class="form-control input-pp"
-							name="middle-names-input"
+							name="middle-names"
 							type="text"
 							id="middle-names-input"
-							{% if from %}value="Daniel"{% endif %}
+							value="{{ mainName['middle-names'] }}"
 						>
 					</div>
 
@@ -49,10 +49,10 @@
 						<label class="form-label" for="last-name-input">Last name</label>
 						<input
 							class="form-control input-pp"
-							name="last-name-input"
+							name="last-name"
 							type="text"
 							id="last-name-input"
-							{% if from %}value="Smith"{% endif %}
+							value="{{ mainName['last-name'] }}"
 						>
 					</div>
 				</fieldset>
@@ -70,6 +70,7 @@
 								id="date-of-birth-day"
 								class="form-control "
 								type="number"
+								maxlength="2"
 								name="date-of-birth-day"
 								{% if from %}value="05"{% endif %}
 							>
@@ -81,6 +82,7 @@
 								id="date-of-birth-month"
 								class="form-control "
 								type="number"
+								maxlength="2"
 								name="date-of-birth-month"
 								{% if from %}value="11"{% endif %}
 							>
@@ -91,6 +93,7 @@
 							<input
 								id="date-of-birth-year"
 								class="form-control "
+								maxlength="4"
 								type="number"
 								name="date-of-birth-year"
 								{% if from %}value="1976"{% endif %}
@@ -104,23 +107,24 @@
 						<span class="form-label-bold">What is your sex?</span>
 					</legend>
 
-					<label class="block-label selection-button-radio" for="radio-option-female" data-target="" id="for-radio-option-female">
+					<label class="block-label selection-button-radio {% if gender === 'Female' %}selected{% endif %}" for="radio-option-female" data-target="" id="for-radio-option-female">
 						<input
 							type="radio"
 							id="radio-option-female"
 							name="radio-group-sex"
 							value="Female"
+							{% if gender === 'Female' %}selected="selected"{% endif %}
 						>
 						Female
 					</label>
 
-					<label class="block-label selection-button-radio {% if from %}selected{% endif %}" for="radio-option-male" data-target="" id="for-radio-option-male">
+					<label class="block-label selection-button-radio {% if gender === 'Male' %}selected{% endif %}" for="radio-option-male" data-target="" id="for-radio-option-male">
 						<input
 							type="radio"
 							id="radio-option-male"
 							name="radio-group-sex"
 							value="Male"
-							{% if from %}selected="selected"{% endif %}
+							{% if gender === 'Male' %}selected="selected"{% endif %}
 						>
 						Male
 					</label>
@@ -158,6 +162,7 @@
 									id="expiry-date-day"
 									class="form-control "
 									type="number"
+									maxlength="2"
 									name="expiry-date-day"
 									{% if from %}value="23"{% endif %}
 								>
@@ -170,6 +175,7 @@
 									id="expiry-date-month"
 									class="form-control "
 									type="number"
+									maxlength="2"
 									name="expiry-date-month"
 									{% if from %}value="09"{% endif %}
 								>
@@ -181,6 +187,7 @@
 									id="expiry-date-year"
 									class="form-control "
 									type="number"
+									maxlength="4"
 									name="expiry-date-year"
 									{% if from %}value="2021"{% endif %}
 								>

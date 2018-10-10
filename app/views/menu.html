@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  DBS Prototype
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+    <div class="grid-row">
+        <div class="column-two-thirds reduceMargin">
+            <h1 class="heading-medium page-heading">Where do you want to go today?</h1>
+
+            <p>
+                <a class="button button-start" href="verifyPages" role="button">Full route</a>
+            </p>
+
+            <p>
+                <a class="button button-start" href="exceptionChosenDocs" role="button">Shortened post office route</a>
+            </p>
+
+            <p>
+                <a class="button button-start" href="/tracking/login" role="button">Application tracker login</a>
+            </p>
+
+            <ul class="list-bullet">
+                <li>
+                    <h3 class="heading-small">Verify application tracker</h3>
+                    <ul class="list-bullet">
+                        <li><a href="/tracking/view?step=1">Step 1</a></li>
+                        <li><a href="/tracking/view?step=2">Step 2</a></li>
+                        <li><a href="/tracking/view?step=3">Step 3</a></li>
+                        <li><a href="/tracking/view?step=4">Step 4</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <h3 class="heading-small">Post office application tracker</h3>
+                    <ul class="list-bullet">
+                        <li><a href="/tracking/view-po?step=1">Step 1</a></li>
+                        <li><a href="/tracking/view-po?step=2">Step 2</a></li>
+                        <li><a href="/tracking/view-po?step=2&refunded=1">Step 2 refunded</a></li>
+                        <li><a href="/tracking/view-po?step=3">Step 3</a></li>
+                        <li><a href="/tracking/view-po?step=4">Step 4</a></li>
+                        <li><a href="/tracking/view-po?step=5">Step 5</a></li>
+                        <li><a href="/tracking/view-po?step=6">Step 6</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>
+
+            </p>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+

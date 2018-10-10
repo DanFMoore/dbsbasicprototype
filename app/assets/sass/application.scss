@@ -6,6 +6,7 @@ $path: "/public/images/";
 // Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
 @import 'govuk-elements';
 @import 'check-your-answers';
+@import 'progress';
 
 @import 'jquery-ui';
 
@@ -223,4 +224,8 @@ td > p {
     margin-bottom: 0;
     margin-right: $gutter;
   }
+}
+
+strong {
+  font-weight: bold;
 }

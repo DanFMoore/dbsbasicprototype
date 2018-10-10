@@ -15,7 +15,7 @@
 
             <p>You must take these 3 documents (originals, not photocopies) to the Post Office after you have completed the rest of your application:</p>
 
-            <form action="{{ 'formIdentityDriving' if licenceSelected else 'formIdentityBirthCert' }}" method="post" class="form">
+            <form action="{{ action }}" method="post" class="form">
                 <table>
                     <tbody>
                     <tr>
@@ -42,9 +42,7 @@
                 <p id="privacy-container" class="text block-label ">
                     <input id="confirm-privacy-policy" name="confirm-privacy-policy" value="I agree" type="checkbox">
                     <label id="confirm-privacy-policy-label" for="confirm-privacy-policy">
-                        I have read the basic DBS check online application
-                        <a href="/privacy" target="_blank">Privacy Policy</a>
-                        and understand how the DBS will process my personal data
+                        I have read and understood the basic DBS check online application <a href="/privacy" target="_blank">privacy policy</a> (opens in a new tab), which explains how the DBS will process my personal data when I’m applying online, before my application has been submitted
                     </label>
                 </p>
 

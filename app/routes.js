@@ -1,4 +1,6 @@
-var express = require('express')
+var helpers = require('./helpers');
+var express = require('express');
+var moment = require('moment');
 var router = express.Router()
 
 // store all form values in a session object
@@ -19,7 +21,29 @@ router.use(function (req, res, next) {
 
 router.get('/', function (req, res) {
   res.render('index')
-})
+});
+
+router.get('/menu', function (req, res) {
+  res.render('menu');
+
+  // clear the session for new users
+  req.session.destroy(function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+});
+
+router.get('/verifyPages', function (req, res) {
+  res.render('verifyPages');
+
+  // clear the session for new users
+  req.session.destroy(function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+});
 
 router.post('/verifyPages', function (req, res) {
   res.redirect('formVerifyFail')
@@ -34,6 +58,12 @@ router.post('/formFirstPage', function(req, res) {
 router.post('/formGender', function(req, res) {
   res.render('formGender', req.session)
 })
+
+router.post('/handleGender', function(req, res) {
+  req.session.gender = req.body['radio-gender-group'];
+  res.redirect('/formEnterDob');
+});
+
 // Section 1 - Place of birth
 router.post('/formPlaceBirth', function(req, res) {
   res.render('formPlaceBirth', req.session)
@@ -44,9 +74,8 @@ router.post('/formSensitive', function(req, res) {
 })
 // Section 3 - Add other names
 router.all('/formAddNames', function (req, res) {
-  //Sets address info to display by default
-  req.session.addressentry1 = true;
-  req.session.addressentry2 = true;
+  console.log(req.session.mainName);
+
   res.render('formAddNames', req.session);
 });
 // Section 4 - Email Address
@@ -81,39 +110,23 @@ router.post('/handleFormSendAddress', function(req, res) {
   }
 })
 
-//Address history overview
 router.all('/formAddressHistory', function (req, res) {
- res.render('formAddressHistory', {
-  'form_action' : '/formIdentity',
-   'delete_action_1' : '/deleteAction1',
-   'delete_action_2': '/deleteAction2',
-   'delete_action_3' : '/deleteAction3',
-   'delete_action_4' : '/deleteAction4',
-   'addressline1':req.session.addressline1,
-   'addressline2':req.session.addressline2,
-   'town':req.session.town,
-   'postcode':req.session.postcode,
-   'frommonth' : req.session.frommonth,
-   'fromyear' : req.session.fromyear,
-   'tomonth' : req.session.tomonth,
-   'toyear' : req.session.toyear,
-   'unfrommonth' : req.session.unfrommonth,
-   'unfromyear' : req.session.unfromyear,
-   'untomonth' : req.session.untomonth,
-   'untoyear' : req.session.untoyear,
-   'homeless' : req.session.homeless,
-   'travelling' : req.session.travelling,
-   'additionaladdress':req.session.additionaladdress,
-   'addressentry1':req.session.addressentry1,
-   'addressentry2':req.session.addressentry2,
-   'unusualaddress':req.session.unusualaddress,
-   'homelesstown' : req.session.homelesstown,
-   'homelesscountry' : req.session.homelesscountry,
-   'travelcountry' : req.session.travelcountry,
-   from: req.query.from,
-   onSummary: req.session.onSummary,
- });
- });
+  req.session.from = req.query.from;
+
+  if (req.session.documentsGroup) {
+    req.session.action = req.session.onSummary ? 'formSummary' : 'formSendAddress';
+  } else {
+    req.session.action = 'formDeclaration';
+  }
+
+  res.render('formAddressHistory', req.session);
+});
+
+
+router.get('/deleteAddress/:index', function (req, res) {
+  req.session.addresses.splice(req.params.index, 1);
+  res.redirect('/formAddressHistory');
+});
 
  //formAddressAddNew
 router.all('/formAddressAddNew', function(req, res) {
@@ -155,7 +168,7 @@ router.all('/formAddressUnusualDates', function(req, res) {
   req.session.homelesstown = req.body['homeless-town'];
   req.session.homelesscountry = req.body['homeless-country'];
   req.session.travelcountry = req.body['travel-country'];
-  res.render('formAddressUnusualDates', { 
+  res.render('formAddressUnusualDates', {
     'form_action' : '/unusual-dates-store',
     'question' : req.session.question
  })
@@ -234,15 +247,68 @@ router.all('/formPostcodeResults', function (req, res) {
 
 
  //Address results
- router.all('/formAddressManual', function (req, res) {
+  router.get('/formAddressManual', function (req, res) {
     res.render('formAddressManual', { address: req.query.address });
   });
 
+  router.post('/formAddressManual', function (req, res) {
+    req.body.type = 'standard';
+    req.session.addresses.push(req.body);
+
+    res.redirect('/formAddressHistory');
+  });
+
+  router.get('/formAddressManual/:index', function (req, res) {
+    req.session.editAddress = req.session.addresses[req.params.index];
+    res.render('formAddressManual', req.session);
+  });
+
+  router.post('/formAddressManual/:index', function (req, res) {
+    req.body.type = 'standard';
+    req.session.addresses[req.params.index] = req.body;
+
+    res.redirect('/formAddressHistory')
+  });
+
   router.all('/formAddressCurrentManual', function (req, res) {
-    res.render('formAddressCurrentManual', {
-      address: req.query.address,
-      year: req.query.year
+    req.session.currentAddress = req.session.addresses ? req.session.addresses[0] : {};
+    res.render('formAddressCurrentManual', req.session);
+  });
+
+  router.post('/handlePostcodeForm', function (req, res) {
+    var type = 'standard';
+
+    if (!req.session.addresses) {
+      req.session.addresses = [];
+      type = 'main';
+    }
+
+    req.session.addresses.push({
+      'new-address-line-1': '37 Stroma Road',
+      'new-address-line-2': 'Allerton',
+      'new-address-town-city': 'Liverpool',
+      'new-address-country': 'United Kingdom',
+      'new-address-postcode': 'L18 9SN',
+      type,
+      to: 'now'
     });
+
+    if (type === 'main') {
+      res.redirect('/formAddressCurrentManual');
+    } else {
+      res.redirect('/formAddressManual/' + (req.session.addresses.length - 1));
+    }
+  });
+
+  router.post('/handleAddressCurrent', function (req, res) {
+    if (!req.session.addresses) {
+      req.session.addresses = [];
+    }
+
+    req.body.type = 'main';
+    req.session.addresses[0] = req.body;
+
+    res.redirect('/formAddressHistory');
   });
 
   //Stores manual address Details
@@ -299,6 +365,9 @@ router.all('/formIdentityDriving', function(req, res) {
 })
 
 router.post('/handleIdentityDriving', function (req, res) {
+  req.session.mainName = req.body;
+  req.session.gender = req.body['radio-group-sex'];
+
   if (req.body.from === 'names') {
     res.redirect('/formAddNames');
   } else if (req.body.from === 'summary') {
@@ -363,7 +432,7 @@ router.get('/exceptionRouteDocs3', function (req, res) {
 })
 
 router.post('/exceptionRouteCheckDocs', function (req, res) {
-  const page = Number(req.body.page);
+  var page = Number(req.body.page);
   var documents = [];
 
   if (page === 1) {
@@ -378,7 +447,7 @@ router.post('/exceptionRouteCheckDocs', function (req, res) {
 
   req.session.documentsGroup = req.session.documentsGroup.concat(documents);
 
-  const nextPage = '/exceptionRouteDocs' + (page + 1);
+  var nextPage = '/exceptionRouteDocs' + (page + 1);
   req.session.licenceSelected = false;
 
   if (req.session.documentsGroup.length < 3) {
@@ -407,7 +476,13 @@ router.post('/exceptionRouteDocDetails1', function(req, res) {
   res.render('exceptionRouteDocDetails1', req.session)
 })
 router.get('/exceptionChosenDocs', function(req, res) {
-  res.render('exceptionChosenDocs', req.session)
+  if (req.session.documentsGroup) {
+    req.session.action = req.session.licenceSelected ? 'formIdentityDriving' : 'formIdentityBirthCert';
+  } else {
+    req.session.action = 'formEnterName';
+  }
+
+  res.render('exceptionChosenDocs', req.session);
 })
 router.all('/formEnterName', function(req, res) {
   req.session.from = req.query.from;
@@ -415,6 +490,8 @@ router.all('/formEnterName', function(req, res) {
 })
 
 router.post('/handleEnterName', function (req, res) {
+  req.session.mainName = req.body;
+
   if (req.body.from === 'summary') {
     res.redirect('/formSummary');
   } else {
@@ -435,6 +512,11 @@ router.post('/exceptionDocsPrint', function(req, res) {
 router.all('/formComplete', function(req, res) {
   res.redirect('formCompleteExp');
 })
+
+router.get('/formCompleteExp', function (req, res) {
+  req.session.date = moment().add(13, 'days').format('DD MMMM YYYY');
+  res.render('formCompleteExp', req.session);
+});
 
 // Branching
 
@@ -459,6 +541,90 @@ router.all('/formComplete', function(req, res) {
     }
 
   });
+
+router.get('/formAddName/:index', function (req, res) {
+  res.render('formAddName', {
+    name: req.session.names[req.params.index]
+  });
+});
+
+router.post('/formAddName/:index', function (req, res) {
+  var fromMonth = helpers.getMonthName(req.body['name-since-month']);
+  var from = `${fromMonth} ${req.body['name-since-year']}`;
+
+  var to = 'now';
+
+  if (req.body['radio-group-current-name'] === 'No') {
+    var toMonth = helpers.getMonthName(req.body['name-to-month']);
+    to = `${toMonth} ${req.body['name-to-year']}`;
+  }
+
+  req.body.from = from;
+  req.body.to = to;
+
+  req.session.names[req.params.index] = req.body;
+  res.redirect('/formAddNames');
+});
+
+router.get('/deleteName/:index', function (req, res) {
+  req.session.names.splice(req.params.index, 1);
+
+  if (req.session.names.length === 0) {
+    delete req.session.names;
+  }
+
+  res.redirect('/formAddNames');
+});
+
+router.post('/formAddName', function (req, res) {
+  if (!req.session.names) {
+    req.session.names = [];
+  }
+
+  var fromMonth = helpers.getMonthName(req.body['name-since-month']);
+  var from = `${fromMonth} ${req.body['name-since-year']}`;
+
+  var to = 'now';
+
+  if (req.body['radio-group-current-name'] === 'No') {
+    var toMonth = helpers.getMonthName(req.body['name-to-month']);
+    to = `${toMonth} ${req.body['name-to-year']}`;
+  }
+
+  req.body.from = from;
+  req.body.to = to;
+
+  req.session.names.push(req.body);
+  res.redirect('/formAddNames');
+});
+
+router.post('/tracking/handleLogin', function (req, res) {
+  var url = helpers.getRedirectFromSurname(req.body.surname);
+  res.redirect(url);
+});
+
+router.post('/tracking/handleLogin12', function (req, res) {
+  req.session.trackingSurname = req.body.surname;
+  res.redirect('/tracking/login1-3');
+});
+
+router.post('/tracking/handleLogin13', function (req, res) {
+  var url = helpers.getRedirectFromSurname(req.session.trackingSurname);
+  res.redirect(url);
+});
+
+router.get('/tracking/view', function (req, res) {
+  req.session.step = req.query.step || 2;
+  res.render('tracking/view', req.session);
+});
+
+router.get('/tracking/view-po', function (req, res) {
+  req.session.step = req.query.step || 2;
+  req.session.refunded = req.query.refunded || false;
+  req.session.date = moment().subtract(1, 'day').format('DD/MM/YYYY');
+
+  res.render('tracking/view-po', req.session);
+});
 
 router.get('/:viewScript', function (req, res) {
   res.render(req.params.viewScript, req.session);

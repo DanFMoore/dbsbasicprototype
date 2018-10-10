@@ -39,37 +39,42 @@
                     </legend>
 
                     <label class="block-label selection-button-checkbox" for="check-box-1">
-                        <input type="checkbox" id="check-box-1" name="documents-group" value="dob">
-                        Passport (any current and valid)
+                        <input type="checkbox" id="check-box-1" name="documents-group" value="driving">
+                        Driving licence (any current photocard or paper, full or provisional)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-2">
-                        <input type="checkbox" id="check-box-2" name="documents-group" value="driving">
-                        Driving licence (any current photocard or paper, full or provisional)
+                        <input type="checkbox" id="check-box-2" name="documents-group" value="dob">
+                        Passport (any current and valid)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-3">
                         <input type="checkbox" id="check-box-3" name="documents-group" value="dob">
-                        Birth certificate (UK, Isle of Man and Channel Islands)
+                        Irish passport card (current and valid)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-4">
-                        <input type="checkbox" id="check-box-4" name="documents-group" value="addr">
-                        Bank or building society statement (UK or EEA - issued in last 3 months)
+                        <input type="checkbox" id="check-box-4" name="documents-group" value="dob">
+                        Birth certificate (UK, Isle of Man and Channel Islands)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-5">
-                        <input type="checkbox" id="check-box-5" name="documents-group" value="addr" {% if checkAgain %}checked="checked"{% endif %}>
-                        Credit card statement (UK or EEA - issued in last 3 months)
+                        <input type="checkbox" id="check-box-5" name="documents-group" value="addr">
+                        Bank or building society statement (UK or EEA - issued in last 3 months)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-6">
-                        <input type="checkbox" id="check-box-6" name="documents-group" value="addr">
-                        Utility bill, for example water or electricity you cannot use mobile phone bills (UK - issued in last 3 months)
+                        <input type="checkbox" id="check-box-6" name="documents-group" value="addr" {% if checkAgain %}checked="checked"{% endif %}>
+                        Credit card statement (UK or EEA - issued in last 3 months)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-7">
-                        <input type="checkbox" id="check-box-7" name="documents-group" value="dob">
+                        <input type="checkbox" id="check-box-7" name="documents-group" value="addr">
+                        Utility bill, for example water or electricity you cannot use mobile phone bills (UK - issued in last 3 months)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-8">
+                        <input type="checkbox" id="check-box-8" name="documents-group" value="dob">
                         Biometric residence permit (UK)
                     </label>
 
@@ -78,80 +83,80 @@
                 {% elseif page === 2 %}
 
                     <label class="block-label selection-button-checkbox" for="check-box-1">
-                        <input type="checkbox" id="check-box-1" name="documents-group" value="dob">
-                        Adoption certificate (UK)
+                        <input type="checkbox" id="check-box-1" name="documents-group" value="addr">
+                        Council tax statement (UK - issued in last 12 months)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-2">
-                        <input type="checkbox" id="check-box-2" name="documents-group" value="none">
-                        Marriage or civil partnership certificate (UK)
+                        <input type="checkbox" id="check-box-2" name="documents-group" value="dob">
+                        EU National ID card (current and valid)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-3">
-                        <input type="checkbox" id="check-box-3" name="documents-group" value="dob">
-                        HM Forces ID card (UK)
+                        <input type="checkbox" id="check-box-3" name="documents-group" value="addr">
+                        P45 (UK - issued in last 12 months)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-4">
-                        <input type="checkbox" id="check-box-4" name="documents-group" value="addr" {% if checkAgain %}checked="checked"{% endif %}>
-                        Mortgage statement (UK or EEA - issued in last 12 months)
+                        <input type="checkbox" id="check-box-4" name="documents-group" value="addr">
+                        Bank or building society account opening confirmation letter (UK - issued in last 3 months)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-5">
                         <input type="checkbox" id="check-box-5" name="documents-group" value="addr">
-
                         Financial statement, for example pension or endowment (UK - issued in last 12 months)
-
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-6">
                         <input type="checkbox" id="check-box-6" name="documents-group" value="addr">
-
-                        Council tax statement (UK - issued in last 12 months)
-
+                        Benefit statement, for example child benefit, pension (UK - issued in last 3 months)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-7">
-                        <input type="checkbox" id="check-box-7" name="documents-group" value="addr">
-                        Benefit statement, for example child benefit, pension (UK - issued in last 3 months)
+                        <input type="checkbox" id="check-box-7" name="documents-group" value="addr" {% if checkAgain %}checked="checked"{% endif %}>
+                        Mortgage statement (UK or EEA - issued in last 12 months)
                     </label>
 
                     <p><a href="exceptionRouteDocs3">I want to see a third list of documents</a></p>
 
                 {% elseif page === 3 %}
-
                     <legend id="documents-group">
                         <span class="visually-hidden">Select your identity documents</span>
                     </legend>
 
                     <label class="block-label selection-button-checkbox" for="check-box-1">
-                        <input type="checkbox" id="check-box-1" name="documents-group" value="both">
-                        Firearms licence (UK)
+                        <input type="checkbox" id="check-box-1" name="documents-group" value="addr">
+                        P60 (UK - issued in last 12 months)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-2">
                         <input type="checkbox" id="check-box-2" name="documents-group" value="addr">
-                        Bank or building society account opening confirmation letter (UK - issued in last 3 months)
-                    </label>
-
-                    <label class="block-label selection-button-checkbox" for="check-box-3">
-                        <input type="checkbox" id="check-box-3" name="documents-group" value="addr">
-                        P45 or P60 statement (UK or EEA - issued in last 12 months)
-                    </label>
-
-                    <label class="block-label selection-button-checkbox" for="check-box-4">
-                        <input type="checkbox" id="check-box-4" name="documents-group" value="addr">
                         Central or local government entitlement document, for example HMRC or Jobcentre (UK - issued in last 3 months)
                     </label>
 
+                    <label class="block-label selection-button-checkbox" for="check-box-3">
+                        <input type="checkbox" id="check-box-3" name="documents-group" value="none">
+                        Marriage or civil partnership certificate (UK)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-4">
+                        <input type="checkbox" id="check-box-4" name="documents-group" value="dob">
+                        HM Forces ID card (UK)
+                    </label>
+
                     <label class="block-label selection-button-checkbox" for="check-box-5">
-                        <input type="checkbox" id="check-box-5" name="documents-group" value="dob">
-                        EU National ID card (current and valid)
+                        <input type="checkbox" id="check-box-5" name="documents-group" value="dob" {% if checkAgain %}checked="checked"{% endif %}>
+                        Card with PASS accreditation logo (UK)
                     </label>
 
                     <label class="block-label selection-button-checkbox" for="check-box-6">
-                        <input type="checkbox" id="check-box-6" name="documents-group" value="dob" {% if checkAgain %}checked="checked"{% endif %}>
-                        Card with PASS accreditation logo (UK)
+                        <input type="checkbox" id="check-box-6" name="documents-group" value="dob">
+                        Adoption certificate (UK)
+                    </label>
+
+                    <label class="block-label selection-button-checkbox" for="check-box-7">
+                        <input type="checkbox" id="check-box-7" name="documents-group" value="both">
+                        Firearms licence (UK)
                     </label>
 
                     <p><a href="exceptionDocsErrorNotEnough">I do not have any documents from this list</a></p>

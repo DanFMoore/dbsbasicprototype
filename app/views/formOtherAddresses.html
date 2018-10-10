@@ -266,8 +266,8 @@
 												</div>
 												<div class="form-group form-group-year">
 													<label for="cur-address-since-year-">Year</label>
-													<input disabled class="form-control" id="cur-address-since-year-" type="number" name="cur-address-since-year-" pattern="[0-9]*" min="1900" max="2016"
-														data-parsley-class-handler="#cur-ad-since-group-"
+													<input disabled class="form-control" id="cur-address-since-year-" type="number" name="cur-address-since-year-" pattern="[0-9]*" maxlength="4"
+														   data-parsley-class-handler="#cur-ad-since-group-"
 					          							data-parsley-errors-container="#cur-ad-since-group-error-message-"
 					          							data-parsley-required="true"
 					    								data-parsley-required-message="Enter since year for address "
@@ -295,16 +295,18 @@
 														data-parsley-class-handler="#nc-ad-since-block-"
 					          							data-parsley-errors-container="#nc-ad-since-block-error-message-"
 					          							data-parsley-required="true"
-					    								data-parsley-required-message="Enter since month for address "
+														   maxlength="2"
+														   data-parsley-required-message="Enter since month for address "
 													>
 												</div>
 												<div class="form-group form-group-year">
 													<label for="nc-address-since-year-">Year</label>
-													<input disabled class="form-control" id="nc-address-since-year-" type="number" name="nc-address-since-year-" pattern="[0-9]*" min="1900" max="2016"
+													<input disabled class="form-control" id="nc-address-since-year-" type="number" name="nc-address-since-year-" pattern="[0-9]*"
 														data-parsley-class-handler="#nc-ad-since-block-"
 					          							data-parsley-errors-container="#nc-ad-since-block-error-message-"
 					          							data-parsley-required="true"
-					    								data-parsley-required-message="Enter since year for address "
+														   maxlength="4"
+														   data-parsley-required-message="Enter since year for address "
 													>
 												</div>
 											</div>

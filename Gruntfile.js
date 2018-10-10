@@ -5,7 +5,7 @@ module.exports = function (grunt) {
       dev: {
         options: {
           style: 'expanded',
-          sourcemap: true,
+          sourceMap: true,
           includePaths: [
             'govuk_modules/govuk_template/assets/stylesheets',
             'govuk_modules/govuk_frontend_toolkit/stylesheets',

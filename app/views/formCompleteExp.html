@@ -10,32 +10,34 @@
   {% include 'includes/phase_banner_alpha.html' %}
 	<div class="grid-row">
         <div class="column-two-thirds reduceMargin">
-
-
-
-
-
-
-
             <h1 class="heading-large page-heading">What to do next</h1>
 
-            <p>You must validate your identity by <strong class="bold">19 July 2018</strong>.</p>
+            <p>You must validate your identity by <strong class="bold">{{ date }}</strong>.</p>
 
             <ul class="list-bullet">
-                <li>we will send you an email with a link to a letter you need to print</li>
-                <li>you must then take the letter and the 3 documents you selected (original versions, not photocopies) to a post office that has the 'DBS ID validation service'</li>
+                <li>we will send you an email with a link to a letter you need to print (always check your spam or junk folders if you haven't received an email)</li>
+                <li>you must then take the letter and the 3 documents you selected (original versions, not photocopies) to a post office that has the DBS ID validation service</li>
+                <li>we will then notify you by email when your certificate has been issued and tell you the result of your check</li>
+                <li>your certificate will then be sent to you by post</li>
             </ul>
 
             <br>
-            <p>Not all post offices offer the DBS ID validation service. You can find your nearest DBS ID validation service on the Post Office website:
-                <a target="_blank" href="http://www.postoffice.co.uk/branch-finder">http://www.postoffice.co.uk/branch-finder</a>.</p>
+
+            <p>Not all post offices have the DBS ID validation service. You can use
+                <a
+                    id="branch-finder-link"
+                    href="https://www.apply-basic-criminal-record-check.service.gov.uk/branch-finder/map?current-address={{ addresses[0]['new-address-line-1'] }},%20{% if addresses[0]['new-address-line-2'] %}{{ addresses[0]['new-address-line-2'] }},%20{% endif %}{{ addresses[0]['new-address-town-city'] }}%20{{ addresses[0]['new-address-postcode'] }}"
+                >our branch finder</a>
+            to search for post offices near you that do.</p>
+
+            <p>After you have validated your identity at the Post Office, you don't need to do anything else.</p>
 
             <div class="panel panel-border-wide">
-                <p>After entering your location you must select 'refine branch services' and choose 'DBS ID validation service' from the list.</p>
+                <p>You will receive your application reference number by email after you have validated your identity at a post office. It could take up to 3 days for your email to arrive.</p>
             </div>
 
             <h2 class="heading-small">If you don't validate your identity</h2>
-            <p>If you don't validate your identity by <strong class="bold">19 July 2018</strong> we will delete your application and refund your £25 fee in full.</p>
+            <p>If you don't validate your identity by <strong class="bold">{{ date }}</strong> we will delete your application and refund your £25 fee in full.</p>
 
             <h2 class="heading-small">Contact us</h2>
             <p>If you need help contact the Disclosure and Barring Service (DBS).</p>
@@ -52,15 +54,8 @@
             <p>
                 <a href="https://www.gov.uk/call-charges">Find out about call charges</a>
             </p>
-
-
-
-
         </div>
 	</div>
-
-
-
 </main>
 
 {% endblock %}

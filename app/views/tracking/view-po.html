@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {% if refunded %}Application refunded{% elseif step == 6 %}Application complete{% else %}Where your application is up to{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include 'includes/phase_banner_alpha.html' %}
+
+  {% if refunded %}
+    <div class="govuk-box-highlight refunded">
+      <h1 class="heading-xlarge">Application refunded</h1>
+    </div>
+  {% elseif step == 6 %}
+    <div class="govuk-box-highlight">
+      <h1 class="heading-xlarge">Application complete</h1>
+    </div>
+  {% else %}
+    <h1 class="heading-medium">
+      Where your application is up to
+    </h1>
+  {% endif %}
+
+  {% if refunded %}
+    <p>You did not validate your identity so we've refunded your £25 and cancelled your application.</p>
+  {% elseif step == 6 %}
+    <p>Your application is complete and your certificate has been posted to you.</p>
+  {% else %}
+    <p>The steps below tell you where your application for a basic DBS check is up to as of {{ date }}.</p>
+  {% endif %}
+
+    <ul class="progress-tracker progress-tracker--vertical mobile-only {% if refunded %}refunded{% elseif step == 6 %}complete{% endif %}">
+      <li class="progress-step is-complete">
+        <span class="progress-marker"></span>
+        <div class="progress-text {% if step == 1 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view-po?step=1">Step 1</a></h4>
+          <p>Your application has been submitted</p>
+          <p>Completed 27/08/2018</p>
+        </div>
+      </li>
+
+      <li class="progress-step {% if refunded %}is-active{% elseif step > 1 %}is-complete{% else %}is-incomplete{% endif %}">
+        <span class="progress-marker"></span>
+        <div class="progress-text {% if step == 2 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view-po?step=2">Step 2</a></h4>
+          {% if refunded %}
+          <p>
+            <a href="view-po?step=2">You did not validate your identity, we've refunded your £25</a>
+          </p>
+          {% else %}
+          <p>
+            <a href="view-po?step=2&refunded=1">
+              {% if step > 1 %}You have validated your identity at the Post Office{% else %}You need to validate your identity at the Post Office {% endif %}
+            </a>
+          </p>
+          {% endif %}
+          <p>{% if refunded %}Refunded 28/08/2018{% elseif step > 1 %}Completed 28/08/2018{% else %}In progress{% endif %}</p>
+        </div>
+      </li>
+
+      <li class="progress-step {%if step > 2 %}is-complete{% else %}is-incomplete{% endif %}">
+        <span class="progress-marker"></span>
+        <div class="progress-text {% if step == 3 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view-po?step=3">Step 3</a></h4>
+          <p>{% if step > 2 %}Your application has been received{% else %}Receipt of application{% endif %}</p>
+          <p>{% if refunded %}Cancelled{% elseif step > 2 %}Completed 29/08/2018{% elseif step > 1 %}In progress{% else %}Pending{% endif %}</p>
+        </div>
+      </li>
+
+      <li class="progress-step {%if step > 3 %}is-complete{% else %}is-incomplete{% endif %}">
+        <span class="progress-marker"></span>
+        <div class="progress-text {% if step == 4 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view-po?step=4">Step 4</a></h4>
+          <p>{% if step > 3 %}Your application has been processed{% else %}Application processing{% endif %}</p>
+          <p>{% if refunded %}Cancelled{% elseif step > 3 %}Completed 30/08/2018{% elseif step > 2 %}In progress{% else %}Pending{% endif %}</p>
+        </div>
+      </li>
+
+      <li class="progress-step {%if step > 4 %}is-complete{% else %}is-incomplete{% endif %}">
+        <span class="progress-marker"></span>
+        <div class="progress-text {% if step == 5 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view-po?step=5">Step 5</a></h4>
+          <p>{% if step > 4 %}Your certificate has been created{% else %}Certificate creation{% endif %}</p>
+          <p>{% if refunded %}Cancelled{% elseif step > 4 %}Completed 31/08/2018{% elseif step > 3 %}In progress{% else %}Pending{% endif %}</p>
+        </div>
+      </li>
+
+      <li class="progress-step {%if step > 5 %}is-complete{% else %}is-incomplete{% endif %}">
+        <span class="progress-marker"></span>
+        <div class="progress-text {% if step == 6 %}active{% endif %}">
+          <h4 class="progress-title"><a href="view-po?step=6">Step 6</a></h4>
+          <p>{% if step > 5 %}Your certificate has been posted to you{% else %}Certificate dispatch{% endif %}</p>
+          <p>{% if refunded %}Cancelled{% elseif step > 5 %}Completed 01/09/2018{% elseif step > 4 %}In progress{% else %}Pending{% endif %}</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="desktop-only">
+      <ul class="progress-tracker progress-tracker--word progress-tracker--word-center {% if refunded %}refunded{% elseif step == 6 %}complete{% endif %}" aria-hidden="true">
+        <li class="progress-step is-complete">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view-po?step=1">Step 1</a></span>
+        </li>
+
+        <li class="progress-step {% if refunded %}is-active{% elseif step > 1 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view-po?step=2">Step 2</a></span>
+        </li>
+
+        <li class="progress-step {% if step > 2 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view-po?step=3">Step 3</a></span>
+        </li>
+
+        <li class="progress-step {% if step > 3 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view-po?step=4">Step 4</a></span>
+        </li>
+
+        <li class="progress-step {% if step > 4 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view-po?step=5">Step 5</a></span>
+        </li>
+
+        <li class="progress-step {% if step > 5 %}is-complete{% else %}is-incomplete{% endif %}">
+          <span class="progress-marker"></span>
+          <span class="progress-text"><a href="view-po?step=6">Step 6</a></span>
+        </li>
+      </ul>
+
+      <table class="application-statuses">
+        <tbody>
+        <tr {% if step == 1 %}class="active"{% endif %}>
+          <td>Step 1</td>
+          <td>Your application has been submitted</td>
+          <td>Completed</td>
+          <td>27/08/2018</td>
+        </tr>
+        <tr {% if refunded or step == 2 %}class="active"{% endif %}>
+          <td>Step 2</td>
+          {% if refunded %}
+            <td><a href="view-po?step=2">You did not validate your identity, we've refunded your £25</a></td>
+          {% else %}
+            <td>
+              <a href="view-po?step=2&refunded=1">
+                {% if step > 1 %}You have validated your identity at the Post Office{% else %}You need to validate your identity at the Post Office {% endif %}
+              </a>
+            </td>
+          {% endif %}
+
+          <td>{% if refunded %}Refunded{% elseif step > 1 %}Completed{% else %}In progress{% endif %}</td>
+          <td>{% if step > 1 or refunded %}28/08/2018{% endif %}</td>
+        </tr>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 3 %}class="active"{% endif %}>
+          <td>Step 3</td>
+          <td>{% if step > 2 %}Your application has been received{% else %}Receipt of application{% endif %}</td>
+          <td>{% if refunded %}Cancelled{% elseif step > 2 %}Completed{% elseif step > 1 %}In progress{% else %}Pending{% endif %}</td>
+          <td>{% if step > 2 %}29/08/2018{% endif %}</td>
+        </tr>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 4 %}class="active"{% endif %}>
+          <td>Step 4</td>
+          <td>{% if step > 3 %}Your application has been processed{% else %}Application processing{% endif %}</td>
+          <td>{% if refunded %}Cancelled{% elseif step > 3 %}Completed{% elseif step > 2 %}In progress{% else %}Pending{% endif %}</td>
+          <td>{% if step > 3 %}30/08/2018{% endif %}</td>
+        </tr>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 5 %}class="active"{% endif %}>
+          <td>Step 5</td>
+          <td>{% if step > 4 %}Your certificate has been created{% else %}Certificate creation{% endif %}</td>
+          <td>{% if refunded %}Cancelled{% elseif step > 4 %}Completed{% elseif step > 3 %}In progress{% else %}Pending{% endif %}</td>
+          <td>{% if step > 4 %}31/08/2018{% endif %}</td>
+        </tr>
+        <tr {% if refunded %}class="cancelled"{% endif %}{% if step == 6 %}class="active"{% endif %}>
+          <td>Step 6</td>
+          <td>{% if step > 5 %}Your certificate has been posted to you{% else %}Certificate dispatch{% endif %}</td>
+          <td>{% if refunded %}Cancelled{% elseif step > 5 %}Completed{% elseif step > 4 %}In progress{% else %}Pending{% endif %}</td>
+          <td>{% if step > 5 %}01/09/2018{% endif %}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-group">
+      <a href="login" class="button">Log out</a>
+    </div>
+
+</main>
+
+{% endblock %}

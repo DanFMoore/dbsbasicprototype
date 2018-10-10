@@ -17,7 +17,9 @@
 							Name
 						</dt>
 						<dd class="cya-answer">
-							John Daniel Smith
+							{{ mainName['first-name'] }}
+							{{ mainName['middle-names'] }}
+							{{ mainName['last-name'] }}
 						</dd>
 						<dd class="cya-change">
 							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formEnterName' }}?from=summary" id="edit-name">
@@ -31,8 +33,7 @@
 							Sex
 						</dt>
 						<dd class="cya-answer">
-
-							Male
+							{{ gender }}
 						</dd>
 						<dd class="cya-change">
 							<a href="{{ 'formIdentityDriving' if licenceSelected else 'formGender' }}?from=summary" id="edit-sex">
@@ -146,16 +147,16 @@
 					<br>
 					<dl class="govuk-check-your-answers cya-questions-short">
 						<div id="uid-birth-certificate">
-	
+
 							<dt class="cya-question">
 								Certificate number
 							</dt>
 							<dd class="cya-answer">
 								3884<br>
 							</dd>
-	
+
 							<dd class="cya-change">
-	
+
 								<a href="formIdentityBirthCert?from=summary" id="edit-birth-certificate">
 									Change<span class="visually-hidden"> Birth Certificate details</span>
 								</a>
