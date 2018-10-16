@@ -15,43 +15,33 @@
 			{% include 'includes/error_summary.html' %}
 			{# include if this page has validation requirements #}
 
+			<h1 class="heading-medium">What is your current address?</h1>
+
 			<form action="formAddressCurrentManual" method="post" class="form" id="postcode-form">
+				<fieldset class="inline">
+					<div class="form-group">
+				  		<!-- Postcode block -->
+						<fieldset class="inline">
+							<!-- Postcode -->
 
-				<h1 class="heading-medium">What is your current address?</h1>
-				<!-- Details correct -->
-				<div class="form-group" id="add-new-address-group">
-					<fieldset class="inline">
-						<legend class="visuallyhidden">What is your current address?</legend>
-							<!-- Verified details -->
-							<div class="form-group">
-							  <!-- Postcode block -->
-								<fieldset class="inline">
-									<!-- Postcode -->
-
-									<label class="form-label" for="postcode">UK postcode
-									<!--  <span class="form-hint">for example, SW1 2AB</span>-->
-									  </label>
-									<div id="postcode-block-error-message" class="form-error validation-message"></div>
-									<input class="form-control" style="text-transform: uppercase;" maxlength="8" name="postcode" type="text" id="postcode"
-										data-parsley-class-handler="#postcode-block"
-											data-parsley-errors-container="#postcode-block-error-message"
-											data-parsley-required="true"
-										data-parsley-required-message="Enter the address"
-									>
-
-								</fieldset>
-							</div> <!-- Form group close - Postcode block -->
+							<label class="form-label" for="postcode">UK postcode
+							<!--  <span class="form-hint">for example, SW1 2AB</span>-->
+							  </label>
+							<div id="postcode-block-error-message" class="form-error validation-message"></div>
+							<input class="form-control" style="text-transform: uppercase;" maxlength="8" name="postcode" type="text" id="postcode"
+								data-parsley-class-handler="#postcode-block"
+									data-parsley-errors-container="#postcode-block-error-message"
+									data-parsley-required="true"
+								data-parsley-required-message="Enter the address"
+							>
 						</fieldset>
-
-					<div class="panel panel-border-wide">
-						<p>Non-UK addresses: <a href="formAddressCurrentManual">Add address manually</a></p>
-					</div>
+					</div> <!-- Form group close - Postcode block -->
 
 					<!-- Continue button -->
 					<div class="form-group">
 						<input type="submit" class="button" value="Look up address">
 					</div> <!-- Form group close-->
-				</div>
+				</fieldset>
 			</form>
 
 			<form action="handlePostcodeForm" method="post" class="form" id="select-address" style="display: none">
@@ -59,30 +49,33 @@
 					<div class="form-group ">
 						<label class="form-label" for="select-box">Select your address</label>
 
-
 						<select class="form-control" id="select-box" name="select-box">
 							<option>Select your address</option>
 							<option value="0" data-address="37 Stroma Road, Allerton, Liverpool, L18 9SN">37 Stroma Road, Allerton, Liverpool, L18 9SN</option>
-
-
 						</select>
 					</div>
 
 					<a href="formAddressCurrentManual">Add address manually</a>
-
 				</div>
 
-
 				<input type="hidden" name="_csrf" value="uM31u2yz-up8HM8UQ_7d1zHCw4fmfYAKc7gc">
-
-
 
 				<div class="form-group">
 					<input type="submit" class="button" id="save-and-continue" value="Continue">
 				</div>
-
-
 			</form>
+
+			<div class="form-group">
+				<details>
+					<summary class="help-text-link"><span class="summary">Add a non-UK address</span></summary>
+					<div class="panel panel-border-narrow" data-dbs-id="help-text-text">
+						<p>
+							If you have a non-UK address you can <a href="formAddressCurrentManual">
+							add your address manually</a>. However, you’ll need to visit a UK post office to complete your application.
+						</p>
+					</div>
+				</details>
+			</div>
 		</div>
 	</div>
 </main>
