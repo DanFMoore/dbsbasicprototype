@@ -106,9 +106,6 @@ function removeHidden(dTarget) {
 
 
 $(document).ready(function () {
-  /*$.autotab('input[type="number"]', { tabOnSelect: true });
-  $('input[type="number"]').autotab('filter', 'number');*/
-
   if (window.location.href.indexOf('from=summary') !== -1) {
     $('form').submit(function (e) {
       e.preventDefault();
@@ -134,4 +131,4 @@ $(document).ready(function () {
   var toggleContent = new ShowHideContent()
   toggleContent.showHideRadioToggledContent()
   toggleContent.showHideCheckboxToggledContent()
-})
+});

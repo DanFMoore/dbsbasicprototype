@@ -156,11 +156,10 @@ known by any other names?" %} {% block content %}
         </div>
     </div>
 </main>
+{% endblock %}
 
-<!-- scripts for page validation -->
-<script src="/public/javascripts/jquery-1.11.3.js"></script>
-<script src="/public/javascripts/parsley.min.js"></script>
-<script src="/public/javascripts/form-utilities.js"></script>
+{% block body_end %}
+  {{ super() }}
 
 <script type="text/javascript">
   $('form').submit(function (e) {
@@ -176,4 +175,5 @@ known by any other names?" %} {% block content %}
       }
     }
   });
-</script> {% endblock %}
+</script>
+{% endblock %}

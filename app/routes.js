@@ -35,14 +35,8 @@ router.get('/menu', function (req, res) {
 });
 
 router.get('/verifyPages', function (req, res) {
+  req.session.notification = req.query.notification;
   res.render('verifyPages');
-
-  // clear the session for new users
-  req.session.destroy(function (err) {
-    if (err) {
-      console.error(err);
-    }
-  });
 });
 
 router.post('/verifyPages', function (req, res) {
@@ -74,7 +68,7 @@ router.post('/formSensitive', function(req, res) {
 })
 // Section 3 - Add other names
 router.all('/formAddNames', function (req, res) {
-  console.log(req.session.mainName);
+  helpers.createMissingName(req);
 
   res.render('formAddNames', req.session);
 });
@@ -106,11 +100,12 @@ router.post('/handleFormSendAddress', function(req, res) {
   if (req.body['radio-correct-group'] === 'Another') {
     res.redirect('formSendCert');
   } else {
-    res.redirect('formEmail');
+    res.redirect(req.session.notification === 'combined' ? 'formEmailCombined' : 'formEmail');
   }
 })
 
 router.all('/formAddressHistory', function (req, res) {
+  helpers.createMissingAddress(req);
   req.session.from = req.query.from;
 
   if (req.session.documentsGroup) {
@@ -143,6 +138,7 @@ router.all('/formSendCertManual', function(req, res) {
   res.render('formSendCertManual', {
     address: req.query.address,
     from: req.query.from,
+    action: req.session.notification === 'combined' ? 'formEmailCombined' : 'formEmail'
   })
 });
 
@@ -395,6 +391,8 @@ router.post('/formConvictions', function(req, res) {
 })
 // Summary - Summary page
 router.post('/formSummary', function(req, res) {
+  helpers.createMissingName(req);
+  helpers.createMissingAddress(req);
   req.session.onSummary = true;
 
   res.render('formSummary', req.session)
@@ -624,6 +622,16 @@ router.get('/tracking/view-po', function (req, res) {
   req.session.date = moment().subtract(1, 'day').format('DD/MM/YYYY');
 
   res.render('tracking/view-po', req.session);
+});
+
+router.get('/formEmailCombined', function (req, res) {
+  req.session.notification = 'combined';
+  res.render('formEmailCombined', req.session);
+});
+
+router.get('/formContactNumberCombined', function (req, res) {
+  req.session.notification = 'combined';
+  res.render('formContactNumberCombined', req.session);
 });
 
 router.get('/:viewScript', function (req, res) {

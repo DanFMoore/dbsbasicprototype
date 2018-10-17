@@ -304,8 +304,22 @@
 							johndsmith@gmail.com
 						</dd>
 						<dd class="cya-change">
-							<a href="formEmail?from=summary" id="edit-email">
+							<a href="{{ 'formEmailCombined' if notification === 'combined' else 'formEmail' }}?from=summary" id="edit-email">
 								Change<span class="visually-hidden"> Email address</span>
+							</a>
+						</dd>
+					</div>
+
+					<div id="email-notification">
+						<dt class="cya-question">
+							Receive results by email
+						</dt>
+						<dd class="cya-answer">
+							Yes
+						</dd>
+						<dd class="cya-change">
+							<a href="{{ 'formEmailCombined' if notification === 'combined' else 'formEmailResult' }}?from=summary" id="edit-email-notification">
+								Change
 							</a>
 						</dd>
 					</div>
@@ -318,14 +332,26 @@
 							0151 436 2344
 						</dd>
 						<dd class="cya-change">
-							<a href="formContactNumber?from=summary" id="edit-contact-number">
+							<a href="{{ 'formContactNumberCombined' if notification === 'combined' else 'formContactNumber' }}?from=summary" id="edit-contact-number">
 								Change<span class="visually-hidden"> Contact phone number</span>
 							</a>
 						</dd>
 					</div>
+
+					<div id="text-number">
+						<dt class="cya-question">
+							Text notification number
+						</dt>
+						<dd class="cya-answer">
+							07771 184926
+						</dd>
+						<dd class="cya-change">
+							<a href="{{ 'formContactNumberCombined' if notification === 'combined' else 'formContactNumberText' }}?from=summary" id="edit-contact-number-text">
+								Change<span class="visually-hidden"> Text notification number</span>
+							</a>
+						</dd>
+					</div>
 				</dl>
-
-
 
 				<br>
 
