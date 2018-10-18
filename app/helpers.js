@@ -38,21 +38,22 @@ function getRedirectFromSurname(surname) {
   return redirect;
 }
 
-function createMissingGender(req) {
-  if (!req.session.gender) {
-    req.session.gender = Math.random() >= 0.5 ? 'Female' : 'Male';
+function createMissingName(req) {
+  if (!req.session.mainName || !req.session.mainName['first-name']) {
+    var female = Math.random() >= 0.5;
+
+    req.session.mainName = {
+      'first-name': female ? 'Jessica' : 'James',
+      'middle-names': female ? 'Christine' : 'Christopher',
+      'last-name': 'Smith'
+    };
   }
 }
 
-function createMissingName(req) {
-  if (!req.session.mainName || !req.session.mainName['first-name']) {
-    createMissingGender(req);
-
-    req.session.mainName = {
-      'first-name': req.session.gender === 'Female' ? 'Jessica' : 'James',
-      'middle-names': req.session.gender === 'Female' ? 'Christine' : 'Christopher',
-      'last-name': 'Smith'
-    };
+function createMissingGender(req) {
+  if (!req.session.gender) {
+    var female = req.session.mainName['first-name'] === 'Jessica';
+    req.session.gender = female ? 'Female' : 'Male';
   }
 }
 
@@ -74,5 +75,6 @@ module.exports = {
   getMonthName,
   getRedirectFromSurname,
   createMissingName,
+  createMissingGender,
   createMissingAddress
 };

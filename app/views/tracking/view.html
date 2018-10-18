@@ -22,7 +22,7 @@
   {% if step == 4 %}
     <p>Your application is complete and your certificate has been posted to you.</p>
   {% else %}
-    <p>The steps below tell you where your application for a basic DBS check is currently up to.</p>
+  <p>The steps below tell you where your application for a basic DBS check is up to as of {{ date }}.</p>
   {% endif %}
 
     <ul class="progress-tracker progress-tracker--vertical mobile-only {% if step == 4 %}complete{% endif %}">
@@ -115,11 +115,6 @@
         </tbody>
       </table>
     </div>
-
-    <div class="form-group">
-      <a href="login" class="button">Log out</a>
-    </div>
-
 </main>
 
 {% endblock %}

@@ -35,23 +35,19 @@
 			    </div> <!-- Form group close-->
 
 
-				<h2 class="heading-small">Can we tell you the result of your check by email?</h2>
+				<h2 class="heading-small">The result of your check</h2>
+
+				<p>Once your application is complete we can send the result of your check to the email address you provided.</p>
 
 				<div class="form-group ">
 					<fieldset class=" inline ">
-						<label class="block-label selection-button-radio {% if from === 'summary' %}selected{% endif %}" for="radio-option-yes" data-target="name-options" id="for-radio-option-yes">
-							<input type="radio" id="radio-option-yes" name="radio-group-names-av" value="Yes" aria-controls="name-options" aria-expanded="false">
-							Yes
-						</label>
+						<label class="block-label selection-button-checkbox {% if from === 'summary' %}selected{% endif %}" for="check-box-1">
+							<input type="checkbox" id="check-box-1" name="check-group-agree" value="terms">
 
-						<label class="block-label selection-button-radio" for="radio-option-no" data-target="" id="for-radio-option-no">
-							<input type="radio" id="radio-option-no" name="radio-group-names-av" value="No">
-							No
+							I would like the basic DBS check service to send the result of my check to my email address.
 						</label>
 					</fieldset>
 				</div>
-
-				<p>Once your application is complete we can send the result of your check to the email address you provided.</p>
 
 				<div class="form-group">
 					<input type="submit" class="button" value="Continue">

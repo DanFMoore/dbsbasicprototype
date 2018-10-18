@@ -1,3 +1,4 @@
+
 {% extends "layout.html" %}
 
 {% block page_title %}
@@ -15,7 +16,7 @@
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
             <h1 class="heading-medium">{{main_question}}</h1>
 
-			<form action="formContactNumberText" method="post" class="form">
+			<form action="formSummary" method="post" class="form">
 
                 <div class="form-group" id="contact-no-group">
                     <fieldset class="inline">
@@ -50,7 +51,7 @@
                             <input
                                 style="width: 85px"
                                 type="text"
-                                name="contact-number-country-code-input-lookup"
+                                name="contact-text-country-code-input-lookup"
                                 autocorrect="off"
                                 autocomplete="off"
                                 class="form-control input-pp country-code  ui-autocomplete-input"
@@ -70,14 +71,43 @@
 			    	</div> <!-- Close Expandable area -->
 
                 </div> <!-- Close contact-no-group -->
-        <p>We will only contact you if there is a problem with your application.</p>
 
-			    <!-- Continue button -->
-			    <div class="form-group">
-			    	<input type="submit" class="button" value="Continue">
-				</div> <!-- Form group close-->
+                <p>We will only contact you if there is a problem with your application.</p>
 
-			</form>
+                <h2 class="heading-small">Can we send you updates about your application by text?</h2>
+
+                <div class="form-group" id="contact-no-group">
+                    <fieldset class="inline">
+                        <legend class="visuallyhidden">{{main_question}}</legend>
+
+                        <div id="contact-no-group-error-message" class="form-error validation-message"></div>
+                        <label class="block-label selection-button-radio {% if from === 'summary' %}selected{% endif %}" data-target="contact-text-expand" for="radio-text-no-1">
+                            <input id="radio-text-no-1" type="radio" name="radio-contact-text-group" value="Yes"
+                                   data-parsley-class-handler="#contact-no-form-group"
+                                   data-parsley-errors-container="#contact-no-form-group-error-message"
+
+                                   data-parsley-required-message="Select 'yes' if you want to provide your contact number"
+                            >
+                            Yes
+                        </label>
+
+                        <label class="block-label selection-button-radio" for="radio-text-no-2">
+                            <input id="radio-text-no-2" type="radio" name="radio-contact-text-group" value="No">
+                            No
+                        </label>
+
+                    </fieldset>
+
+                </div> <!-- Close contact-no-group -->
+
+                <p>We can send you text messages about the progress of your application.</p>
+
+                <!-- Continue button -->
+                <div class="form-group">
+                    <input type="submit" class="button" value="Continue">
+                </div> <!-- Form group close-->
+
+            </form>
 		</div>
 	</div>
 
@@ -89,5 +119,20 @@
 <script src="/public/javascripts/jquery-1.11.3.js"></script>
 <script src="/public/javascripts/parsley.min.js"></script>
 <script src="/public/javascripts/form-utilities.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    // when the main contact number is updated, copy the value to the text number,
+    // if the text number is hidden and the number is a mobile number
+    $('#contact-no').blur(function () {
+      console.log('blur');
+
+      if ($('#contact-text-expand').hasClass('js-hidden') &&
+        (this.value.indexOf('07') === 0 || this.value.indexOf('7') === 0)) {
+        $('#contact-text').val(this.value);
+      }
+    });
+  });
+</script>
 
 {% endblock %}

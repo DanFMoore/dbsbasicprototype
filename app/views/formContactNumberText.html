@@ -15,8 +15,6 @@
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
             <h1 class="heading-medium">Can we send you updates about your application by text?</h1>
 
-            <p>We can send you text messages about the progress of your application.</p>
-
 			<form action="formSummary" method="post" class="form">
 
                 <div class="form-group" id="contact-no-group">
@@ -45,9 +43,9 @@
 			    	<div class="panel panel-border-narrow {% if from !== 'summary' %}js-hidden{% endif %}" id="contact-no-expand">
                         <!-- Contact number -->
                         <div id="contact-no-form-group" class="form-group">
-                            <label class="form-label" for="contact-no">Contact number</label>
+                            <label class="form-label" for="contact-no">Mobile number</label>
 
-                            <span class="form-hint">Select your country code and enter the full contact number.</span>
+                            <span class="form-hint">Select your country code and enter the full mobile number.</span>
 
                             <input
                                 style="width: 85px"
@@ -65,13 +63,19 @@
                                 id="contact-no"
                                 data-parsley-class-handler="#contact-no-form-group"
                                 data-parsley-errors-container="#contact-no-form-group-error-message"
-                                {% if from === 'summary' %}value="07772 123987"{% endif %}
+                                {% if from === 'summary' %}
+                                  value="07772 123987"
+                                {% else %}
+                                  value="{{ textNumber }}"
+                                {% endif %}
                                 data-parsley-required-message="Enter your contact number"
                             >
                         </div> <!-- Form group close-->
 			    	</div> <!-- Close Expandable area -->
 
                 </div> <!-- Close contact-no-group -->
+
+        <p>We can send you text messages about the progress of your application.</p>
 
 			    <!-- Continue button -->
 			    <div class="form-group">

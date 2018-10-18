@@ -80,6 +80,15 @@ router.post('/formEmail', function(req, res) {
 router.post('/formContactNumber', function(req, res) {
   res.render('formContactNumber', req.session)
 })
+
+router.post('/formContactNumberText', function (req, res) {
+  if (req.body['contact-no'].indexOf('7') === 1 || req.body['contact-no'].indexOf('7') === 0) {
+    req.session.textNumber = req.body['contact-no'];
+  }
+
+  res.render('formContactNumberText', req.session);
+});
+
 // Section 5 - Verify address
 router.post('/formAddress', function(req, res) {
   res.render('formAddress', req.session)
@@ -107,13 +116,7 @@ router.post('/handleFormSendAddress', function(req, res) {
 router.all('/formAddressHistory', function (req, res) {
   helpers.createMissingAddress(req);
   req.session.from = req.query.from;
-
-  if (req.session.documentsGroup) {
-    req.session.action = req.session.onSummary ? 'formSummary' : 'formSendAddress';
-  } else {
-    req.session.action = 'formDeclaration';
-  }
-
+  req.session.action = req.session.onSummary ? 'formSummary' : 'formSendAddress';
   res.render('formAddressHistory', req.session);
 });
 
@@ -390,8 +393,9 @@ router.post('/formConvictions', function(req, res) {
   res.render('formConvictions', req.session)
 })
 // Summary - Summary page
-router.post('/formSummary', function(req, res) {
+router.all('/formSummary', function(req, res) {
   helpers.createMissingName(req);
+  helpers.createMissingGender(req);
   helpers.createMissingAddress(req);
   req.session.onSummary = true;
 
@@ -474,12 +478,8 @@ router.post('/exceptionRouteDocDetails1', function(req, res) {
   res.render('exceptionRouteDocDetails1', req.session)
 })
 router.get('/exceptionChosenDocs', function(req, res) {
-  if (req.session.documentsGroup) {
-    req.session.action = req.session.licenceSelected ? 'formIdentityDriving' : 'formIdentityBirthCert';
-  } else {
-    req.session.action = 'formEnterName';
-  }
-
+  req.session.notification = req.query.notification;
+  req.session.action = req.session.licenceSelected ? 'formIdentityDriving' : 'formIdentityBirthCert'
   res.render('exceptionChosenDocs', req.session);
 })
 router.all('/formEnterName', function(req, res) {
@@ -613,13 +613,20 @@ router.post('/tracking/handleLogin13', function (req, res) {
 
 router.get('/tracking/view', function (req, res) {
   req.session.step = req.query.step || 2;
+  req.session.date = moment().format('DD/MM/YYYY');
+
   res.render('tracking/view', req.session);
 });
 
 router.get('/tracking/view-po', function (req, res) {
   req.session.step = req.query.step || 2;
   req.session.refunded = req.query.refunded || false;
-  req.session.date = moment().subtract(1, 'day').format('DD/MM/YYYY');
+
+  if (req.session.step < 2) {
+    req.session.date = moment().subtract(1, 'day').format('DD/MM/YYYY');
+  } else {
+    req.session.date = moment().format('DD/MM/YYYY');
+  }
 
   res.render('tracking/view-po', req.session);
 });

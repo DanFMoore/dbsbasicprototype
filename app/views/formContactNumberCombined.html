@@ -15,7 +15,7 @@
 
 			{% include 'includes/error_summary.html' %}{# include if this page has validation requirements #}
             <h1 class="heading-medium">{{main_question}}</h1>
-            <p>We will only contact you if there is a problem with your application.</p>
+
 			<form action="formSummary" method="post" class="form">
 
                 <div class="form-group" id="contact-no-group">
@@ -72,10 +72,10 @@
 
                 </div> <!-- Close contact-no-group -->
 
+        <p>We will only contact you if there is a problem with your application.</p>
+
 
                 <h2 class="heading-small">Can we send you updates about your application by text?</h2>
-
-                <p>We can send you text messages about the progress of your application.</p>
 
                 <div class="form-group" id="contact-no-group">
                     <fieldset class="inline">
@@ -130,6 +130,8 @@
                     </div> <!-- Close Expandable area -->
 
                 </div> <!-- Close contact-no-group -->
+
+        <p>We can send you text messages about the progress of your application.</p>
 
                 <!-- Continue button -->
                 <div class="form-group">
