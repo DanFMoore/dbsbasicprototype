@@ -479,7 +479,7 @@ router.post('/exceptionRouteDocDetails1', function(req, res) {
 })
 router.get('/exceptionChosenDocs', function(req, res) {
   req.session.notification = req.query.notification;
-  req.session.action = req.session.licenceSelected ? 'formIdentityDriving' : 'formIdentityBirthCert'
+  req.session.action = req.session.licenceSelected ? 'formIdentityDriving' : 'formEnterName';
   res.render('exceptionChosenDocs', req.session);
 })
 router.all('/formEnterName', function(req, res) {
